@@ -1,8 +1,10 @@
-package sk3m3l1io.kalymnos.memogame;
+package sk3m3l1io.kalymnos.memogame.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import sk3m3l1io.kalymnos.memogame.R;
 
 public class MainActivity extends AppCompatActivity {
 
