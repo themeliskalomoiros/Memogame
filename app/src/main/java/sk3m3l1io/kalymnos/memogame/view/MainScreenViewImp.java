@@ -10,7 +10,7 @@ import sk3m3l1io.kalymnos.memogame.R;
 public class MainScreenViewImp implements MainScreenView {
     private View root;
     private Button play;
-    private PlayActionListener playActionListener;
+    private PlayClickListener playClickListener;
 
     public MainScreenViewImp(LayoutInflater inflater, ViewGroup container) {
         initViews(inflater, container);
@@ -20,14 +20,14 @@ public class MainScreenViewImp implements MainScreenView {
         root = inflater.inflate(R.layout.activity_main, container, false);
         play = root.findViewById(R.id.play);
         play.setOnClickListener(view -> {
-            if (playActionListener != null)
-                playActionListener.onPlayActionInvoked();
+            if (playClickListener != null)
+                playClickListener.onPlayClick();
         });
     }
 
     @Override
-    public void setPlayActionListener(PlayActionListener listener) {
-        playActionListener = listener;
+    public void setPlayClickListener(PlayClickListener listener) {
+        playClickListener = listener;
     }
 
     @Override

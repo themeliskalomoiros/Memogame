@@ -1,9 +1,9 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
 public interface MainScreenView extends ViewMvc {
-    interface PlayActionListener {
-        void onPlayActionInvoked();
+    interface PlayClickListener {
+        void onPlayClick();
     }
 
-    void setPlayActionListener(PlayActionListener listener);
+    void setPlayClickListener(PlayClickListener listener);
 }
