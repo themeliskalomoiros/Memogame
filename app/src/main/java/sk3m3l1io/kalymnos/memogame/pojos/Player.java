@@ -1,4 +1,4 @@
-package sk3m3l1io.kalymnos.memogame.model;
+package sk3m3l1io.kalymnos.memogame.pojos;
 
 import androidx.annotation.Nullable;
 

@@ -9,6 +9,8 @@ public interface ViewMvc {
      * The returned Android View might be used by an MVC Controller in order to query
      * or alter the properties of either the root Android View itself, or any of its
      * child Android View's.
+     *
+     * From https://www.techyourchance.com/mvp-mvc-android-1/
      */
     View getRootView();
 }
