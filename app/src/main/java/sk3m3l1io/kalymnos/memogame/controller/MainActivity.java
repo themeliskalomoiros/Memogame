@@ -1,5 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenView.Pl
 
     @Override
     public void onPlayActionInvoked() {
-        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, PlayActivity.class);
+        startActivity(i);
     }
 }
