@@ -1,0 +1,37 @@
+package sk3m3l1io.kalymnos.memogame.view;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import sk3m3l1io.kalymnos.memogame.R;
+
+public class MainScreenViewImp implements MainScreenView {
+    private View root;
+    private Button play;
+    private PlayActionListener playActionListener;
+
+    public MainScreenViewImp(LayoutInflater inflater, ViewGroup container) {
+        initViews(inflater, container);
+    }
+
+    private void initViews(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.activity_main, container, false);
+        play = root.findViewById(R.id.play);
+        play.setOnClickListener(view -> {
+            if (playActionListener != null)
+                playActionListener.onPlayActionInvoked();
+        });
+    }
+
+    @Override
+    public void setPlayActionListener(PlayActionListener listener) {
+        playActionListener = listener;
+    }
+
+    @Override
+    public View getRootView() {
+        return root;
+    }
+}

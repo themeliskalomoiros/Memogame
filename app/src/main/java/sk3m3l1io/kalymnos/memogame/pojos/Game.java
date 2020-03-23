@@ -35,7 +35,7 @@ public final class Game {
         Game other = (Game) o;
         return title.equals(other.title) &&
                 cover == other.cover &&
-                Arrays.equals(symbols,other.symbols);
+                Arrays.equals(symbols, other.symbols);
     }
 
     @Override

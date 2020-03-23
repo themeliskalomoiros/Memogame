@@ -1,8 +1,8 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import sk3m3l1io.kalymnos.memogame.R;
 

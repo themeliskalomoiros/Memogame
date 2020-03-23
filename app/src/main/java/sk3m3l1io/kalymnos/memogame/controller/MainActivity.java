@@ -1,23 +1,27 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-
 import sk3m3l1io.kalymnos.memogame.R;
+import sk3m3l1io.kalymnos.memogame.view.MainScreenView;
+import sk3m3l1io.kalymnos.memogame.view.MainScreenViewImp;
 
-public class MainActivity extends AppCompatActivity {
-    private Button play;
+public class MainActivity extends AppCompatActivity implements MainScreenView.PlayActionListener {
+    private MainScreenView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        play = findViewById(R.id.play);
-        play.setOnClickListener(view -> {
-            Intent i = new Intent();
-        });
+        view = new MainScreenViewImp(getLayoutInflater(), null);
+        view.setPlayActionListener(this);
+        setContentView(view.getRootView());
+    }
+
+    @Override
+    public void onPlayActionInvoked() {
+        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
     }
 }
