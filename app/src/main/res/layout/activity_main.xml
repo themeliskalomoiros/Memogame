@@ -14,14 +14,13 @@
         android:fontFamily="@font/molly_jack"
         android:text="@string/app_name"
         android:textSize="80dp"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/secondaryLightColor"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textColor="@color/primaryTextColor"/>
+        android:paddingRight="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
