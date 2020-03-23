@@ -5,12 +5,10 @@ import androidx.annotation.Nullable;
 public final class Player {
     private final String name;
     private final String email;
-    private final Score score;
 
-    public Player(String name, String email, Score score) {
+    public Player(String name, String email) {
         this.name = name;
         this.email = email;
-        this.score = score;
     }
 
     public String getName() {
@@ -19,10 +17,6 @@ public final class Player {
 
     public String getEmail() {
         return email;
-    }
-
-    public Score getScore() {
-        return score;
     }
 
     @Override
