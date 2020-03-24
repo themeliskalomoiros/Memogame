@@ -19,6 +19,10 @@ public class PlayActivity extends AppCompatActivity implements PlayScreenView.Sy
         view = new PlayScreenViewImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
         setContentView(view.getRootView());
+        game = new Game(
+                "Test Game",
+                '⛶',
+                new char[]{'⛺', '⛱', '⛲', '⛴', '⛵', '⛭', '⛺', '⛱', '⛲', '⛴', '⛵', '⛭'});
     }
 
     @Override

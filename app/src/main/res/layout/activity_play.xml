@@ -7,13 +7,85 @@
     tools:context=".controller.PlayActivity"
     android:background="@color/primaryColor">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/symbols"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/symbol_group_margin"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/symbol_0"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_1"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_2"
+                layout="@layout/item_symbol"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/symbol_3"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_4"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_5"
+                layout="@layout/item_symbol"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/symbol_6"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_7"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_8"
+                layout="@layout/item_symbol"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/symbol_9"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_10"
+                layout="@layout/item_symbol"/>
+            <include
+                android:id="@+id/symbol_11"
+                layout="@layout/item_symbol"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
