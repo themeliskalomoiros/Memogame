@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
@@ -73,6 +74,9 @@ public class GameActivity extends AppCompatActivity implements
     public void onSymbolMatch(int position1, int position2) {
         view.disableSymbol(position1);
         view.disableSymbol(position2);
+        int colorRes = getResources().getColor(R.color.secondaryDarkColor);
+        view.setSymbolBackground(position1 , colorRes);
+        view.setSymbolBackground(position2 ,colorRes);
     }
 
     @Override

@@ -4,12 +4,14 @@ public interface GameScreen extends ViewMvc {
     int SYMBOL_COUNT = 12;
 
     interface SymbolClickListener {
+
         void onSymbolClick(int position);
     }
-
     void setSymbolClickListener(SymbolClickListener listener);
 
     void coverAllSymbolsWith(String cover);
+
+    void setSymbolBackground(int position, int colorRes);
 
     void setSymbolValue(int position, String symbol);
 
