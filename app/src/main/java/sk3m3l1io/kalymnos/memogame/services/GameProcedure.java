@@ -10,7 +10,7 @@ public class GameProcedure {
     private static final int TICK_DURATION = 1000;
 
     private final CountDownTimer timer;
-    private TimerListener timerListener;
+    private TimeListener timeListener;
     private MatchListener symbolListener;
     private ResultListener resultListener;
 
@@ -26,18 +26,18 @@ public class GameProcedure {
             @Override
             public void onTick(long millisUntilFinished) {
                 int elapsedSeconds = (int) millisUntilFinished / TICK_DURATION;
-                timerListener.onGameTimeTick(elapsedSeconds);
+                timeListener.onGameSecondPassed(elapsedSeconds);
             }
 
             @Override
             public void onFinish() {
-                timerListener.onGameTimeStop();
+                timeListener.onGameStop();
             }
         };
     }
 
-    public void setTimerListener(TimerListener listener) {
-        this.timerListener = listener;
+    public void setTimeListener(TimeListener listener) {
+        this.timeListener = listener;
     }
 
     public void setSymbolListener(MatchListener symbolListener) {
@@ -73,28 +73,35 @@ public class GameProcedure {
     private void handlePairMatch(Symbol s1, Symbol s2) {
         symbolListener.onSymbolMatch(s1.position, s2.position);
         pairsFound++;
-        boolean gameWon = pairsFound == symbolCount / 2;
-        if (gameWon) {
+        if (gameWon()) {
             pairsFound = 0;
             resultListener.onGameWon();
         }
     }
 
-    public void startTimer() {
-        timer.start();
-        timerListener.onGameTimeStart();
+    public boolean gameWon(){
+        return pairsFound == symbolCount / 2;
     }
 
-    public void stopTimer() {
+    public void begin() {
+        timer.start();
+        timeListener.onGameBegin();
+    }
+
+    public void stop() {
         timer.cancel();
     }
 
-    public interface TimerListener {
-        void onGameTimeStart();
+    public int getDurationSeconds() {
+        return DURATION / 1000;
+    }
 
-        void onGameTimeTick(int elapsedSeconds);
+    public interface TimeListener {
+        void onGameBegin();
 
-        void onGameTimeStop();
+        void onGameSecondPassed(int elapsedSeconds);
+
+        void onGameStop();
     }
 
     public interface MatchListener {

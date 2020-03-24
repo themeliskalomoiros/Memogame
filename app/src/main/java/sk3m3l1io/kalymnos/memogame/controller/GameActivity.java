@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
-import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
-        GameProcedure.TimerListener,
+        GameProcedure.TimeListener,
         GameProcedure.MatchListener,
         GameProcedure.ResultListener {
 
@@ -27,14 +26,18 @@ public class GameActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        // TODO: maybe called when the game starts.
-        ArrayUtils.shuffle(game.getSymbols());
         setupView();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        gameProcedure.begin();
     }
 
     private void init() {
         gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
-        gameProcedure.setTimerListener(this);
+        gameProcedure.setTimeListener(this);
         gameProcedure.setSymbolListener(this);
         gameProcedure.setResultListener(this);
         game = getIntent().getParcelableExtra(Game.class.getSimpleName());
@@ -44,6 +47,7 @@ public class GameActivity extends AppCompatActivity implements
 
     private void setupView() {
         view.setTitle(game.getTitle());
+        view.setTime("" + gameProcedure.getDurationSeconds());
         view.coverAllSymbolsWith(game.getCover());
         setContentView(view.getRootView());
     }
@@ -56,18 +60,18 @@ public class GameActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onGameTimeStart() {
+    public void onGameBegin() {
         Toast.makeText(this, "Game started", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onGameTimeTick(int elapsedSeconds) {
+    public void onGameSecondPassed(int elapsedSeconds) {
         view.setTime("" + elapsedSeconds);
     }
 
     @Override
-    public void onGameTimeStop() {
-        view.setTime("" + 0);
+    public void onGameStop() {
+        view.disableAllSymbols();
     }
 
     @Override
@@ -75,8 +79,8 @@ public class GameActivity extends AppCompatActivity implements
         view.disableSymbol(position1);
         view.disableSymbol(position2);
         int colorRes = getResources().getColor(R.color.secondaryDarkColor);
-        view.setSymbolBackground(position1 , colorRes);
-        view.setSymbolBackground(position2 ,colorRes);
+        view.setSymbolBackground(position1, colorRes);
+        view.setSymbolBackground(position2, colorRes);
     }
 
     @Override
@@ -97,6 +101,7 @@ public class GameActivity extends AppCompatActivity implements
 
     @Override
     public void onGameWon() {
+        gameProcedure.stop();
         Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
         int colorRes = getResources().getColor(R.color.secondaryLightColor);
         view.setAllSymbolsBackground(colorRes);

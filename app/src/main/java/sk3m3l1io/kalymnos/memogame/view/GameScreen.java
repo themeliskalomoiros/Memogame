@@ -7,6 +7,7 @@ public interface GameScreen extends ViewMvc {
 
         void onSymbolClick(int position);
     }
+
     void setSymbolClickListener(SymbolClickListener listener);
 
     void coverAllSymbolsWith(String cover);
