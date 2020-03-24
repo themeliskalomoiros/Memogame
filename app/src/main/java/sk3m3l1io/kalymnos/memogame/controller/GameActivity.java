@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        setupView();
+        setupUi();
     }
 
     @Override
@@ -45,10 +45,11 @@ public class GameActivity extends AppCompatActivity implements
         view.setSymbolClickListener(this);
     }
 
-    private void setupView() {
+    private void setupUi() {
         view.setTitle(game.getTitle());
-        view.setTime("" + gameProcedure.getDurationSeconds());
-        view.coverAllSymbolsWith(game.getCover());
+        view.setTimeProgressMax(GameProcedure.DURATION);
+        view.setTimeProgress(GameProcedure.DURATION);
+        view.coverAllSymbols(game.getCover());
         setContentView(view.getRootView());
     }
 
@@ -60,18 +61,19 @@ public class GameActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onGameBegin() {
+    public void onGameTimeBegin() {
         Toast.makeText(this, "Game started", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onGameSecondPassed(int elapsedSeconds) {
-        view.setTime("" + elapsedSeconds);
+    public void onGameTimeProgress(int elapsedMilli) {
+        view.setTimeProgress(elapsedMilli);
     }
 
     @Override
-    public void onGameStop() {
+    public void onGameTimeFinish() {
         view.disableAllSymbols();
+        view.setTimeProgressMax(0);
     }
 
     @Override

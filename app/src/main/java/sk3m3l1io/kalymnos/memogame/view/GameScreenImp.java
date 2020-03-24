@@ -3,25 +3,28 @@ package sk3m3l1io.kalymnos.memogame.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
 public class GameScreenImp implements GameScreen {
-    private View root;
-    private TextView title, time;
-    private SymbolView[] symbols;
+    private final View root;
+    private final TextView title, time;
+    private final ProgressBar progressBar;
+    private final SymbolView[] symbols;
     private SymbolClickListener symbolClickListener;
 
     public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_game, container, false);
+        progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         time = root.findViewById(R.id.time);
-        initSymbols(inflater);
+        symbols = new SymbolView[SYMBOL_COUNT];
+        populateSymbols(inflater);
     }
 
-    private void initSymbols(LayoutInflater inflater) {
-        symbols = new SymbolView[SYMBOL_COUNT];
+    private void populateSymbols(LayoutInflater inflater) {
         symbols[0] = new SymbolView(root.findViewById(R.id.symbol_0));
         symbols[1] = new SymbolView(root.findViewById(R.id.symbol_1));
         symbols[2] = new SymbolView(root.findViewById(R.id.symbol_2));
@@ -35,10 +38,10 @@ public class GameScreenImp implements GameScreen {
         symbols[10] = new SymbolView(root.findViewById(R.id.symbol_10));
         symbols[11] = new SymbolView(root.findViewById(R.id.symbol_11));
 
-        setOnClickListenerToSymbols(symbols);
+        addClickListenerTo(symbols);
     }
 
-    private void setOnClickListenerToSymbols(SymbolView[] symbols) {
+    private void addClickListenerTo(SymbolView[] symbols) {
         for (int i = 0; i < symbols.length; i++) {
             SymbolView v = symbols[i];
             v.setOnClickListener(i);
@@ -51,7 +54,7 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void coverAllSymbolsWith(String cover) {
+    public void coverAllSymbols(String cover) {
         for (SymbolView v : symbols)
             v.symbol.setText(cover);
     }
@@ -74,11 +77,6 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public String getSymbolValue(int position) {
-        return symbols[position].symbol.getText().toString();
-    }
-
-    @Override
     public void disableSymbol(int position) {
         symbols[position].container.setEnabled(false);
     }
@@ -95,8 +93,13 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void setTime(String time) {
-        this.time.setText(time);
+    public void setTimeProgress(int value) {
+        progressBar.setProgress(value);
+    }
+
+    @Override
+    public void setTimeProgressMax(int value) {
+        progressBar.setMax(value);
     }
 
     @Override

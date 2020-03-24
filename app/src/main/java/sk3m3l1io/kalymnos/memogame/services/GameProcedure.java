@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class GameProcedure {
     private static final int PAIR = 2;
-    private static final int DURATION = 30000;
+    public static final int DURATION = 30000;
     private static final int TICK_DURATION = 1000;
 
     private final CountDownTimer timer;
@@ -24,13 +24,12 @@ public class GameProcedure {
         timer = new CountDownTimer(DURATION, TICK_DURATION) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int elapsedSeconds = (int) millisUntilFinished / TICK_DURATION;
-                timeListener.onGameSecondPassed(elapsedSeconds);
+                timeListener.onGameTimeProgress((int) millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                timeListener.onGameStop();
+                timeListener.onGameTimeFinish();
             }
         };
     }
@@ -80,23 +79,19 @@ public class GameProcedure {
 
     public void begin() {
         timer.start();
-        timeListener.onGameBegin();
+        timeListener.onGameTimeBegin();
     }
 
     public void stop() {
         timer.cancel();
     }
 
-    public int getDurationSeconds() {
-        return DURATION / 1000;
-    }
-
     public interface TimeListener {
-        void onGameBegin();
+        void onGameTimeBegin();
 
-        void onGameSecondPassed(int elapsedSeconds);
+        void onGameTimeProgress(int elapsedMilli);
 
-        void onGameStop();
+        void onGameTimeFinish();
     }
 
     public interface MatchListener {
