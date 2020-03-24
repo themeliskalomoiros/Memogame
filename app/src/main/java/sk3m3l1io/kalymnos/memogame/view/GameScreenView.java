@@ -16,4 +16,8 @@ public interface GameScreenView extends ViewMvc {
     String getSymbol(int position);
 
     void disableSymbol(int position);
+
+    void setTitle(String title);
+
+    void setTime(String time);
 }

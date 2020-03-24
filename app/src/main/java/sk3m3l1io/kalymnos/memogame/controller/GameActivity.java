@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenView.Sy
     private void setupView() {
         view = new GameScreenViewImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
+        view.setTitle(game.getTitle());
         view.setCover(game.getCover());
         setContentView(view.getRootView());
     }

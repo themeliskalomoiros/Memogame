@@ -4,74 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.GameActivity"
-    android:background="@color/primaryColor">
+    android:background="@color/primaryColor"
+    tools:context=".controller.GameActivity">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:text="Test title"
+        android:textAlignment="center"
+        android:textSize="64sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_timer_black_40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toStartOf="@+id/time"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="@+id/title" />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="30"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/title" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="center"
         android:orientation="vertical"
+        android:padding="@dimen/symbol_group_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="@dimen/symbol_group_margin"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_0"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_1"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_2"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
         </LinearLayout>
@@ -81,55 +120,55 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_3"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_4"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_5"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
         </LinearLayout>
@@ -139,55 +178,55 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_6"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_7"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_8"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
         </LinearLayout>
@@ -197,55 +236,55 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_9"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_10"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
-            <FrameLayout
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/symbol_11"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
+                android:layout_margin="12dp"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp"
-                android:layout_margin="12dp">
+                android:elevation="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="80sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="80sp" />
             </FrameLayout>
 
         </LinearLayout>

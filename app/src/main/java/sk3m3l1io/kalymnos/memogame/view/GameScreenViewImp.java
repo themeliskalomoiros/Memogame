@@ -9,11 +9,14 @@ import sk3m3l1io.kalymnos.memogame.R;
 
 public class GameScreenViewImp implements GameScreenView {
     private View root;
+    private TextView title, time;
     private SymbolView[] symbols;
     private SymbolClickListener symbolClickListener;
 
     public GameScreenViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_game, container, false);
+        title = root.findViewById(R.id.title);
+        time = root.findViewById(R.id.time);
         initSymbols(inflater);
     }
 
@@ -70,6 +73,16 @@ public class GameScreenViewImp implements GameScreenView {
     @Override
     public void disableSymbol(int position) {
         symbols[position].container.setEnabled(false);
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title.setText(title);
+    }
+
+    @Override
+    public void setTime(String time) {
+        this.time.setText(time);
     }
 
     @Override

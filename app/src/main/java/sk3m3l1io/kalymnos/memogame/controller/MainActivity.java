@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenView.Pl
     public void onPlayClick() {
         Intent i = new Intent(this, GameActivity.class);
         Game game = new Game(
-                "Test Game",
+                "Weather",
                 "⛶",
                 new String[]{"⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"});
         i.putExtra(Game.class.getSimpleName(), game);
