@@ -62,13 +62,25 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void setSymbolBackground(int position, int colorRes) {
+    public void setSymbolColor(int position, int color) {
+        Button b = symbols[position];
+        b.setTextColor(color);
+    }
+
+    @Override
+    public void setAllSymbolsColor(int color) {
+        for (Button b : symbols)
+            b.setTextColor(color);
+    }
+
+    @Override
+    public void setSymbolBackgroundColor(int position, int colorRes) {
         Button b = symbols[position];
         b.setBackgroundColor(colorRes);
     }
 
     @Override
-    public void setAllSymbolsBackground(int colorRes) {
+    public void setAllSymbolsBackgroundColor(int colorRes) {
         for (Button b : symbols)
             b.setBackgroundColor(colorRes);
     }

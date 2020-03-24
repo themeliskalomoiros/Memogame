@@ -15,7 +15,7 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
         GameProcedure.TimeListener,
-        GameProcedure.MatchListener,
+        GameProcedure.PairMatchListener,
         GameProcedure.ResultListener {
 
     private Game game;
@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity implements
     private void init() {
         gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
         gameProcedure.setTimeListener(this);
-        gameProcedure.setSymbolListener(this);
+        gameProcedure.setPairMatchListener(this);
         gameProcedure.setResultListener(this);
         game = getIntent().getParcelableExtra(Game.class.getSimpleName());
         view = new GameScreenImp(getLayoutInflater(), null);
@@ -73,20 +73,20 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     public void onGameTimeFinish() {
         view.disableAllSymbols();
-        view.setTimeProgressMax(0);
+        view.setTimeProgress(0);
     }
 
     @Override
-    public void onSymbolMatch(int position1, int position2) {
+    public void onPairMatch(int position1, int position2) {
         view.disableSymbol(position1);
         view.disableSymbol(position2);
-        int colorRes = getResources().getColor(R.color.secondaryDarkColor);
-        view.setSymbolBackground(position1, colorRes);
-        view.setSymbolBackground(position2, colorRes);
+        int symbolColor = getResources().getColor(R.color.secondaryLightColor);
+        view.setSymbolColor(position1, symbolColor);
+        view.setSymbolColor(position2, symbolColor);
     }
 
     @Override
-    public void onSymbolMatchFail(int position1, int position2) {
+    public void onPairMatchFail(int position1, int position2) {
         Runnable setSymbolValues = () -> {
             view.setSymbolValue(position1, game.getCover());
             view.setSymbolValue(position2, game.getCover());
@@ -104,8 +104,10 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     public void onGameWon() {
         gameProcedure.stop();
-        int colorRes = getResources().getColor(R.color.secondaryLightColor);
-        view.setAllSymbolsBackground(colorRes);
+        int backgroundColor = getResources().getColor(R.color.primaryLightColor);
+        view.setAllSymbolsBackgroundColor(backgroundColor);
+        int symbolColor = getResources().getColor(R.color.secondaryColor);
+        view.setAllSymbolsColor(symbolColor);
         Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
     }
 

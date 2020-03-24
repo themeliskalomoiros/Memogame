@@ -13,7 +13,7 @@ public class GameProcedure {
 
     private final CountDownTimer timer;
     private TimeListener timeListener;
-    private MatchListener symbolListener;
+    private PairMatchListener pairMatchListener;
     private ResultListener resultListener;
 
     private int pairsFound = 0;
@@ -40,8 +40,8 @@ public class GameProcedure {
         this.timeListener = listener;
     }
 
-    public void setSymbolListener(MatchListener symbolListener) {
-        this.symbolListener = symbolListener;
+    public void setPairMatchListener(PairMatchListener pairMatchListener) {
+        this.pairMatchListener = pairMatchListener;
     }
 
     public void setResultListener(ResultListener resultListener) {
@@ -66,14 +66,14 @@ public class GameProcedure {
 
         boolean pairMatch = s1.value.equals(s2.value);
         if (pairMatch) {
-            symbolListener.onSymbolMatch(s1.position, s2.position);
+            pairMatchListener.onPairMatch(s1.position, s2.position);
             pairsFound++;
             if (gameWon()) {
                 pairsFound = 0;
                 resultListener.onGameWon();
             }
         } else {
-            symbolListener.onSymbolMatchFail(s1.position, s2.position);
+            pairMatchListener.onPairMatchFail(s1.position, s2.position);
         }
     }
 
@@ -98,10 +98,10 @@ public class GameProcedure {
         void onGameTimeFinish();
     }
 
-    public interface MatchListener {
-        void onSymbolMatch(int position1, int position2);
+    public interface PairMatchListener {
+        void onPairMatch(int position1, int position2);
 
-        void onSymbolMatchFail(int position1, int position2);
+        void onPairMatchFail(int position1, int position2);
     }
 
     public interface ResultListener {
