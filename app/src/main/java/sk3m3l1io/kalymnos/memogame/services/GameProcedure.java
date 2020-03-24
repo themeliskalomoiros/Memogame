@@ -2,6 +2,8 @@ package sk3m3l1io.kalymnos.memogame.services;
 
 import android.os.CountDownTimer;
 
+import androidx.annotation.Nullable;
+
 import java.util.Stack;
 
 public class GameProcedure {
@@ -48,7 +50,9 @@ public class GameProcedure {
 
     public void putClickedSymbol(int position, String value) {
         Symbol s = new Symbol(position, value);
-        clickedSymbols.push(s);
+
+        if (!clickedSymbols.contains(s))
+            clickedSymbols.push(s);
 
         if (clickedSymbols.size() == PAIR) {
             handlePairing();
@@ -113,6 +117,20 @@ public class GameProcedure {
         public Symbol(int position, String value) {
             this.position = position;
             this.value = value;
+        }
+
+        @Override
+        public boolean equals(@Nullable Object o) {
+            if (o == this) return true;
+            if (!(o instanceof Symbol)) return false;
+
+            Symbol other = (Symbol) o;
+            return position == other.position && value.equals(other.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return position ^ value.hashCode() * 31;
         }
     }
 }
