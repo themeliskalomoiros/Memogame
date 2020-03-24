@@ -14,8 +14,9 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
-        GameProcedure.GameTimerListener,
-        GameProcedure.GameSymbolListener {
+        GameProcedure.TimerListener,
+        GameProcedure.MatchListener,
+        GameProcedure.ResultListener {
 
     private Game game;
     private GameProcedure gameProcedure;
@@ -34,6 +35,7 @@ public class GameActivity extends AppCompatActivity implements
         gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
         gameProcedure.setTimerListener(this);
         gameProcedure.setSymbolListener(this);
+        gameProcedure.setResultListener(this);
         game = getIntent().getParcelableExtra(Game.class.getSimpleName());
         view = new GameScreenImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
@@ -87,5 +89,15 @@ public class GameActivity extends AppCompatActivity implements
         handler.postDelayed(() -> {
             execution.run();
         }, delayMillis);
+    }
+
+    @Override
+    public void onGameWon() {
+        Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGameLost() {
+
     }
 }

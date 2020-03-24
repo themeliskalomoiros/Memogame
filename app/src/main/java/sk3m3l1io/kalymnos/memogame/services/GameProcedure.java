@@ -10,8 +10,10 @@ public class GameProcedure {
     private static final int TICK_DURATION = 1000;
 
     private final CountDownTimer timer;
-    private GameTimerListener timerListener;
-    private GameSymbolListener symbolListener;
+    private TimerListener timerListener;
+    private MatchListener symbolListener;
+    private ResultListener resultListener;
+
     private int pairsFound;
     private final int symbolCount;
     private final Stack<Symbol> clickedSymbols;
@@ -34,12 +36,16 @@ public class GameProcedure {
         };
     }
 
-    public void setTimerListener(GameTimerListener listener) {
+    public void setTimerListener(TimerListener listener) {
         this.timerListener = listener;
     }
 
-    public void setSymbolListener(GameSymbolListener symbolListener) {
+    public void setSymbolListener(MatchListener symbolListener) {
         this.symbolListener = symbolListener;
+    }
+
+    public void setResultListener(ResultListener resultListener) {
+        this.resultListener = resultListener;
     }
 
     public void putClickedSymbol(int position, String value) {
@@ -47,24 +53,31 @@ public class GameProcedure {
         clickedSymbols.push(s);
 
         if (clickedSymbols.size() == PAIR) {
-            reportMatch();
+            handlePair();
             clickedSymbols.clear();
         }
     }
 
-    private void reportMatch() {
+    private void handlePair() {
         Symbol s1 = clickedSymbols.pop();
         Symbol s2 = clickedSymbols.pop();
-        if (s1.value.equals(s2.value)) {
-            pairsFound++;
-            symbolListener.onSymbolMatch(s1.position, s2.position);
+
+        boolean pairMatch = s1.value.equals(s2.value);
+        if (pairMatch) {
+            handlePairMatch(s1, s2);
         } else {
             symbolListener.onSymbolMatchFail(s1.position, s2.position);
         }
     }
 
-    public boolean gameWon() {
-        return pairsFound == symbolCount / 2;
+    private void handlePairMatch(Symbol s1, Symbol s2) {
+        symbolListener.onSymbolMatch(s1.position, s2.position);
+        pairsFound++;
+        boolean gameWon = pairsFound == symbolCount / 2;
+        if (gameWon) {
+            pairsFound = 0;
+            resultListener.onGameWon();
+        }
     }
 
     public void startTimer() {
@@ -76,7 +89,7 @@ public class GameProcedure {
         timer.cancel();
     }
 
-    public interface GameTimerListener {
+    public interface TimerListener {
         void onGameTimeStart();
 
         void onGameTimeTick(int elapsedSeconds);
@@ -84,10 +97,16 @@ public class GameProcedure {
         void onGameTimeStop();
     }
 
-    public interface GameSymbolListener {
+    public interface MatchListener {
         void onSymbolMatch(int position1, int position2);
 
         void onSymbolMatchFail(int position1, int position2);
+    }
+
+    public interface ResultListener {
+        void onGameWon();
+
+        void onGameLost();
     }
 
     private class Symbol {
