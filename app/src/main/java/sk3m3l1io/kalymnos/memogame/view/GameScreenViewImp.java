@@ -4,15 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class PlayScreenViewImp implements PlayScreenView {
+public class GameScreenViewImp implements GameScreenView {
     private View root;
 
-    public PlayScreenViewImp(LayoutInflater inflater, ViewGroup container) {
+    public GameScreenViewImp(LayoutInflater inflater, ViewGroup container) {
         initViews(inflater, container);
     }
 
