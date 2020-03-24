@@ -3,4 +3,6 @@
     <dimen name="symbol_group_margin">8dp</dimen>
     <dimen name="title">56sp</dimen>
     <dimen name="box">104dp</dimen>
+    <dimen name="loading_indicator">160dp</dimen>
+    <dimen name="symbol_char">64sp</dimen>
 </resources>

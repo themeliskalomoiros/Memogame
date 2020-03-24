@@ -5,34 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
-    tools:context=".controller.GameActivity">
+    tools:context=".controller.MainActivity">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="0dp"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:gravity="center_horizontal"
-        android:text="Test title"
-        android:textSize="@dimen/title"
         android:fontFamily="@font/molly_jack"
+        android:gravity="center_horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="4dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="4dp"
+        android:text="Linarosporos"
         android:textAlignment="center"
         android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/symbol_4"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/symbol_5"
+        app:layout_constraintStart_toEndOf="@+id/symbol_3"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_1" />
+
+    <Button
+        android:id="@+id/symbol_3"
+        style="@style/Symbol_Style"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_0" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="395dp"
         android:layout_height="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/secondaryDarkColor"
@@ -40,283 +61,107 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-
-    <ProgressBar
-        android:id="@+id/progressbar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <View
+        android:id="@+id/view4"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:progressTint="@color/secondaryDarkColor"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_timer_black_40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/symbol_group_margin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:background="@color/secondaryDarkColor"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/symbol_10"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/symbol_7"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/symbol_8"
+        app:layout_constraintStart_toEndOf="@+id/symbol_6"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_4" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_0"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
+    <Button
+        android:id="@+id/symbol_6"
+        style="@style/Symbol_Style"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_3" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
+    <Button
+        android:id="@+id/symbol_9"
+        style="@style/Symbol_Style"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_6" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_1"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
+    <Button
+        android:id="@+id/symbol_10"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/symbol_11"
+        app:layout_constraintStart_toEndOf="@+id/symbol_9"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_7" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
+    <Button
+        android:id="@+id/symbol_11"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_8" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_2"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
+    <Button
+        android:id="@+id/symbol_2"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
+    <Button
+        android:id="@+id/symbol_0"
+        style="@style/Symbol_Style"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
-        </LinearLayout>
+    <Button
+        android:id="@+id/symbol_1"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/symbol_2"
+        app:layout_constraintStart_toEndOf="@+id/symbol_0"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/symbol_8"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_5" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_3"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_4"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_5"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_6"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_7"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_8"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_9"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_10"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/symbol_11"
-                android:layout_width="@dimen/box"
-                android:layout_height="@dimen/box"
-                android:layout_margin="12dp"
-                android:background="@color/secondaryColor"
-                android:elevation="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="80sp" />
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/symbol_5"
+        style="@style/Symbol_Style"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

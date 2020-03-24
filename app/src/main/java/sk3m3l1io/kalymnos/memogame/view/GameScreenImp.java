@@ -3,6 +3,7 @@ package sk3m3l1io.kalymnos.memogame.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,7 +13,7 @@ public class GameScreenImp implements GameScreen {
     private final View root;
     private final TextView title, time;
     private final ProgressBar progressBar;
-    private final SymbolView[] symbols;
+    private final Button[] symbols;
     private SymbolClickListener symbolClickListener;
 
     public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
@@ -20,31 +21,32 @@ public class GameScreenImp implements GameScreen {
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         time = root.findViewById(R.id.time);
-        symbols = new SymbolView[SYMBOL_COUNT];
+        symbols = new Button[SYMBOL_COUNT];
         populateSymbols(inflater);
     }
 
     private void populateSymbols(LayoutInflater inflater) {
-        symbols[0] = new SymbolView(root.findViewById(R.id.symbol_0));
-        symbols[1] = new SymbolView(root.findViewById(R.id.symbol_1));
-        symbols[2] = new SymbolView(root.findViewById(R.id.symbol_2));
-        symbols[3] = new SymbolView(root.findViewById(R.id.symbol_3));
-        symbols[4] = new SymbolView(root.findViewById(R.id.symbol_4));
-        symbols[5] = new SymbolView(root.findViewById(R.id.symbol_5));
-        symbols[6] = new SymbolView(root.findViewById(R.id.symbol_6));
-        symbols[7] = new SymbolView(root.findViewById(R.id.symbol_7));
-        symbols[8] = new SymbolView(root.findViewById(R.id.symbol_8));
-        symbols[9] = new SymbolView(root.findViewById(R.id.symbol_9));
-        symbols[10] = new SymbolView(root.findViewById(R.id.symbol_10));
-        symbols[11] = new SymbolView(root.findViewById(R.id.symbol_11));
+        symbols[0] = root.findViewById(R.id.symbol_0);
+        symbols[1] = root.findViewById(R.id.symbol_1);
+        symbols[2] = root.findViewById(R.id.symbol_2);
+        symbols[3] = root.findViewById(R.id.symbol_3);
+        symbols[4] = root.findViewById(R.id.symbol_4);
+        symbols[5] = root.findViewById(R.id.symbol_5);
+        symbols[6] = root.findViewById(R.id.symbol_6);
+        symbols[7] = root.findViewById(R.id.symbol_7);
+        symbols[8] = root.findViewById(R.id.symbol_8);
+        symbols[9] = root.findViewById(R.id.symbol_9);
+        symbols[10] = root.findViewById(R.id.symbol_10);
+        symbols[11] = root.findViewById(R.id.symbol_11);
 
         addClickListenerTo(symbols);
     }
 
-    private void addClickListenerTo(SymbolView[] symbols) {
+    private void addClickListenerTo(Button[] symbols) {
         for (int i = 0; i < symbols.length; i++) {
-            SymbolView v = symbols[i];
-            v.setOnClickListener(i);
+            Button b = symbols[i];
+            int pos = i;
+            b.setOnClickListener(v -> symbolClickListener.onSymbolClick(pos));
         }
     }
 
@@ -55,36 +57,38 @@ public class GameScreenImp implements GameScreen {
 
     @Override
     public void coverAllSymbols(String cover) {
-        for (SymbolView v : symbols)
-            v.symbol.setText(cover);
+        for (Button b : symbols)
+            b.setText(cover);
     }
 
     @Override
     public void setSymbolBackground(int position, int colorRes) {
-        SymbolView v = symbols[position];
-        v.container.setBackgroundColor(colorRes);
+        Button b = symbols[position];
+        b.setBackgroundColor(colorRes);
     }
 
     @Override
     public void setAllSymbolsBackground(int colorRes) {
-        for (SymbolView v : symbols)
-            v.container.setBackgroundColor(colorRes);
+        for (Button b : symbols)
+            b.setBackgroundColor(colorRes);
     }
 
     @Override
     public void setSymbolValue(int position, String symbol) {
-        symbols[position].symbol.setText(symbol);
+        Button b = symbols[position];
+        b.setText(symbol);
     }
 
     @Override
     public void disableSymbol(int position) {
-        symbols[position].container.setEnabled(false);
+        Button b = symbols[position];
+        b.setEnabled(false);
     }
 
     @Override
     public void disableAllSymbols() {
-        for (SymbolView v : symbols)
-            v.container.setEnabled(false);
+        for (Button b : symbols)
+            b.setEnabled(false);
     }
 
     @Override
@@ -105,19 +109,5 @@ public class GameScreenImp implements GameScreen {
     @Override
     public View getRootView() {
         return root;
-    }
-
-    private class SymbolView {
-        ViewGroup container;
-        TextView symbol;
-
-        SymbolView(ViewGroup container) {
-            this.container = container;
-            symbol = (TextView) container.getChildAt(0);
-        }
-
-        void setOnClickListener(int position) {
-            container.setOnClickListener(v -> symbolClickListener.onSymbolClick(position));
-        }
     }
 }

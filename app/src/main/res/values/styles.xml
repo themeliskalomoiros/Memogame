@@ -13,4 +13,19 @@
         <item name="android:layout_height">@dimen/box</item>
     </style>
 
+    <style name="Box_Style_Disabled" parent="Box_Style">
+        <item name="android:clickable">false</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="Symbol_Style" parent="Box_Style">
+        <item name="android:textSize">@dimen/symbol_char</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="Title_Style">
+
+    </style>
+
 </resources>

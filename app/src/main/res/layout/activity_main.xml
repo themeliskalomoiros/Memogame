@@ -30,34 +30,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="206dp"
-        tools:layout_editor_absoluteY="432dp" />
-
-
     <ImageButton
         android:id="@+id/play"
         style="@style/Box_Style"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_videogame_pink"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toStartOf="@+id/play7"
         app:layout_constraintStart_toEndOf="@+id/play6"
         app:layout_constraintTop_toBottomOf="@+id/play2" />
 
     <ImageButton
         android:id="@+id/play6"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
-        android:clickable="false"
         android:src="@drawable/ic_keyboard_arrow_down_light_green"
-        android:text="@string/play_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play4" />
 
@@ -79,93 +67,124 @@
         android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/secondaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play3"
+        app:layout_constraintTop_toBottomOf="@+id/play11"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/play3"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginTop="24dp"
-        android:clickable="false"
         android:src="@drawable/ic_chevron_right_light_green"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toStartOf="@+id/play8"
         app:layout_constraintStart_toEndOf="@+id/play9"
         app:layout_constraintTop_toBottomOf="@+id/play" />
 
     <ImageButton
         android:id="@+id/play9"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
-        android:clickable="false"
         android:src="@drawable/ic_chevron_right_light_green"
-        android:text="@string/play_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play6" />
 
     <ImageButton
-        android:id="@+id/play5"
-        style="@style/Box_Style"
-        android:layout_marginTop="40dp"
+        android:id="@+id/play10"
+        style="@style/Box_Style_Disabled"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_chevron_right_light_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play9" />
+
+    <ImageButton
+        android:id="@+id/play11"
+        style="@style/Box_Style_Disabled"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_chevron_right_light_green"
+        app:layout_constraintEnd_toStartOf="@+id/play12"
+        app:layout_constraintStart_toEndOf="@+id/play10"
+        app:layout_constraintTop_toBottomOf="@+id/play3" />
+
+    <ImageButton
+        android:id="@+id/play12"
+        style="@style/Box_Style_Disabled"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:clickable="false"
+        android:src="@drawable/ic_chevron_right_light_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play8" />
+
+    <ImageButton
+        android:id="@+id/play5"
+        style="@style/Box_Style_Disabled"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:src="@drawable/ic_keyboard_arrow_down_light_green"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <ImageButton
         android:id="@+id/play4"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:clickable="false"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ic_gamepad_light_green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <ImageButton
         android:id="@+id/play2"
-        style="@style/Box_Style"
-        android:layout_marginTop="40dp"
-        android:clickable="false"
+        style="@style/Box_Style_Disabled"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ic_chevron_right_light_green"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toStartOf="@+id/play5"
         app:layout_constraintStart_toEndOf="@+id/play4"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <ImageButton
         android:id="@+id/play8"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:clickable="false"
         android:src="@drawable/ic_keyboard_arrow_up_light_green"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play7" />
 
     <ImageButton
         android:id="@+id/play7"
-        style="@style/Box_Style"
+        style="@style/Box_Style_Disabled"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:clickable="false"
         android:src="@drawable/ic_keyboard_arrow_left_light_green"
-        android:text="@string/play_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play5" />
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="@dimen/loading_indicator"
+        android:layout_height="@dimen/loading_indicator"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/play"
+        app:layout_constraintEnd_toEndOf="@+id/play"
+        app:layout_constraintStart_toStartOf="@+id/play"
+        app:layout_constraintTop_toTopOf="@+id/play" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
