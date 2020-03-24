@@ -14,7 +14,7 @@ public class GameScreenViewImp implements GameScreenView {
     }
 
     private void initViews(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_play, container, false);
+        root = inflater.inflate(R.layout.activity_game, container, false);
     }
 
     @Override

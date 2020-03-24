@@ -8,7 +8,7 @@ import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenView;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenViewImp;
 
-public class PlayActivity extends AppCompatActivity implements GameScreenView.SymbolClickListener {
+public class GameActivity extends AppCompatActivity implements GameScreenView.SymbolClickListener {
     private GameScreenView view;
     private Game game;
 

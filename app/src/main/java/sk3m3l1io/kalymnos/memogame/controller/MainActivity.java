@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenView.Pl
 
     @Override
     public void onPlayClick() {
-        Intent i = new Intent(this, PlayActivity.class);
+        Intent i = new Intent(this, GameActivity.class);
         startActivity(i);
     }
 }
