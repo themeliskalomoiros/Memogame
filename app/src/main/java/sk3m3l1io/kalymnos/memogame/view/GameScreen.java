@@ -1,6 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
-public interface GameScreenView extends ViewMvc {
+public interface GameScreen extends ViewMvc {
     int SYMBOL_COUNT = 12;
 
     interface SymbolClickListener {

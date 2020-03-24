@@ -7,13 +7,13 @@ import android.widget.TextView;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class GameScreenViewImp implements GameScreenView {
+public class GameScreenImp implements GameScreen {
     private View root;
     private TextView title, time;
     private SymbolView[] symbols;
     private SymbolClickListener symbolClickListener;
 
-    public GameScreenViewImp(LayoutInflater inflater, ViewGroup container) {
+    public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_game, container, false);
         title = root.findViewById(R.id.title);
         time = root.findViewById(R.id.time);

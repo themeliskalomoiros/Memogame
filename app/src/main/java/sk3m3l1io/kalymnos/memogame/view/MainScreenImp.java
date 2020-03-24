@@ -7,12 +7,12 @@ import android.widget.Button;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class MainScreenViewImp implements MainScreenView {
+public class MainScreenImp implements MainScreen {
     private View root;
     private Button play;
     private PlayClickListener playClickListener;
 
-    public MainScreenViewImp(LayoutInflater inflater, ViewGroup container) {
+    public MainScreenImp(LayoutInflater inflater, ViewGroup container) {
         initViews(inflater, container);
     }
 

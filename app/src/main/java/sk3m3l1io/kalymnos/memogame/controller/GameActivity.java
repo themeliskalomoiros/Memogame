@@ -1,35 +1,35 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
+import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
-import sk3m3l1io.kalymnos.memogame.view.GameScreenView;
-import sk3m3l1io.kalymnos.memogame.view.GameScreenViewImp;
+import sk3m3l1io.kalymnos.memogame.view.GameScreen;
+import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
-public class GameActivity extends AppCompatActivity implements GameScreenView.SymbolClickListener {
-    private GameScreenView view;
+public class GameActivity extends AppCompatActivity implements
+        GameScreen.SymbolClickListener,
+        GameProcedure.GameTimeListener{
 
     private Game game;
-    private int pairsFound = 0;
-    private int previousClickedSymbolPosition = -1;
-    private boolean[] symbolsClickState;
-    private CountDownTimer timer;
+    private GameProcedure gameProcedure;
+    private GameScreen view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        symbolsClickState = new boolean[GameScreenView.SYMBOL_COUNT];
+        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
+        gameProcedure.setGameTimeListener(this);
         game = getIntent().getParcelableExtra(Game.class.getSimpleName());
         ArrayUtils.shuffle(game.getSymbols());
         setupView();
     }
 
     private void setupView() {
-        view = new GameScreenViewImp(getLayoutInflater(), null);
+        view = new GameScreenImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
         view.setTitle(game.getTitle());
         view.setCover(game.getCover());
@@ -38,14 +38,28 @@ public class GameActivity extends AppCompatActivity implements GameScreenView.Sy
 
     @Override
     public void onSymbolClick(int position) {
-        boolean isClicked = symbolsClickState[position];
-        if (isClicked) {
+        if (gameProcedure.isSymbolClicked(position)) {
             view.setSymbol(position, game.getCover());
-            symbolsClickState[position] = false;
+            gameProcedure.setSymbolNotClicked(position);
         } else {
             String symbol = game.getSymbols()[position];
             view.setSymbol(position, symbol);
-            symbolsClickState[position] = true;
+            gameProcedure.setSymbolClicked(position);
         }
+    }
+
+    @Override
+    public void onGameTimeStart() {
+
+    }
+
+    @Override
+    public void onGameTimeTick(int elapsedSeconds) {
+
+    }
+
+    @Override
+    public void onGameTimeStop() {
+
     }
 }
