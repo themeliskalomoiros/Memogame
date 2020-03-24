@@ -18,9 +18,10 @@
         android:layout_marginRight="8dp"
         android:gravity="center_horizontal"
         android:text="Test title"
+        android:textSize="@dimen/title"
+        android:fontFamily="@font/molly_jack"
         android:textAlignment="center"
         android:textColor="@color/primaryTextColor"
-        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

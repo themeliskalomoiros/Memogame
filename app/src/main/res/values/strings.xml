@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Memogame</string>
-    <string name="play_button">Play</string>
+    <string name="play_button">Play Random</string>
 </resources>

@@ -4,13 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
 public class MainScreenImp implements MainScreen {
     private View root;
-    private Button play;
+    private ImageButton play;
     private ProgressBar loadingBar;
     private PlayClickListener playClickListener;
 
