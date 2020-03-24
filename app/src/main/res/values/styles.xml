@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
+    <style name="Box_Style">
+        <item name="android:layout_width">@dimen/box</item>
+        <item name="android:layout_height">@dimen/box</item>
+    </style>
+
 </resources>
