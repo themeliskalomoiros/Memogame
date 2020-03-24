@@ -19,7 +19,7 @@ public class GameProcedure {
         timer = new CountDownTimer(DURATION, TICK_DURATION) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int elapsedSeconds = (int) millisUntilFinished/TICK_DURATION;
+                int elapsedSeconds = (int) millisUntilFinished / TICK_DURATION;
                 listener.onGameTimeTick(elapsedSeconds);
             }
 
@@ -46,22 +46,24 @@ public class GameProcedure {
         symbolsClickState[position] = false;
     }
 
-    public boolean gameCompletedSuccessfully(){
-        for(boolean state : symbolsClickState){
-            if(state == false) return false;
+    public boolean gameCompletedSuccessfully() {
+        for (boolean state : symbolsClickState) {
+            if (state == false) return false;
         }
 
         return true;
     }
 
-    public void startTimer(){
+    public void startTimer() {
         timer.start();
         listener.onGameTimeStart();
     }
 
-    public interface GameTimeListener{
+    public interface GameTimeListener {
         void onGameTimeStart();
+
         void onGameTimeTick(int elapsedSeconds);
+
         void onGameTimeStop();
     }
 }

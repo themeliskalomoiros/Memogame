@@ -17,6 +17,8 @@ public interface GameScreen extends ViewMvc {
 
     void disableSymbol(int position);
 
+    void disableAllSymbols();
+
     void setTitle(String title);
 
     void setTime(String time);

@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +13,7 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
-        GameProcedure.GameTimeListener{
+        GameProcedure.GameTimeListener {
 
     private Game game;
     private GameProcedure gameProcedure;
@@ -50,16 +51,16 @@ public class GameActivity extends AppCompatActivity implements
 
     @Override
     public void onGameTimeStart() {
-
+        Toast.makeText(this, "Game started", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGameTimeTick(int elapsedSeconds) {
-
+        view.setTime("" + elapsedSeconds);
     }
 
     @Override
     public void onGameTimeStop() {
-
+        view.setTime("" + 0);
     }
 }

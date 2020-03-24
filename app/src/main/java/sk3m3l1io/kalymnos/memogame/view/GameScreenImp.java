@@ -76,6 +76,12 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
+    public void disableAllSymbols() {
+        for (SymbolView v : symbols)
+            v.container.setEnabled(false);
+    }
+
+    @Override
     public void setTitle(String title) {
         this.title.setText(title);
     }
