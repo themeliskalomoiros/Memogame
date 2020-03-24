@@ -60,7 +60,7 @@ public class GameScreenViewImp implements GameScreenView {
 
     @Override
     public void setSymbol(int symbolPosition, char symbol) {
-
+        symbols[symbolPosition].setText(""+symbol);
     }
 
     @Override

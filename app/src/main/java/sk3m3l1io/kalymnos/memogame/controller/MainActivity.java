@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.view.MainScreenView;
 import sk3m3l1io.kalymnos.memogame.view.MainScreenViewImp;
 
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity implements MainScreenView.Pl
     @Override
     public void onPlayClick() {
         Intent i = new Intent(this, GameActivity.class);
+        Game game = new Game(
+                "Test Game",
+                '⛶',
+                new char[]{'⛺', '⛱', '⛲', '⛴', '⛵', '⛭', '⛺', '⛱', '⛲', '⛴', '⛵', '⛭'});
+        i.putExtra(Game.class.getSimpleName(), game);
         startActivity(i);
     }
 }
