@@ -9,11 +9,11 @@ public interface GameScreen extends ViewMvc {
 
     void setSymbolClickListener(SymbolClickListener listener);
 
-    void setCover(String cover);
+    void coverAllSymbolsWith(String cover);
 
-    void setSymbol(int position, String symbol);
+    void setSymbolValue(int position, String symbol);
 
-    String getSymbol(int position);
+    String getSymbolValue(int position);
 
     void disableSymbol(int position);
 

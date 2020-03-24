@@ -55,18 +55,18 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void setCover(String cover) {
+    public void coverAllSymbolsWith(String cover) {
         for (SymbolView v : symbols)
             v.symbol.setText(cover);
     }
 
     @Override
-    public void setSymbol(int position, String symbol) {
+    public void setSymbolValue(int position, String symbol) {
         symbols[position].symbol.setText(symbol);
     }
 
     @Override
-    public String getSymbol(int position) {
+    public String getSymbolValue(int position) {
         return symbols[position].symbol.getText().toString();
     }
 

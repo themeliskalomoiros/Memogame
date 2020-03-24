@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,8 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
-        GameProcedure.GameTimeListener {
+        GameProcedure.GameTimerListener,
+        GameProcedure.GameSymbolListener {
 
     private Game game;
     private GameProcedure gameProcedure;
@@ -22,31 +24,32 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
-        gameProcedure.setGameTimeListener(this);
-        game = getIntent().getParcelableExtra(Game.class.getSimpleName());
+        init();
+        // TODO: maybe called when the game starts.
         ArrayUtils.shuffle(game.getSymbols());
         setupView();
     }
 
-    private void setupView() {
+    private void init() {
+        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
+        gameProcedure.setTimerListener(this);
+        gameProcedure.setSymbolListener(this);
+        game = getIntent().getParcelableExtra(Game.class.getSimpleName());
         view = new GameScreenImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
+    }
+
+    private void setupView() {
         view.setTitle(game.getTitle());
-        view.setCover(game.getCover());
+        view.coverAllSymbolsWith(game.getCover());
         setContentView(view.getRootView());
     }
 
     @Override
     public void onSymbolClick(int position) {
-        if (gameProcedure.isSymbolClicked(position)) {
-            view.setSymbol(position, game.getCover());
-            gameProcedure.setSymbolNotClicked(position);
-        } else {
-            String symbol = game.getSymbols()[position];
-            view.setSymbol(position, symbol);
-            gameProcedure.setSymbolClicked(position);
-        }
+        String value = game.getSymbols()[position];
+        view.setSymbolValue(position, value);
+        gameProcedure.putClickedSymbol(position, value);
     }
 
     @Override
@@ -62,5 +65,27 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     public void onGameTimeStop() {
         view.setTime("" + 0);
+    }
+
+    @Override
+    public void onSymbolMatch(int position1, int position2) {
+        view.disableSymbol(position1);
+        view.disableSymbol(position2);
+    }
+
+    @Override
+    public void onSymbolMatchFail(int position1, int position2) {
+        Runnable setSymbols = () -> {
+            view.setSymbolValue(position1, game.getCover());
+            view.setSymbolValue(position2, game.getCover());
+        };
+        runWithDelay(setSymbols, 300);
+    }
+
+    public void runWithDelay(Runnable execution, int delayMillis) {
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            execution.run();
+        }, delayMillis);
     }
 }

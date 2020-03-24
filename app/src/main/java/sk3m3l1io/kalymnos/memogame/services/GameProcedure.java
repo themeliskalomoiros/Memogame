@@ -2,68 +2,101 @@ package sk3m3l1io.kalymnos.memogame.services;
 
 import android.os.CountDownTimer;
 
+import java.util.Stack;
+
 public class GameProcedure {
-    private static final int NO_SYMBOL = -1;
+    private static final int PAIR = 2;
     private static final int DURATION = 30000;
     private static final int TICK_DURATION = 1000;
 
-    private CountDownTimer timer;
-    private GameTimeListener listener;
-
-    private int currentSymbol = NO_SYMBOL;
-    private int previousSymbol = NO_SYMBOL;
-    private boolean[] symbolsClickState;
+    private final CountDownTimer timer;
+    private GameTimerListener timerListener;
+    private GameSymbolListener symbolListener;
+    private int pairsFound;
+    private final int symbolCount;
+    private final Stack<Symbol> clickedSymbols;
 
     public GameProcedure(int symbolCount) {
-        symbolsClickState = new boolean[symbolCount];
+        pairsFound = 0;
+        this.symbolCount = symbolCount;
+        clickedSymbols = new Stack<>();
         timer = new CountDownTimer(DURATION, TICK_DURATION) {
             @Override
             public void onTick(long millisUntilFinished) {
                 int elapsedSeconds = (int) millisUntilFinished / TICK_DURATION;
-                listener.onGameTimeTick(elapsedSeconds);
+                timerListener.onGameTimeTick(elapsedSeconds);
             }
 
             @Override
             public void onFinish() {
-                listener.onGameTimeStop();
+                timerListener.onGameTimeStop();
             }
         };
     }
 
-    public void setGameTimeListener(GameTimeListener listener) {
-        this.listener = listener;
+    public void setTimerListener(GameTimerListener listener) {
+        this.timerListener = listener;
     }
 
-    public boolean isSymbolClicked(int position) {
-        return symbolsClickState[position];
+    public void setSymbolListener(GameSymbolListener symbolListener) {
+        this.symbolListener = symbolListener;
     }
 
-    public void setSymbolClicked(int position) {
-        symbolsClickState[position] = true;
-    }
+    public void putClickedSymbol(int position, String value) {
+        Symbol s = new Symbol(position, value);
+        clickedSymbols.push(s);
 
-    public void setSymbolNotClicked(int position) {
-        symbolsClickState[position] = false;
-    }
-
-    public boolean gameCompletedSuccessfully() {
-        for (boolean state : symbolsClickState) {
-            if (state == false) return false;
+        if (clickedSymbols.size() == PAIR) {
+            reportMatch();
+            clickedSymbols.clear();
         }
+    }
 
-        return true;
+    private void reportMatch() {
+        Symbol s1 = clickedSymbols.pop();
+        Symbol s2 = clickedSymbols.pop();
+        if (s1.value.equals(s2.value)) {
+            pairsFound++;
+            symbolListener.onSymbolMatch(s1.position, s2.position);
+        } else {
+            symbolListener.onSymbolMatchFail(s1.position, s2.position);
+        }
+    }
+
+    public boolean gameWon() {
+        return pairsFound == symbolCount / 2;
     }
 
     public void startTimer() {
         timer.start();
-        listener.onGameTimeStart();
+        timerListener.onGameTimeStart();
     }
 
-    public interface GameTimeListener {
+    public void stopTimer() {
+        timer.cancel();
+    }
+
+    public interface GameTimerListener {
         void onGameTimeStart();
 
         void onGameTimeTick(int elapsedSeconds);
 
         void onGameTimeStop();
+    }
+
+    public interface GameSymbolListener {
+        void onSymbolMatch(int position1, int position2);
+
+        void onSymbolMatchFail(int position1, int position2);
+    }
+
+    private class Symbol {
+        int position;
+        String value;
+
+        public Symbol(int position, String value) {
+            this.position = position;
+            this.value = value;
+        }
     }
 }
