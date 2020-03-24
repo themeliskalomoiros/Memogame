@@ -9,7 +9,11 @@ public interface GameScreenView extends ViewMvc {
 
     void setSymbolClickListener(SymbolClickListener listener);
 
-    void setCover(char pattern);
+    void setCover(String cover);
 
-    void setSymbol(int symbolPosition, char symbol);
+    void setSymbol(int position, String symbol);
+
+    String getSymbol(int position);
+
+    void disableSymbol(int position);
 }

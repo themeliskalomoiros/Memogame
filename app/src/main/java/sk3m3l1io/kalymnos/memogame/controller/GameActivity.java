@@ -1,14 +1,10 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenView;
@@ -17,6 +13,8 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreenViewImp;
 public class GameActivity extends AppCompatActivity implements GameScreenView.SymbolClickListener {
     private Game game;
     private GameScreenView view;
+    private int pairsFound = 0;
+    private int previousClickedSymbolPosition = -1;
     private boolean[] symbolsClickState = new boolean[GameScreenView.SYMBOL_COUNT];
 
     @Override
@@ -37,26 +35,23 @@ public class GameActivity extends AppCompatActivity implements GameScreenView.Sy
     @Override
     public void onSymbolClick(int position) {
         boolean isClicked = symbolsClickState[position];
-        if(isClicked){
+        if (isClicked) {
             view.setSymbol(position, game.getCover());
             symbolsClickState[position] = false;
-        }else{
-            char symbol = game.getSymbols()[position];
+        } else {
+            String symbol = game.getSymbols()[position];
             view.setSymbol(position, symbol);
             symbolsClickState[position] = true;
         }
     }
 
-    static void shuffle(char[] chars)
-    {
+    static void shuffle(String[] array) {
         Random rnd = new Random();
-        for (int i = chars.length - 1; i > 0; i--)
-        {
+        for (int i = array.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
-            // Simple swap
-            char c = chars[index];
-            chars[index] = chars[i];
-            chars[i] = c;
+            String s = array[index];
+            array[index] = array[i];
+            array[i] = s;
         }
     }
 }

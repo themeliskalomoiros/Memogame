@@ -9,42 +9,24 @@ import java.util.Arrays;
 
 public final class Game implements Parcelable {
     private final String title;
-    private final char cover;
-    private final char[] symbols;
+    private final String cover;
+    private final String[] symbols;
 
-    public Game(String title, char cover, char[] symbols) {
+    public Game(String title, String cover, String[] symbols) {
         this.title = title;
         this.cover = cover;
         this.symbols = symbols;
     }
 
-    protected Game(Parcel in) {
-        title = in.readString();
-        cover = (char) in.readInt();
-        symbols = in.createCharArray();
-    }
-
-    public static final Creator<Game> CREATOR = new Creator<Game>() {
-        @Override
-        public Game createFromParcel(Parcel in) {
-            return new Game(in);
-        }
-
-        @Override
-        public Game[] newArray(int size) {
-            return new Game[size];
-        }
-    };
-
     public String getTitle() {
         return title;
     }
 
-    public char getCover() {
+    public String getCover() {
         return cover;
     }
 
-    public char[] getSymbols() {
+    public String[] getSymbols() {
         return symbols;
     }
 
@@ -61,8 +43,26 @@ public final class Game implements Parcelable {
 
     @Override
     public int hashCode() {
-        return title.hashCode() ^ cover ^ symbols.hashCode() * 1579;
+        return title.hashCode() ^ cover.hashCode() ^ symbols.hashCode() * 1579;
     }
+
+    protected Game(Parcel in) {
+        title = in.readString();
+        cover = in.readString();
+        symbols = in.createStringArray();
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel in) {
+            return new Game(in);
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -72,7 +72,7 @@ public final class Game implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
-        dest.writeInt((int) cover);
-        dest.writeCharArray(symbols);
+        dest.writeString(cover);
+        dest.writeStringArray(symbols);
     }
 }

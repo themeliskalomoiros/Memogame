@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements MainScreenView.Pl
         Intent i = new Intent(this, GameActivity.class);
         Game game = new Game(
                 "Test Game",
-                '⛶',
-                new char[]{'⛺', '⛱', '⛲', '⛴', '⛵', '⛭', '⛺', '⛱', '⛲', '⛴', '⛵', '⛭'});
+                "⛶",
+                new String[]{"⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"});
         i.putExtra(Game.class.getSimpleName(), game);
         startActivity(i);
     }
