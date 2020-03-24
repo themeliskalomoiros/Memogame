@@ -67,6 +67,12 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
+    public void setAllSymbolsBackground(int colorRes) {
+        for (SymbolView v : symbols)
+            v.container.setBackgroundColor(colorRes);
+    }
+
+    @Override
     public void setSymbolValue(int position, String symbol) {
         symbols[position].symbol.setText(symbol);
     }

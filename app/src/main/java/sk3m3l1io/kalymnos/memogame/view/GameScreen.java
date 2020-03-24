@@ -13,6 +13,8 @@ public interface GameScreen extends ViewMvc {
 
     void setSymbolBackground(int position, int colorRes);
 
+    void setAllSymbolsBackground(int colorRes);
+
     void setSymbolValue(int position, String symbol);
 
     String getSymbolValue(int position);

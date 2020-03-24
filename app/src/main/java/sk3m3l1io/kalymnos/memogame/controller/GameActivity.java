@@ -98,6 +98,8 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     public void onGameWon() {
         Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
+        int colorRes = getResources().getColor(R.color.secondaryLightColor);
+        view.setAllSymbolsBackground(colorRes);
     }
 
     @Override
