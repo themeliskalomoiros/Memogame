@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +23,11 @@ public class GameActivity extends AppCompatActivity implements GameScreenView.Sy
                 "Test Game",
                 '⛶',
                 new char[]{'⛺', '⛱', '⛲', '⛴', '⛵', '⛭', '⛺', '⛱', '⛲', '⛴', '⛵', '⛭'});
+        view.setCover(game.getCover());
     }
 
     @Override
     public void onSymbolClick(int position) {
-
+        Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show();
     }
 }
