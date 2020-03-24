@@ -40,12 +40,8 @@ public class GameScreenImp implements GameScreen {
 
     private void setOnClickListenerToSymbols(SymbolView[] symbols) {
         for (int i = 0; i < symbols.length; i++) {
-            ViewGroup c = symbols[i].container;
-            int position = i;
-            c.setOnClickListener(s -> {
-                if (symbolClickListener != null)
-                    symbolClickListener.onSymbolClick(position);
-            });
+            SymbolView v = symbols[i];
+            v.setOnClickListener(i);
         }
     }
 
@@ -115,6 +111,10 @@ public class GameScreenImp implements GameScreen {
         SymbolView(ViewGroup container) {
             this.container = container;
             symbol = (TextView) container.getChildAt(0);
+        }
+
+        void setOnClickListener(int position) {
+            container.setOnClickListener(v -> symbolClickListener.onSymbolClick(position));
         }
     }
 }

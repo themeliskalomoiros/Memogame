@@ -6,4 +6,8 @@ public interface MainScreen extends ViewMvc {
     }
 
     void setPlayClickListener(PlayClickListener listener);
+
+    void showLoadingIndicator();
+
+    void hideLoadingIndicator();
 }

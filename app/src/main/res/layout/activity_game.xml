@@ -14,8 +14,9 @@
         android:layout_height="0dp"
         android:gravity="center_horizontal"
         android:text="Test title"
+        android:textColor="@color/primaryTextColor"
         android:textAlignment="center"
-        android:textSize="64sp"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,132 +1,132 @@
 {
   "games": [{
-    "name": "Vacation",
-    "pattern": "⛶",
+    "title": "Vacation",
+    "cover": "⛶",
     "symbols": ["⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"]
   },
     {
-      "name": "Sports",
-      "pattern": "⛶",
+      "title": "Sports",
+      "cover": "⛶",
       "symbols": ["⛳", "⛷", "⛸", "⛹", "⚽", "⚾", "⛳", "⛷", "⛸", "⛹", "⚽", "⚾"]
     },
     {
-      "name": "Construct",
-      "pattern": "⛓",
+      "title": "Construct",
+      "cover": "⛓",
       "symbols": ["⛔", "⛒", "⛑", "⛏", "⛟", "⛡", "⛔", "⛒", "⛑", "⛏", "⛟", "⛡"]
     },
     {
-      "name": "On Drugs",
-      "pattern": "⚇",
+      "title": "On Drugs",
+      "cover": "⚇",
       "symbols": ["☹", "☺", "☻", "⚆", "⚈", "⚉", "☹", "☺", "☻", "⚆", "⚈", "⚉"]
     },
     {
-      "name": "O Ρούφ",
-      "pattern": "☡",
+      "title": "O Ρούφ",
+      "cover": "☡",
       "symbols": ["☟", "☞", "☝", "☜", "☛", "☚", "☟", "☞", "☝", "☜", "☛", "☚"]
     },
     {
-      "name": "Pagan",
-      "pattern": "⛦",
+      "title": "Pagan",
+      "cover": "⛦",
       "symbols": ["✡", "✝", "✞", "⛧", "⛩", "⛪", "✡", "✝", "✞", "⛧", "⛩", "⛪"]
     },
     {
-      "name": "Linarosporos",
-      "pattern": "✻",
+      "title": "Linarosporos",
+      "cover": "✻",
       "symbols": ["✿", "❀", "❁", "❂", "❃", "❈", "✿", "❀", "❁", "❂", "❃", "❈"]
     },
     {
-      "name": "Xiratus",
-      "pattern": "❎",
+      "title": "Xiratus",
+      "cover": "❎",
       "symbols": ["✘", "✖", "✕", "✔", "✓", "✗", "✘", "✖", "✕", "✔", "✓", "✗"]
     },
     {
-      "name": "Letter A",
-      "pattern": "Ⓐ",
+      "title": "Letter A",
+      "cover": "Ⓐ",
       "symbols": ["Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ", "Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ"]
     },
     {
-      "name": "Level Up",
-      "pattern": "▀",
+      "title": "Level Up",
+      "cover": "▀",
       "symbols": ["▁", "▂", "▃", "▄", "▅", "▆", "▁", "▂", "▃", "▄", "▅", "▆"]
     },
     {
-      "name": "Word Arrow",
-      "pattern": "➯",
+      "title": "Word Arrow",
+      "cover": "➯",
       "symbols": ["➩", "➪", "➫", "➬", "➭", "➮", "➩", "➪", "➫", "➬", "➭", "➮"]
     },
     {
-      "name": "RobinHood",
-      "pattern": "➳",
+      "title": "RobinHood",
+      "cover": "➳",
       "symbols": ["➴", "➵", "➶", "➷", "➸", "➹", "➴", "➵", "➶", "➷", "➸", "➹"]
     },
     {
-      "name": "Bad Weather",
-      "pattern": "★",
+      "title": "Bad Weather",
+      "cover": "★",
       "symbols": ["☀", "☁", "☂", "☃", "☄", "☔", "☀", "☁", "☂", "☃", "☄", "☔"]
     },
     {
-      "name": "Death Far Away",
-      "pattern": "☨",
+      "title": "Death Far Away",
+      "cover": "☨",
       "symbols": ["☠", "☦", "☢", "☣", "☤", "☥", "☠", "☦", "☢", "☣", "☤", "☥"]
     },
     {
-      "name": "Ethnicity",
-      "pattern": "☗",
+      "title": "Ethnicity",
+      "cover": "☗",
       "symbols": ["☪", "☫", "☬", "☭", "☮", "☯", "☪", "☫", "☬", "☭", "☮", "☯"]
     },
     {
-      "name": "Hard Triplet",
-      "pattern": "☰",
+      "title": "Hard Triplet",
+      "cover": "☰",
       "symbols": ["☱", "☲", "☳", "☴", "☵", "☶", "☱", "☲", "☳", "☴", "☵", "☶"]
     },
     {
-      "name": "Astrology",
-      "pattern": "♎",
+      "title": "Astrology",
+      "cover": "♎",
       "symbols": ["♈", "♉", "♊", "♋", "♌", "♍", "♈", "♉", "♊", "♋", "♌", "♍"]
     },
     {
-      "name": "Chess Attack",
-      "pattern": "⚑",
+      "title": "Chess Attack",
+      "cover": "⚑",
       "symbols": ["♔", "♕", "♖", "♗", "♘", "♙", "♔", "♕", "♖", "♗", "♘", "♙"]
     },
     {
-      "name": "Chess Defence",
-      "pattern": "⚐",
+      "title": "Chess Defence",
+      "cover": "⚐",
       "symbols": ["♚", "♛", "♜", "♝", "♞", "♟", "♚", "♛", "♜", "♝", "♞", "♟"]
     },
     {
-      "name": "Roll the Dice",
-      "pattern": "⚙",
+      "title": "Roll the Dice",
+      "cover": "⚙",
       "symbols": ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
     },
     {
-      "name": "Recycle",
-      "pattern": "♻",
+      "title": "Recycle",
+      "cover": "♻",
       "symbols": ["♳", "♴", "♵", "♶", "♷", "♸", "♳", "♴", "♵", "♶", "♷", "♸"]
     },
     {
-      "name": "Sexuallity",
-      "pattern": "⚨",
+      "title": "Sexuallity",
+      "cover": "⚨",
       "symbols": ["⚢", "⚣", "⚤", "⚥", "⚦", "⚧", "⚢", "⚣", "⚤", "⚥", "⚦", "⚧"]
     },
     {
-      "name": "Stars",
-      "pattern": "✪",
+      "title": "Stars",
+      "cover": "✪",
       "symbols": ["✫", "✬", "✭", "✮", "✯", "✰", "✫", "✬", "✭", "✮", "✯", "✰"]
     },
     {
-      "name": "Writing",
-      "pattern": "✉",
+      "title": "Writing",
+      "cover": "✉",
       "symbols": ["✍", "✎", "✏", "✐", "✑", "✒", "✍", "✎", "✏", "✐", "✑", "✒"]
     },
     {
-      "name": "Tetris",
-      "pattern": "⠶",
+      "title": "Tetris",
+      "cover": "⠶",
       "symbols": ["⠼", "⠹", "⠺", "⣿", "⠞", "⠸", "⠼", "⠹", "⠺", "⣿", "⠞", "⠸"]
     },
     {
-      "name": "Greek",
-      "pattern": "ᴪ",
+      "title": "Greek",
+      "cover": "ᴪ",
       "symbols": ["ἒ", "ώ", "ϑ", "ά", "ᾼ", "ὒ", "ἒ", "ώ", "ϑ", "ά", "ᾼ", "ὒ"]
     }
   ]

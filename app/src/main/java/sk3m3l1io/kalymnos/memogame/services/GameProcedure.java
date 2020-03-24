@@ -14,12 +14,11 @@ public class GameProcedure {
     private MatchListener symbolListener;
     private ResultListener resultListener;
 
-    private int pairsFound;
+    private int pairsFound = 0;
     private final int symbolCount;
     private final Stack<Symbol> clickedSymbols;
 
     public GameProcedure(int symbolCount) {
-        pairsFound = 0;
         this.symbolCount = symbolCount;
         clickedSymbols = new Stack<>();
         timer = new CountDownTimer(DURATION, TICK_DURATION) {
@@ -53,33 +52,29 @@ public class GameProcedure {
         clickedSymbols.push(s);
 
         if (clickedSymbols.size() == PAIR) {
-            handlePair();
+            handlePairing();
             clickedSymbols.clear();
         }
     }
 
-    private void handlePair() {
+    private void handlePairing() {
         Symbol s1 = clickedSymbols.pop();
         Symbol s2 = clickedSymbols.pop();
 
         boolean pairMatch = s1.value.equals(s2.value);
         if (pairMatch) {
-            handlePairMatch(s1, s2);
+            symbolListener.onSymbolMatch(s1.position, s2.position);
+            pairsFound++;
+            if (gameWon()) {
+                pairsFound = 0;
+                resultListener.onGameWon();
+            }
         } else {
             symbolListener.onSymbolMatchFail(s1.position, s2.position);
         }
     }
 
-    private void handlePairMatch(Symbol s1, Symbol s2) {
-        symbolListener.onSymbolMatch(s1.position, s2.position);
-        pairsFound++;
-        if (gameWon()) {
-            pairsFound = 0;
-            resultListener.onGameWon();
-        }
-    }
-
-    public boolean gameWon(){
+    public boolean gameWon() {
         return pairsFound == symbolCount / 2;
     }
 

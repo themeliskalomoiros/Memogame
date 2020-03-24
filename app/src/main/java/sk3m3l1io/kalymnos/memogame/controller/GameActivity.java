@@ -85,26 +85,26 @@ public class GameActivity extends AppCompatActivity implements
 
     @Override
     public void onSymbolMatchFail(int position1, int position2) {
-        Runnable setSymbols = () -> {
+        Runnable setSymbolValues = () -> {
             view.setSymbolValue(position1, game.getCover());
             view.setSymbolValue(position2, game.getCover());
         };
-        runWithDelay(setSymbols, 300);
+        runWithDelay(setSymbolValues, 300);
     }
 
-    public void runWithDelay(Runnable execution, int delayMillis) {
+    public void runWithDelay(Runnable runnable, int delayMillis) {
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
-            execution.run();
+            runnable.run();
         }, delayMillis);
     }
 
     @Override
     public void onGameWon() {
         gameProcedure.stop();
-        Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
         int colorRes = getResources().getColor(R.color.secondaryLightColor);
         view.setAllSymbolsBackground(colorRes);
+        Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
