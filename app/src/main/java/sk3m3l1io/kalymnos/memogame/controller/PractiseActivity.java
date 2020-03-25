@@ -2,7 +2,6 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -10,13 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
-import java.util.Random;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.PractiseGameProcedure;
-import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
@@ -26,64 +23,95 @@ public class PractiseActivity extends AppCompatActivity implements
         PractiseGameProcedure.PairMatchListener,
         PractiseGameProcedure.ResultListener,
         NextGameDialog.ResponseListener {
+    private static final int GAME_DURATION = 20000;
 
-    private Game game;
+    private boolean gameBegun;
+    private int currentGame;
     private List<Game> games;
-
     private PractiseGameProcedure gameProcedure;
+
     private GameScreen view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        setupUi();
+        updateUI();
+    }
+
+    private void init() {
+        gameProcedure = new PractiseGameProcedure(GameScreen.SYMBOL_COUNT, GAME_DURATION);
+        gameProcedure.setTimeListener(this);
+        gameProcedure.setPairMatchListener(this);
+        gameProcedure.setResultListener(this);
+        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        view = new GameScreenImp(getLayoutInflater(), null);
+        view.setClickListener(this);
+        setContentView(view.getRootView());
+    }
+
+    private void updateUI() {
+        Game game = games.get(currentGame);
+        view.setTitle(game.getTitle());
+        view.setAllSymbolsValue(game.getCover());
+        int color = getResources().getColor(R.color.primaryColor);
+        view.setAllSymbolsColor(color);
+        view.setAllSymbolsBackgroundToDefault();
+        view.setTimeMaxProgress(gameProcedure.getDuration());
+        view.setTimeProgress(gameProcedure.getDuration());
+        view.enableAllSymbols();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        gameProcedure.begin();
     }
 
-    private void init() {
-        gameProcedure = new PractiseGameProcedure(GameScreen.SYMBOL_COUNT);
-        gameProcedure.setTimeListener(this);
-        gameProcedure.setPairMatchListener(this);
-        gameProcedure.setResultListener(this);
-        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        game = games.get(new Random().nextInt(games.size()));
-        ArrayUtils.shuffle(game.getSymbols());
-        view = new GameScreenImp(getLayoutInflater(), null);
-        view.setClickListener(this);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameProcedure.stop();
+        gameProcedure.detachListeners();
     }
 
-    private void setupUi() {
-        view.setTitle(game.getTitle());
-        view.setTimeProgressMax(PractiseGameProcedure.DURATION);
-        view.setTimeProgress(PractiseGameProcedure.DURATION);
-        view.coverAllSymbols(game.getCover());
-        setContentView(view.getRootView());
+    @Override
+    public void onPreviousClick() {
+        if (currentGame > 0) {
+            --currentGame;
+            gameProcedure.stop();
+            gameProcedure.resetState();
+            gameBegun = false;
+            updateUI();
+        }
     }
 
     @Override
     public void onNextClick() {
-        gameProcedure.detachListeners();
-        recreate();
+        if (currentGame < games.size() - 1) {
+            ++currentGame;
+            gameProcedure.stop();
+            gameProcedure.resetState();
+            gameBegun = false;
+            updateUI();
+        }
     }
 
     @Override
-    public void onSymbolClick(int position) {
-        String value = game.getSymbols()[position];
-        int symbolColor = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolColor(position, symbolColor);
-        view.setSymbolValue(position, value);
-        gameProcedure.putClickedSymbol(position, value);
+    public void onSymbolClick(int pos) {
+        if (!gameBegun)
+            gameProcedure.begin();
+
+        int color = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolColor(pos, color);
+        String symbol = games.get(currentGame).getSymbols()[pos];
+        view.setSymbolValue(pos, symbol);
+
+        gameProcedure.addTappedSymbol(pos, symbol);
     }
 
     @Override
     public void onGameTimeBegin() {
-        Toast.makeText(this, "Game started", Toast.LENGTH_SHORT).show();
+        gameBegun = true;
     }
 
     @Override
@@ -95,7 +123,6 @@ public class PractiseActivity extends AppCompatActivity implements
     public void onGameTimeFinish() {
         view.disableAllSymbols();
         view.setTimeProgress(0);
-        view.showNextButton();
         if (gameProcedure.gameWon()) {
             showNextGameDialog(R.string.victory);
         } else {
@@ -118,6 +145,8 @@ public class PractiseActivity extends AppCompatActivity implements
             int symbolColor = getResources().getColor(R.color.primaryColor);
             view.setSymbolColor(position1, symbolColor);
             view.setSymbolColor(position2, symbolColor);
+
+            Game game = games.get(currentGame);
             view.setSymbolValue(position1, game.getCover());
             view.setSymbolValue(position2, game.getCover());
         };
@@ -141,7 +170,6 @@ public class PractiseActivity extends AppCompatActivity implements
     private void setVictoryUi() {
         int backgroundColor = getResources().getColor(R.color.primaryLightColor);
         view.setAllSymbolsBackgroundColor(backgroundColor);
-        view.showNextButton();
     }
 
     private void showNextGameDialog(int messageRes) {
@@ -163,10 +191,8 @@ public class PractiseActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogPositiveResponse(NextGameDialog dialog) {
-        gameProcedure.detachListeners();
         dialog.dismiss();
-        dialog.setResponseListener(null);
-        recreate();
+        onNextClick();
     }
 
     @Override

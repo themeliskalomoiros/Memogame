@@ -4,36 +4,36 @@ public interface GameScreen extends ViewMvc {
     int SYMBOL_COUNT = 12;
 
     interface ClickListener {
+        void onPreviousClick();
+
         void onNextClick();
 
-        void onSymbolClick(int position);
+        void onSymbolClick(int pos);
     }
 
     void setClickListener(ClickListener listener);
 
-    void coverAllSymbols(String cover);
-
-    void setSymbolColor(int position, int color);
+    void setSymbolColor(int pos, int colorRes);
 
     void setAllSymbolsColor(int color);
 
-    void setSymbolBackgroundColor(int position, int colorRes);
-
     void setAllSymbolsBackgroundColor(int colorRes);
 
-    void setSymbolValue(int position, String symbol);
+    void setAllSymbolsBackgroundToDefault();
 
-    void disableSymbol(int position);
+    void setSymbolValue(int pos, String value);
+
+    void setAllSymbolsValue(String cover);
+
+    void disableSymbol(int pos);
+
+    void enableAllSymbols();
 
     void disableAllSymbols();
 
-    void showNextButton();
-
-    void hideNextButton();
-
     void setTitle(String title);
 
-    void setTimeProgress(int value);
+    void setTimeProgress(int progress);
 
-    void setTimeProgressMax(int value);
+    void setTimeMaxProgress(int progress);
 }

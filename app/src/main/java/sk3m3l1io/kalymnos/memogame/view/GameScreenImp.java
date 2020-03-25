@@ -16,7 +16,7 @@ public class GameScreenImp implements GameScreen {
     private final TextView title, time;
     private final ProgressBar progressBar;
     private final Button[] symbols;
-    private final FloatingActionButton next;
+    private final FloatingActionButton next, previous;
     private ClickListener clickListener;
 
     public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
@@ -26,6 +26,8 @@ public class GameScreenImp implements GameScreen {
         time = root.findViewById(R.id.time);
         next = root.findViewById(R.id.next);
         next.setOnClickListener(b -> clickListener.onNextClick());
+        previous = root.findViewById(R.id.previous);
+        previous.setOnClickListener(b -> clickListener.onPreviousClick());
         symbols = new Button[SYMBOL_COUNT];
         populateSymbols(inflater);
     }
@@ -61,15 +63,15 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void coverAllSymbols(String cover) {
+    public void setAllSymbolsValue(String cover) {
         for (Button b : symbols)
             b.setText(cover);
     }
 
     @Override
-    public void setSymbolColor(int position, int color) {
-        Button b = symbols[position];
-        b.setTextColor(color);
+    public void setSymbolColor(int pos, int colorRes) {
+        Button b = symbols[pos];
+        b.setTextColor(colorRes);
     }
 
     @Override
@@ -79,26 +81,26 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void setSymbolBackgroundColor(int position, int colorRes) {
-        Button b = symbols[position];
-        b.setBackgroundColor(colorRes);
-    }
-
-    @Override
     public void setAllSymbolsBackgroundColor(int colorRes) {
         for (Button b : symbols)
             b.setBackgroundColor(colorRes);
     }
 
     @Override
-    public void setSymbolValue(int position, String symbol) {
-        Button b = symbols[position];
-        b.setText(symbol);
+    public void setAllSymbolsBackgroundToDefault() {
+        for (Button b : symbols)
+            b.setBackgroundResource(android.R.drawable.btn_default);
     }
 
     @Override
-    public void disableSymbol(int position) {
-        Button b = symbols[position];
+    public void setSymbolValue(int pos, String value) {
+        Button b = symbols[pos];
+        b.setText(value);
+    }
+
+    @Override
+    public void disableSymbol(int pos) {
+        Button b = symbols[pos];
         b.setEnabled(false);
     }
 
@@ -109,13 +111,9 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void showNextButton() {
-        next.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideNextButton() {
-        next.setVisibility(View.GONE);
+    public void enableAllSymbols() {
+        for (Button b : symbols)
+            b.setEnabled(true);
     }
 
     @Override
@@ -124,13 +122,13 @@ public class GameScreenImp implements GameScreen {
     }
 
     @Override
-    public void setTimeProgress(int value) {
-        progressBar.setProgress(value);
+    public void setTimeProgress(int progress) {
+        progressBar.setProgress(progress);
     }
 
     @Override
-    public void setTimeProgressMax(int value) {
-        progressBar.setMax(value);
+    public void setTimeMaxProgress(int progress) {
+        progressBar.setMax(progress);
     }
 
     @Override

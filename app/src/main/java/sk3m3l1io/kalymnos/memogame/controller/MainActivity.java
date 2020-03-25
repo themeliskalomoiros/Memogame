@@ -119,11 +119,11 @@ public class MainActivity extends AppCompatActivity implements
             view.setSignInButtonImage(R.drawable.sign_out_48px);
             view.setPlayerName(account.getDisplayName());
             view.showPlayerName();
-            Snackbar.make(view.getRootView(),R.string.sign_in_msg,Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(view.getRootView(), R.string.sign_in_msg, Snackbar.LENGTH_SHORT).show();
         } else {
             view.setSignInButtonImage(R.drawable.google_48px);
-            if(!userInformedAboutSignIn){
-                Snackbar.make(view.getRootView(),R.string.prompt_for_sign_in_msg,Snackbar.LENGTH_SHORT).show();
+            if (!userInformedAboutSignIn) {
+                Snackbar.make(view.getRootView(), R.string.prompt_for_sign_in_msg, Snackbar.LENGTH_SHORT).show();
                 userInformedAboutSignIn = true;
             }
         }
@@ -132,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onHotRoundClick() {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        if (acc != null){
+        if (acc != null) {
             startActivity(getGamesIntent(GameMode.HOT_ROUND));
-        }else{
+        } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
         }
     }
@@ -146,9 +146,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private Intent getGamesIntent(GameMode mode) {
         Intent i = new Intent();
-        if(mode == GameMode.HOT_ROUND){
+        if (mode == GameMode.HOT_ROUND) {
             i.setClass(this, HotRoundActivity.class);
-        }else if(mode == GameMode.PRACTISE){
+        } else if (mode == GameMode.PRACTISE) {
             i.setClass(this, PractiseActivity.class);
         }
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onSuccess(Void aVoid) {
-        Snackbar.make(view.getRootView(), R.string.sign_out_success,Snackbar.LENGTH_LONG).show();
+        Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
         view.setSignInButtonImage(R.drawable.google_48px);
         view.hidePlayerName();
     }

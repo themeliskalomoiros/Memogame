@@ -8,22 +8,23 @@ import java.util.Stack;
 
 public class PractiseGameProcedure {
     private static final int PAIR = 2;
-    public static final int DURATION = 20000;
     private static final int TICK_DURATION = 100;
 
     private final CountDownTimer timer;
+    private final int duration;
     private TimeListener timeListener;
     private PairMatchListener pairMatchListener;
     private ResultListener resultListener;
 
-    private int pairsFound = 0;
     private final int symbolCount;
-    private final Stack<Symbol> clickedSymbols;
+    private int pairsFound;
+    private final Stack<Symbol> pair;
 
-    public PractiseGameProcedure(int symbolCount) {
+    public PractiseGameProcedure(int symbolCount, int durationMilli) {
         this.symbolCount = symbolCount;
-        clickedSymbols = new Stack<>();
-        timer = new CountDownTimer(DURATION, TICK_DURATION) {
+        duration = durationMilli;
+        pair = new Stack<>();
+        timer = new CountDownTimer(duration, TICK_DURATION) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeListener.onGameTimeProgress((int) millisUntilFinished);
@@ -34,6 +35,10 @@ public class PractiseGameProcedure {
                 timeListener.onGameTimeFinish();
             }
         };
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     public void setTimeListener(TimeListener listener) {
@@ -48,22 +53,28 @@ public class PractiseGameProcedure {
         this.resultListener = resultListener;
     }
 
+    public void resetState() {
+        timer.cancel();
+        pairsFound = 0;
+        pair.clear();
+    }
+
     public void detachListeners() {
         resultListener = null;
         pairMatchListener = null;
         timeListener = null;
     }
 
-    public void putClickedSymbol(int position, String value) {
+    public void addTappedSymbol(int position, String value) {
         Symbol s = new Symbol(position, value);
 
-        if (!clickedSymbols.contains(s)) {
-            clickedSymbols.push(s);
+        if (!pair.contains(s)) {
+            pair.push(s);
         }
 
-        if (clickedSymbols.size() == PAIR) {
+        if (pair.size() == PAIR) {
             reportMatch();
-            clickedSymbols.clear();
+            pair.clear();
         }
 
         if (gameWon()) {
@@ -73,8 +84,8 @@ public class PractiseGameProcedure {
     }
 
     private void reportMatch() {
-        Symbol s1 = clickedSymbols.pop();
-        Symbol s2 = clickedSymbols.pop();
+        Symbol s1 = pair.pop();
+        Symbol s2 = pair.pop();
 
         boolean pairMatch = s1.value.equals(s2.value);
         if (pairMatch) {
