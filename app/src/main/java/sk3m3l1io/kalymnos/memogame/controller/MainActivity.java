@@ -131,7 +131,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onHotRoundClick() {
-        startActivity(getGamesIntent(GameMode.HOT_ROUND));
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc != null){
+            startActivity(getGamesIntent(GameMode.HOT_ROUND));
+        }else{
+            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
