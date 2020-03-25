@@ -7,6 +7,22 @@
     android:background="@color/primaryColor"
     tools:context=".controller.MainActivity">
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_navigate_next_black"
+        android:visibility="visible"
+        app:backgroundTint="@color/primaryLightColor"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/title" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
@@ -27,22 +43,36 @@
         app:layout_constraintStart_toEndOf="@+id/previous"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/symbol_4"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/symbol_5"
-        app:layout_constraintStart_toEndOf="@+id/symbol_3"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_1" />
-
-    <Button
-        android:id="@+id/symbol_3"
-        style="@style/Symbol_Style"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/ic_navigate_before_black_24dp"
+        android:visibility="visible"
+        app:elevation="0dp"
+        app:backgroundTint="@color/primaryLightColor"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_0" />
+        app:layout_constraintTop_toTopOf="@+id/title" />
+
+    <fragment
+        android:id="@+id/game_fragment"
+        android:name="sk3m3l1io.kalymnos.memogame.controller.GameFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -66,133 +96,12 @@
         android:layout_height="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:background="@color/primaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_10"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/symbol_7"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/symbol_8"
-        app:layout_constraintStart_toEndOf="@+id/symbol_6"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_4" />
-
-    <Button
-        android:id="@+id/symbol_6"
-        style="@style/Symbol_Style"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_3" />
-
-    <Button
-        android:id="@+id/symbol_9"
-        style="@style/Symbol_Style"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_6" />
-
-    <Button
-        android:id="@+id/symbol_10"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/symbol_11"
-        app:layout_constraintStart_toEndOf="@+id/symbol_9"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_7" />
-
-    <Button
-        android:id="@+id/symbol_11"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_8" />
-
-    <Button
-        android:id="@+id/symbol_2"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
-
-    <Button
-        android:id="@+id/symbol_0"
-        style="@style/Symbol_Style"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
-
-    <Button
-        android:id="@+id/symbol_1"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/symbol_2"
-        app:layout_constraintStart_toEndOf="@+id/symbol_0"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
-
-    <Button
-        android:id="@+id/symbol_8"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_5" />
-
-    <Button
-        android:id="@+id/symbol_5"
-        style="@style/Symbol_Style"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symbol_2" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/ic_navigate_next_black"
-        android:visibility="visible"
-        app:backgroundTint="@color/primaryLightColor"
-        app:elevation="0dp"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_navigate_before_black_24dp"
-        android:visibility="visible"
-        app:elevation="0dp"
-        app:backgroundTint="@color/primaryLightColor"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
