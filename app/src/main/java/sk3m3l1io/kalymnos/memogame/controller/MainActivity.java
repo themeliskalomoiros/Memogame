@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPlayClick() {
-        Intent i = new Intent(this, GameActivity.class);
+        Intent i = new Intent(this, RandomGameActivity.class);
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
         startActivity(i);
     }

@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Stack;
 
-public class GameProcedure {
+public class RandomGameProcedure {
     private static final int PAIR = 2;
     public static final int DURATION = 30000;
     private static final int TICK_DURATION = 1000;
@@ -20,7 +20,7 @@ public class GameProcedure {
     private final int symbolCount;
     private final Stack<Symbol> clickedSymbols;
 
-    public GameProcedure(int symbolCount) {
+    public RandomGameProcedure(int symbolCount) {
         this.symbolCount = symbolCount;
         clickedSymbols = new Stack<>();
         timer = new CountDownTimer(DURATION, TICK_DURATION) {

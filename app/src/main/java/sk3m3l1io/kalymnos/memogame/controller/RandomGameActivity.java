@@ -15,22 +15,22 @@ import java.util.Random;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
+import sk3m3l1io.kalymnos.memogame.services.RandomGameProcedure;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
-public class GameActivity extends AppCompatActivity implements
+public class RandomGameActivity extends AppCompatActivity implements
         GameScreen.ClickListener,
-        GameProcedure.TimeListener,
-        GameProcedure.PairMatchListener,
-        GameProcedure.ResultListener,
+        RandomGameProcedure.TimeListener,
+        RandomGameProcedure.PairMatchListener,
+        RandomGameProcedure.ResultListener,
         NextGameDialog.ResponseListener {
 
     private Game game;
     private List<Game> games;
 
-    private GameProcedure gameProcedure;
+    private RandomGameProcedure gameProcedure;
     private GameScreen view;
 
     @Override
@@ -47,7 +47,7 @@ public class GameActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT);
+        gameProcedure = new RandomGameProcedure(GameScreen.SYMBOL_COUNT);
         gameProcedure.setTimeListener(this);
         gameProcedure.setPairMatchListener(this);
         gameProcedure.setResultListener(this);
@@ -60,8 +60,8 @@ public class GameActivity extends AppCompatActivity implements
 
     private void setupUi() {
         view.setTitle(game.getTitle());
-        view.setTimeProgressMax(GameProcedure.DURATION);
-        view.setTimeProgress(GameProcedure.DURATION);
+        view.setTimeProgressMax(RandomGameProcedure.DURATION);
+        view.setTimeProgress(RandomGameProcedure.DURATION);
         view.coverAllSymbols(game.getCover());
         setContentView(view.getRootView());
     }
