@@ -1,4 +1,4 @@
-package sk3m3l1io.kalymnos.memogame.dialoges;
+package sk3m3l1io.kalymnos.memogame.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,10 +19,6 @@ public class NextGameDialog extends DialogFragment {
     private int messageRes;
     private ResponseListener listener;
 
-    public NextGameDialog(int messageRes) {
-        this.messageRes = messageRes;
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -36,6 +32,10 @@ public class NextGameDialog extends DialogFragment {
 
     public void setResponseListener(ResponseListener listener) {
         if (listener != null) this.listener = listener;
+    }
+
+    public void setMessageRes(int messageRes) {
+        this.messageRes = messageRes;
     }
 
     @Override

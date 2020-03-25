@@ -5,12 +5,15 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
 import java.util.Random;
 
 import sk3m3l1io.kalymnos.memogame.R;
-import sk3m3l1io.kalymnos.memogame.dialoges.NextGameDialog;
+import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
@@ -139,9 +142,20 @@ public class GameActivity extends AppCompatActivity implements
     }
 
     private void showNextGameDialog(int messageRes) {
-        NextGameDialog d = new NextGameDialog(messageRes);
+        NextGameDialog d = new NextGameDialog();
+        d.setMessageRes(messageRes);
         d.setResponseListener(this);
-        d.show(getSupportFragmentManager(), null);
+        showDialogAllowingStateLoss(getSupportFragmentManager(), d, null);
+    }
+
+    // From https://medium.com/inloopx/demystifying-androids-commitallowingstateloss-cb9011a544cc
+    public static void showDialogAllowingStateLoss(
+            FragmentManager fragmentManager,
+            DialogFragment dialogFragment,
+            String tag) {
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.add(dialogFragment, tag);
+        ft.commitAllowingStateLoss();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity implements
         view.setPlayClickListener(this);
         setContentView(view.getRootView());
         if (gamesExistIn(savedInstanceState)) {
+            Log.d(MainActivity.class.getSimpleName(), "games exist");
             games = savedInstanceState.getParcelableArrayList(Game.class.getSimpleName());
         } else {
+            Log.d(MainActivity.class.getSimpleName(), "games dont exist restarting loader");
             getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
         }
     }
@@ -83,15 +85,16 @@ public class MainActivity extends AppCompatActivity implements
             @Nullable
             @Override
             public List<Game> loadInBackground() {
+                Log.d(MainActivity.class.getSimpleName(), "loadingInBackground() called");
                 return getGames();
             }
 
             private List<Game> getGames() {
-                try (AssetManager assets = getAssets()) {
-                    String[] paths = assets.list("");
+                try {
+                    String[] paths = getAssets().list("");
                     for (String p : paths) {
                         if (p.contains("games.json")) {
-                            GameRepository repo = new GameRepositoryImp(assets.open(p));
+                            GameRepository repo = new GameRepositoryImp(getAssets().open(p));
                             return repo.getGames();
                         }
                     }
