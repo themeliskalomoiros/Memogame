@@ -4,4 +4,5 @@
     <string name="victory">You\'ve won!</string>
     <string name="next_game">Continue?</string>
     <string name="no">No</string>
+    <string name="defeat">You lost!</string>
 </resources>

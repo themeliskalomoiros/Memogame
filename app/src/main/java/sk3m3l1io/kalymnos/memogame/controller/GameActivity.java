@@ -2,13 +2,20 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
+import java.util.List;
+import java.util.Random;
 
 import sk3m3l1io.kalymnos.memogame.R;
+import sk3m3l1io.kalymnos.memogame.dialoges.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
+import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
@@ -16,9 +23,12 @@ public class GameActivity extends AppCompatActivity implements
         GameScreen.SymbolClickListener,
         GameProcedure.TimeListener,
         GameProcedure.PairMatchListener,
-        GameProcedure.ResultListener {
+        GameProcedure.ResultListener,
+        NextGameDialog.ResponseListener {
 
     private Game game;
+    private List<Game> games;
+
     private GameProcedure gameProcedure;
     private GameScreen view;
 
@@ -40,7 +50,9 @@ public class GameActivity extends AppCompatActivity implements
         gameProcedure.setTimeListener(this);
         gameProcedure.setPairMatchListener(this);
         gameProcedure.setResultListener(this);
-        game = getIntent().getParcelableExtra(Game.class.getSimpleName());
+        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        game = games.get(new Random().nextInt(games.size()));
+        ArrayUtils.shuffle(game.getSymbols());
         view = new GameScreenImp(getLayoutInflater(), null);
         view.setSymbolClickListener(this);
     }
@@ -74,6 +86,11 @@ public class GameActivity extends AppCompatActivity implements
     public void onGameTimeFinish() {
         view.disableAllSymbols();
         view.setTimeProgress(0);
+        if (gameProcedure.gameWon()){
+            showNextGameDialog(R.string.victory);
+        }else{
+            showNextGameDialog(R.string.defeat);
+        }
     }
 
     @Override
@@ -104,15 +121,33 @@ public class GameActivity extends AppCompatActivity implements
     @Override
     public void onGameWon() {
         gameProcedure.stop();
+        setVictoryUi();
+        showNextGameDialog(R.string.victory);
+    }
+
+    private void setVictoryUi() {
         int backgroundColor = getResources().getColor(R.color.primaryLightColor);
         view.setAllSymbolsBackgroundColor(backgroundColor);
         int symbolColor = getResources().getColor(R.color.secondaryColor);
         view.setAllSymbolsColor(symbolColor);
-        Toast.makeText(this, "Victory!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showNextGameDialog(int messageRes) {
+        NextGameDialog d = new NextGameDialog(messageRes);
+        d.setResponseListener(this);
+        d.show(getSupportFragmentManager(), null);
     }
 
     @Override
-    public void onGameLost() {
+    public void onDialogPositiveResponse(NextGameDialog dialog) {
+        gameProcedure.detachListeners();
+        dialog.dismiss();
+        dialog.setResponseListener(null);
+        recreate();
+    }
 
+    @Override
+    public void onDialogNegativeResponse(NextGameDialog dialog) {
+        finish();
     }
 }

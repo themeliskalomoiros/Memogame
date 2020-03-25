@@ -48,19 +48,31 @@ public class GameProcedure {
         this.resultListener = resultListener;
     }
 
+    public void detachListeners(){
+        resultListener = null;
+        pairMatchListener = null;
+        timeListener = null;
+    }
+
     public void putClickedSymbol(int position, String value) {
         Symbol s = new Symbol(position, value);
 
-        if (!clickedSymbols.contains(s))
+        if (!clickedSymbols.contains(s)){
             clickedSymbols.push(s);
+        }
 
         if (clickedSymbols.size() == PAIR) {
-            handlePairing();
+            reportMatch();
             clickedSymbols.clear();
+        }
+
+        if (gameWon()) {
+            pairsFound = 0;
+            resultListener.onGameWon();
         }
     }
 
-    private void handlePairing() {
+    private void reportMatch() {
         Symbol s1 = clickedSymbols.pop();
         Symbol s2 = clickedSymbols.pop();
 
@@ -68,10 +80,6 @@ public class GameProcedure {
         if (pairMatch) {
             pairMatchListener.onPairMatch(s1.position, s2.position);
             pairsFound++;
-            if (gameWon()) {
-                pairsFound = 0;
-                resultListener.onGameWon();
-            }
         } else {
             pairMatchListener.onPairMatchFail(s1.position, s2.position);
         }
@@ -106,8 +114,6 @@ public class GameProcedure {
 
     public interface ResultListener {
         void onGameWon();
-
-        void onGameLost();
     }
 
     private class Symbol {
