@@ -75,6 +75,8 @@ public class PractiseActivity extends AppCompatActivity implements
     @Override
     public void onSymbolClick(int position) {
         String value = game.getSymbols()[position];
+        int symbolColor = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolColor(position, symbolColor);
         view.setSymbolValue(position, value);
         gameProcedure.putClickedSymbol(position, value);
     }
@@ -105,7 +107,7 @@ public class PractiseActivity extends AppCompatActivity implements
     public void onPairMatch(int position1, int position2) {
         view.disableSymbol(position1);
         view.disableSymbol(position2);
-        int symbolColor = getResources().getColor(R.color.secondaryLightColor);
+        int symbolColor = getResources().getColor(R.color.symbolMatchColor);
         view.setSymbolColor(position1, symbolColor);
         view.setSymbolColor(position2, symbolColor);
     }
@@ -113,6 +115,9 @@ public class PractiseActivity extends AppCompatActivity implements
     @Override
     public void onPairMatchFail(int position1, int position2) {
         Runnable setSymbolValues = () -> {
+            int symbolColor = getResources().getColor(R.color.primaryColor);
+            view.setSymbolColor(position1, symbolColor);
+            view.setSymbolColor(position2, symbolColor);
             view.setSymbolValue(position1, game.getCover());
             view.setSymbolValue(position2, game.getCover());
         };
@@ -136,8 +141,6 @@ public class PractiseActivity extends AppCompatActivity implements
     private void setVictoryUi() {
         int backgroundColor = getResources().getColor(R.color.primaryLightColor);
         view.setAllSymbolsBackgroundColor(backgroundColor);
-        int symbolColor = getResources().getColor(R.color.secondaryColor);
-        view.setAllSymbolsColor(symbolColor);
         view.showNextButton();
     }
 

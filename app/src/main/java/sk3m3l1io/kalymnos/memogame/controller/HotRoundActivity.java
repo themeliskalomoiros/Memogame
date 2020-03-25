@@ -18,7 +18,7 @@ public class HotRoundActivity extends AppCompatActivity implements GameScreen.Cl
     private List<Game> games;
 
     private GameScreen view;
-
+    private HotRoundGameProcedure gameProcedure;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

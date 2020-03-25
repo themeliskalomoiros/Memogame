@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class PractiseGameProcedure {
     private static final int PAIR = 2;
-    public static final int DURATION = 30000;
-    private static final int TICK_DURATION = 1000;
+    public static final int DURATION = 20000;
+    private static final int TICK_DURATION = 100;
 
     private final CountDownTimer timer;
     private TimeListener timeListener;
