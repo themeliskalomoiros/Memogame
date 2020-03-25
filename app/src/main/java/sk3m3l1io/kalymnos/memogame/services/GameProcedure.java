@@ -1,68 +1,35 @@
 package sk3m3l1io.kalymnos.memogame.services;
 
-import android.os.CountDownTimer;
-
 import androidx.annotation.Nullable;
 
 import java.util.Stack;
 
-public class GameProcedure {
-    private static final int PAIR = 2;
-    private static final int TICK_DURATION = 100;
+public final class GameProcedure {
+    private static final int MATCH_COUNT = 2;
 
-    private final CountDownTimer timer;
-    private final int duration;
-    private TimeListener timeListener;
-    private PairMatchListener pairMatchListener;
-    private ResultListener resultListener;
+    private MatchListener matchListener;
+    private CompletionListener completionListener;
 
     private final int symbolCount;
     private int pairsFound;
     private final Stack<Symbol> pair;
 
-    public GameProcedure(int symbolCount, int durationMilli) {
+    public GameProcedure(int symbolCount) {
         this.symbolCount = symbolCount;
-        duration = durationMilli;
         pair = new Stack<>();
-        timer = new CountDownTimer(duration, TICK_DURATION) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeListener.onGameTimeProgress((int) millisUntilFinished);
-            }
-
-            @Override
-            public void onFinish() {
-                timeListener.onGameTimeFinish();
-            }
-        };
     }
 
-    public int getDuration() {
-        return duration;
+    public void setMatchListener(MatchListener matchListener) {
+        this.matchListener = matchListener;
     }
 
-    public void setTimeListener(TimeListener listener) {
-        this.timeListener = listener;
-    }
-
-    public void setPairMatchListener(PairMatchListener pairMatchListener) {
-        this.pairMatchListener = pairMatchListener;
-    }
-
-    public void setResultListener(ResultListener resultListener) {
-        this.resultListener = resultListener;
-    }
-
-    public void resetState() {
-        timer.cancel();
-        pairsFound = 0;
-        pair.clear();
+    public void setCompletionListener(CompletionListener completionListener) {
+        this.completionListener = completionListener;
     }
 
     public void detachListeners() {
-        resultListener = null;
-        pairMatchListener = null;
-        timeListener = null;
+        completionListener = null;
+        matchListener = null;
     }
 
     public void addTappedSymbol(int position, String value) {
@@ -72,14 +39,13 @@ public class GameProcedure {
             pair.push(s);
         }
 
-        if (pair.size() == PAIR) {
+        if (pair.size() == MATCH_COUNT) {
             reportMatch();
             pair.clear();
         }
 
         if (gameWon()) {
-            pairsFound = 0;
-            resultListener.onGameWon();
+            completionListener.onGameCompleted();
         }
     }
 
@@ -87,44 +53,26 @@ public class GameProcedure {
         Symbol s1 = pair.pop();
         Symbol s2 = pair.pop();
 
-        boolean pairMatch = s1.value.equals(s2.value);
-        if (pairMatch) {
-            pairMatchListener.onPairMatch(s1.position, s2.position);
+        if (s1.value.equals(s2.value)) {
+            matchListener.onMatch(s1.position, s2.position);
             pairsFound++;
         } else {
-            pairMatchListener.onPairMatchFail(s1.position, s2.position);
+            matchListener.onMatchFailure(s1.position, s2.position);
         }
     }
 
-    public boolean gameWon() {
+    private boolean gameWon() {
         return pairsFound == symbolCount / 2;
     }
 
-    public void begin() {
-        timer.start();
-        timeListener.onGameTimeBegin();
+    public interface MatchListener {
+        void onMatch(int position1, int position2);
+
+        void onMatchFailure(int position1, int position2);
     }
 
-    public void stop() {
-        timer.cancel();
-    }
-
-    public interface TimeListener {
-        void onGameTimeBegin();
-
-        void onGameTimeProgress(int elapsedMilli);
-
-        void onGameTimeFinish();
-    }
-
-    public interface PairMatchListener {
-        void onPairMatch(int position1, int position2);
-
-        void onPairMatchFail(int position1, int position2);
-    }
-
-    public interface ResultListener {
-        void onGameWon();
+    public interface CompletionListener {
+        void onGameCompleted();
     }
 
     private class Symbol {
