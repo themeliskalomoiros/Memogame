@@ -14,4 +14,10 @@ public interface MainScreen extends ViewMvc {
     void hideLoadingIndicator();
 
     void setSignInButtonImage(int imageRes);
+
+    void setPlayerName(String name);
+
+    void showPlayerName();
+
+    void hidePlayerName();
 }

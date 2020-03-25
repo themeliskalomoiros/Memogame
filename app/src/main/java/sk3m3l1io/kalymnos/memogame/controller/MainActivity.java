@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +31,6 @@ import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.model.GameRepository;
 import sk3m3l1io.kalymnos.memogame.model.GameRepositoryImp;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.MainScreen;
 import sk3m3l1io.kalymnos.memogame.view.MainScreenImp;
 
@@ -117,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
             view.setSignInButtonImage(R.drawable.sign_out_48px);
+            view.setPlayerName(account.getDisplayName());
+            view.showPlayerName();
             Snackbar.make(view.getRootView(),R.string.sign_in_msg,Snackbar.LENGTH_SHORT).show();
         } else {
             view.setSignInButtonImage(R.drawable.google_48px);
@@ -213,5 +213,6 @@ public class MainActivity extends AppCompatActivity implements
     public void onSuccess(Void aVoid) {
         Snackbar.make(view.getRootView(), R.string.sign_out_success,Snackbar.LENGTH_LONG).show();
         view.setSignInButtonImage(R.drawable.google_48px);
+        view.hidePlayerName();
     }
 }
