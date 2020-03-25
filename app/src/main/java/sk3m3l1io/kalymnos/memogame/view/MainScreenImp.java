@@ -10,9 +10,9 @@ import sk3m3l1io.kalymnos.memogame.R;
 
 public class MainScreenImp implements MainScreen {
     private View root;
-    private ImageButton play;
+    private ImageButton play, signIn;
     private ProgressBar loadingBar;
-    private PlayClickListener playClickListener;
+    private ClickListener clickListener;
 
     public MainScreenImp(LayoutInflater inflater, ViewGroup container) {
         initViews(inflater, container);
@@ -21,13 +21,15 @@ public class MainScreenImp implements MainScreen {
     private void initViews(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_main, container, false);
         play = root.findViewById(R.id.play);
+        play.setOnClickListener(v -> clickListener.onPlayClick());
+        signIn = root.findViewById(R.id.sign_in);
+        signIn.setOnClickListener(v -> clickListener.onSignInClick());
         loadingBar = root.findViewById(R.id.progressbar);
-        play.setOnClickListener(view -> playClickListener.onPlayClick());
     }
 
     @Override
-    public void setPlayClickListener(PlayClickListener listener) {
-        playClickListener = listener;
+    public void setClickListener(ClickListener listener) {
+        clickListener = listener;
     }
 
     @Override
@@ -38,6 +40,11 @@ public class MainScreenImp implements MainScreen {
     @Override
     public void hideLoadingIndicator() {
         loadingBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setSignInButtonImage(int imageRes) {
+        signIn.setImageResource(imageRes);
     }
 
     @Override

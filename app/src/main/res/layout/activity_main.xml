@@ -55,7 +55,7 @@
         android:layout_height="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/secondaryDarkColor"
@@ -69,7 +69,7 @@
         android:layout_height="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
@@ -77,7 +77,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play11" />
+        app:layout_constraintTop_toBottomOf="@+id/play11"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/play3"
@@ -113,17 +114,17 @@
         style="@style/Box_Style_Disabled"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_chevron_right_light_green"
-        app:layout_constraintEnd_toStartOf="@+id/play12"
+        app:layout_constraintEnd_toStartOf="@+id/sign_in"
         app:layout_constraintStart_toEndOf="@+id/play10"
         app:layout_constraintTop_toBottomOf="@+id/play3" />
 
     <ImageButton
-        android:id="@+id/play12"
-        style="@style/Box_Style_Disabled"
+        android:id="@+id/sign_in"
+        style="@style/Box_Style"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:src="@drawable/ic_chevron_right_light_green"
+        android:src="@drawable/google_48px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play8" />
 

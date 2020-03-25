@@ -1,13 +1,17 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
 public interface MainScreen extends ViewMvc {
-    interface PlayClickListener {
+    interface ClickListener {
         void onPlayClick();
+
+        void onSignInClick();
     }
 
-    void setPlayClickListener(PlayClickListener listener);
+    void setClickListener(ClickListener listener);
 
     void showLoadingIndicator();
 
     void hideLoadingIndicator();
+
+    void setSignInButtonImage(int imageRes);
 }

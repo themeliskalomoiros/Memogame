@@ -5,4 +5,9 @@
     <string name="next_game">Continue?</string>
     <string name="no">No</string>
     <string name="defeat">You lost!</string>
+    <string name="sign_out_cancel">Sign out canceled.</string>
+    <string name="sign_out_fail">Failed to sign out.</string>
+    <string name="sign_out_success">Signed out, sign back in to track your scores.</string>
+    <string name="sign_in_msg">Great! Now you can keep score of your plays.</string>
+    <string name="prompt_for_sign_in_msg">"Log in to track your scores! "</string>
 </resources>
