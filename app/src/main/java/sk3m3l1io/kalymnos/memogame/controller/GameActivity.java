@@ -2,11 +2,9 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import java.util.List;
 import java.util.Random;
@@ -20,7 +18,7 @@ import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class GameActivity extends AppCompatActivity implements
-        GameScreen.SymbolClickListener,
+        GameScreen.ClickListener,
         GameProcedure.TimeListener,
         GameProcedure.PairMatchListener,
         GameProcedure.ResultListener,
@@ -54,7 +52,7 @@ public class GameActivity extends AppCompatActivity implements
         game = games.get(new Random().nextInt(games.size()));
         ArrayUtils.shuffle(game.getSymbols());
         view = new GameScreenImp(getLayoutInflater(), null);
-        view.setSymbolClickListener(this);
+        view.setClickListener(this);
     }
 
     private void setupUi() {
@@ -63,6 +61,12 @@ public class GameActivity extends AppCompatActivity implements
         view.setTimeProgress(GameProcedure.DURATION);
         view.coverAllSymbols(game.getCover());
         setContentView(view.getRootView());
+    }
+
+    @Override
+    public void onNextClick() {
+        gameProcedure.detachListeners();
+        recreate();
     }
 
     @Override
@@ -86,9 +90,10 @@ public class GameActivity extends AppCompatActivity implements
     public void onGameTimeFinish() {
         view.disableAllSymbols();
         view.setTimeProgress(0);
-        if (gameProcedure.gameWon()){
+        view.showNextButton();
+        if (gameProcedure.gameWon()) {
             showNextGameDialog(R.string.victory);
-        }else{
+        } else {
             showNextGameDialog(R.string.defeat);
         }
     }
@@ -130,6 +135,7 @@ public class GameActivity extends AppCompatActivity implements
         view.setAllSymbolsBackgroundColor(backgroundColor);
         int symbolColor = getResources().getColor(R.color.secondaryColor);
         view.setAllSymbolsColor(symbolColor);
+        view.showNextButton();
     }
 
     private void showNextGameDialog(int messageRes) {

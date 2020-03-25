@@ -48,7 +48,7 @@ public class GameProcedure {
         this.resultListener = resultListener;
     }
 
-    public void detachListeners(){
+    public void detachListeners() {
         resultListener = null;
         pairMatchListener = null;
         timeListener = null;
@@ -57,7 +57,7 @@ public class GameProcedure {
     public void putClickedSymbol(int position, String value) {
         Symbol s = new Symbol(position, value);
 
-        if (!clickedSymbols.contains(s)){
+        if (!clickedSymbols.contains(s)) {
             clickedSymbols.push(s);
         }
 

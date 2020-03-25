@@ -42,9 +42,9 @@ public class NextGameDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
-            .setMessage(messageRes)
-            .setPositiveButton(R.string.next_game, (d, i) -> listener.onDialogPositiveResponse(this))
-            .setNegativeButton(R.string.no, (d, i) -> listener.onDialogNegativeResponse(this));
+                .setMessage(messageRes)
+                .setPositiveButton(R.string.next_game, (d, i) -> listener.onDialogPositiveResponse(this))
+                .setNegativeButton(R.string.no, (d, i) -> listener.onDialogNegativeResponse(this));
         return builder.create();
     }
 }

@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import sk3m3l1io.kalymnos.memogame.R;
 
 public class GameScreenImp implements GameScreen {
@@ -14,13 +16,16 @@ public class GameScreenImp implements GameScreen {
     private final TextView title, time;
     private final ProgressBar progressBar;
     private final Button[] symbols;
-    private SymbolClickListener symbolClickListener;
+    private final FloatingActionButton next;
+    private ClickListener clickListener;
 
     public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_game, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         time = root.findViewById(R.id.time);
+        next = root.findViewById(R.id.next);
+        next.setOnClickListener(b -> clickListener.onNextClick());
         symbols = new Button[SYMBOL_COUNT];
         populateSymbols(inflater);
     }
@@ -46,13 +51,13 @@ public class GameScreenImp implements GameScreen {
         for (int i = 0; i < symbols.length; i++) {
             Button b = symbols[i];
             int pos = i;
-            b.setOnClickListener(v -> symbolClickListener.onSymbolClick(pos));
+            b.setOnClickListener(v -> clickListener.onSymbolClick(pos));
         }
     }
 
     @Override
-    public void setSymbolClickListener(SymbolClickListener listener) {
-        symbolClickListener = listener;
+    public void setClickListener(ClickListener listener) {
+        clickListener = listener;
     }
 
     @Override
@@ -101,6 +106,16 @@ public class GameScreenImp implements GameScreen {
     public void disableAllSymbols() {
         for (Button b : symbols)
             b.setEnabled(false);
+    }
+
+    @Override
+    public void showNextButton() {
+        next.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNextButton() {
+        next.setVisibility(View.GONE);
     }
 
     @Override

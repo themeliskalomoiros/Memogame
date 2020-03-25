@@ -37,32 +37,32 @@ public class MainActivity extends AppCompatActivity implements
         view = new MainScreenImp(getLayoutInflater(), null);
         view.setPlayClickListener(this);
         setContentView(view.getRootView());
-        if (gamesExistIn(savedInstanceState)){
+        if (gamesExistIn(savedInstanceState)) {
             games = savedInstanceState.getParcelableArrayList(Game.class.getSimpleName());
-        }else{
+        } else {
             getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
         }
     }
 
     private boolean gamesExistIn(Bundle savedInstanceState) {
-        return savedInstanceState!=null &&
-        savedInstanceState.containsKey(Game.class.getSimpleName());
+        return savedInstanceState != null &&
+                savedInstanceState.containsKey(Game.class.getSimpleName());
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (games != null && games.size() >= 0){
+        if (games != null && games.size() >= 0) {
             outState.putParcelableArrayList(
-                Game.class.getSimpleName(),
-                (ArrayList<? extends Parcelable>) games);
+                    Game.class.getSimpleName(),
+                    (ArrayList<? extends Parcelable>) games);
         }
     }
 
     @Override
     public void onPlayClick() {
         Intent i = new Intent(this, GameActivity.class);
-        i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>)games);
+        i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
         startActivity(i);
     }
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             protected void onStartLoading() {
-                if(games==null){
+                if (games == null) {
                     view.showLoadingIndicator();
                     view.getRootView().setEnabled(false);
                     forceLoad();
