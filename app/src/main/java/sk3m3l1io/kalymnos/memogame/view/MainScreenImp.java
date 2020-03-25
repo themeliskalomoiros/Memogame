@@ -12,7 +12,7 @@ import sk3m3l1io.kalymnos.memogame.R;
 public class MainScreenImp implements MainScreen {
     private View root;
     private TextView name;
-    private ImageButton play, signIn;
+    private ImageButton practise, signIn, hotRound;
     private ProgressBar loadingBar;
     private ClickListener clickListener;
 
@@ -23,8 +23,10 @@ public class MainScreenImp implements MainScreen {
     private void initViews(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_main, container, false);
         name = root.findViewById(R.id.player_name);
-        play = root.findViewById(R.id.play);
-        play.setOnClickListener(v -> clickListener.onPlayClick());
+        hotRound = root.findViewById(R.id.hot_round);
+        hotRound.setOnClickListener(v -> clickListener.onHotRoundClick());
+        practise = root.findViewById(R.id.practise);
+        practise.setOnClickListener(v -> clickListener.onPractiseClick());
         signIn = root.findViewById(R.id.sign_in);
         signIn.setOnClickListener(v -> clickListener.onSignInClick());
         loadingBar = root.findViewById(R.id.progressbar);

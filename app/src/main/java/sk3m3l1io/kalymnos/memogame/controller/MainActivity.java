@@ -31,19 +31,21 @@ import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.model.GameRepository;
 import sk3m3l1io.kalymnos.memogame.model.GameRepositoryImp;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
+import sk3m3l1io.kalymnos.memogame.pojos.GameMode;
 import sk3m3l1io.kalymnos.memogame.view.MainScreen;
 import sk3m3l1io.kalymnos.memogame.view.MainScreenImp;
 
 public class MainActivity extends AppCompatActivity implements
         MainScreen.ClickListener,
-        LoaderManager.LoaderCallbacks<List<Game>>, OnCanceledListener, OnFailureListener, OnSuccessListener<Void> {
-
+        LoaderManager.LoaderCallbacks<List<Game>>,
+        OnCanceledListener,
+        OnFailureListener,
+        OnSuccessListener<Void> {
     private static final int LOADER_ID = 123;
     private static final int RC_SIGN_IN = 158;
 
-    private MainScreen view;
     private List<Game> games;
-
+    private MainScreen view;
     private GoogleSignInClient googleSignInClient;
     private boolean userInformedAboutSignIn = false;
 
@@ -128,10 +130,24 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onPlayClick() {
-        Intent i = new Intent(this, RandomGameActivity.class);
+    public void onHotRoundClick() {
+        startActivity(getGamesIntent(GameMode.HOT_ROUND));
+    }
+
+    @Override
+    public void onPractiseClick() {
+        startActivity(getGamesIntent(GameMode.PRACTISE));
+    }
+
+    private Intent getGamesIntent(GameMode mode) {
+        Intent i = new Intent();
+        if(mode == GameMode.HOT_ROUND){
+            i.setClass(this, HotRoundActivity.class);
+        }else if(mode == GameMode.PRACTISE){
+            i.setClass(this, PractiseActivity.class);
+        }
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
-        startActivity(i);
+        return i;
     }
 
     @Override

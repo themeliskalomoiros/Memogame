@@ -15,22 +15,22 @@ import java.util.Random;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.RandomGameProcedure;
+import sk3m3l1io.kalymnos.memogame.services.PractiseGameProcedure;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
-public class RandomGameActivity extends AppCompatActivity implements
+public class PractiseActivity extends AppCompatActivity implements
         GameScreen.ClickListener,
-        RandomGameProcedure.TimeListener,
-        RandomGameProcedure.PairMatchListener,
-        RandomGameProcedure.ResultListener,
+        PractiseGameProcedure.TimeListener,
+        PractiseGameProcedure.PairMatchListener,
+        PractiseGameProcedure.ResultListener,
         NextGameDialog.ResponseListener {
 
     private Game game;
     private List<Game> games;
 
-    private RandomGameProcedure gameProcedure;
+    private PractiseGameProcedure gameProcedure;
     private GameScreen view;
 
     @Override
@@ -47,7 +47,7 @@ public class RandomGameActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        gameProcedure = new RandomGameProcedure(GameScreen.SYMBOL_COUNT);
+        gameProcedure = new PractiseGameProcedure(GameScreen.SYMBOL_COUNT);
         gameProcedure.setTimeListener(this);
         gameProcedure.setPairMatchListener(this);
         gameProcedure.setResultListener(this);
@@ -60,8 +60,8 @@ public class RandomGameActivity extends AppCompatActivity implements
 
     private void setupUi() {
         view.setTitle(game.getTitle());
-        view.setTimeProgressMax(RandomGameProcedure.DURATION);
-        view.setTimeProgress(RandomGameProcedure.DURATION);
+        view.setTimeProgressMax(PractiseGameProcedure.DURATION);
+        view.setTimeProgress(PractiseGameProcedure.DURATION);
         view.coverAllSymbols(game.getCover());
         setContentView(view.getRootView());
     }

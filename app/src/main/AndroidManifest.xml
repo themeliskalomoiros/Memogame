@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".controller.OneMinuteGameActivity"></activity>
-        <activity android:name=".controller.RandomGameActivity" />
+        <activity android:name=".controller.HotRoundActivity"></activity>
+        <activity android:name=".controller.PractiseActivity" />
         <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
