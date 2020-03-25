@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Stack;
 
-public class PractiseGameProcedure {
+public class GameProcedure {
     private static final int PAIR = 2;
     private static final int TICK_DURATION = 100;
 
@@ -20,7 +20,7 @@ public class PractiseGameProcedure {
     private int pairsFound;
     private final Stack<Symbol> pair;
 
-    public PractiseGameProcedure(int symbolCount, int durationMilli) {
+    public GameProcedure(int symbolCount, int durationMilli) {
         this.symbolCount = symbolCount;
         duration = durationMilli;
         pair = new Stack<>();

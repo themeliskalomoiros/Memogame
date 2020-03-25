@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.HotRoundGameProcedure;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
@@ -18,7 +17,6 @@ public class HotRoundActivity extends AppCompatActivity implements GameScreen.Cl
     private List<Game> games;
 
     private GameScreen view;
-    private HotRoundGameProcedure gameProcedure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +35,6 @@ public class HotRoundActivity extends AppCompatActivity implements GameScreen.Cl
     private void setupUi() {
         Game g = games.get(currentGame);
         view.setTitle(g.getTitle());
-        view.setTimeMaxProgress(HotRoundGameProcedure.DURATION);
-        view.setTimeProgress(HotRoundGameProcedure.DURATION);
         view.setAllSymbolsValue(g.getCover());
         setContentView(view.getRootView());
     }

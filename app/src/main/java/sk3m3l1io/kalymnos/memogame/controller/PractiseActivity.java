@@ -13,22 +13,22 @@ import java.util.List;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.PractiseGameProcedure;
+import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
 import sk3m3l1io.kalymnos.memogame.view.GameScreen;
 import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
 
 public class PractiseActivity extends AppCompatActivity implements
         GameScreen.ClickListener,
-        PractiseGameProcedure.TimeListener,
-        PractiseGameProcedure.PairMatchListener,
-        PractiseGameProcedure.ResultListener,
+        GameProcedure.TimeListener,
+        GameProcedure.PairMatchListener,
+        GameProcedure.ResultListener,
         NextGameDialog.ResponseListener {
     private static final int GAME_DURATION = 20000;
 
     private boolean gameBegun;
     private int currentGame;
     private List<Game> games;
-    private PractiseGameProcedure gameProcedure;
+    private GameProcedure gameProcedure;
 
     private GameScreen view;
 
@@ -40,7 +40,7 @@ public class PractiseActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        gameProcedure = new PractiseGameProcedure(GameScreen.SYMBOL_COUNT, GAME_DURATION);
+        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT, GAME_DURATION);
         gameProcedure.setTimeListener(this);
         gameProcedure.setPairMatchListener(this);
         gameProcedure.setResultListener(this);
