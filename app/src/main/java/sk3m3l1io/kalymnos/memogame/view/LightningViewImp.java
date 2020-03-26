@@ -6,30 +6,18 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class PractiseViewImp implements PractiseView {
+public class LightningViewImp implements LightningView {
     private final View root;
-    private final TextView title;
+    private final TextView title, gamesCompleted;
     private final ProgressBar progressBar;
-    private final FloatingActionButton next, previous;
-    private ChangeGameClickListener changeGameClickListener;
 
-    public PractiseViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_practise, container, false);
+    public LightningViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.activity_lightning, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
-        next = root.findViewById(R.id.next);
-        next.setOnClickListener(b -> changeGameClickListener.onNextGameClick());
-        previous = root.findViewById(R.id.previous);
-        previous.setOnClickListener(b -> changeGameClickListener.onPreviousGameClick());
-    }
-
-    @Override
-    public void setChangeGameClickListener(ChangeGameClickListener listener) {
-        changeGameClickListener = listener;
+        gamesCompleted = root.findViewById(R.id.games_completed);
     }
 
     @Override
@@ -55,5 +43,10 @@ public class PractiseViewImp implements PractiseView {
     @Override
     public View getRootView() {
         return root;
+    }
+
+    @Override
+    public void setGamesCompleted(int count) {
+        gamesCompleted.setText(""+count);
     }
 }

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/molly_jack"
         android:textAlignment="center"
+        android:ellipsize="end"
         android:textColor="@color/secondaryTextColor"
         android:textStyle="italic"
         android:visibility="visible"
@@ -20,7 +21,8 @@
         app:layout_constraintEnd_toEndOf="@+id/play5"
         app:layout_constraintStart_toStartOf="@+id/hot_round"
         app:layout_constraintTop_toBottomOf="@+id/view3"
-        tools:visibility="gone" />
+        tools:visibility="gone"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/textView"

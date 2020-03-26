@@ -28,7 +28,6 @@ public class PractiseActivity extends AppCompatActivity implements
 
     private int currentGame;
     private List<Game> games;
-    private boolean gameBegun;
 
     private PractiseView view;
     private CountDownTimerReporter timer;
@@ -71,6 +70,7 @@ public class PractiseActivity extends AppCompatActivity implements
     public void onPreviousGameClick() {
         if (currentGame > 0) {
             --currentGame;
+            timer.cancel();
             addGameFragment();
         }
     }
@@ -79,6 +79,7 @@ public class PractiseActivity extends AppCompatActivity implements
     public void onNextGameClick() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
+            timer.cancel();
             addGameFragment();
         }
     }
@@ -92,6 +93,7 @@ public class PractiseActivity extends AppCompatActivity implements
 
     @Override
     public void onGameBegin() {
+        // Always call begin() instead of start to get a callback
         timer.begin();
     }
 
@@ -102,7 +104,7 @@ public class PractiseActivity extends AppCompatActivity implements
         MessageDialog.showInstance(
                 this,
                 getSupportFragmentManager(),
-                R.string.next_game,
+                getString(R.string.next_game),
                 NEXT_GAME_DIALOG);
     }
 
@@ -121,11 +123,12 @@ public class PractiseActivity extends AppCompatActivity implements
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
             ((GameFragment) f).freezeUI();
-            view.setTitle(":(");
+            view.setTitle(getString(R.string.defeat));
+            view.setTimeProgress(0);
             MessageDialog.showInstance(
                     this,
                     getSupportFragmentManager(),
-                    R.string.repeat_game,
+                    getString(R.string.repeat_game),
                     REPEAT_DIALOG);
         }
     }

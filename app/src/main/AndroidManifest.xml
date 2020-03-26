@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".controller.HotRoundActivity"></activity>
+        <activity android:name=".controller.LightningActivity"></activity>
         <activity android:name=".controller.PractiseActivity" />
         <activity android:name=".controller.MainActivity">
             <intent-filter>

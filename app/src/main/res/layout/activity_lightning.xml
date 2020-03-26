@@ -8,17 +8,21 @@
     tools:context=".controller.MainActivity">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/games_completed"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_navigate_next_black"
-        android:visibility="visible"
-        app:backgroundTint="@color/primaryLightColor"
-        app:elevation="0dp"
-        app:fabSize="mini"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLength="3"
+        android:maxLines="1"
+        android:text="0"
+        android:fontFamily=""
+        android:textAlignment="center"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title" />
@@ -32,29 +36,26 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:ellipsize="end"
         android:fontFamily="@font/molly_jack"
         android:gravity="center_horizontal"
-        android:ellipsize="end"
-        android:text="Linarosporos"
         android:lines="1"
+        android:text="Linarosporos"
         android:textAlignment="center"
         android:textColor="@color/primaryTextColor"
         android:textSize="@dimen/title"
-        app:layout_constraintEnd_toStartOf="@+id/next"
+        app:layout_constraintEnd_toStartOf="@+id/games_completed"
         app:layout_constraintStart_toEndOf="@+id/previous"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_navigate_before_black_24dp"
+        android:src="@drawable/lightning_bolt_yellow_48px"
         android:visibility="visible"
-        app:elevation="0dp"
-        app:backgroundTint="@color/primaryLightColor"
-        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title" />

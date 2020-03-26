@@ -17,8 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,8 +36,6 @@ import sk3m3l1io.kalymnos.memogame.view.MainViewImp;
 public class MainActivity extends AppCompatActivity implements
         MainView.ClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
-        OnCanceledListener,
-        OnFailureListener,
         OnSuccessListener<Void> {
     private static final int LOADER_ID = 123;
     private static final int RC_SIGN_IN = 158;
@@ -47,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements
     private List<Game> games;
     private MainView view;
     private GoogleSignInClient googleSignInClient;
-    private boolean userInformedAboutSignIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Snackbar.make(view.getRootView(), R.string.sign_in_msg, Snackbar.LENGTH_SHORT).show();
             updateUI(account);
         } catch (ApiException e) {
             updateUI(null);
@@ -119,13 +115,8 @@ public class MainActivity extends AppCompatActivity implements
             view.setSignInButtonImage(R.drawable.sign_out_48px);
             view.setPlayerName(account.getDisplayName());
             view.showPlayerName();
-            Snackbar.make(view.getRootView(), R.string.sign_in_msg, Snackbar.LENGTH_SHORT).show();
         } else {
             view.setSignInButtonImage(R.drawable.google_48px);
-            if (!userInformedAboutSignIn) {
-                Snackbar.make(view.getRootView(), R.string.prompt_for_sign_in_msg, Snackbar.LENGTH_SHORT).show();
-                userInformedAboutSignIn = true;
-            }
         }
     }
 
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent getGamesIntent(GameMode mode) {
         Intent i = new Intent();
         if (mode == GameMode.HOT_ROUND) {
-            i.setClass(this, HotRoundActivity.class);
+            i.setClass(this, LightningActivity.class);
         } else if (mode == GameMode.PRACTISE) {
             i.setClass(this, PractiseActivity.class);
         }
@@ -160,8 +151,6 @@ public class MainActivity extends AppCompatActivity implements
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
             googleSignInClient.signOut()
-                    .addOnCanceledListener(this)
-                    .addOnFailureListener(this)
                     .addOnSuccessListener(this);
         } else {
             Intent signInIntent = googleSignInClient.getSignInIntent();
@@ -218,16 +207,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(@NonNull Loader<List<Game>> loader) {
 
-    }
-
-    @Override
-    public void onCanceled() {
-        Snackbar.make(view.getRootView(), R.string.sign_out_cancel, Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onFailure(@NonNull Exception e) {
-        Snackbar.make(view.getRootView(), R.string.sign_out_fail, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
