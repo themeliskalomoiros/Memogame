@@ -11,11 +11,17 @@ public final class Game implements Parcelable {
     private final String title;
     private final String cover;
     private final String[] symbols;
+    private GameDifficulty difficulty;
 
-    public Game(String title, String cover, String[] symbols) {
+    public Game(
+            String title,
+            String cover,
+            String[] symbols,
+            GameDifficulty difficulty) {
         this.title = title;
         this.cover = cover;
         this.symbols = symbols;
+        this.difficulty = difficulty;
     }
 
     public String getTitle() {
@@ -30,6 +36,10 @@ public final class Game implements Parcelable {
         return symbols;
     }
 
+    public GameDifficulty getDifficulty() {
+        return difficulty;
+    }
+
     @Override
     public boolean equals(@Nullable Object o) {
         if (o == this) return true;
@@ -38,12 +48,13 @@ public final class Game implements Parcelable {
         Game other = (Game) o;
         return title.equals(other.title) &&
                 cover == other.cover &&
+                difficulty == other.difficulty &&
                 Arrays.equals(symbols, other.symbols);
     }
 
     @Override
     public int hashCode() {
-        return title.hashCode() ^ cover.hashCode() ^ symbols.hashCode() * 1579;
+        return title.hashCode() ^ cover.hashCode() ^ symbols.hashCode() ^ difficulty.hashCode() * 1579;
     }
 
     protected Game(Parcel in) {

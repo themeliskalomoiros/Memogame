@@ -11,17 +11,17 @@
         android:id="@+id/player_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:fontFamily="@font/molly_jack"
         android:textColor="@color/secondaryTextColor"
+        android:textSize="20sp"
         android:textStyle="italic"
         android:visibility="visible"
-        android:textSize="20sp"
-        tools:text="George Sponge"
-        app:layout_constraintBottom_toTopOf="@+id/play2"
         app:layout_constraintEnd_toEndOf="@+id/play5"
         app:layout_constraintStart_toStartOf="@+id/hot_round"
         app:layout_constraintTop_toBottomOf="@+id/view3"
+        tools:text="George Sponge"
         tools:visibility="visible" />
 
     <TextView
@@ -82,16 +82,13 @@
         android:layout_height="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:background="@color/primaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play11"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/play3"
@@ -144,31 +141,31 @@
     <ImageButton
         android:id="@+id/play5"
         style="@style/Box_Style_Disabled"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:src="@drawable/ic_keyboard_arrow_down_light_green"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
 
     <ImageButton
         android:id="@+id/hot_round"
         style="@style/Box_Style"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/lightning_bolt_48px"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
 
     <ImageButton
         android:id="@+id/play2"
         style="@style/Box_Style_Disabled"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_chevron_right_light_green"
         app:layout_constraintEnd_toStartOf="@+id/play5"
         app:layout_constraintStart_toEndOf="@+id/hot_round"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
 
     <ImageButton
         android:id="@+id/play8"
