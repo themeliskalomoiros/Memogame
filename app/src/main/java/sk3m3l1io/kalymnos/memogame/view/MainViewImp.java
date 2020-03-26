@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class MainScreenImp implements MainScreen {
+public class MainViewImp implements MainView {
     private View root;
     private TextView name;
     private ImageButton practise, signIn, hotRound;
     private ProgressBar loadingBar;
     private ClickListener clickListener;
 
-    public MainScreenImp(LayoutInflater inflater, ViewGroup container) {
+    public MainViewImp(LayoutInflater inflater, ViewGroup container) {
         initViews(inflater, container);
     }
 

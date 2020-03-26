@@ -4,30 +4,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import sk3m3l1io.kalymnos.memogame.R;
 
-public class GameScreenImp implements GameScreen {
+public class GameViewImpl implements GameView {
     private final View root;
-    private final TextView title, time;
-    private final ProgressBar progressBar;
     private final Button[] symbols;
-    private final FloatingActionButton next, previous;
-    private ClickListener clickListener;
+    private SymbolClickListener symbolClickListener;
 
-    public GameScreenImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_game, container, false);
-        progressBar = root.findViewById(R.id.progressbar);
-        title = root.findViewById(R.id.title);
-        time = root.findViewById(R.id.time);
-        next = root.findViewById(R.id.next);
-        next.setOnClickListener(b -> clickListener.onNextClick());
-        previous = root.findViewById(R.id.previous);
-        previous.setOnClickListener(b -> clickListener.onPreviousClick());
+    public GameViewImpl(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.fragment_game, container, false);
         symbols = new Button[SYMBOL_COUNT];
         populateSymbols(inflater);
     }
@@ -53,13 +39,13 @@ public class GameScreenImp implements GameScreen {
         for (int i = 0; i < symbols.length; i++) {
             Button b = symbols[i];
             int pos = i;
-            b.setOnClickListener(v -> clickListener.onSymbolClick(pos));
+            b.setOnClickListener(v -> symbolClickListener.onSymbolClick(pos));
         }
     }
 
     @Override
-    public void setClickListener(ClickListener listener) {
-        clickListener = listener;
+    public void setSymbolClickListener(SymbolClickListener listener) {
+        symbolClickListener = listener;
     }
 
     @Override
@@ -114,21 +100,6 @@ public class GameScreenImp implements GameScreen {
     public void enableAllSymbols() {
         for (Button b : symbols)
             b.setEnabled(true);
-    }
-
-    @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
-    }
-
-    @Override
-    public void setTimeProgress(int progress) {
-        progressBar.setProgress(progress);
-    }
-
-    @Override
-    public void setTimeMaxProgress(int progress) {
-        progressBar.setMax(progress);
     }
 
     @Override

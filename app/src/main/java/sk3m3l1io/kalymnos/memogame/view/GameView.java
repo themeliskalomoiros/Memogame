@@ -1,17 +1,13 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
-public interface GameScreen extends ViewMvc {
+public interface GameView extends ViewMvc {
     int SYMBOL_COUNT = 12;
 
-    interface ClickListener {
-        void onPreviousClick();
-
-        void onNextClick();
-
+    interface SymbolClickListener {
         void onSymbolClick(int pos);
     }
 
-    void setClickListener(ClickListener listener);
+    void setSymbolClickListener(SymbolClickListener listener);
 
     void setSymbolColor(int pos, int colorRes);
 
@@ -30,10 +26,4 @@ public interface GameScreen extends ViewMvc {
     void enableAllSymbols();
 
     void disableAllSymbols();
-
-    void setTitle(String title);
-
-    void setTimeProgress(int progress);
-
-    void setTimeMaxProgress(int progress);
 }

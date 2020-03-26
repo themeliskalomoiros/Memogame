@@ -22,18 +22,19 @@ public class GameFragment extends Fragment implements
         GameProcedure.MatchListener,
         GameProcedure.CompletionListener {
     private Game game;
+    private boolean gameBegun;
     private GameView view;
     private GameProcedure gameProcedure;
-    private GameCompletionListener gameCompletionListener;
+    private GameProgressListener gameProgressListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            gameCompletionListener = (GameCompletionListener) context;
+            gameProgressListener = (GameProgressListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + GameCompletionListener.class.getSimpleName());
+                    + " must implement " + GameProgressListener.class.getSimpleName());
         }
     }
 
@@ -60,6 +61,7 @@ public class GameFragment extends Fragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
+        gameProgressListener = null;
         gameProcedure.detachListeners();
     }
 
@@ -97,23 +99,40 @@ public class GameFragment extends Fragment implements
 
     @Override
     public void onGameCompleted() {
-        view.disableAllSymbols();
-        int color = getResources().getColor(R.color.primaryDarkColor);
-        view.setAllSymbolsBackgroundColor(color);
-        gameCompletionListener.onGameCompleted();
+        freezeUI();
+        gameProgressListener.onGameCompleted();
     }
 
     @Override
     public void onSymbolClick(int pos) {
-        int color = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolColor(pos, color);
+        reportBegin();
         String symbol = game.getSymbols()[pos];
-        view.setSymbolValue(pos, symbol);
-
+        updateSymbolUI(pos, symbol);
         gameProcedure.addTappedSymbol(pos, symbol);
     }
 
-    public interface GameCompletionListener {
+    private void updateSymbolUI(int pos, String symbol) {
+        int color = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolColor(pos, color);
+        view.setSymbolValue(pos, symbol);
+    }
+
+    private void reportBegin() {
+        if (!gameBegun) {
+            gameBegun = true;
+            gameProgressListener.onGameBegin();
+        }
+    }
+
+    public void freezeUI() {
+        view.disableAllSymbols();
+        int color = getResources().getColor(R.color.primaryDarkColor);
+        view.setAllSymbolsBackgroundColor(color);
+    }
+
+    public interface GameProgressListener {
+        void onGameBegin();
+
         void onGameCompleted();
     }
 }
