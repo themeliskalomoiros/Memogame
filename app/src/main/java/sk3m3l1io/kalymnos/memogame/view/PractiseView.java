@@ -1,6 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
-public interface PractiseView extends ViewMvc {
+public interface PractiseView extends GameContainerView {
     interface ChangeGameClickListener {
         void onPreviousGameClick();
 
@@ -8,12 +8,4 @@ public interface PractiseView extends ViewMvc {
     }
 
     void setChangeGameClickListener(ChangeGameClickListener listener);
-
-    void setTitle(String title);
-
-    void setTimeProgress(int progress);
-
-    void setTimeMaxProgress(int progress);
-
-    int getGameContainerId();
 }
