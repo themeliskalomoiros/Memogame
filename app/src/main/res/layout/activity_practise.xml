@@ -34,6 +34,7 @@
         android:layout_marginRight="8dp"
         android:fontFamily="@font/molly_jack"
         android:gravity="center_horizontal"
+        android:ellipsize="end"
         android:text="Linarosporos"
         android:lines="1"
         android:textAlignment="center"

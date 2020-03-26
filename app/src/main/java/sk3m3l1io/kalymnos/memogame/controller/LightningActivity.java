@@ -1,10 +1,12 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,11 +23,12 @@ import sk3m3l1io.kalymnos.memogame.view.LightningViewImp;
 public class LightningActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener,
-        MessageDialog.ResponseListener {
+        MessageDialog.ResponseListener,
+        ResultFragment.ExitResultClickListener{
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 30000;
+    private static final int GAME_DURATION = 60000;
 
-    private int gamesCount;
+    private int gameCount;
     private int gamesCompleted;
     private boolean firstGameBegun;
     private ListIterator<Game> games;
@@ -41,7 +44,7 @@ public class LightningActivity extends AppCompatActivity implements
 
     private void init() {
         List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        gamesCount = list.size();
+        gameCount = list.size();
         Collections.shuffle(list);
         games = list.listIterator();
         view = new LightningViewImp(getLayoutInflater(), null);
@@ -54,6 +57,7 @@ public class LightningActivity extends AppCompatActivity implements
     private void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), new GameFragment())
                 .commit();
     }
@@ -64,23 +68,28 @@ public class LightningActivity extends AppCompatActivity implements
         if (fragment instanceof GameFragment && games.hasNext()) {
             GameFragment f = (GameFragment) fragment;
             Game g = games.next();
-            ArrayUtils.shuffle(g.getSymbols());
+//            ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
             updateUI(g);
         }
     }
 
     private void updateUI(Game g) {
-        view.setTitle(g.getTitle());
+        view.setGamesCompleted(gamesCompleted);
         if (!firstGameBegun) {
+            view.setTitle(getString(R.string.tap_to_start));
             view.setTimeMaxProgress(GAME_DURATION);
             view.setTimeProgress(GAME_DURATION);
+        }else{
+            view.setTitle(g.getTitle());
         }
     }
 
     @Override
     public void onTimerBegin() {
-        view.setTitle(getString(R.string.play));
+        if (!firstGameBegun){
+            view.setTitle(getString(R.string.play));
+        }
     }
 
     @Override
@@ -95,28 +104,17 @@ public class LightningActivity extends AppCompatActivity implements
             ((GameFragment) f).freezeUI();
             view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
-            addResultFragment(getResult());
+            addResultFragment();
         }
     }
 
-    private LightningResultFragment.Result getResult() {
-        int percent = (int) (gamesCompleted / (gamesCount * 1.0)) * 100;
-        if (percent == 100) {
-            return LightningResultFragment.Result.PERFECT;
-        } else if (percent >= 0 && percent < 25) {
-            return LightningResultFragment.Result.BAD;
-        } else if (percent >= 25 && percent < 50) {
-            return LightningResultFragment.Result.GOOD;
-        } else {
-            return LightningResultFragment.Result.GOOD;
-        }
-    }
-
-    private void addResultFragment(LightningResultFragment.Result result) {
-        LightningResultFragment f = new LightningResultFragment();
-        f.setResult(result);
+    private void addResultFragment() {
+        ResultFragment f = new ResultFragment();
+        f.setGamesCompleted(gamesCompleted);
+        f.setGameCount(gameCount);
         getSupportFragmentManager()
                 .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), f)
                 .commit();
     }
@@ -133,9 +131,10 @@ public class LightningActivity extends AppCompatActivity implements
     @Override
     public void onGameCompleted() {
         gamesCompleted++;
-        if (gamesCompleted == gamesCount){
-            // TODO: What happens if someone hit perfect score
-        }else{
+        if (gamesCompleted == gameCount) {
+            timer.cancel();
+            addResultFragment();
+        } else {
             addGameFragment();
         }
     }
@@ -147,6 +146,11 @@ public class LightningActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogNegativeResponse(MessageDialog dialog) {
+        finish();
+    }
+
+    @Override
+    public void onExitResultClick() {
         finish();
     }
 }

@@ -10,14 +10,14 @@ import sk3m3l1io.kalymnos.memogame.R;
 
 public class LightningViewImp implements LightningView {
     private final View root;
-    private final TextView title, time;
+    private final TextView title, gamesCompleted;
     private final ProgressBar progressBar;
 
     public LightningViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_lightning, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
-        time = root.findViewById(R.id.time);
+        gamesCompleted = root.findViewById(R.id.games_completed);
     }
 
     @Override
@@ -43,5 +43,10 @@ public class LightningViewImp implements LightningView {
     @Override
     public View getRootView() {
         return root;
+    }
+
+    @Override
+    public void setGamesCompleted(int count) {
+        gamesCompleted.setText(""+count);
     }
 }

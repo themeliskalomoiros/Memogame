@@ -12,7 +12,7 @@ import sk3m3l1io.kalymnos.memogame.R;
 
 public class PractiseViewImp implements PractiseView {
     private final View root;
-    private final TextView title, time;
+    private final TextView title;
     private final ProgressBar progressBar;
     private final FloatingActionButton next, previous;
     private ChangeGameClickListener changeGameClickListener;
@@ -21,7 +21,6 @@ public class PractiseViewImp implements PractiseView {
         root = inflater.inflate(R.layout.activity_practise, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
-        time = root.findViewById(R.id.time);
         next = root.findViewById(R.id.next);
         next.setOnClickListener(b -> changeGameClickListener.onNextGameClick());
         previous = root.findViewById(R.id.previous);

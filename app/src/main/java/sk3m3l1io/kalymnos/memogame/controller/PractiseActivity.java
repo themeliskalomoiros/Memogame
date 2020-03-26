@@ -123,7 +123,7 @@ public class PractiseActivity extends AppCompatActivity implements
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
             ((GameFragment) f).freezeUI();
-            view.setTitle(":(");
+            view.setTitle(getString(R.string.defeat));
             view.setTimeProgress(0);
             MessageDialog.showInstance(
                     this,

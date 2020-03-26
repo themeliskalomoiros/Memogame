@@ -1,6 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
-public interface GameContainerView extends ViewMvc {
+public interface GameContainerViewMvc extends ViewMvc {
     void setTitle(String title);
 
     void setTimeProgress(int progress);
