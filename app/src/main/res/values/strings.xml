@@ -10,7 +10,7 @@
     <string name="sign_out_success">Signed out, sign back in to track your scores.</string>
     <string name="sign_in_msg">Great! Now you can keep score of your plays.</string>
     <string name="prompt_for_sign_in_msg">"Log in to track your scores! "</string>
-    <string name="must_sign_in">"You need to sign in for that. "</string>
+    <string name="must_sign_in">"Need to sign in for Lightning Round!"</string>
     <string name="play">Play</string>
     <string name="repeat_game">Repeat this game?</string>
 </resources>
