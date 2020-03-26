@@ -9,10 +9,11 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import sk3m3l1io.kalymnos.memogame.R;
+import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
 
 public class PractiseViewImp implements PractiseView {
     private final View root;
-    private final TextView title;
+    private final TextView title, difficulty;
     private final ProgressBar progressBar;
     private final FloatingActionButton next, previous;
     private ChangeGameClickListener changeGameClickListener;
@@ -21,6 +22,7 @@ public class PractiseViewImp implements PractiseView {
         root = inflater.inflate(R.layout.activity_practise, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
+        difficulty = root.findViewById(R.id.difficulty);
         next = root.findViewById(R.id.next);
         next.setOnClickListener(b -> changeGameClickListener.onNextGameClick());
         previous = root.findViewById(R.id.previous);
@@ -30,6 +32,23 @@ public class PractiseViewImp implements PractiseView {
     @Override
     public void setChangeGameClickListener(ChangeGameClickListener listener) {
         changeGameClickListener = listener;
+    }
+
+    @Override
+    public void setDifficulty(GameDifficulty difficulty) {
+        switch (difficulty){
+            case EASY:
+                this.difficulty.setText(R.string.difficulity_easy);
+                this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchLightColor));
+                break;
+            case HARD:
+                this.difficulty.setText(R.string.difficulity_hard);
+                this.difficulty.setTextColor(root.getResources().getColor(R.color.secondaryColor));
+                break;
+            default:
+                this.difficulty.setText(R.string.difficulity_normal);
+                this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchColor));
+        }
     }
 
     @Override

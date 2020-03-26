@@ -77,6 +77,7 @@ public class LightningActivity extends AppCompatActivity implements
 
     private void updateUI(Game g) {
         view.setGamesCompleted(gamesCompleted);
+        view.setDifficulty(g.getDifficulty());
         if (!firstGameBegun) {
             view.setTitle(getString(R.string.tap_to_start));
             view.setTimeMaxProgress(GAME_DURATION);

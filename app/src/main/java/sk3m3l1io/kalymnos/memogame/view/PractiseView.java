@@ -1,5 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.view;
 
+import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
+
 public interface PractiseView extends GameContainerViewMvc {
     interface ChangeGameClickListener {
         void onPreviousGameClick();
@@ -8,4 +10,6 @@ public interface PractiseView extends GameContainerViewMvc {
     }
 
     void setChangeGameClickListener(ChangeGameClickListener listener);
+
+    void setDifficulty(GameDifficulty difficulty);
 }

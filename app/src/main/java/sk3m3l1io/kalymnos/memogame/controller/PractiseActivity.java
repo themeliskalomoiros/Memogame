@@ -62,6 +62,7 @@ public class PractiseActivity extends AppCompatActivity implements
 
     private void updateUI(Game g) {
         view.setTitle(g.getTitle());
+        view.setDifficulty(g.getDifficulty());
         view.setTimeMaxProgress(GAME_DURATION);
         view.setTimeProgress(GAME_DURATION);
     }
