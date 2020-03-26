@@ -36,4 +36,5 @@
     <string name="difficulity_hard">Hard</string>
     <string name="difficulity_normal">Normal</string>
     <string name="level">Level</string>
+    <string name="leaderboard">Leaderboard</string>
 </resources>

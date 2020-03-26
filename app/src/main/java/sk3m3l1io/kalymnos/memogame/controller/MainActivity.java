@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLeaderBoardClick() {
-        Toast.makeText(this, "Leaderboard", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, LeaderBoardActivity.class));
     }
 
     @NonNull
