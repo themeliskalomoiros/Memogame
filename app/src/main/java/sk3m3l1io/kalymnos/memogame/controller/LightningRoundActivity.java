@@ -6,8 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
+import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
@@ -17,11 +20,11 @@ import sk3m3l1io.kalymnos.memogame.view.LightningViewImp;
 public class LightningRoundActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener {
-    private static final int GAME_DURATION = 60000;
+    private static final int GAME_DURATION = 30000;
     private static final int TIME_INTERVAL = 100;
 
-    private int currentGame;
-    private List<Game> games;
+    private boolean hasFirstGameBegun;
+    private ListIterator<Game> games;
 
     private LightningView view;
     private CountDownTimerReporter timer;
@@ -33,7 +36,9 @@ public class LightningRoundActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        Collections.shuffle(list);
+        games = list.listIterator();
         view = new LightningViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
@@ -51,9 +56,9 @@ public class LightningRoundActivity extends AppCompatActivity implements
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment) {
+        if (fragment instanceof GameFragment && games.hasNext()) {
             GameFragment f = (GameFragment) fragment;
-            Game g = games.get(currentGame);
+            Game g = games.next();
             ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
             updateUI(g);
@@ -62,32 +67,43 @@ public class LightningRoundActivity extends AppCompatActivity implements
 
     private void updateUI(Game g) {
         view.setTitle(g.getTitle());
-        view.setTimeMaxProgress(GAME_DURATION);
-        view.setTimeProgress(GAME_DURATION);
+        if(!hasFirstGameBegun){
+            view.setTimeMaxProgress(GAME_DURATION);
+            view.setTimeProgress(GAME_DURATION);
+        }
     }
 
     @Override
     public void onTimerBegin() {
-
+        view.setTitle(getString(R.string.play));
     }
 
     @Override
     public void onTimerTick(int elapsedMilli) {
-
+        view.setTimeProgress(elapsedMilli);
     }
 
     @Override
     public void onTimerFinish() {
-
+        Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
+        if (f instanceof GameFragment) {
+            ((GameFragment) f).freezeUI();
+            view.setTitle(getString(R.string.time_up));
+            view.setTimeProgress(0);
+        }
     }
 
     @Override
     public void onGameBegin() {
-
+        if (!hasFirstGameBegun){
+            // Always call begin() instead of start to get a callback
+            timer.begin();
+            hasFirstGameBegun = true;
+        }
     }
 
     @Override
     public void onGameCompleted() {
-
+        addGameFragment();
     }
 }

@@ -93,6 +93,7 @@ public class PractiseActivity extends AppCompatActivity implements
 
     @Override
     public void onGameBegin() {
+        // Always call begin() instead of start to get a callback
         timer.begin();
     }
 
