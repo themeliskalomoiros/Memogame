@@ -28,7 +28,6 @@ public class PractiseActivity extends AppCompatActivity implements
 
     private int currentGame;
     private List<Game> games;
-    private boolean gameBegun;
 
     private PractiseView view;
     private CountDownTimerReporter timer;

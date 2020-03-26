@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -142,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent getGamesIntent(GameMode mode) {
         Intent i = new Intent();
         if (mode == GameMode.HOT_ROUND) {
-            i.setClass(this, HotRoundActivity.class);
+            i.setClass(this, LightningRoundActivity.class);
         } else if (mode == GameMode.PRACTISE) {
             i.setClass(this, PractiseActivity.class);
         }

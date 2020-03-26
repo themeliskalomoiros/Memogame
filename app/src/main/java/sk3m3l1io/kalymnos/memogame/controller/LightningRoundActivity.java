@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HotRoundActivity extends AppCompatActivity {
+public class LightningRoundActivity extends AppCompatActivity {
+    private static final int GAME_DURATION = 60000;
+    private static final int TIME_INTERVAL = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
