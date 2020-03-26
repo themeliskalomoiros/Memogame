@@ -1,7 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,9 +23,9 @@ public class LightningActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,
-        ResultFragment.ExitResultClickListener{
+        ResultFragment.RestartClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 1000;
+    private static final int GAME_DURATION = 120000;
 
     private int gameCount;
     private int gamesCompleted;
@@ -46,6 +45,8 @@ public class LightningActivity extends AppCompatActivity implements
         List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         gameCount = list.size();
         Collections.shuffle(list);
+        for(Game g : list)
+            ArrayUtils.shuffle(g.getSymbols());
         games = list.listIterator();
         view = new LightningViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
@@ -88,7 +89,7 @@ public class LightningActivity extends AppCompatActivity implements
     @Override
     public void onTimerBegin() {
         if (!firstGameBegun){
-            view.setTitle(getString(R.string.play));
+            view.setTitle(getString(R.string.game_begun));
         }
     }
 
@@ -150,7 +151,7 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onExitResultClick() {
-        finish();
+    public void onRestartClick() {
+        recreate();
     }
 }

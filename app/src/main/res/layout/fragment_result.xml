@@ -7,7 +7,7 @@
     android:background="@android:drawable/btn_default">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:fontFamily="@font/molly_jack"
         android:gravity="center_horizontal"
-        android:text="@string/results"
+        tools:text="You did bad"
         android:textAlignment="center"
         android:textColor="@color/secondaryTextColor"
         android:textSize="40sp"
@@ -37,7 +37,7 @@
         android:background="@color/primaryLightColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/result" />
 
     <TextView
         android:id="@+id/textView3"
@@ -94,7 +94,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/ic_exit_to_app_black"
+        android:src="@drawable/lightning_bolt_24px"
         app:backgroundTint="@color/secondaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

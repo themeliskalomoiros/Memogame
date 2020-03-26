@@ -110,7 +110,7 @@ public class PractiseActivity extends AppCompatActivity implements
 
     @Override
     public void onTimerBegin() {
-        view.setTitle(getString(R.string.play));
+        view.setTitle(getString(R.string.game_begun));
     }
 
     @Override

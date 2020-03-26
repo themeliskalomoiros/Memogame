@@ -18,29 +18,36 @@ import sk3m3l1io.kalymnos.memogame.R;
 public class ResultFragment extends Fragment {
     private int gameCount;
     private int gamesCompleted;
-    private ExitResultClickListener exitResultClickListener;
+    private RestartClickListener restartClickListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            exitResultClickListener = (ExitResultClickListener) context;
+            restartClickListener = (RestartClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + ExitResultClickListener.class.getSimpleName());
+                    + " must implement " + RestartClickListener.class.getSimpleName());
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = setupView(inflater, container);
+        return root;
+    }
+
+    private View setupView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         View root = inflater.inflate(R.layout.fragment_result, container, false);
+        TextView r = root.findViewById(R.id.result);
+        r.setText(getString(R.string.you_did) + " " + getString(getResult().getNameRes()));
         TextView m = root.findViewById(R.id.message);
         m.setText(createMsg());
         TextView c = root.findViewById(R.id.games_completed);
         c.setText("" + gamesCompleted);
         FloatingActionButton b = root.findViewById(R.id.exit);
-        b.setOnClickListener(v -> exitResultClickListener.onExitResultClick());
+        b.setOnClickListener(v -> restartClickListener.onRestartClick());
         return root;
     }
 
@@ -49,23 +56,8 @@ public class ResultFragment extends Fragment {
                 gamesCompleted + " " +
                 getString(R.string.out_of_sufix) + " " +
                 gameCount + ".";
-        String suffix = getString(R.string.result_prefix) + getResultText();
+        String suffix = getString(getResult().getMessageRes());
         return prefix + suffix;
-    }
-
-    private String getResultText() {
-        Result result = getResult();
-        String suffix;
-        if (result == Result.PERFECT) {
-            suffix = getString(R.string.perfect);
-        } else if (result == Result.VERY_GOOD) {
-            suffix = getString(R.string.very_good);
-        } else if (result == Result.GOOD) {
-            suffix = getString(R.string.good);
-        } else {
-            suffix = getString(R.string.bad);
-        }
-        return suffix;
     }
 
     private ResultFragment.Result getResult() {
@@ -85,28 +77,54 @@ public class ResultFragment extends Fragment {
         this.gamesCompleted = gamesCompleted;
     }
 
-    public void setExitResultClickListener(ExitResultClickListener listener) {
-        exitResultClickListener = listener;
+    public void setRestartClickListener(RestartClickListener listener) {
+        restartClickListener = listener;
     }
 
     public void setGameCount(int gameCount) {
         this.gameCount = gameCount;
     }
 
-    public interface ExitResultClickListener {
-        void onExitResultClick();
+    public interface RestartClickListener {
+        void onRestartClick();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        setExitResultClickListener(null);
+        setRestartClickListener(null);
     }
 
     private enum Result {
         PERFECT,
         VERY_GOOD,
         GOOD,
-        BAD
+        BAD;
+
+        int getNameRes(){
+            switch (this){
+                case PERFECT:
+                    return R.string.result_perfect;
+                case VERY_GOOD:
+                    return R.string.result_very_good;
+                case GOOD:
+                    return R.string.result_good;
+                default:
+                    return R.string.result_bad;
+            }
+        }
+
+        int getMessageRes(){
+            switch (this){
+                case PERFECT:
+                    return R.string.result_perfect_message;
+                case VERY_GOOD:
+                    return R.string.result_very_good_message;
+                case GOOD:
+                    return R.string.result_good_message;
+                default:
+                    return R.string.result_bad_message;
+            }
+        }
     }
 }

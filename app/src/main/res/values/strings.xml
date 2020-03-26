@@ -11,7 +11,7 @@
     <string name="sign_in_msg">Great! Now you can keep score of your plays.</string>
     <string name="prompt_for_sign_in_msg">"Log in to track your scores! "</string>
     <string name="must_sign_in">"Need to sign in for Lightning Round!"</string>
-    <string name="play">Play</string>
+    <string name="game_begun">Game Begun</string>
     <string name="repeat_game">Repeat this game?</string>
     <string name="time_up">Time up</string>
     <string name="lightning_round_not_good">Not so good, you\'ve completed only</string>
@@ -19,13 +19,17 @@
     <string name="lightning_round_completed_prefix">"Lightning Round completed. You scored"</string>
     <string name="lightning_round">"Lightning Round"</string>
     <string name="results">"Results"</string>
-    <string name="perfect">Perfect!</string>
-    <string name="very_good">Very good!</string>
-    <string name="good">Good.</string>
-    <string name="bad">Bad :(</string>
+    <string name="result_perfect">Perfect!</string>
+    <string name="result_very_good">Very good!</string>
+    <string name="result_good">Well</string>
+    <string name="result_bad">Bad</string>
+    <string name="result_perfect_message">That\'s astonishing, wow!</string>
+    <string name="result_very_good_message">Very, very good!</string>
+    <string name="result_good_message">Hmm, not so bad. Good play!</string>
+    <string name="result_bad_message">Surely you can do better...</string>
     <string name="games_completed">Games completed:</string>
     <string name="out_of_sufix">"out of"</string>
-    <string name="result_prefix">"You did "</string>
-    <string name="tap_to_start">Tap to Start!</string>
+    <string name="tap_to_start">Tap!</string>
     <string name="completed">Completed</string>
+    <string name="you_did">You did</string>
 </resources>
