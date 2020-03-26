@@ -1,202 +1,147 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
-import android.os.Handler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
-import sk3m3l1io.kalymnos.memogame.dialogs.NextGameDialog;
+import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
-import sk3m3l1io.kalymnos.memogame.view.GameScreen;
-import sk3m3l1io.kalymnos.memogame.view.GameScreenImp;
+import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
+import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
+import sk3m3l1io.kalymnos.memogame.view.PractiseView;
+import sk3m3l1io.kalymnos.memogame.view.PractiseViewImp;
 
 public class PractiseActivity extends AppCompatActivity implements
-        GameScreen.ClickListener,
-        GameProcedure.TimeListener,
-        GameProcedure.PairMatchListener,
-        GameProcedure.ResultListener,
-        NextGameDialog.ResponseListener {
+        GameFragment.GameProgressListener,
+        MessageDialog.ResponseListener,
+        PractiseView.ChangeGameClickListener,
+        CountDownTimerReporter.TimeListener {
     private static final int GAME_DURATION = 20000;
+    private static final int TIME_INTERVAL = 100;
+    private static final String REPEAT_DIALOG = "repeat dialog";
+    private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
-    private boolean gameBegun;
     private int currentGame;
     private List<Game> games;
-    private GameProcedure gameProcedure;
+    private boolean gameBegun;
 
-    private GameScreen view;
+    private PractiseView view;
+    private CountDownTimerReporter timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        updateUI();
     }
 
     private void init() {
-        gameProcedure = new GameProcedure(GameScreen.SYMBOL_COUNT, GAME_DURATION);
-        gameProcedure.setTimeListener(this);
-        gameProcedure.setPairMatchListener(this);
-        gameProcedure.setResultListener(this);
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        view = new GameScreenImp(getLayoutInflater(), null);
-        view.setClickListener(this);
+        view = new PractiseViewImp(getLayoutInflater(), null);
+        view.setChangeGameClickListener(this);
+        timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
+        timer.setTimeListener(this);
         setContentView(view.getRootView());
-    }
-
-    private void updateUI() {
-        Game game = games.get(currentGame);
-        view.setTitle(game.getTitle());
-        view.setAllSymbolsValue(game.getCover());
-        int color = getResources().getColor(R.color.primaryColor);
-        view.setAllSymbolsColor(color);
-        view.setAllSymbolsBackgroundToDefault();
-        view.setTimeMaxProgress(gameProcedure.getDuration());
-        view.setTimeProgress(gameProcedure.getDuration());
-        view.enableAllSymbols();
+        addGameFragment();
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if (fragment instanceof GameFragment) {
+            GameFragment f = (GameFragment) fragment;
+            Game g = games.get(currentGame);
+            ArrayUtils.shuffle(g.getSymbols());
+            f.setGame(g);
+            updateUI(g);
+        }
+    }
+
+    private void updateUI(Game g) {
+        view.setTitle(g.getTitle());
+        view.setTimeMaxProgress(GAME_DURATION);
+        view.setTimeProgress(GAME_DURATION);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        gameProcedure.stop();
-        gameProcedure.detachListeners();
-    }
-
-    @Override
-    public void onPreviousClick() {
+    public void onPreviousGameClick() {
         if (currentGame > 0) {
             --currentGame;
-            gameProcedure.stop();
-            gameProcedure.resetState();
-            gameBegun = false;
-            updateUI();
+            addGameFragment();
         }
     }
 
     @Override
-    public void onNextClick() {
+    public void onNextGameClick() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
-            gameProcedure.stop();
-            gameProcedure.resetState();
-            gameBegun = false;
-            updateUI();
+            addGameFragment();
         }
     }
 
-    @Override
-    public void onSymbolClick(int pos) {
-        if (!gameBegun)
-            gameProcedure.begin();
-
-        int color = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolColor(pos, color);
-        String symbol = games.get(currentGame).getSymbols()[pos];
-        view.setSymbolValue(pos, symbol);
-
-        gameProcedure.addTappedSymbol(pos, symbol);
+    private void addGameFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(view.getGameContainerId(), new GameFragment())
+                .commit();
     }
 
     @Override
-    public void onGameTimeBegin() {
-        gameBegun = true;
+    public void onGameBegin() {
+        timer.begin();
     }
 
     @Override
-    public void onGameTimeProgress(int elapsedMilli) {
+    public void onGameCompleted() {
+        timer.cancel();
+        view.setTitle(getString(R.string.victory));
+        MessageDialog.showInstance(
+                this,
+                getSupportFragmentManager(),
+                R.string.next_game,
+                NEXT_GAME_DIALOG);
+    }
+
+    @Override
+    public void onTimerBegin() {
+        view.setTitle(getString(R.string.play));
+    }
+
+    @Override
+    public void onTimerTick(int elapsedMilli) {
         view.setTimeProgress(elapsedMilli);
     }
 
     @Override
-    public void onGameTimeFinish() {
-        view.disableAllSymbols();
-        view.setTimeProgress(0);
-        if (gameProcedure.gameWon()) {
-            showNextGameDialog(R.string.victory);
-        } else {
-            showNextGameDialog(R.string.defeat);
+    public void onTimerFinish() {
+        Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
+        if (f instanceof GameFragment) {
+            ((GameFragment) f).freezeUI();
+            view.setTitle(":(");
+            MessageDialog.showInstance(
+                    this,
+                    getSupportFragmentManager(),
+                    R.string.repeat_game,
+                    REPEAT_DIALOG);
         }
     }
 
     @Override
-    public void onPairMatch(int position1, int position2) {
-        view.disableSymbol(position1);
-        view.disableSymbol(position2);
-        int symbolColor = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolColor(position1, symbolColor);
-        view.setSymbolColor(position2, symbolColor);
-    }
-
-    @Override
-    public void onPairMatchFail(int position1, int position2) {
-        Runnable setSymbolValues = () -> {
-            int symbolColor = getResources().getColor(R.color.primaryColor);
-            view.setSymbolColor(position1, symbolColor);
-            view.setSymbolColor(position2, symbolColor);
-
-            Game game = games.get(currentGame);
-            view.setSymbolValue(position1, game.getCover());
-            view.setSymbolValue(position2, game.getCover());
-        };
-        runWithDelay(setSymbolValues, 300);
-    }
-
-    public void runWithDelay(Runnable runnable, int delayMillis) {
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            runnable.run();
-        }, delayMillis);
-    }
-
-    @Override
-    public void onGameWon() {
-        gameProcedure.stop();
-        setVictoryUi();
-        showNextGameDialog(R.string.victory);
-    }
-
-    private void setVictoryUi() {
-        int backgroundColor = getResources().getColor(R.color.primaryLightColor);
-        view.setAllSymbolsBackgroundColor(backgroundColor);
-    }
-
-    private void showNextGameDialog(int messageRes) {
-        NextGameDialog d = new NextGameDialog();
-        d.setMessageRes(messageRes);
-        d.setResponseListener(this);
-        showDialogAllowingStateLoss(getSupportFragmentManager(), d, null);
-    }
-
-    // From https://medium.com/inloopx/demystifying-androids-commitallowingstateloss-cb9011a544cc
-    public static void showDialogAllowingStateLoss(
-            FragmentManager fragmentManager,
-            DialogFragment dialogFragment,
-            String tag) {
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(dialogFragment, tag);
-        ft.commitAllowingStateLoss();
-    }
-
-    @Override
-    public void onDialogPositiveResponse(NextGameDialog dialog) {
+    public void onDialogPositiveResponse(MessageDialog dialog) {
         dialog.dismiss();
-        onNextClick();
+        if (dialog.getTag().equals(REPEAT_DIALOG)) {
+            addGameFragment();
+        } else if (dialog.getTag().equals(NEXT_GAME_DIALOG)) {
+            onNextGameClick();
+        }
     }
 
     @Override
-    public void onDialogNegativeResponse(NextGameDialog dialog) {
+    public void onDialogNegativeResponse(MessageDialog dialog) {
         finish();
     }
 }

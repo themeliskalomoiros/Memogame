@@ -2,7 +2,7 @@ package sk3m3l1io.kalymnos.memogame.services;
 
 import android.os.CountDownTimer;
 
-public final class CountDownTimerReporter extends CountDownTimer{
+public final class CountDownTimerReporter extends CountDownTimer {
     private TimeListener listener;
 
     public CountDownTimerReporter(int durationMilli, int tickMilli) {
@@ -13,26 +13,26 @@ public final class CountDownTimerReporter extends CountDownTimer{
         listener = timeListener;
     }
 
-    public void begin(){
+    public void begin() {
         start();
-        listener.onGameTimeBegin();
+        listener.onTimerBegin();
     }
 
     @Override
     public void onTick(long millisUntilFinished) {
-        listener.onGameTimeProgress((int) millisUntilFinished);
+        listener.onTimerTick((int) millisUntilFinished);
     }
 
     @Override
     public void onFinish() {
-        listener.onGameTimeFinish();
+        listener.onTimerFinish();
     }
 
     public interface TimeListener {
-        void onGameTimeBegin();
+        void onTimerBegin();
 
-        void onGameTimeProgress(int elapsedMilli);
+        void onTimerTick(int elapsedMilli);
 
-        void onGameTimeFinish();
+        void onTimerFinish();
     }
 }

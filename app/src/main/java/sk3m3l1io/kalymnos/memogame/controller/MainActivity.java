@@ -32,11 +32,11 @@ import sk3m3l1io.kalymnos.memogame.model.GameRepository;
 import sk3m3l1io.kalymnos.memogame.model.GameRepositoryImp;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.pojos.GameMode;
-import sk3m3l1io.kalymnos.memogame.view.MainScreen;
-import sk3m3l1io.kalymnos.memogame.view.MainScreenImp;
+import sk3m3l1io.kalymnos.memogame.view.MainView;
+import sk3m3l1io.kalymnos.memogame.view.MainViewImp;
 
 public class MainActivity extends AppCompatActivity implements
-        MainScreen.ClickListener,
+        MainView.ClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnCanceledListener,
         OnFailureListener,
@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity implements
     private static final int RC_SIGN_IN = 158;
 
     private List<Game> games;
-    private MainScreen view;
+    private MainView view;
     private GoogleSignInClient googleSignInClient;
     private boolean userInformedAboutSignIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = new MainScreenImp(getLayoutInflater(), null);
+        view = new MainViewImp(getLayoutInflater(), null);
         view.setClickListener(this);
         setContentView(view.getRootView());
         loadGames(savedInstanceState);

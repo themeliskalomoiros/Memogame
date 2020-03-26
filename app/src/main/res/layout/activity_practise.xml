@@ -58,8 +58,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title" />
 
-    <fragment
-        android:id="@+id/game_fragment"
+    <FrameLayout
+        android:id="@+id/game_container"
         android:name="sk3m3l1io.kalymnos.memogame.controller.GameFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
