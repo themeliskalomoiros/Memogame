@@ -7,11 +7,11 @@ import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
-public final class Game implements Parcelable {
+public final class Game implements Parcelable{
     private final String title;
     private final String cover;
     private final String[] symbols;
-    private GameDifficulty difficulty;
+    private final GameDifficulty difficulty;
 
     public Game(
             String title,
@@ -23,6 +23,25 @@ public final class Game implements Parcelable {
         this.symbols = symbols;
         this.difficulty = difficulty;
     }
+
+    protected Game(Parcel in) {
+        title = in.readString();
+        cover = in.readString();
+        symbols = in.createStringArray();
+        difficulty = GameDifficulty.values()[in.readInt()];
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel in) {
+            return new Game(in);
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -57,24 +76,6 @@ public final class Game implements Parcelable {
         return title.hashCode() ^ cover.hashCode() ^ symbols.hashCode() ^ difficulty.hashCode() * 1579;
     }
 
-    protected Game(Parcel in) {
-        title = in.readString();
-        cover = in.readString();
-        symbols = in.createStringArray();
-    }
-
-    public static final Creator<Game> CREATOR = new Creator<Game>() {
-        @Override
-        public Game createFromParcel(Parcel in) {
-            return new Game(in);
-        }
-
-        @Override
-        public Game[] newArray(int size) {
-            return new Game[size];
-        }
-    };
-
     @Override
     public int describeContents() {
         return 0;
@@ -85,5 +86,6 @@ public final class Game implements Parcelable {
         dest.writeString(title);
         dest.writeString(cover);
         dest.writeStringArray(symbols);
+        dest.writeInt(difficulty.ordinal());
     }
 }
