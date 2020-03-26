@@ -104,7 +104,7 @@ public class PractiseActivity extends AppCompatActivity implements
         MessageDialog.showInstance(
                 this,
                 getSupportFragmentManager(),
-                R.string.next_game,
+                getString(R.string.next_game),
                 NEXT_GAME_DIALOG);
     }
 
@@ -124,10 +124,11 @@ public class PractiseActivity extends AppCompatActivity implements
         if (f instanceof GameFragment) {
             ((GameFragment) f).freezeUI();
             view.setTitle(":(");
+            view.setTimeProgress(0);
             MessageDialog.showInstance(
                     this,
                     getSupportFragmentManager(),
-                    R.string.repeat_game,
+                    getString(R.string.repeat_game),
                     REPEAT_DIALOG);
         }
     }

@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent getGamesIntent(GameMode mode) {
         Intent i = new Intent();
         if (mode == GameMode.HOT_ROUND) {
-            i.setClass(this, LightningRoundActivity.class);
+            i.setClass(this, LightningActivity.class);
         } else if (mode == GameMode.PRACTISE) {
             i.setClass(this, PractiseActivity.class);
         }

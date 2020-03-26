@@ -14,4 +14,13 @@
     <string name="play">Play</string>
     <string name="repeat_game">Repeat this game?</string>
     <string name="time_up">Time up</string>
+    <string name="lightning_round_not_good">Not so good, you\'ve completed only</string>
+    <string name="games">games</string>
+    <string name="lightning_round_completed">"Congratulations! You completed "</string>
+    <string name="lightning_round">"Lightning Round"</string>
+    <string name="results">"Results"</string>
+    <string name="excellent">Excellent!</string>
+    <string name="very_good">Very good!</string>
+    <string name="good">Good.</string>
+    <string name="bad">Bad :(</string>
 </resources>

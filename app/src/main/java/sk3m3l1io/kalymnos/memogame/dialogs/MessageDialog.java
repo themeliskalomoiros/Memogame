@@ -16,7 +16,7 @@ public class MessageDialog extends DialogFragment {
         void onDialogNegativeResponse(MessageDialog dialog);
     }
 
-    private int messageRes;
+    private String msg;
     private ResponseListener listener;
 
     @Override
@@ -34,15 +34,11 @@ public class MessageDialog extends DialogFragment {
         if (listener != null) this.listener = listener;
     }
 
-    public void setMessageRes(int messageRes) {
-        this.messageRes = messageRes;
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
-                .setMessage(messageRes)
+                .setMessage(msg)
                 .setPositiveButton(android.R.string.yes, (d, i) -> listener.onDialogPositiveResponse(this))
                 .setNegativeButton(android.R.string.no, (d, i) -> listener.onDialogNegativeResponse(this));
         return builder.create();
@@ -51,16 +47,16 @@ public class MessageDialog extends DialogFragment {
     public static void showInstance(
             ResponseListener listener,
             FragmentManager fragmentManager,
-            int messageRes,
+            String msg,
             String tag) {
         MessageDialog d = new MessageDialog();
-        d.setMessageRes(messageRes);
+        d.msg = msg;
         d.setResponseListener(listener);
         showDialogAllowingStateLoss(fragmentManager, d, tag);
     }
 
     // From https://medium.com/inloopx/demystifying-androids-commitallowingstateloss-cb9011a544cc
-    public static void showDialogAllowingStateLoss(
+    private static void showDialogAllowingStateLoss(
             FragmentManager fragmentManager,
             DialogFragment dialogFragment,
             String tag) {

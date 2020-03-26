@@ -11,19 +11,23 @@ import java.util.List;
 import java.util.ListIterator;
 
 import sk3m3l1io.kalymnos.memogame.R;
+import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.LightningView;
 import sk3m3l1io.kalymnos.memogame.view.LightningViewImp;
 
-public class LightningRoundActivity extends AppCompatActivity implements
+public class LightningActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
-        GameFragment.GameProgressListener {
-    private static final int GAME_DURATION = 30000;
+        GameFragment.GameProgressListener,
+        MessageDialog.ResponseListener {
     private static final int TIME_INTERVAL = 100;
+    private static final int GAME_DURATION = 30000;
 
-    private boolean hasFirstGameBegun;
+    private int gamesCount;
+    private int gamesCompleted;
+    private boolean firstGameBegun;
     private ListIterator<Game> games;
 
     private LightningView view;
@@ -37,6 +41,7 @@ public class LightningRoundActivity extends AppCompatActivity implements
 
     private void init() {
         List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        gamesCount = list.size();
         Collections.shuffle(list);
         games = list.listIterator();
         view = new LightningViewImp(getLayoutInflater(), null);
@@ -67,7 +72,7 @@ public class LightningRoundActivity extends AppCompatActivity implements
 
     private void updateUI(Game g) {
         view.setTitle(g.getTitle());
-        if(!hasFirstGameBegun){
+        if (!firstGameBegun) {
             view.setTimeMaxProgress(GAME_DURATION);
             view.setTimeProgress(GAME_DURATION);
         }
@@ -90,20 +95,58 @@ public class LightningRoundActivity extends AppCompatActivity implements
             ((GameFragment) f).freezeUI();
             view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
+            addResultFragment(getResult());
         }
+    }
+
+    private LightningResultFragment.Result getResult() {
+        int percent = (int) (gamesCompleted / (gamesCount * 1.0)) * 100;
+        if (percent == 100) {
+            return LightningResultFragment.Result.PERFECT;
+        } else if (percent >= 0 && percent < 25) {
+            return LightningResultFragment.Result.BAD;
+        } else if (percent >= 25 && percent < 50) {
+            return LightningResultFragment.Result.GOOD;
+        } else {
+            return LightningResultFragment.Result.GOOD;
+        }
+    }
+
+    private void addResultFragment(LightningResultFragment.Result result) {
+        LightningResultFragment f = new LightningResultFragment();
+        f.setResult(result);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(view.getGameContainerId(), f)
+                .commit();
     }
 
     @Override
     public void onGameBegin() {
-        if (!hasFirstGameBegun){
+        if (!firstGameBegun) {
             // Always call begin() instead of start to get a callback
             timer.begin();
-            hasFirstGameBegun = true;
+            firstGameBegun = true;
         }
     }
 
     @Override
     public void onGameCompleted() {
-        addGameFragment();
+        gamesCompleted++;
+        if (gamesCompleted == gamesCount){
+            // TODO: What happens if someone hit perfect score
+        }else{
+            addGameFragment();
+        }
+    }
+
+    @Override
+    public void onDialogPositiveResponse(MessageDialog dialog) {
+        recreate();
+    }
+
+    @Override
+    public void onDialogNegativeResponse(MessageDialog dialog) {
+        finish();
     }
 }
