@@ -19,7 +19,6 @@ public class GameRepositoryImp implements GameRepository {
     private static final String KEY_DIFFICULTY = "difficulty";
 
 
-
     private final String json;
 
     public GameRepositoryImp(final InputStream file) {
@@ -51,11 +50,11 @@ public class GameRepositoryImp implements GameRepository {
         GameDifficulty difficulty = getDifficultyFrom(gameObj.getString(KEY_DIFFICULTY));
         JSONArray symbolsArray = gameObj.getJSONArray(KEY_SYMBOLS);
         List<String> symbols = getSymbolsFrom(symbolsArray);
-        return new Game(title, cover, symbols.toArray(new String[symbols.size()]),difficulty);
+        return new Game(title, cover, symbols.toArray(new String[symbols.size()]), difficulty);
     }
 
     private GameDifficulty getDifficultyFrom(String string) {
-        switch (string){
+        switch (string) {
             case "easy":
                 return GameDifficulty.EASY;
             case "normal":

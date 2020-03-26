@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
-public final class Game implements Parcelable{
+public final class Game implements Parcelable {
     private final String title;
     private final String cover;
     private final String[] symbols;

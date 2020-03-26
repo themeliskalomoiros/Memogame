@@ -36,7 +36,7 @@ public class PractiseViewImp implements PractiseView {
 
     @Override
     public void setDifficulty(GameDifficulty difficulty) {
-        switch (difficulty){
+        switch (difficulty) {
             case EASY:
                 this.difficulty.setText(R.string.difficulity_easy);
                 this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchLightColor));

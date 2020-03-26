@@ -49,12 +49,12 @@ public class LightningViewImp implements LightningView {
 
     @Override
     public void setGamesCompleted(int count) {
-        gamesCompleted.setText(""+count);
+        gamesCompleted.setText("" + count);
     }
 
     @Override
     public void setDifficulty(GameDifficulty difficulty) {
-        switch (difficulty){
+        switch (difficulty) {
             case EASY:
                 this.difficulty.setText(R.string.difficulity_easy);
                 this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchLightColor));

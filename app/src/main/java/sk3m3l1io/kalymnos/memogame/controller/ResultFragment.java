@@ -66,9 +66,9 @@ public class ResultFragment extends Fragment {
             return ResultFragment.Result.BAD;
         } else if (percent >= 0.3d && percent < 0.7d) {
             return ResultFragment.Result.GOOD;
-        } else if (percent >= 0.7d && percent < 0.99d){
+        } else if (percent >= 0.7d && percent < 0.99d) {
             return Result.VERY_GOOD;
-        }else{
+        } else {
             return Result.PERFECT;
         }
     }
@@ -101,8 +101,8 @@ public class ResultFragment extends Fragment {
         GOOD,
         BAD;
 
-        int getNameRes(){
-            switch (this){
+        int getNameRes() {
+            switch (this) {
                 case PERFECT:
                     return R.string.result_perfect;
                 case VERY_GOOD:
@@ -114,8 +114,8 @@ public class ResultFragment extends Fragment {
             }
         }
 
-        int getMessageRes(){
-            switch (this){
+        int getMessageRes() {
+            switch (this) {
                 case PERFECT:
                     return R.string.result_perfect_message;
                 case VERY_GOOD:

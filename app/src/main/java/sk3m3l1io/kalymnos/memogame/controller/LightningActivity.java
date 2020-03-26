@@ -45,7 +45,7 @@ public class LightningActivity extends AppCompatActivity implements
         List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         gameCount = list.size();
         Collections.shuffle(list);
-        for(Game g : list)
+        for (Game g : list)
             ArrayUtils.shuffle(g.getSymbols());
         games = list.listIterator();
         view = new LightningViewImp(getLayoutInflater(), null);
@@ -82,14 +82,14 @@ public class LightningActivity extends AppCompatActivity implements
             view.setTitle(getString(R.string.tap_to_start));
             view.setTimeMaxProgress(GAME_DURATION);
             view.setTimeProgress(GAME_DURATION);
-        }else{
+        } else {
             view.setTitle(g.getTitle());
         }
     }
 
     @Override
     public void onTimerBegin() {
-        if (!firstGameBegun){
+        if (!firstGameBegun) {
             view.setTitle(getString(R.string.game_begun));
         }
     }
