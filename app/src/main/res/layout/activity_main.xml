@@ -120,10 +120,10 @@
         app:layout_constraintTop_toBottomOf="@+id/play9" />
 
     <ImageButton
-        android:id="@+id/play11"
-        style="@style/Box_Style_Disabled"
+        android:id="@+id/leaderboard"
+        style="@style/Box_Style"
         android:layout_marginTop="24dp"
-        android:src="@drawable/ic_chevron_right_light_green"
+        android:src="@drawable/leaderboard_48px"
         app:layout_constraintEnd_toStartOf="@+id/sign_in"
         app:layout_constraintStart_toEndOf="@+id/play10"
         app:layout_constraintTop_toBottomOf="@+id/play3" />

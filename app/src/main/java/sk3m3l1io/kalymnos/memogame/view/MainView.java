@@ -7,6 +7,8 @@ public interface MainView extends ViewMvc {
         void onPractiseClick();
 
         void onSignInClick();
+
+        void onLeaderBoardClick();
     }
 
     void setClickListener(ClickListener listener);
