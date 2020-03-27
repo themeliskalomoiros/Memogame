@@ -10,18 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
-import sk3m3l1io.kalymnos.memogame.model.FakePlayerRepository;
-import sk3m3l1io.kalymnos.memogame.model.PlayerRepository;
+import sk3m3l1io.kalymnos.memogame.model.FakeScoreRepository;
+import sk3m3l1io.kalymnos.memogame.model.ScoreRepository;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreView;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreViewImp;
 
-public class ScoresFragment extends Fragment
-        implements PlayerRepository.PlayerDataListener {
+public class ScoresFragment extends Fragment implements ScoreRepository.ScoreListener {
     private ScoreView view;
-    private PlayerRepository repo;
+    private ScoreRepository repo;
     private ScoresLoadListener listener;
 
     @Override
@@ -39,8 +43,8 @@ public class ScoresFragment extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: Replace with real repository
-        repo = new FakePlayerRepository();
-        repo.setPlayerDataListener(this);
+        repo = new FakeScoreRepository();
+        repo.setScoreListener(this);
     }
 
     @Nullable
@@ -53,16 +57,39 @@ public class ScoresFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        repo.loadPlayers();
+        repo.loadScores();
         listener.onLoadBegun();
     }
 
     @Override
-    public void onPlayersLoaded(List<Player> players) {
-        if (players != null && players.size() > 0) {
-            view.setPlayers(players);
-            listener.onLoadFinished();
+    public void onScoresLoaded(Map<Integer, Player> scores) {
+        if (scores != null && scores.size() > 0) {
+            SortedMap<Integer, Player> sortedScores = new TreeMap<>((s1, s2) -> s2 - s1);
+            sortedScores.putAll(scores);
+            int[] s = getKeysFrom(sortedScores.keySet());
+            Player[] p = getPlayersFrom(sortedScores.values());
+            view.setScores(s, p);
         }
+    }
+
+    private int[] getKeysFrom(Set<Integer> keys) {
+        int[] s = new int[keys.size()];
+        Iterator<Integer> it = keys.iterator();
+        int i = 0;
+        while (it.hasNext()){
+            s[i++] = it.next();
+        }
+        return s;
+    }
+
+    private Player[] getPlayersFrom(Collection<Player> values) {
+        Player[] p = new Player[values.size()];
+        Iterator<Player> it = values.iterator();
+        int i = 0;
+        while (it.hasNext()){
+            p[i++] = it.next();
+        }
+        return p;
     }
 
     interface ScoresLoadListener {

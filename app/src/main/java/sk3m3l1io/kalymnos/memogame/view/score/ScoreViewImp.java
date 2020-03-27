@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 
@@ -28,7 +26,8 @@ public class ScoreViewImp implements ScoreView {
     }
 
     @Override
-    public void setPlayers(List<Player> players) {
+    public void setScores(int[] scores, Player[] players) {
+        adapter.setScores(scores);
         adapter.setPlayers(players);
         adapter.notifyDataSetChanged();
     }

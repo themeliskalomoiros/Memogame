@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
@@ -27,10 +27,10 @@ public class LightningActivity extends AppCompatActivity implements
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 120000;
 
-    private int gameCount;
-    private int gamesCompleted;
+    private int currentGame = 0;
     private boolean firstGameBegun;
-    private ListIterator<Game> games;
+    private List<Game> games;
+    private List<Game> gamesCompleted;
 
     private LightningView view;
     private CountDownTimerReporter timer;
@@ -42,12 +42,9 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        List<Game> list = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        gameCount = list.size();
-        Collections.shuffle(list);
-        for (Game g : list)
-            ArrayUtils.shuffle(g.getSymbols());
-        games = list.listIterator();
+        gamesCompleted = new ArrayList<>();
+        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        Collections.shuffle(games);
         view = new LightningViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
@@ -66,9 +63,9 @@ public class LightningActivity extends AppCompatActivity implements
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment && games.hasNext()) {
+        if (fragment instanceof GameFragment && currentGame < games.size() - 1) {
             GameFragment f = (GameFragment) fragment;
-            Game g = games.next();
+            Game g = games.get(++currentGame);
             ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
             updateUI(g);
@@ -76,7 +73,7 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     private void updateUI(Game g) {
-        view.setGamesCompleted(gamesCompleted);
+        view.setGamesCompleted(gamesCompleted.size());
         view.setDifficulty(g.getDifficulty());
         if (!firstGameBegun) {
             view.setTitle(getString(R.string.tap_to_start));
@@ -89,9 +86,8 @@ public class LightningActivity extends AppCompatActivity implements
 
     @Override
     public void onTimerBegin() {
-        if (!firstGameBegun) {
+        if (!firstGameBegun)
             view.setTitle(getString(R.string.game_begun));
-        }
     }
 
     @Override
@@ -103,7 +99,6 @@ public class LightningActivity extends AppCompatActivity implements
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
-            ((GameFragment) f).freezeUI();
             view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
             addResultFragment();
@@ -112,8 +107,8 @@ public class LightningActivity extends AppCompatActivity implements
 
     private void addResultFragment() {
         ResultFragment f = new ResultFragment();
-        f.setGamesCompleted(gamesCompleted);
-        f.setGameCount(gameCount);
+        f.setGamesCompleted(gamesCompleted.size());
+        f.setGameCount(games.size());
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
@@ -132,8 +127,8 @@ public class LightningActivity extends AppCompatActivity implements
 
     @Override
     public void onGameCompleted() {
-        gamesCompleted++;
-        if (gamesCompleted == gameCount) {
+        gamesCompleted.add(games.get(currentGame));
+        if (gamesCompleted.size() == games.size()) {
             timer.cancel();
             addResultFragment();
         } else {

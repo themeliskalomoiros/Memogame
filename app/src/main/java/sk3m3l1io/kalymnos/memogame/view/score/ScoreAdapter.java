@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 
@@ -22,13 +20,18 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     private static final int TYPE_MEDAL = 1314;
 
     private final Context context;
-    private List<Player> players;
+    private int[] scores;
+    private Player[] players;
 
     public ScoreAdapter(Context context) {
         this.context = context;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setScores(int[] scores) {
+        this.scores = scores;
+    }
+
+    public void setPlayers(Player[] players) {
         this.players = players;
     }
 
@@ -54,15 +57,17 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ScoreViewHolder vh, int pos) {
-        Player p = players.get(pos);
-        vh.bind(p);
+    public void onBindViewHolder(@NonNull ScoreViewHolder vh, int i) {
+        Player p = players[i];
+        int s = scores[i];
+        vh.bind(s, p);
     }
 
     @Override
     public int getItemCount() {
-        if (players != null && players.size() > 0)
-            return players.size();
+        if (scores != null && players != null)
+            if (scores.length > 0 && players.length == scores.length)
+                return scores.length;
 
         return 0;
     }
@@ -78,10 +83,10 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             image = itemView.findViewById(R.id.user_image);
         }
 
-        void bind(Player p){
+        void bind(int s, Player p) {
             name.setText(p.getName());
-            score.setText("" + p.getScore());
-            if (p.getPhotoUrl() != null){
+            score.setText("" + s);
+            if (p.getPhotoUrl() != null) {
                 Picasso.get()
                         .load(p.getPhotoUrl())
                         .placeholder(R.drawable.user_48px)
@@ -100,8 +105,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         @Override
-        void bind(Player p) {
-            super.bind(p);
+        void bind(int s, Player p) {
+            super.bind(s, p);
             position.setText("" + (getAdapterPosition() + 1));
         }
     }
@@ -115,11 +120,14 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         @Override
-        void bind(Player p) {
-            super.bind(p);
-            if (getAdapterPosition() == 0) medal.setImageResource(R.drawable.medal_first_place_48px);
-            if (getAdapterPosition() == 1) medal.setImageResource(R.drawable.medal_second_place_48px);
-            if (getAdapterPosition() == 2) medal.setImageResource(R.drawable.medal_third_place_48px);
+        void bind(int s, Player p) {
+            super.bind(s, p);
+            if (getAdapterPosition() == 0)
+                medal.setImageResource(R.drawable.medal_first_place_48px);
+            if (getAdapterPosition() == 1)
+                medal.setImageResource(R.drawable.medal_second_place_48px);
+            if (getAdapterPosition() == 2)
+                medal.setImageResource(R.drawable.medal_third_place_48px);
         }
     }
 }
