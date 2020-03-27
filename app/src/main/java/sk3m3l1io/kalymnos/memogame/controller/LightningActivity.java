@@ -16,8 +16,8 @@ import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
-import sk3m3l1io.kalymnos.memogame.view.LightningView;
-import sk3m3l1io.kalymnos.memogame.view.LightningViewImp;
+import sk3m3l1io.kalymnos.memogame.view.game.LightningView;
+import sk3m3l1io.kalymnos.memogame.view.game.LightningViewImp;
 
 public class LightningActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
@@ -69,7 +69,7 @@ public class LightningActivity extends AppCompatActivity implements
         if (fragment instanceof GameFragment && games.hasNext()) {
             GameFragment f = (GameFragment) fragment;
             Game g = games.next();
-//            ArrayUtils.shuffle(g.getSymbols());
+            ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
             updateUI(g);
         }

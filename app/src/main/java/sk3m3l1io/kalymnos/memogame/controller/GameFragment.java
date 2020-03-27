@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
-import sk3m3l1io.kalymnos.memogame.view.GameView;
-import sk3m3l1io.kalymnos.memogame.view.GameViewImpl;
+import sk3m3l1io.kalymnos.memogame.view.game.GameView;
+import sk3m3l1io.kalymnos.memogame.view.game.GameViewImpl;
 
 public class GameFragment extends Fragment implements
         GameView.SymbolClickListener,

@@ -1,4 +1,6 @@
-package sk3m3l1io.kalymnos.memogame.view;
+package sk3m3l1io.kalymnos.memogame.view.game;
+
+import sk3m3l1io.kalymnos.memogame.view.ViewMvc;
 
 public interface GameView extends ViewMvc {
     int SYMBOL_COUNT = 12;

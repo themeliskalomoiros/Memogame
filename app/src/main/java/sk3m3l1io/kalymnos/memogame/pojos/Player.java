@@ -10,11 +10,13 @@ public final class Player implements Parcelable {
     private final String name;
     private final String email;
     private final Uri photoUrl;
+    private final int score;
 
-    public Player(String name, String email, Uri photoUrl) {
+    public Player(String name, String email, Uri photoUrl, int score) {
         this.name = name;
         this.email = email;
         this.photoUrl = photoUrl;
+        this.score = score;
     }
 
     public String getName() {
@@ -27,6 +29,10 @@ public final class Player implements Parcelable {
 
     public Uri getPhotoUrl() {
         return photoUrl;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
@@ -46,6 +52,7 @@ public final class Player implements Parcelable {
         name = in.readString();
         email = in.readString();
         photoUrl = in.readParcelable(Uri.class.getClassLoader());
+        score = in.readInt();
     }
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {
@@ -70,5 +77,6 @@ public final class Player implements Parcelable {
         dest.writeString(name);
         dest.writeString(email);
         dest.writeParcelable(photoUrl, flags);
+        dest.writeInt(score);
     }
 }

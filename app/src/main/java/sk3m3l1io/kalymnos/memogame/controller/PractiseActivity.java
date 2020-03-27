@@ -13,8 +13,8 @@ import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
-import sk3m3l1io.kalymnos.memogame.view.PractiseView;
-import sk3m3l1io.kalymnos.memogame.view.PractiseViewImp;
+import sk3m3l1io.kalymnos.memogame.view.game.PractiseView;
+import sk3m3l1io.kalymnos.memogame.view.game.PractiseViewImp;
 
 public class PractiseActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,

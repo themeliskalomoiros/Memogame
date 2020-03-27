@@ -26,6 +26,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="@dimen/loading_indicator"
+        android:layout_height="@dimen/loading_indicator"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_container"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container"
+        app:layout_constraintTop_toTopOf="@+id/fragment_container" />
+
 
     <FrameLayout
         android:id="@+id/fragment_container"
