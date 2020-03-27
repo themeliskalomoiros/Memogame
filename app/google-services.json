@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "3371339439",
+    "firebase_url": "https://memogame-1585002923276.firebaseio.com",
+    "project_id": "memogame-1585002923276",
+    "storage_bucket": "memogame-1585002923276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3371339439:android:247200a3c548b8d9b08e5a",
+        "android_client_info": {
+          "package_name": "sk3m3l1io.kalymnos.memogame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3371339439-0e28g6i6fcf9rkrat09966e83t0f2imh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSUbTfxAi58mlo90vc_eITotnRkDDQvlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3371339439-0e28g6i6fcf9rkrat09966e83t0f2imh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
