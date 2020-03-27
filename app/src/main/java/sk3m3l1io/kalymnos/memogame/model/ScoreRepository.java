@@ -2,10 +2,16 @@ package sk3m3l1io.kalymnos.memogame.model;
 
 import java.util.Map;
 
-import sk3m3l1io.kalymnos.memogame.pojos.Player;
-
 public interface ScoreRepository {
-    Map<Player, Integer> getScores();
+    interface ScoreLoadListener {
+        void onAllScoresLoaded(Map<String, Integer> scores);
 
-    int getScoreOf(Player p);
+        void onPlayerScoreLoaded(String playerEmail, int score);
+    }
+
+    void setScoreLoadListener(ScoreLoadListener listener);
+
+    void loadScores();
+
+    void loadScoreOf(String playerEmail);
 }
