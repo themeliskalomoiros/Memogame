@@ -28,6 +28,11 @@ public class FakeScoreRepository implements ScoreRepository {
         }).start();
     }
 
+    @Override
+    public void saveScore(int score, Player player) {
+
+    }
+
     private Map<Integer, Player> createScores() {
         Random r = new Random();
         Map<Integer, Player> scores = new HashMap<>(30);

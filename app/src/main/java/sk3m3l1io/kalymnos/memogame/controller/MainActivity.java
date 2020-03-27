@@ -30,6 +30,7 @@ import sk3m3l1io.kalymnos.memogame.model.GameRepository;
 import sk3m3l1io.kalymnos.memogame.model.GameRepositoryImp;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.pojos.GameMode;
+import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.MainView;
 import sk3m3l1io.kalymnos.memogame.view.MainViewImp;
 
@@ -121,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onHotRoundClick() {
+    public void onLightningRoundClick() {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
         if (acc != null) {
-            startActivity(getGamesIntent(GameMode.HOT_ROUND));
+            startActivity(getPlayModeIntent(GameMode.HOT_ROUND));
         } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
         }
@@ -132,18 +133,26 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPractiseClick() {
-        startActivity(getGamesIntent(GameMode.PRACTISE));
+        startActivity(getPlayModeIntent(GameMode.PRACTISE));
     }
 
-    private Intent getGamesIntent(GameMode mode) {
+    private Intent getPlayModeIntent(GameMode mode) {
         Intent i = new Intent();
+
         if (mode == GameMode.HOT_ROUND) {
             i.setClass(this, LightningActivity.class);
+            i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
         } else if (mode == GameMode.PRACTISE) {
             i.setClass(this, PractiseActivity.class);
         }
+
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
         return i;
+    }
+
+    private Player createPlayerFromGoogle() {
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
+        return new Player(acc.getDisplayName(), acc.getEmail(), acc.getPhotoUrl());
     }
 
     @Override

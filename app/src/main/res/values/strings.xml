@@ -37,4 +37,7 @@
     <string name="difficulity_normal">Normal</string>
     <string name="level">Level</string>
     <string name="leaderboard">Leaderboard</string>
+    <string name="total_score">Total Score:</string>
+    <string name="points">points</string>
+    <string name="score_analysis">Score Analysis:</string>
 </resources>

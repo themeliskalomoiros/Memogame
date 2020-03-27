@@ -24,7 +24,7 @@ public class MainViewImp implements MainView {
         root = inflater.inflate(R.layout.activity_main, container, false);
         name = root.findViewById(R.id.player_name);
         hotRound = root.findViewById(R.id.hot_round);
-        hotRound.setOnClickListener(v -> clickListener.onHotRoundClick());
+        hotRound.setOnClickListener(v -> clickListener.onLightningRoundClick());
         practise = root.findViewById(R.id.practise);
         practise.setOnClickListener(v -> clickListener.onPractiseClick());
         signIn = root.findViewById(R.id.sign_in);

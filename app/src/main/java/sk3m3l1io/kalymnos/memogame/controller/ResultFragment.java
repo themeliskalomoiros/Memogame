@@ -2,66 +2,116 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
+import sk3m3l1io.kalymnos.memogame.pojos.Game;
+import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
+import sk3m3l1io.kalymnos.memogame.services.Score;
+import sk3m3l1io.kalymnos.memogame.view.score.ResultView;
+import sk3m3l1io.kalymnos.memogame.view.score.ResultViewImp;
 
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements ResultView.ButtonClickListener{
     private int gameCount;
-    private int gamesCompleted;
-    private RestartClickListener restartClickListener;
+    private List<Game> completedGames;
+    private ResultView view;
+    private ResultButtonClickListener resultButtonClickListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            restartClickListener = (RestartClickListener) context;
+            resultButtonClickListener = (ResultButtonClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + RestartClickListener.class.getSimpleName());
+                    + " must implement " + ResultButtonClickListener.class.getSimpleName());
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = setupView(inflater, container);
-        return root;
+        view = new ResultViewImp(inflater, container);
+        view.setButtonClickListener(this);
+        return view.getRootView();
     }
 
-    private View setupView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        View root = inflater.inflate(R.layout.fragment_result, container, false);
-        TextView r = root.findViewById(R.id.result);
-        r.setText(getString(R.string.you_did) + " " + getString(getResult().getNameRes()));
-        TextView m = root.findViewById(R.id.message);
-        m.setText(createMsg());
-        TextView c = root.findViewById(R.id.games_completed);
-        c.setText("" + gamesCompleted);
-        FloatingActionButton b = root.findViewById(R.id.exit);
-        b.setOnClickListener(v -> restartClickListener.onRestartClick());
-        return root;
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (completedGames != null) // bug fix (hack)
+            updateUI();
     }
 
-    private String createMsg() {
+    private void updateUI() {
+        view.setTitle(getTitle());
+        view.setMessage(getMessage());
+        int score = Score.calculate(completedGames);
+        view.setScore(""+ score +" " + getString(R.string.points));
+        if(score > 0){
+            view.setGameDetails(getDetails());
+        }else{
+            view.hideDetails();
+        }
+    }
+
+    private String getDetails() {
+        int easy = 0;
+        int normal = 0;
+        int hard = 0;
+        for(Game g : completedGames){
+            if(g.getDifficulty() == GameDifficulty.EASY){
+                ++easy;
+            }else if(g.getDifficulty() == GameDifficulty.HARD){
+                ++hard;
+            }else{
+                ++normal;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(getString(R.string.score_analysis) + "\n");
+        if(easy > 0){
+            sb.append(getDetailLine(easy, getString(R.string.difficulity_easy), Score.POINTS_EASY) + "\n");
+        }
+        if(normal > 0){
+            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Score.POINTS_NORMAL)+ "\n");
+        }
+        if(hard > 0){
+            sb.append(getDetailLine(hard, getString(R.string.difficulity_hard), Score.POINTS_HARD));
+        }
+        return sb.toString();
+    }
+
+    private String getDetailLine(int count, String difficulty, int points) {
+        return String.format("%d %s (x %d)", count, difficulty, points);
+    }
+
+    private String getTitle() {
+        String prefix = getString(R.string.you_did) + " ";
+        String result = getString(getResult().getNameRes()) + " ";
+        return prefix + result;
+    }
+
+    private String getMessage() {
         String prefix = getString(R.string.lightning_round_completed_prefix) + " " +
-                gamesCompleted + " " +
+                completedGames.size() + " " +
                 getString(R.string.out_of_sufix) + " " +
-                gameCount + ".";
+                gameCount + ". ";
         String suffix = getString(getResult().getMessageRes());
         return prefix + suffix;
     }
 
     private ResultFragment.Result getResult() {
-        double percent = gamesCompleted / (gameCount * 1.0);
+        double percent = completedGames.size() / (gameCount * 1.0);
         if (percent >= 0d && percent < 0.3d) {
             return ResultFragment.Result.BAD;
         } else if (percent >= 0.3d && percent < 0.7d) {
@@ -73,26 +123,32 @@ public class ResultFragment extends Fragment {
         }
     }
 
-    public void setGamesCompleted(int gamesCompleted) {
-        this.gamesCompleted = gamesCompleted;
+    public void setCompletedGames(List<Game> completedGames) {
+        this.completedGames = completedGames;
     }
 
-    public void setRestartClickListener(RestartClickListener listener) {
-        restartClickListener = listener;
+    public void setResultButtonClickListener(ResultButtonClickListener listener) {
+        resultButtonClickListener = listener;
     }
 
     public void setGameCount(int gameCount) {
         this.gameCount = gameCount;
     }
 
-    public interface RestartClickListener {
-        void onRestartClick();
+    @Override
+    public void onButtonClick() {
+        resultButtonClickListener.onResultButtonClick();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        setRestartClickListener(null);
+        Log.d("malakia", "Fragment destroyed");
+        setResultButtonClickListener(null);
+    }
+
+    public interface ResultButtonClickListener {
+        void onResultButtonClick();
     }
 
     private enum Result {

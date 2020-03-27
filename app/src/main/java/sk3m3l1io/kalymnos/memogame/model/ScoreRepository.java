@@ -12,4 +12,6 @@ public interface ScoreRepository {
     void setScoreListener(ScoreListener listener);
 
     void loadScores();
+
+    void saveScore(int score, Player player);
 }

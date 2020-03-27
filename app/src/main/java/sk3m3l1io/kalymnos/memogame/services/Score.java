@@ -1,16 +1,18 @@
 package sk3m3l1io.kalymnos.memogame.services;
 
+import java.util.List;
+
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 
 public final class Score {
-    private static final int POINTS_EASY = 100;
-    private static final int POINTS_NORMAL = 150;
-    private static final int POINTS_HARD = 200;
+    public static final int POINTS_EASY = 100;
+    public static final int POINTS_NORMAL = 150;
+    public static final int POINTS_HARD = 200;
 
     private Score() {
     }
 
-    public static int calculate(Game[] completedGames) {
+    public static int calculate(List<Game> completedGames) {
         int sum = 0;
         for (Game g : completedGames)
             sum += getPoints(g);

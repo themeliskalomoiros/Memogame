@@ -1,6 +1,8 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,11 @@ import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
+import sk3m3l1io.kalymnos.memogame.model.FakeScoreRepository;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
+import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
+import sk3m3l1io.kalymnos.memogame.services.Score;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.LightningView;
 import sk3m3l1io.kalymnos.memogame.view.game.LightningViewImp;
@@ -23,15 +28,16 @@ public class LightningActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,
-        ResultFragment.RestartClickListener {
+        ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 120000;
+    private static final int GAME_DURATION = 60000;
 
     private int currentGame = 0;
     private boolean firstGameBegun;
     private List<Game> games;
-    private List<Game> gamesCompleted;
+    private List<Game> completedGames;
 
+    private Player player;
     private LightningView view;
     private CountDownTimerReporter timer;
 
@@ -42,7 +48,8 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        gamesCompleted = new ArrayList<>();
+        completedGames = new ArrayList<>();
+        player = getIntent().getParcelableExtra(Player.class.getSimpleName());
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         Collections.shuffle(games);
         view = new LightningViewImp(getLayoutInflater(), null);
@@ -73,7 +80,7 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     private void updateUI(Game g) {
-        view.setGamesCompleted(gamesCompleted.size());
+        view.setGamesCompleted(completedGames.size());
         view.setDifficulty(g.getDifficulty());
         if (!firstGameBegun) {
             view.setTitle(getString(R.string.tap_to_start));
@@ -102,12 +109,20 @@ public class LightningActivity extends AppCompatActivity implements
             view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
             addResultFragment();
+            saveScore();
         }
     }
 
+    private void saveScore() {
+        int score = Score.calculate(completedGames);
+        // TODO: swap with real repository
+        new FakeScoreRepository().saveScore(score, player);
+    }
+
     private void addResultFragment() {
+        Log.d("malakia", "Adding ResultFragment");
         ResultFragment f = new ResultFragment();
-        f.setGamesCompleted(gamesCompleted.size());
+        f.setCompletedGames(completedGames);
         f.setGameCount(games.size());
         getSupportFragmentManager()
                 .beginTransaction()
@@ -127,10 +142,11 @@ public class LightningActivity extends AppCompatActivity implements
 
     @Override
     public void onGameCompleted() {
-        gamesCompleted.add(games.get(currentGame));
-        if (gamesCompleted.size() == games.size()) {
+        completedGames.add(games.get(currentGame));
+        if (completedGames.size() == games.size()) {
             timer.cancel();
             addResultFragment();
+            saveScore();
         } else {
             addGameFragment();
         }
@@ -147,7 +163,7 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRestartClick() {
+    public void onResultButtonClick() {
         recreate();
     }
 }

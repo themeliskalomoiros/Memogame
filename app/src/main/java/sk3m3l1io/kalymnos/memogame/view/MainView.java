@@ -2,7 +2,7 @@ package sk3m3l1io.kalymnos.memogame.view;
 
 public interface MainView extends ViewMvc {
     interface ClickListener {
-        void onHotRoundClick();
+        void onLightningRoundClick();
 
         void onPractiseClick();
 
