@@ -1,7 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.view.score;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             View v = LayoutInflater.from(context).inflate(R.layout.item_player_score_medal, parent, false);
             return new MedalViewHolder(v);
         } else {
-            View v = LayoutInflater.from(context).inflate(R.layout.item_player_score, parent, false);
+            View v = LayoutInflater.from(context).inflate(R.layout.item_player_score_numeric, parent, false);
             return new NumericViewHolder(v);
         }
     }
@@ -52,23 +53,10 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return TYPE_NUMERIC;
     }
 
-    int deleteme = 0;
-
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder vh, int pos) {
         Player p = players.get(pos);
-        vh.name.setText(p.getName());
-        vh.score.setText("" + p.getScore());
-
-        if (getItemViewType(pos) == TYPE_MEDAL) {
-            MedalViewHolder m = (MedalViewHolder) vh;
-            if (pos == 0) m.medal.setImageResource(R.drawable.medal_first_place_48px);
-            if (pos == 1) m.medal.setImageResource(R.drawable.medal_second_place_48px);
-            if (pos == 2) m.medal.setImageResource(R.drawable.medal_third_place_48px);
-        } else {
-            ((NumericViewHolder) vh).position.setText("" + (pos + 1));
-        }
-
+        vh.bind(p);
     }
 
     @Override
@@ -89,6 +77,18 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             score = itemView.findViewById(R.id.user_score);
             image = itemView.findViewById(R.id.user_image);
         }
+
+        void bind(Player p){
+            name.setText(p.getName());
+            score.setText("" + p.getScore());
+            if (p.getPhotoUrl() != null){
+                Picasso.get()
+                        .load(p.getPhotoUrl())
+                        .placeholder(R.drawable.user_48px)
+                        .error(R.drawable.ic_error_outline_black_48dp)
+                        .into(image);
+            }
+        }
     }
 
     class NumericViewHolder extends ScoreViewHolder {
@@ -98,6 +98,12 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             super(itemView);
             position = itemView.findViewById(R.id.user_position);
         }
+
+        @Override
+        void bind(Player p) {
+            super.bind(p);
+            position.setText("" + (getAdapterPosition() + 1));
+        }
     }
 
     class MedalViewHolder extends ScoreViewHolder {
@@ -106,6 +112,14 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         public MedalViewHolder(@NonNull View itemView) {
             super(itemView);
             medal = itemView.findViewById(R.id.medal);
+        }
+
+        @Override
+        void bind(Player p) {
+            super.bind(p);
+            if (getAdapterPosition() == 0) medal.setImageResource(R.drawable.medal_first_place_48px);
+            if (getAdapterPosition() == 1) medal.setImageResource(R.drawable.medal_second_place_48px);
+            if (getAdapterPosition() == 2) medal.setImageResource(R.drawable.medal_third_place_48px);
         }
     }
 }
