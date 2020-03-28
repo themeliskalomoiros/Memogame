@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private void initGoogleSignInClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
@@ -152,7 +151,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private Player createPlayerFromGoogle() {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        return new Player(acc.getDisplayName(), acc.getEmail(), acc.getPhotoUrl());
+        Player p = new Player(acc.getDisplayName(), acc.getEmail());
+        if (acc.getPhotoUrl() != null)
+            p.setPhotoUrl(acc.getPhotoUrl().toString());
+        return p;
     }
 
     @Override

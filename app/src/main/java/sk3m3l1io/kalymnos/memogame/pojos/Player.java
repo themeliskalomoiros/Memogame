@@ -1,18 +1,19 @@
 package sk3m3l1io.kalymnos.memogame.pojos;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public final class Player implements Parcelable {
-    private final String name;
-    private final String email;
-    private final Uri photoUrl;
+    private String name;
+    private String email;
+    private String photoUrl;
 
-    public Player(String name, String email, Uri photoUrl) {
+    public Player() {
+    }
+
+    public Player(String name, String email) {
         this.name = name;
         this.email = email;
-        this.photoUrl = photoUrl;
     }
 
     public String getName() {
@@ -23,14 +24,18 @@ public final class Player implements Parcelable {
         return email;
     }
 
-    public Uri getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     protected Player(Parcel in) {
         name = in.readString();
         email = in.readString();
-        photoUrl = in.readParcelable(Uri.class.getClassLoader());
+        photoUrl = in.readString();
     }
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {
@@ -54,6 +59,6 @@ public final class Player implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(email);
-        dest.writeParcelable(photoUrl, flags);
+        dest.writeString(photoUrl);
     }
 }

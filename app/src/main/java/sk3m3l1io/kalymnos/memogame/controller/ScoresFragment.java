@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import sk3m3l1io.kalymnos.memogame.model.FakeScoreRepository;
+import sk3m3l1io.kalymnos.memogame.model.FirebaseScoreRepository;
 import sk3m3l1io.kalymnos.memogame.model.ScoreRepository;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreView;
@@ -42,8 +42,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: Replace with real repository
-        repo = new FakeScoreRepository();
+        repo = new FirebaseScoreRepository();
         repo.setScoreListener(this);
     }
 
@@ -76,7 +75,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
         int[] s = new int[keys.size()];
         Iterator<Integer> it = keys.iterator();
         int i = 0;
-        while (it.hasNext()){
+        while (it.hasNext()) {
             s[i++] = it.next();
         }
         return s;
@@ -86,7 +85,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
         Player[] p = new Player[values.size()];
         Iterator<Player> it = values.iterator();
         int i = 0;
-        while (it.hasNext()){
+        while (it.hasNext()) {
             p[i++] = it.next();
         }
         return p;

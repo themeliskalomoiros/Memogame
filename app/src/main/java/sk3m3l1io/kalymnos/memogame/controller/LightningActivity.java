@@ -2,7 +2,6 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
-import sk3m3l1io.kalymnos.memogame.model.FakeScoreRepository;
+import sk3m3l1io.kalymnos.memogame.model.FirebaseScoreRepository;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
@@ -115,8 +114,7 @@ public class LightningActivity extends AppCompatActivity implements
 
     private void saveScore() {
         int score = Score.calculate(completedGames);
-        // TODO: swap with real repository
-        new FakeScoreRepository().saveScore(score, player);
+        new FirebaseScoreRepository().saveScore(score, player);
     }
 
     private void addResultFragment() {

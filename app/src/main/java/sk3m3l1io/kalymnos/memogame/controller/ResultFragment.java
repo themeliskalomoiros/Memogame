@@ -20,7 +20,7 @@ import sk3m3l1io.kalymnos.memogame.services.Score;
 import sk3m3l1io.kalymnos.memogame.view.score.ResultView;
 import sk3m3l1io.kalymnos.memogame.view.score.ResultViewImp;
 
-public class ResultFragment extends Fragment implements ResultView.ButtonClickListener{
+public class ResultFragment extends Fragment implements ResultView.ButtonClickListener {
     private int gameCount;
     private List<Game> completedGames;
     private ResultView view;
@@ -56,10 +56,10 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         view.setTitle(getTitle());
         view.setMessage(getMessage());
         int score = Score.calculate(completedGames);
-        view.setScore(""+ score +" " + getString(R.string.points));
-        if(score > 0){
+        view.setScore("" + score + " " + getString(R.string.points));
+        if (score > 0) {
             view.setGameDetails(getDetails());
-        }else{
+        } else {
             view.hideDetails();
         }
     }
@@ -68,24 +68,24 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         int easy = 0;
         int normal = 0;
         int hard = 0;
-        for(Game g : completedGames){
-            if(g.getDifficulty() == GameDifficulty.EASY){
+        for (Game g : completedGames) {
+            if (g.getDifficulty() == GameDifficulty.EASY) {
                 ++easy;
-            }else if(g.getDifficulty() == GameDifficulty.HARD){
+            } else if (g.getDifficulty() == GameDifficulty.HARD) {
                 ++hard;
-            }else{
+            } else {
                 ++normal;
             }
         }
         StringBuilder sb = new StringBuilder();
         sb.append(getString(R.string.score_analysis) + "\n");
-        if(easy > 0){
+        if (easy > 0) {
             sb.append(getDetailLine(easy, getString(R.string.difficulity_easy), Score.POINTS_EASY) + "\n");
         }
-        if(normal > 0){
-            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Score.POINTS_NORMAL)+ "\n");
+        if (normal > 0) {
+            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Score.POINTS_NORMAL) + "\n");
         }
-        if(hard > 0){
+        if (hard > 0) {
             sb.append(getDetailLine(hard, getString(R.string.difficulity_hard), Score.POINTS_HARD));
         }
         return sb.toString();

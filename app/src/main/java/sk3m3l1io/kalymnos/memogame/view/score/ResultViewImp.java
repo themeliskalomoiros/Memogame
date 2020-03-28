@@ -14,7 +14,7 @@ public class ResultViewImp implements ResultView {
     private FloatingActionButton button;
     private TextView title, message, score, details;
 
-    public ResultViewImp(LayoutInflater inflater, ViewGroup container){
+    public ResultViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_result, container, false);
         button = root.findViewById(R.id.fab);
         title = root.findViewById(R.id.title);
