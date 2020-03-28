@@ -92,7 +92,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         void bind(int s, Player p) {
             name.setText(p.getName());
             boolean isUser = p.getId().equals(user.getId());
-            if (isUser){
+            if (isUser) {
                 name.setTextColor(context.getResources().getColor(R.color.symbolMatchColor));
                 name.setTypeface(Typeface.DEFAULT_BOLD);
             }

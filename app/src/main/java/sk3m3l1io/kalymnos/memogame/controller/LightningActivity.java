@@ -29,7 +29,7 @@ public class LightningActivity extends AppCompatActivity implements
         MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 120000;
+    private static final int GAME_DURATION = 150000;
 
     private int currentGame = 0;
     private boolean firstGameBegun;
@@ -114,7 +114,7 @@ public class LightningActivity extends AppCompatActivity implements
 
     private void saveScore() {
         int score = Score.calculate(completedGames);
-        Log.d("malakia", "Saving "+score+" score.");
+        Log.d("malakia", "Saving " + score + " score.");
         new FirebaseScoreRepository().saveScore(score, player);
     }
 

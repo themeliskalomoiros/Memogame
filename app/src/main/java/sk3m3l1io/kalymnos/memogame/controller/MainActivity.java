@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity implements
     private void initGoogleSignInClient() {
         GoogleSignInOptions gso =
                 new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .build();
+                        .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements
             view.setPlayerName(account.getDisplayName());
             view.showPlayerName();
         } else {
-            view.setSignInButtonImage(R.drawable.google_48px);
+            view.setSignInButtonImage(R.drawable.user_pink_48px);
         }
     }
 
@@ -153,10 +154,15 @@ public class MainActivity extends AppCompatActivity implements
 
     private Player createPlayerFromGoogle() {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        Player p = new Player(acc.getId(), acc.getDisplayName(), acc.getEmail());
-        if (acc.getPhotoUrl() != null)
-            p.setPhotoUrl(acc.getPhotoUrl().toString());
-        return p;
+        if (acc != null) {
+            Player p = new Player(acc.getId(), acc.getDisplayName(), acc.getEmail());
+            if (acc.getPhotoUrl() != null) {
+                p.setPhotoUrl(acc.getPhotoUrl().toString());
+            }
+            return p;
+        }
+
+        return null;
     }
 
     @Override
@@ -173,9 +179,14 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLeaderBoardClick() {
-        Intent i = new Intent(this, LeaderBoardActivity.class);
-        i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
-        startActivity(i);
+        Player p = createPlayerFromGoogle();
+        if (p != null) {
+            Intent i = new Intent(this, LeaderBoardActivity.class);
+            i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
+            startActivity(i);
+        } else {
+            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @NonNull
@@ -232,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSuccess(Void aVoid) {
         Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
-        view.setSignInButtonImage(R.drawable.google_48px);
+        view.setSignInButtonImage(R.drawable.user_pink_48px);
         view.hidePlayerName();
     }
 }

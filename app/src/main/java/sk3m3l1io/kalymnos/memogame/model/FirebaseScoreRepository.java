@@ -63,9 +63,9 @@ public class FirebaseScoreRepository implements ScoreRepository {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     boolean playerFound = player.getId().equals(ds.getKey());
-                    if (playerFound){
+                    if (playerFound) {
                         Record dataFound = ds.getValue(Record.class);
-                        if (score > dataFound.score){
+                        if (score > dataFound.score) {
                             scoresRef.child(player.getId()).setValue(dataToSave);
                         }
                         return;
