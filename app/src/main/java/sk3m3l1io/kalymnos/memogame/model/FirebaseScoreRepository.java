@@ -57,20 +57,22 @@ public class FirebaseScoreRepository implements ScoreRepository {
 
     @Override
     public void saveScore(int score, Player player) {
-        Record data = new Record(score, player);
+        Record dataToSave = new Record(score, player);
         scoresRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    Record r = ds.getValue(Record.class);
-                    boolean playerFound = r.player.getEmail().equals(player.getEmail());
-                    if (playerFound) {
-                        scoresRef.child(ds.getKey()).setValue(r);
+                    boolean playerFound = player.getId().equals(ds.getKey());
+                    if (playerFound){
+                        Record dataFound = ds.getValue(Record.class);
+                        if (score > dataFound.score){
+                            scoresRef.child(player.getId()).setValue(dataToSave);
+                        }
                         return;
                     }
                 }
 
-                scoresRef.push().setValue(data);
+                scoresRef.child(player.getId()).setValue(dataToSave);
             }
 
             @Override

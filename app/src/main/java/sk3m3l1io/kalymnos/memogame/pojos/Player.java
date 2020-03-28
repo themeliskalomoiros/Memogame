@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public final class Player implements Parcelable {
+    private String id;
     private String name;
     private String email;
     private String photoUrl;
@@ -11,7 +12,8 @@ public final class Player implements Parcelable {
     public Player() {
     }
 
-    public Player(String name, String email) {
+    public Player(String id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
@@ -28,11 +30,16 @@ public final class Player implements Parcelable {
         return photoUrl;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
     protected Player(Parcel in) {
+        id = in.readString();
         name = in.readString();
         email = in.readString();
         photoUrl = in.readString();
@@ -50,6 +57,7 @@ public final class Player implements Parcelable {
         }
     };
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -57,6 +65,7 @@ public final class Player implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(email);
         dest.writeString(photoUrl);
