@@ -118,7 +118,6 @@ public class LightningActivity extends AppCompatActivity implements
     }
 
     private void addResultFragment() {
-        Log.d("malakia", "Adding ResultFragment");
         ResultFragment f = new ResultFragment();
         f.setCompletedGames(completedGames);
         f.setGameCount(games.size());
