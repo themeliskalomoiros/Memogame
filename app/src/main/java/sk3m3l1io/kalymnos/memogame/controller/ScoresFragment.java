@@ -24,6 +24,7 @@ import sk3m3l1io.kalymnos.memogame.view.score.ScoreView;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreViewImp;
 
 public class ScoresFragment extends Fragment implements ScoreRepository.ScoreListener {
+    private Player user;
     private ScoreView view;
     private ScoreRepository repo;
     private ScoresLoadListener listener;
@@ -67,7 +68,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
             sortedScores.putAll(scores);
             int[] s = getKeysFrom(sortedScores.keySet());
             Player[] p = getPlayersFrom(sortedScores.values());
-            view.setScores(s, p);
+            view.setScores(s, p, user);
             listener.onLoadFinished();
         }
     }
@@ -90,6 +91,10 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
             p[i++] = it.next();
         }
         return p;
+    }
+
+    public void setUser(Player user) {
+        this.user = user;
     }
 
     interface ScoresLoadListener {

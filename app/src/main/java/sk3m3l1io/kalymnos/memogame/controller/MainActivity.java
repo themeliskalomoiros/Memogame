@@ -173,7 +173,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLeaderBoardClick() {
-        startActivity(new Intent(this, LeaderBoardActivity.class));
+        Intent i = new Intent(this, LeaderBoardActivity.class);
+        i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
+        startActivity(i);
     }
 
     @NonNull

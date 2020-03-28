@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.view.score;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     private final Context context;
     private int[] scores;
     private Player[] players;
+    private Player user;
 
     public ScoreAdapter(Context context) {
         this.context = context;
@@ -72,6 +74,10 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return 0;
     }
 
+    public void setUser(Player user) {
+        this.user = user;
+    }
+
     abstract class ScoreViewHolder extends RecyclerView.ViewHolder {
         TextView name, score;
         ImageView image;
@@ -85,6 +91,11 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
         void bind(int s, Player p) {
             name.setText(p.getName());
+            boolean isUser = p.getId().equals(user.getId());
+            if (isUser){
+                name.setTextColor(context.getResources().getColor(R.color.symbolMatchColor));
+                name.setTypeface(Typeface.DEFAULT_BOLD);
+            }
             score.setText("" + s);
             if (p.getPhotoUrl() != null) {
                 Picasso.get()

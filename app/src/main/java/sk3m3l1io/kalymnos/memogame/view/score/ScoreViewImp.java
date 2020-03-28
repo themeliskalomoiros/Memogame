@@ -26,9 +26,10 @@ public class ScoreViewImp implements ScoreView {
     }
 
     @Override
-    public void setScores(int[] scores, Player[] players) {
+    public void setScores(int[] scores, Player[] players, Player user) {
         adapter.setScores(scores);
         adapter.setPlayers(players);
+        adapter.setUser(user);
         adapter.notifyDataSetChanged();
     }
 
