@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements
     private static final int LOADER_ID = 123;
     private static final int RC_SIGN_IN = 158;
 
-    private List<Game> games;
     private MainView view;
+    private List<Game> games;
     private GoogleSignInClient googleSignInClient;
 
     @Override
@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private boolean gamesExistIn(Bundle savedInstanceState) {
+        return savedInstanceState != null &&
+                savedInstanceState.containsKey(Game.class.getSimpleName());
+    }
+
     private void initGoogleSignInClient() {
         GoogleSignInOptions gso =
                 new GoogleSignInOptions
@@ -70,11 +75,6 @@ public class MainActivity extends AppCompatActivity implements
                         .requestEmail()
                         .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-    }
-
-    private boolean gamesExistIn(Bundle savedInstanceState) {
-        return savedInstanceState != null &&
-                savedInstanceState.containsKey(Game.class.getSimpleName());
     }
 
     @Override
