@@ -68,6 +68,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
             int[] s = getKeysFrom(sortedScores.keySet());
             Player[] p = getPlayersFrom(sortedScores.values());
             view.setScores(s, p);
+            listener.onLoadFinished();
         }
     }
 
