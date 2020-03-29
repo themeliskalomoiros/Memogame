@@ -77,7 +77,7 @@ public class GameFragment extends Fragment implements
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        gameProgressListener = null;
+        view.setSymbolClickListener(null);
     }
 
     @Override

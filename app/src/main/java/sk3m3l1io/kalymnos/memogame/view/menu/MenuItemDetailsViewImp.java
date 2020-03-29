@@ -13,18 +13,18 @@ public class MenuItemDetailsViewImp implements MenuItemDetailsView {
     private View root;
     private FloatingActionButton play;
     private TextView title, message;
-    private MenuItemDetailsView.PlayClickListener listener;
+    private ButtonClickListener listener;
 
     public MenuItemDetailsViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_menu_item_details, container, false);
         play = root.findViewById(R.id.fab);
-        play.setOnClickListener(v -> listener.onPlayClick());
+        play.setOnClickListener(v -> listener.onButtonClick());
         title = root.findViewById(R.id.title);
         message = root.findViewById(R.id.message);
     }
 
     @Override
-    public void setPlayClickListener(PlayClickListener listener) {
+    public void setPlayClickListener(ButtonClickListener listener) {
         this.listener = listener;
     }
 

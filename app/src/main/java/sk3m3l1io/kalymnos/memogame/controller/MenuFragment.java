@@ -67,12 +67,12 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
 
     @Override
     public void onDiceClick() {
-        listener.onRandomModeClick();
+        listener.onRandomClick();
     }
 
     @Override
     public void onArcadeClick() {
-        listener.onPractiseModeClick();
+        listener.onArcadeClick();
     }
 
     @Override
@@ -92,9 +92,9 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     public interface MenuItemClickListener {
         void onLightningModeClick();
 
-        void onRandomModeClick();
+        void onRandomClick();
 
-        void onPractiseModeClick();
+        void onArcadeClick();
 
         void onSignInClick();
 
