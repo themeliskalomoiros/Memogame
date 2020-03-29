@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/symbol_0"
+            style="@style/Symbol_Style.Disabled" />
+
+        <ImageButton
+            android:id="@+id/sign_in"
+            style="@style/Symbol_Style"
+            android:src="@drawable/user_pink_48px"/>
+
+        <ImageButton
+            android:id="@+id/symbol_2"
+            style="@style/Symbol_Style.Disabled" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/lightning_round"
+            style="@style/Symbol_Style"
+            android:src="@drawable/lightning_bolt_48px"/>
+
+        <ImageButton
+            android:id="@+id/random"
+            style="@style/Symbol_Style"
+            android:src="@drawable/dice_48px"/>
+
+        <ImageButton
+            android:id="@+id/arcade"
+            style="@style/Symbol_Style"
+            android:src="@drawable/joystick_48px"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/symbol_7"
+            style="@style/Symbol_Style.Disabled" />
+
+        <ImageButton
+            android:id="@+id/leaderboard"
+            style="@style/Symbol_Style"
+            android:src="@drawable/leaderboard_48px"/>
+
+        <ImageButton
+            android:id="@+id/symbol_8"
+            style="@style/Symbol_Style.Disabled" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/symbol_9"
+            style="@style/Symbol_Style.Disabled" />
+
+        <ImageButton
+            android:id="@+id/symbol_10"
+            style="@style/Symbol_Style.Disabled"/>
+
+        <ImageButton
+            android:id="@+id/symbol_11"
+            style="@style/Symbol_Style.Disabled" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
