@@ -31,8 +31,8 @@ import sk3m3l1io.kalymnos.memogame.model.GameRepositoryImp;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.pojos.GameMode;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
-import sk3m3l1io.kalymnos.memogame.view.MainView;
-import sk3m3l1io.kalymnos.memogame.view.MainViewImp;
+import sk3m3l1io.kalymnos.memogame.view.menu.MainView;
+import sk3m3l1io.kalymnos.memogame.view.menu.MainViewImp;
 
 public class MainActivity extends AppCompatActivity implements
         MainView.ClickListener,

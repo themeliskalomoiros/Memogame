@@ -17,7 +17,7 @@
             style="@style/Symbol_Style.Disabled" />
 
         <ImageButton
-            android:id="@+id/sign_in"
+            android:id="@+id/user"
             style="@style/Symbol_Style"
             android:src="@drawable/user_pink_48px"/>
 
