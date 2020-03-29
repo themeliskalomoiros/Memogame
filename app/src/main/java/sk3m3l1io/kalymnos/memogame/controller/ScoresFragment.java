@@ -62,6 +62,12 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreLis
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    @Override
     public void onScoresLoaded(Map<Integer, Player> scores) {
         if (scores != null && scores.size() > 0) {
             SortedMap<Integer, Player> sortedScores = new TreeMap<>((s1, s2) -> s2 - s1);

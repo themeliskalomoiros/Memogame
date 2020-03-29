@@ -75,10 +75,21 @@ public class GameFragment extends Fragment implements
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        gameProgressListener = null;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        gameProgressListener = null;
         gameProcedure.detachListeners();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        gameProgressListener = null;
     }
 
     public void setGame(Game game) {

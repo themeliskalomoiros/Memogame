@@ -3,10 +3,10 @@ package sk3m3l1io.kalymnos.memogame.view.menu;
 import sk3m3l1io.kalymnos.memogame.view.ViewMvc;
 
 public interface MenuView extends ViewMvc {
-    interface MenuItemClickListener {
+    interface SymbolClickListener {
         void onLightningClick();
 
-        void onRandomClick();
+        void onDiceClick();
 
         void onArcadeClick();
 
@@ -15,7 +15,7 @@ public interface MenuView extends ViewMvc {
         void onUserClick();
     }
 
-    void setMenuClickListener(MenuItemClickListener listener);
+    void setMenuClickListener(SymbolClickListener listener);
 
     void setUserIconToSignOut();
 

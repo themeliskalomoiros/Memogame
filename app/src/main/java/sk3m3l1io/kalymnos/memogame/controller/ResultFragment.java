@@ -2,7 +2,6 @@ package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,10 +126,6 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         this.completedGames = completedGames;
     }
 
-    public void setResultButtonClickListener(ResultButtonClickListener listener) {
-        resultButtonClickListener = listener;
-    }
-
     public void setGameCount(int gameCount) {
         this.gameCount = gameCount;
     }
@@ -141,10 +136,15 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("malakia", "Fragment destroyed");
-        setResultButtonClickListener(null);
+    public void onDestroyView() {
+        super.onDestroyView();
+        view.setButtonClickListener(null);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resultButtonClickListener = null;
     }
 
     public interface ResultButtonClickListener {
