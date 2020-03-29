@@ -83,7 +83,7 @@ public class LightningModeActivity extends AppCompatActivity implements
         view.setDifficulty(g.getDifficulty());
         if (!firstGameBegun) {
             view.setTitle(getString(R.string.tap_to_start));
-            view.setTimeMaxProgress(GAME_DURATION);
+            view.setTimeProgressMax(GAME_DURATION);
             view.setTimeProgress(GAME_DURATION);
         } else {
             view.setTitle(g.getTitle());

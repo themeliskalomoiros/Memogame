@@ -9,17 +9,16 @@ import android.widget.TextView;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
 
-public class LightningViewImp implements LightningView {
+public class RandomViewImp implements RandomView {
     private final View root;
-    private final TextView title, gamesCompleted, difficulty;
+    private final TextView title, difficulty;
     private final ProgressBar progressBar;
 
-    public LightningViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_lightning, container, false);
+    public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.activity_random_mode, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);
-        gamesCompleted = root.findViewById(R.id.games_completed);
     }
 
     @Override
@@ -39,17 +38,7 @@ public class LightningViewImp implements LightningView {
 
     @Override
     public int getGameContainerId() {
-        return R.id.game_container;
-    }
-
-    @Override
-    public View getRootView() {
-        return root;
-    }
-
-    @Override
-    public void setGamesCompleted(int count) {
-        gamesCompleted.setText("" + count);
+        return R.id.fragment_container;
     }
 
     @Override
@@ -67,5 +56,10 @@ public class LightningViewImp implements LightningView {
                 this.difficulty.setText(R.string.difficulity_normal);
                 this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchColor));
         }
+    }
+
+    @Override
+    public View getRootView() {
+        return root;
     }
 }

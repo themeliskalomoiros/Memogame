@@ -7,7 +7,7 @@ public interface TimerViewMvc extends ViewMvc {
 
     void setTimeProgress(int progress);
 
-    void setTimeMaxProgress(int progress);
+    void setTimeProgressMax(int progress);
 
     int getGameContainerId();
 }

@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity
                 i.setClass(this, PractiseModeActivity.class);
                 break;
             case RANDOM:
-                // TODO: handle GameMode.RANDOM case
+                i.setClass(this, RandomModeActivity.class);
                 break;
         }
 
