@@ -14,13 +14,11 @@ import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
 public class PractiseViewImp implements PractiseView {
     private final View root;
     private final TextView title, difficulty;
-    private final ProgressBar progressBar;
     private final FloatingActionButton next, previous;
     private ChangeGameClickListener changeGameClickListener;
 
     public PractiseViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_practise, container, false);
-        progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);
         next = root.findViewById(R.id.next);
@@ -54,16 +52,6 @@ public class PractiseViewImp implements PractiseView {
     @Override
     public void setTitle(String title) {
         this.title.setText(title);
-    }
-
-    @Override
-    public void setTimeProgress(int progress) {
-        progressBar.setProgress(progress);
-    }
-
-    @Override
-    public void setTimeMaxProgress(int progress) {
-        progressBar.setMax(progress);
     }
 
     @Override

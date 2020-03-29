@@ -2,7 +2,7 @@ package sk3m3l1io.kalymnos.memogame.view.game;
 
 import sk3m3l1io.kalymnos.memogame.view.ViewMvc;
 
-public interface GameContainerViewMvc extends ViewMvc {
+public interface TimerViewMvc extends ViewMvc {
     void setTitle(String title);
 
     void setTimeProgress(int progress);

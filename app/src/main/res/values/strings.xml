@@ -2,7 +2,7 @@
     <string name="app_name">Memogame</string>
     <string name="play_button">Play Random</string>
     <string name="victory">You\'ve won!</string>
-    <string name="next_game">Congratulation, continue to the next game?</string>
+    <string name="next_game">Nice, move to the next game?</string>
     <string name="no">No</string>
     <string name="defeat">You lost!</string>
     <string name="sign_out_cancel">Sign out canceled.</string>
