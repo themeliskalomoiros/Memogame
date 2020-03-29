@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,9 +24,11 @@ public class GameFragment extends Fragment implements
         GameProcedure.CompletionListener {
     private Game game;
     private boolean gameBegun;
-    private GameView view;
     private GameProcedure gameProcedure;
     private GameProgressListener gameProgressListener;
+
+    private GameView view;
+    private MediaPlayer celebrationSound;
 
     @Override
     public void onAttach(Context context) {
@@ -59,6 +62,19 @@ public class GameFragment extends Fragment implements
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        celebrationSound = MediaPlayer.create(getContext(), R.raw.hero_celebration);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        celebrationSound.release();
+        celebrationSound = null;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         gameProgressListener = null;
@@ -71,11 +87,16 @@ public class GameFragment extends Fragment implements
 
     @Override
     public void onMatch(int pos1, int pos2) {
-        view.disableSymbol(pos1);
-        view.disableSymbol(pos2);
+        updateMatchUI(pos1, pos2);
+        celebrationSound.start();
+    }
+
+    private void updateMatchUI(int symbolPos1, int symbolPos2) {
+        view.disableSymbol(symbolPos1);
+        view.disableSymbol(symbolPos2);
         int symbolColor = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolColor(pos1, symbolColor);
-        view.setSymbolColor(pos2, symbolColor);
+        view.setSymbolColor(symbolPos1, symbolColor);
+        view.setSymbolColor(symbolPos2, symbolColor);
     }
 
     @Override
