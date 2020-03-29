@@ -262,11 +262,11 @@ public class MainActivity extends AppCompatActivity
             case LIGHTNING_ROUND:
                 GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
                 Player p = GoogleUtils.createPlayerFrom(acc);
-                i.setClass(this, LightningActivity.class);
+                i.setClass(this, LightningModeActivity.class);
                 i.putExtra(Player.class.getSimpleName(), p);
                 break;
             case PRACTISE:
-                i.setClass(this, PractiseActivity.class);
+                i.setClass(this, PractiseModeActivity.class);
                 break;
             case RANDOM:
                 // TODO: handle GameMode.RANDOM case

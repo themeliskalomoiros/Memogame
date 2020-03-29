@@ -23,7 +23,7 @@ import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.LightningView;
 import sk3m3l1io.kalymnos.memogame.view.game.LightningViewImp;
 
-public class LightningActivity extends AppCompatActivity implements
+public class LightningModeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,

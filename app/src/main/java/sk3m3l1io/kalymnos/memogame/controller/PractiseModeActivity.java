@@ -16,7 +16,7 @@ import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.PractiseView;
 import sk3m3l1io.kalymnos.memogame.view.game.PractiseViewImp;
 
-public class PractiseActivity extends AppCompatActivity implements
+public class PractiseModeActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener{
