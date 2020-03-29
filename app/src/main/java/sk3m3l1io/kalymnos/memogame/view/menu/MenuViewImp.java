@@ -9,15 +9,15 @@ import sk3m3l1io.kalymnos.memogame.R;
 
 public class MenuViewImp implements MenuView {
     private View root;
-    private ImageButton lightning, arcade, random, leaderboard, user;
+    private ImageButton lightning, practise, random, leaderboard, user;
     private SymbolClickListener listener;
 
     public MenuViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_menu, container, false);
         lightning = root.findViewById(R.id.lightning_round);
         lightning.setOnClickListener(v -> listener.onLightningClick());
-        arcade = root.findViewById(R.id.arcade);
-        arcade.setOnClickListener(v -> listener.onArcadeClick());
+        practise = root.findViewById(R.id.practise);
+        practise.setOnClickListener(v -> listener.onJoystickClick());
         random = root.findViewById(R.id.random);
         random.setOnClickListener(v -> listener.onDiceClick());
         leaderboard = root.findViewById(R.id.leaderboard);

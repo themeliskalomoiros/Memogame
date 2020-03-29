@@ -8,7 +8,7 @@ public interface MenuView extends ViewMvc {
 
         void onDiceClick();
 
-        void onArcadeClick();
+        void onJoystickClick();
 
         void onLeaderboardClick();
 

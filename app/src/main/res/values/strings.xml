@@ -41,8 +41,8 @@
     <string name="points">points</string>
     <string name="score_analysis">Score Analysis:</string>
     <string name="lightning_round_message">"Time is limited, complete as many games as you can! "</string>
-    <string name="arcade">Arcade</string>
+    <string name="practise">Practise</string>
     <string name="random">Random</string>
-    <string name="arcade_message">Complete all games possible. Lloose once and  you\'re lost!</string>
+    <string name="practise_message">Explore all games.There\'s no timer thus no competition.Enjoy!</string>
     <string name="random_message">A random game will pop up, complete it!</string>
 </resources>

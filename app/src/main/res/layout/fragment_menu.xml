@@ -34,14 +34,14 @@
         android:gravity="center">
 
         <ImageButton
-            android:id="@+id/arcade"
-            style="@style/Symbol_Style"
-            android:src="@drawable/joystick_48px"/>
-
-        <ImageButton
             android:id="@+id/random"
             style="@style/Symbol_Style"
             android:src="@drawable/dice_48px"/>
+
+        <ImageButton
+            android:id="@+id/practise"
+            style="@style/Symbol_Style"
+            android:src="@drawable/joystick_48px"/>
 
         <ImageButton
             android:id="@+id/lightning_round"

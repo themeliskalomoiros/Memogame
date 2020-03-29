@@ -144,19 +144,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRandomClick() {
-        gameMode = GameMode.RANDOM;
-        addMenuItemDetailsFragmentToBackStack(gameMode);
-    }
-
-    @Override
-    public void onArcadeClick() {
+    public void onRandomModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            gameMode = GameMode.ARCADE;
+            gameMode = GameMode.RANDOM;
             addMenuItemDetailsFragmentToBackStack(gameMode);
         } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onPractiseModeClick() {
+        gameMode = GameMode.PRACTISE;
+        addMenuItemDetailsFragmentToBackStack(gameMode);
     }
 
     private void addMenuItemDetailsFragmentToBackStack(GameMode mode) {
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity
                 i.setClass(this, LightningActivity.class);
                 i.putExtra(Player.class.getSimpleName(), p);
                 break;
-            case ARCADE:
+            case PRACTISE:
                 i.setClass(this, PractiseActivity.class);
                 break;
             case RANDOM:

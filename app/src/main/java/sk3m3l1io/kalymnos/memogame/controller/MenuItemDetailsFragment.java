@@ -69,23 +69,23 @@ public class MenuItemDetailsFragment extends Fragment
 
     private static int getTitleResOf(GameMode m){
         switch (m){
-            case ARCADE:
-                return R.string.arcade;
+            case RANDOM:
+                return R.string.random;
             case LIGHTNING_ROUND:
                 return R.string.lightning_round;
             default:
-                return R.string.random;
+                return R.string.practise;
         }
     }
 
     private static int getMessageResOf(GameMode m) {
         switch (m){
-            case ARCADE:
-                return R.string.arcade_message;
+            case RANDOM:
+                return R.string.random_message;
             case LIGHTNING_ROUND:
                 return R.string.lightning_round_message;
             default:
-                return R.string.random_message;
+                return R.string.practise_message;
         }
     }
 }
