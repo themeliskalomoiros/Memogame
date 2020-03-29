@@ -38,7 +38,7 @@ public class MenuViewImp implements MenuView {
 
     @Override
     public void setUserIconToDefault() {
-        user.setImageResource(R.drawable.user_48px);
+        user.setImageResource(R.drawable.user_pink_48px);
     }
 
     @Override

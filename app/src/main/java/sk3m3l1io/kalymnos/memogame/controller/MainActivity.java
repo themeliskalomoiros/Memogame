@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
@@ -35,7 +37,7 @@ import sk3m3l1io.kalymnos.memogame.view.menu.MainView;
 import sk3m3l1io.kalymnos.memogame.view.menu.MainViewImp;
 
 public class MainActivity extends AppCompatActivity implements
-        MainView.ClickListener,
+        MenuFragment.MenuItemClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnSuccessListener<Void> {
     private static final int LOADER_ID = 123;
@@ -49,23 +51,28 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = new MainViewImp(getLayoutInflater(), null);
-        view.setClickListener(this);
         setContentView(view.getRootView());
+        addMenuFragment();
         loadGames(savedInstanceState);
         initGoogleSignInClient();
     }
 
+    private void addMenuFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .replace(view.getMenuContainerId(), new MenuFragment())
+                .commit();
+    }
+
     private void loadGames(Bundle savedInstanceState) {
-        if (gamesExistIn(savedInstanceState)) {
+        boolean gamesExist = savedInstanceState != null &&
+                savedInstanceState.containsKey(Game.class.getSimpleName());
+        if (gamesExist) {
             games = savedInstanceState.getParcelableArrayList(Game.class.getSimpleName());
         } else {
             getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
         }
-    }
-
-    private boolean gamesExistIn(Bundle savedInstanceState) {
-        return savedInstanceState != null &&
-                savedInstanceState.containsKey(Game.class.getSimpleName());
     }
 
     private void initGoogleSignInClient() {
@@ -114,42 +121,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void updateUI(GoogleSignInAccount account) {
+        MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
         if (account != null) {
-            view.setSignInButtonImage(R.drawable.sign_out_48px);
+            f.setSignOutIcon();
             view.setPlayerName(account.getDisplayName());
             view.showPlayerName();
         } else {
-            view.setSignInButtonImage(R.drawable.user_pink_48px);
+            f.setDefaultSignInIcon();
         }
-    }
-
-    @Override
-    public void onLightningRoundClick() {
-        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        if (acc != null) {
-            startActivity(getPlayModeIntent(GameMode.HOT_ROUND));
-        } else {
-            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onPractiseClick() {
-        startActivity(getPlayModeIntent(GameMode.PRACTISE));
-    }
-
-    private Intent getPlayModeIntent(GameMode mode) {
-        Intent i = new Intent();
-
-        if (mode == GameMode.HOT_ROUND) {
-            i.setClass(this, LightningActivity.class);
-            i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
-        } else if (mode == GameMode.PRACTISE) {
-            i.setClass(this, PractiseActivity.class);
-        }
-
-        i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
-        return i;
     }
 
     private Player createPlayerFromGoogle() {
@@ -166,6 +145,38 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onLightningModeClick() {
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
+        if (acc != null) {
+            startActivity(getPlayModeIntent(GameMode.HOT_ROUND));
+        } else {
+            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private Intent getPlayModeIntent(GameMode mode) {
+        Intent i = new Intent();
+        if (mode == GameMode.HOT_ROUND) {
+            i.setClass(this, LightningActivity.class);
+            i.putExtra(Player.class.getSimpleName(), createPlayerFromGoogle());
+        } else if (mode == GameMode.PRACTISE) {
+            i.setClass(this, PractiseActivity.class);
+        }
+        i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
+        return i;
+    }
+
+    @Override
+    public void onRandomModeClick() {
+        Toast.makeText(this, "Random mode", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPractiseModeClick() {
+        startActivity(getPlayModeIntent(GameMode.PRACTISE));
+    }
+
+    @Override
     public void onSignInClick() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
@@ -178,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLeaderBoardClick() {
+    public void onLeaderboardClick() {
         Player p = createPlayerFromGoogle();
         if (p != null) {
             Intent i = new Intent(this, LeaderBoardActivity.class);
@@ -243,7 +254,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSuccess(Void aVoid) {
         Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
-        view.setSignInButtonImage(R.drawable.user_pink_48px);
+        MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
+        f.setDefaultSignInIcon();
         view.hidePlayerName();
     }
 }
