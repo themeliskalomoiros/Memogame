@@ -1,5 +1,6 @@
 package sk3m3l1io.kalymnos.memogame.view.game;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,12 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
+    public void setAllSymbolsBackground(Drawable drawable) {
+        for (Button b : symbols)
+            b.setBackground(drawable);
+    }
+
+    @Override
     public void setSymbol(int pos, String s) {
         Button b = symbols[pos];
         b.setText(s);
@@ -90,6 +97,12 @@ public class GameViewImpl implements GameView {
     public void disableAllSymbols() {
         for (Button b : symbols)
             b.setEnabled(false);
+    }
+
+    @Override
+    public void enableAllSymbols() {
+        for (Button b : symbols)
+            b.setEnabled(true);
     }
 
     @Override

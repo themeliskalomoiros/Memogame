@@ -45,4 +45,6 @@
     <string name="random">Random</string>
     <string name="practise_message">Explore all games.There\'s no timer thus no competition.Enjoy!</string>
     <string name="random_message">A random game will pop up, complete it!</string>
+    <string name="take_a_look">Take a look...</string>
+    <string name="play">Play!</string>
 </resources>

@@ -28,6 +28,7 @@ public class GameFragment extends Fragment implements
     private GameProgressListener gameProgressListener;
 
     private GameView view;
+    private GameFragmentCreationListener gameFragmentCreationListener;
     private MediaPlayer celebrationSound;
 
     @Override
@@ -65,6 +66,8 @@ public class GameFragment extends Fragment implements
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         celebrationSound = MediaPlayer.create(getContext(), R.raw.hero_celebration);
+        if (gameFragmentCreationListener != null)
+            gameFragmentCreationListener.onGameFragmentViewCreated(this);
     }
 
     @Override
@@ -78,6 +81,7 @@ public class GameFragment extends Fragment implements
     public void onDestroyView() {
         super.onDestroyView();
         view.setSymbolClickListener(null);
+        setGameFragmentCreationListener(null);
     }
 
     @Override
@@ -98,10 +102,6 @@ public class GameFragment extends Fragment implements
 
     public void openAllSymbols() {
         view.setAllSymbols(game.getSymbols());
-    }
-
-    public void closeAllSymbols() {
-        view.coverAllSymbols(game.getCover());
     }
 
     @Override
@@ -163,9 +163,29 @@ public class GameFragment extends Fragment implements
         view.setAllSymbolsBackground(color);
     }
 
+    public void enableUI() {
+        view.enableAllSymbols();
+    }
+
+    public void disableUI() {
+        view.disableAllSymbols();
+    }
+
+    public void coverAllSymbols() {
+        view.coverAllSymbols(game.getCover());
+    }
+
+    public void setGameFragmentCreationListener(GameFragmentCreationListener listener) {
+        gameFragmentCreationListener = listener;
+    }
+
     public interface GameProgressListener {
         void onGameBegin();
 
         void onGameCompleted();
+    }
+
+    public interface GameFragmentCreationListener{
+        void onGameFragmentViewCreated(GameFragment f);
     }
 }

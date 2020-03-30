@@ -1,11 +1,14 @@
 package sk3m3l1io.kalymnos.memogame.view.game;
 
+import android.graphics.drawable.Drawable;
+
 import sk3m3l1io.kalymnos.memogame.view.ViewMvc;
 
 public interface GameView extends ViewMvc {
     int SYMBOL_COUNT = 12;
 
     interface SymbolClickListener {
+
         void onSymbolClick(int pos);
     }
 
@@ -14,6 +17,8 @@ public interface GameView extends ViewMvc {
     void setSymbolForeground(int pos, int colorRes);
 
     void setAllSymbolsBackground(int colorRes);
+
+    void setAllSymbolsBackground(Drawable drawable);
 
     void setSymbol(int pos, String s);
 
@@ -24,4 +29,6 @@ public interface GameView extends ViewMvc {
     void disableSymbol(int pos);
 
     void disableAllSymbols();
+
+    void enableAllSymbols();
 }

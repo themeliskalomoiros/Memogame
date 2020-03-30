@@ -17,8 +17,11 @@ import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.RandomViewImp;
 
+import static sk3m3l1io.kalymnos.memogame.utils.RunnableUtils.runDelayed;
+
 public class RandomModeActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,
+        GameFragment.GameFragmentCreationListener,
         CountDownTimerReporter.TimeListener,
         MessageDialog.ResponseListener {
     private static final int TIME_INTERVAL = 100;
@@ -34,12 +37,16 @@ public class RandomModeActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+        setContentView(view.getRootView());
+    }
+
+    private void init() {
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         Collections.shuffle(games);
         view = new RandomViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
-        setContentView(view.getRootView());
     }
 
     @Override
@@ -61,15 +68,27 @@ public class RandomModeActivity extends AppCompatActivity implements
         super.onAttachFragment(fragment);
         if (fragment instanceof GameFragment) {
             GameFragment f = (GameFragment) fragment;
+            f.setGameFragmentCreationListener(this);
             Game g = games.get(currentGame);
             ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
-            updateUI(g);
         }
     }
 
+    @Override
+    public void onGameFragmentViewCreated(GameFragment f) {
+        f.disableUI();
+        f.openAllSymbols();
+        view.setTitle(getString(R.string.take_a_look));
+        runDelayed(() -> {
+            f.coverAllSymbols();
+            f.enableUI();
+            updateUI(games.get(currentGame));
+            timer.begin();
+        }, 3000);
+    }
+
     private void updateUI(Game g) {
-        view.setTitle(g.getTitle());
         view.setDifficulty(g.getDifficulty());
         view.setTimeProgress(GAME_DURATION);
         view.setTimeProgressMax(GAME_DURATION);
@@ -77,8 +96,6 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     @Override
     public void onGameBegin() {
-        // Always call begin() instead of start to get a callback
-        timer.begin();
     }
 
     @Override
@@ -94,7 +111,7 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     @Override
     public void onTimerBegin() {
-        view.setTitle(getString(R.string.game_begun));
+        view.setTitle(getString(R.string.play));
     }
 
     @Override
@@ -120,23 +137,20 @@ public class RandomModeActivity extends AppCompatActivity implements
     @Override
     public void onDialogPositiveResponse(MessageDialog dialog) {
         dialog.dismiss();
-        if (dialog.getTag().equals(REPEAT_DIALOG)) {
-            addGameFragment();
-        } else if (dialog.getTag().equals(NEXT_GAME_DIALOG)) {
-            moveToNextGame();
-        }
+        if (dialog.getTag().equals(NEXT_GAME_DIALOG))
+            setNextGame();
+
+        timer.cancel();
+        addGameFragment();
     }
 
-    private void moveToNextGame() {
+    private void setNextGame() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
         } else {
             Collections.shuffle(games);
             currentGame = 0;
         }
-
-        timer.cancel();
-        addGameFragment();
     }
 
     @Override
