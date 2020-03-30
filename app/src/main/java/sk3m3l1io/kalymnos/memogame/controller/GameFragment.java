@@ -96,6 +96,14 @@ public class GameFragment extends Fragment implements
         this.game = game;
     }
 
+    public void openAllSymbols() {
+        view.setAllSymbols(game.getSymbols());
+    }
+
+    public void closeAllSymbols() {
+        view.coverAllSymbols(game.getCover());
+    }
+
     @Override
     public void onMatch(int pos1, int pos2) {
         updateMatchUI(pos1, pos2);
