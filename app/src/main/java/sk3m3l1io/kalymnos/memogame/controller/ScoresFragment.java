@@ -17,16 +17,15 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import sk3m3l1io.kalymnos.memogame.model.LightningScores;
 import sk3m3l1io.kalymnos.memogame.model.ScoreRepository;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreView;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreViewImp;
 
-public class ScoresFragment extends Fragment implements ScoreRepository.ScoresListener {
+public abstract class ScoresFragment extends Fragment implements ScoreRepository.ScoresListener {
     private Player user;
     private ScoreView view;
-    private ScoreRepository repo;
+    protected ScoreRepository repo;
     private ScoresLoadListener listener;
 
     @Override
@@ -43,9 +42,10 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoresLi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repo = new LightningScores();
-        repo.setScoresListener(this);
+        initRepository();
     }
+
+    public abstract void initRepository();
 
     @Nullable
     @Override

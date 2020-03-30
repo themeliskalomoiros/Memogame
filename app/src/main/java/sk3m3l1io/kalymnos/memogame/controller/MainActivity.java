@@ -180,8 +180,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLeaderboardClick() {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        if (acc != null) {
-            Player p = GoogleUtils.createPlayerFrom(acc);
+        Player p = GoogleUtils.createPlayerFrom(acc);
+        if (p != null) {
             Intent i = new Intent(this, LeaderBoardActivity.class);
             i.putExtra(Player.class.getSimpleName(), p);
             startActivity(i);

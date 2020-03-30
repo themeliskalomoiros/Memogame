@@ -40,13 +40,14 @@
     <string name="total_score">Total Score:</string>
     <string name="points">points</string>
     <string name="score_analysis">Score Analysis:</string>
-    <string name="lightning_round_message">"Time is limited, complete as many games as you can! "</string>
+    <string name="lightning_round_message">"The clock is ticking... Time is limited... Complete as many games as you can!"</string>
     <string name="practise">Practise</string>
     <string name="random">Random</string>
-    <string name="practise_message">Explore all games.There\'s no timer thus no competition.Enjoy!</string>
-    <string name="random_message">A random game will pop up, complete it!</string>
+    <string name="practise_message">Explore all games.There\'s no clock ticking and no competition.</string>
+    <string name="random_message">A random game will pop up and you have to complete it in time. Take care though, your lives aren\'t limitless...</string>
     <string name="take_a_look">Take a look...</string>
     <string name="play">Play!</string>
     <string name="lost_on_time_repeat_game">"Time out! "</string>
     <string name="no_more_live">You\'ve lost of your lives!</string>
+    <string name="swipe_label">Swipe between modes</string>
 </resources>
