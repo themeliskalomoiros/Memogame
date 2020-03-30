@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
@@ -34,6 +35,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
 
     private void init() {
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        Collections.sort(games, (g1, g2) -> g1.getTitle().compareTo(g2.getTitle()));
         view = new PractiseViewImp(getLayoutInflater(), null);
         view.setChangeGameClickListener(this);
         setContentView(view.getRootView());
