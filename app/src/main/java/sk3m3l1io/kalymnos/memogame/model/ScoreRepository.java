@@ -5,11 +5,11 @@ import java.util.Map;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 
 public interface ScoreRepository {
-    interface ScoreListener {
+    interface ScoresListener {
         void onScoresLoaded(Map<Integer, Player> scores);
     }
 
-    void setScoreListener(ScoreListener listener);
+    void setScoresListener(ScoresListener listener);
 
     void loadScores();
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
-import sk3m3l1io.kalymnos.memogame.model.FirebaseScoreRepository;
+import sk3m3l1io.kalymnos.memogame.model.LightningScores;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
@@ -29,7 +29,7 @@ public class LightningModeActivity extends AppCompatActivity implements
         MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 150000;
+    private static final int GAME_DURATION = 1000;
 
     private int currentGame = 0;
     private boolean firstGameBegun;
@@ -115,7 +115,7 @@ public class LightningModeActivity extends AppCompatActivity implements
     private void saveScore() {
         int score = Score.calculate(completedGames);
         Log.d("malakia", "Saving " + score + " score.");
-        new FirebaseScoreRepository().saveScore(score, player);
+        new LightningScores().saveScore(score, player);
     }
 
     private void addResultFragment() {

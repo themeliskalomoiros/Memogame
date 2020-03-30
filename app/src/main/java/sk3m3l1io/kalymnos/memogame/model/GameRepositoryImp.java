@@ -72,6 +72,4 @@ public class GameRepositoryImp implements GameRepository {
         }
         return symbols;
     }
-
-
 }

@@ -32,8 +32,10 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     private int lives = 3;
     private int gameIndex;
-    private RandomViewImp view;
+    private int ellapsedTime;
+
     private List<Game> games;
+    private RandomViewImp view;
     private CountDownTimerReporter timer;
 
     @Override
