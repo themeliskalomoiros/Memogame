@@ -1,6 +1,7 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +13,12 @@ import java.util.List;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
+import sk3m3l1io.kalymnos.memogame.model.RandomScores;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
+import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
+import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
+import sk3m3l1io.kalymnos.memogame.services.Score;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.RandomViewImp;
 
@@ -30,7 +35,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     private static final String REPEAT_DIALOG = "repeat dialog";
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
-    private int lives = 3;
+    private int lives;
     private int gameIndex;
     private int ellapsedTime;
 
@@ -81,11 +86,12 @@ public class RandomModeActivity extends AppCompatActivity implements
         f.disableUI();
         f.openAllSymbols();
         view.setTitle(getString(R.string.take_a_look));
-        view.setLives(lives = 3);
+        Game g = games.get(gameIndex);
+        updateUI(g);
+        view.setDifficulty(g.getDifficulty());
         runDelayed(() -> {
             f.coverAllSymbols();
             f.enableUI();
-            updateUI(games.get(gameIndex));
             timer.begin();
         }, 3000);
     }
@@ -94,6 +100,19 @@ public class RandomModeActivity extends AppCompatActivity implements
         view.setDifficulty(g.getDifficulty());
         view.setTimeProgress(GAME_DURATION);
         view.setTimeProgressMax(GAME_DURATION);
+        view.setDifficulty(g.getDifficulty());
+        view.setLives(lives = getLivesOf(g.getDifficulty()));
+    }
+
+    private int getLivesOf(GameDifficulty d) {
+        switch (d) {
+            case EASY:
+                return 3;
+            case HARD:
+                return 5;
+            default:
+                return 4;
+        }
     }
 
     @Override
@@ -105,6 +124,16 @@ public class RandomModeActivity extends AppCompatActivity implements
         timer.cancel();
         view.setTitle(getString(R.string.victory));
         MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.next_game), NEXT_GAME_DIALOG);
+        saveScore();
+    }
+
+    private void saveScore() {
+        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
+        int s = Score.calculate(ellapsedTime, lives);
+        new RandomScores().saveScore(s, p);
+        Log.d("malakia", "ellapsed time is " + ellapsedTime);
+        Log.d("malakia", "lives are " + lives);
+        Log.d("malakia", "score saved is " + s);
     }
 
     @Override
@@ -114,20 +143,23 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     @Override
     public void onTimerTick(int elapsedMilli) {
-        view.setTimeProgress(elapsedMilli);
+        view.setTimeProgress(ellapsedTime = elapsedMilli);
     }
 
     @Override
     public void onTimerFinish() {
         view.setTimeProgress(0);
-        handleLoss(getString(R.string.time_up)+" "+getString(R.string.repeat_game));
+        handleLoss(getString(R.string.time_up) + " " + getString(R.string.repeat_game));
     }
 
     private void handleLoss(String message) {
         timer.cancel();
         view.setTitle(getString(R.string.defeat));
         view.setLives(lives = 0);
-        ((GameFragment) getSupportFragmentManager().findFragmentById(view.getGameContainerId())).freezeUI();
+        GameFragment f = (GameFragment) getSupportFragmentManager().findFragmentById(view.getGameContainerId());
+        if (f != null) {
+            f.freezeUI();
+        }
         MessageDialog.show(this, getSupportFragmentManager(), message, REPEAT_DIALOG);
     }
 
@@ -160,7 +192,7 @@ public class RandomModeActivity extends AppCompatActivity implements
         if (--lives > 0) {
             view.setLives(lives);
         } else {
-            handleLoss(getString(R.string.no_more_live)+" "+getString(R.string.repeat_game));
+            handleLoss(getString(R.string.no_more_live) + " " + getString(R.string.repeat_game));
         }
     }
 }

@@ -29,7 +29,7 @@ public class LightningModeActivity extends AppCompatActivity implements
         MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 1000;
+    private static final int GAME_DURATION = 150000;
 
     private int currentGame = 0;
     private boolean firstGameBegun;

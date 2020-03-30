@@ -40,7 +40,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
             private Map<Integer, Player> getScoresFrom(@NonNull DataSnapshot snapshot) {
                 Map<Integer, Player> scores = new HashMap<>();
                 for (DataSnapshot s : snapshot.getChildren()) {
-                    FirebaseRecord r = s.getValue(FirebaseRecord.class);
+                    Record r = s.getValue(Record.class);
                     scores.put(r.score, r.player);
                 }
                 return scores;
@@ -54,14 +54,14 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
 
     @Override
     public void saveScore(int score, Player player) {
-        FirebaseRecord dataToSave = new FirebaseRecord(score, player);
+        Record dataToSave = new Record(score, player);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     boolean playerFound = player.getId().equals(ds.getKey());
                     if (playerFound) {
-                        FirebaseRecord dataFound = ds.getValue(FirebaseRecord.class);
+                        Record dataFound = ds.getValue(Record.class);
                         if (score > dataFound.score) {
                             ref.child(player.getId()).setValue(dataToSave);
                         }
@@ -76,5 +76,27 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private static class Record {
+        int score;
+        Player player;
+
+        Record() {
+            // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        }
+
+        public Record(int score, Player player) {
+            this.score = score;
+            this.player = player;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public Player getPlayer() {
+            return player;
+        }
     }
 }

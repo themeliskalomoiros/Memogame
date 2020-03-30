@@ -257,13 +257,13 @@ public class MainActivity extends AppCompatActivity
     private Intent getPlayModeIntent(GameMode mode) {
         Intent i = new Intent();
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
+        Player p = GoogleUtils.createPlayerFrom(acc);
+        i.putExtra(Player.class.getSimpleName(), p);
 
         switch (mode) {
             case LIGHTNING_ROUND:
-                GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-                Player p = GoogleUtils.createPlayerFrom(acc);
                 i.setClass(this, LightningModeActivity.class);
-                i.putExtra(Player.class.getSimpleName(), p);
                 break;
             case PRACTISE:
                 i.setClass(this, PractiseModeActivity.class);
