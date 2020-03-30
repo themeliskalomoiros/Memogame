@@ -1,10 +1,23 @@
 {
-  "games": [{
-    "title": "Summer",
-    "cover": "⛶",
-    "symbols": ["⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"],
-    "difficulty": "easy"
-  },
+  "games": [
+    {
+      "title": "Volume",
+      "cover": "□",
+      "symbols": ["❍", "❍", "❏", "❏", "❐", "❐", "❑", "❑", "❒", "❒", "❙", "❙"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Luck",
+      "cover": "❖",
+      "symbols": ["♠", "♠", "♣", "♣", "♥", "♥", "♦", "♦", "☹", "☹", "☺", "☺"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Summer",
+      "cover": "⛶",
+      "symbols": ["⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"],
+      "difficulty": "easy"
+    },
     {
       "title": "Sports",
       "cover": "⛶",
