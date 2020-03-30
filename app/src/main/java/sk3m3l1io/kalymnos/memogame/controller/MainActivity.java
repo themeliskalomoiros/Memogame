@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         boolean fragmentDontExist = !getSupportFragmentManager().popBackStackImmediate();
-        if(fragmentDontExist){
+        if (fragmentDontExist) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
@@ -124,14 +124,14 @@ public class MainActivity extends AppCompatActivity
         MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
         if (f != null && acc != null) {
             f.setSignOutIcon();
-            if(acc.getDisplayName() != null){
+            if (acc.getDisplayName() != null) {
                 view.setPlayerName(acc.getDisplayName());
                 view.showPlayerName();
             }
         } else {
             f.setDefaultSignInIcon();
         }
-}
+    }
 
     @Override
     public void onLightningModeClick() {
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity
         Intent i = new Intent();
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
 
-        switch (mode){
+        switch (mode) {
             case LIGHTNING_ROUND:
                 GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
                 Player p = GoogleUtils.createPlayerFrom(acc);

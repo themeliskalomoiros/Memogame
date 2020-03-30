@@ -11,7 +11,6 @@ import java.util.List;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
-import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.PractiseView;
 import sk3m3l1io.kalymnos.memogame.view.game.PractiseViewImp;
@@ -19,7 +18,7 @@ import sk3m3l1io.kalymnos.memogame.view.game.PractiseViewImp;
 public class PractiseModeActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,
-        PractiseView.ChangeGameClickListener{
+        PractiseView.ChangeGameClickListener {
     private static final String REPEAT_DIALOG = "repeat dialog";
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 

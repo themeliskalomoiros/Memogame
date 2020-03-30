@@ -38,7 +38,7 @@ public class RandomViewImp implements RandomView {
 
     @Override
     public int getGameContainerId() {
-        return R.id.fragment_container;
+        return R.id.game_container;
     }
 
     @Override

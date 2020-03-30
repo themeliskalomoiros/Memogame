@@ -60,15 +60,15 @@ public class MenuItemDetailsFragment extends Fragment
         void onPlayClick();
     }
 
-    public static MenuItemDetailsFragment getInstanceOf(GameMode mode){
+    public static MenuItemDetailsFragment getInstanceOf(GameMode mode) {
         MenuItemDetailsFragment f = new MenuItemDetailsFragment();
         f.titleRes = getTitleResOf(mode);
         f.messageRes = getMessageResOf(mode);
         return f;
     }
 
-    private static int getTitleResOf(GameMode m){
-        switch (m){
+    private static int getTitleResOf(GameMode m) {
+        switch (m) {
             case RANDOM:
                 return R.string.random;
             case LIGHTNING_ROUND:
@@ -79,7 +79,7 @@ public class MenuItemDetailsFragment extends Fragment
     }
 
     private static int getMessageResOf(GameMode m) {
-        switch (m){
+        switch (m) {
             case RANDOM:
                 return R.string.random_message;
             case LIGHTNING_ROUND:
