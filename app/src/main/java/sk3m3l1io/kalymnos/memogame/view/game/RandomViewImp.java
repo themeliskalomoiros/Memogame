@@ -8,17 +8,16 @@ import android.widget.TextView;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
-import sk3m3l1io.kalymnos.memogame.view.GameContainerView;
-import sk3m3l1io.kalymnos.memogame.view.TimeView;
 
-public class RandomViewImp implements TimeView, GameContainerView {
+public class RandomViewImp implements RandomView {
     private final View root;
     private final TextView title, difficulty;
-    private final ProgressBar progressBar;
+    private final ProgressBar timeBar, healthBar;
 
     public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_random, container, false);
-        progressBar = root.findViewById(R.id.progressbar);
+        timeBar = root.findViewById(R.id.progressbar);
+        healthBar = root.findViewById(R.id.health_bar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);
     }
@@ -30,12 +29,12 @@ public class RandomViewImp implements TimeView, GameContainerView {
 
     @Override
     public void setTimeProgress(int progress) {
-        progressBar.setProgress(progress);
+        timeBar.setProgress(progress);
     }
 
     @Override
     public void setTimeProgressMax(int progress) {
-        progressBar.setMax(progress);
+        timeBar.setMax(progress);
     }
 
     @Override
@@ -63,5 +62,15 @@ public class RandomViewImp implements TimeView, GameContainerView {
     @Override
     public View getRootView() {
         return root;
+    }
+
+    @Override
+    public void setHealthBarMax(int max) {
+        healthBar.setMax(max);
+    }
+
+    @Override
+    public void setHealthbarValue(int value) {
+        healthBar.setProgress(value);
     }
 }

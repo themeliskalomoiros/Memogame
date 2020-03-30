@@ -130,7 +130,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     private void moveToNextGame() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
-        }else{
+        } else {
             Collections.shuffle(games);
             currentGame = 0;
         }
