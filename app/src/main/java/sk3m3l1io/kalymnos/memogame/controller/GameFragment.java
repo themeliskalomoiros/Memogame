@@ -3,7 +3,6 @@ package sk3m3l1io.kalymnos.memogame.controller;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.GameProcedure;
+import sk3m3l1io.kalymnos.memogame.utils.RunnableUtils;
 import sk3m3l1io.kalymnos.memogame.view.game.GameView;
 import sk3m3l1io.kalymnos.memogame.view.game.GameViewImpl;
 
@@ -119,14 +119,7 @@ public class GameFragment extends Fragment implements
             view.setSymbol(position1, game.getCover());
             view.setSymbol(position2, game.getCover());
         };
-        runWithDelay(setSymbolValues, 300);
-    }
-
-    public void runWithDelay(Runnable runnable, int delayMillis) {
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            runnable.run();
-        }, delayMillis);
+        RunnableUtils.runDelayed(setSymbolValues, 300);
     }
 
     @Override
