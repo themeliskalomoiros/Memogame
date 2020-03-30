@@ -44,7 +44,7 @@ public class MessageDialog extends DialogFragment {
         return builder.create();
     }
 
-    public static void showInstance(
+    public static void show(
             ResponseListener listener,
             FragmentManager fragmentManager,
             String msg,

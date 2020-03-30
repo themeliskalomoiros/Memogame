@@ -13,7 +13,7 @@
     <string name="must_sign_in">"Need to sign in for that!"</string>
     <string name="game_begun">Game Begun</string>
     <string name="repeat_game">Repeat this game?</string>
-    <string name="time_up">Time up</string>
+    <string name="time_up">Time up!</string>
     <string name="lightning_round_not_good">Not so good, you\'ve completed only</string>
     <string name="games">games</string>
     <string name="lightning_round_completed_prefix">"Lightning Round completed. You scored"</string>
@@ -47,4 +47,6 @@
     <string name="random_message">A random game will pop up, complete it!</string>
     <string name="take_a_look">Take a look...</string>
     <string name="play">Play!</string>
+    <string name="lost_on_time_repeat_game">"Time out! "</string>
+    <string name="no_more_live">You\'ve lost of your lives!</string>
 </resources>

@@ -92,7 +92,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
     @Override
     public void onGameCompleted() {
         view.setTitle(getString(R.string.victory));
-        MessageDialog.showInstance(
+        MessageDialog.show(
                 this,
                 getSupportFragmentManager(),
                 getString(R.string.next_game),

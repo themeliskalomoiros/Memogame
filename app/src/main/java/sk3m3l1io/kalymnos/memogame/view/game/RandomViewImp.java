@@ -11,14 +11,14 @@ import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
 
 public class RandomViewImp implements RandomView {
     private final View root;
-    private final TextView title, difficulty;
-    private final ProgressBar timeBar, healthBar;
+    private final ProgressBar timeBar;
+    private final TextView title, difficulty, lives;
 
     public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_random, container, false);
         timeBar = root.findViewById(R.id.progressbar);
-        healthBar = root.findViewById(R.id.health_bar);
         title = root.findViewById(R.id.title);
+        lives = root.findViewById(R.id.lives);
         difficulty = root.findViewById(R.id.difficulty);
     }
 
@@ -65,12 +65,7 @@ public class RandomViewImp implements RandomView {
     }
 
     @Override
-    public void setHealthBarMax(int max) {
-        healthBar.setMax(max);
-    }
-
-    @Override
-    public void setHealthbarValue(int value) {
-        healthBar.setProgress(value);
+    public void setLives(int lives) {
+        this.lives.setText("" + lives);
     }
 }

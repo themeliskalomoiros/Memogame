@@ -4,7 +4,5 @@ import sk3m3l1io.kalymnos.memogame.view.GameContainerView;
 import sk3m3l1io.kalymnos.memogame.view.TimeView;
 
 public interface RandomView extends TimeView, GameContainerView {
-    void setHealthBarMax(int max);
-
-    void setHealthbarValue(int value);
+    void setLives(int lives);
 }

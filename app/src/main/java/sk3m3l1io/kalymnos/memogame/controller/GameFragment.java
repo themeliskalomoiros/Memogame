@@ -28,8 +28,9 @@ public class GameFragment extends Fragment implements
     private GameProgressListener gameProgressListener;
 
     private GameView view;
-    private GameFragmentCreationListener gameFragmentCreationListener;
     private MediaPlayer celebrationSound;
+    private GameFragmentCreationListener gameFragmentCreationListener;
+    private MatchFailListener matchFailListener;
 
     @Override
     public void onAttach(Context context) {
@@ -128,6 +129,9 @@ public class GameFragment extends Fragment implements
             view.setSymbol(position2, game.getCover());
         };
         RunnableUtils.runDelayed(setSymbolValues, 300);
+
+        if (matchFailListener != null)
+            matchFailListener.onMatchFail();
     }
 
     @Override
@@ -179,13 +183,21 @@ public class GameFragment extends Fragment implements
         gameFragmentCreationListener = listener;
     }
 
+    public void setMatchFailListener(MatchFailListener listener) {
+        matchFailListener = listener;
+    }
+
     public interface GameProgressListener {
         void onGameBegin();
 
         void onGameCompleted();
     }
 
-    public interface GameFragmentCreationListener{
+    public interface GameFragmentCreationListener {
         void onGameFragmentViewCreated(GameFragment f);
+    }
+
+    public interface MatchFailListener {
+        void onMatchFail();
     }
 }

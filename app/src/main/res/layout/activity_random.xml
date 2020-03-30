@@ -11,7 +11,12 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:fontFamily="@font/molly_jack"
         android:gravity="center_horizontal"
@@ -20,6 +25,7 @@
         android:textAlignment="center"
         android:textColor="@color/primaryTextColor"
         android:textSize="@dimen/title"
+        app:layout_constraintBottom_toTopOf="@+id/progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +74,7 @@
         android:fontFamily="@font/molly_jack"
         android:text="@string/level"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/health_bar"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
     <TextView
@@ -81,12 +87,12 @@
         android:fontFamily="@font/molly_jack"
         android:textColor="@color/symbolMatchLightColor"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/health_bar"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         tools:text="Easy" />
 
-    <ProgressBar
-        android:id="@+id/health_bar"
+    <View
+        android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="8dp"
         android:layout_marginStart="8dp"
@@ -94,9 +100,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:progressBackgroundTint="@color/primaryLightColor"
-        android:progressTint="@color/primaryDarkColor"
+        android:background="@color/primaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -107,5 +111,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="206dp" />
+
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lives"
+        app:srcCompat="@drawable/heart_24px" />
+
+    <TextView
+        android:id="@+id/lives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="3"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/heart"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

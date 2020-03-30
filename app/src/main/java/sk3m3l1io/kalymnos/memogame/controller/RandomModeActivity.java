@@ -22,6 +22,7 @@ import static sk3m3l1io.kalymnos.memogame.utils.RunnableUtils.runDelayed;
 public class RandomModeActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,
         GameFragment.GameFragmentCreationListener,
+        GameFragment.MatchFailListener,
         CountDownTimerReporter.TimeListener,
         MessageDialog.ResponseListener {
     private static final int TIME_INTERVAL = 100;
@@ -29,7 +30,8 @@ public class RandomModeActivity extends AppCompatActivity implements
     private static final String REPEAT_DIALOG = "repeat dialog";
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
-    private int currentGame;
+    private int lives = 3;
+    private int gameIndex;
     private RandomViewImp view;
     private List<Game> games;
     private CountDownTimerReporter timer;
@@ -37,16 +39,12 @@ public class RandomModeActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
-        setContentView(view.getRootView());
-    }
-
-    private void init() {
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         Collections.shuffle(games);
         view = new RandomViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
+        setContentView(view.getRootView());
     }
 
     @Override
@@ -69,7 +67,8 @@ public class RandomModeActivity extends AppCompatActivity implements
         if (fragment instanceof GameFragment) {
             GameFragment f = (GameFragment) fragment;
             f.setGameFragmentCreationListener(this);
-            Game g = games.get(currentGame);
+            f.setMatchFailListener(this);
+            Game g = games.get(gameIndex);
             ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
         }
@@ -80,10 +79,11 @@ public class RandomModeActivity extends AppCompatActivity implements
         f.disableUI();
         f.openAllSymbols();
         view.setTitle(getString(R.string.take_a_look));
+        view.setLives(lives = 3);
         runDelayed(() -> {
             f.coverAllSymbols();
             f.enableUI();
-            updateUI(games.get(currentGame));
+            updateUI(games.get(gameIndex));
             timer.begin();
         }, 3000);
     }
@@ -102,11 +102,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     public void onGameCompleted() {
         timer.cancel();
         view.setTitle(getString(R.string.victory));
-        MessageDialog.showInstance(
-                this,
-                getSupportFragmentManager(),
-                getString(R.string.next_game),
-                NEXT_GAME_DIALOG);
+        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.next_game), NEXT_GAME_DIALOG);
     }
 
     @Override
@@ -121,17 +117,16 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     @Override
     public void onTimerFinish() {
-        Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
-        if (f instanceof GameFragment) {
-            ((GameFragment) f).freezeUI();
-            view.setTitle(getString(R.string.defeat));
-            view.setTimeProgress(0);
-            MessageDialog.showInstance(
-                    this,
-                    getSupportFragmentManager(),
-                    getString(R.string.repeat_game),
-                    REPEAT_DIALOG);
-        }
+        view.setTimeProgress(0);
+        handleLoss(getString(R.string.time_up)+" "+getString(R.string.repeat_game));
+    }
+
+    private void handleLoss(String message) {
+        timer.cancel();
+        view.setTitle(getString(R.string.defeat));
+        view.setLives(lives = 0);
+        ((GameFragment) getSupportFragmentManager().findFragmentById(view.getGameContainerId())).freezeUI();
+        MessageDialog.show(this, getSupportFragmentManager(), message, REPEAT_DIALOG);
     }
 
     @Override
@@ -145,16 +140,25 @@ public class RandomModeActivity extends AppCompatActivity implements
     }
 
     private void setNextGame() {
-        if (currentGame < games.size() - 1) {
-            ++currentGame;
+        if (gameIndex < games.size() - 1) {
+            ++gameIndex;
         } else {
             Collections.shuffle(games);
-            currentGame = 0;
+            gameIndex = 0;
         }
     }
 
     @Override
     public void onDialogNegativeResponse(MessageDialog dialog) {
         finish();
+    }
+
+    @Override
+    public void onMatchFail() {
+        if (--lives > 0) {
+            view.setLives(lives);
+        } else {
+            handleLoss(getString(R.string.no_more_live)+" "+getString(R.string.repeat_game));
+        }
     }
 }
