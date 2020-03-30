@@ -49,7 +49,7 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
-    public void setAllSymbolsValue(String cover) {
+    public void coverAllSymbols(String cover) {
         for (Button b : symbols)
             b.setText(cover);
     }
@@ -67,9 +67,17 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
-    public void setSymbolValue(int pos, String value) {
+    public void setSymbol(int pos, String s) {
         Button b = symbols[pos];
-        b.setText(value);
+        b.setText(s);
+    }
+
+    @Override
+    public void setAllSymbols(String[] symbols) {
+        for (int i = 0; i < symbols.length; i++) {
+            Button b = this.symbols[i];
+            b.setText(symbols[i]);
+        }
     }
 
     @Override

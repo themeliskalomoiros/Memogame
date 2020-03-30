@@ -57,7 +57,7 @@ public class GameFragment extends Fragment implements
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
         view.setSymbolClickListener(this);
-        view.setAllSymbolsValue(game.getCover());
+        view.coverAllSymbols(game.getCover());
         return view.getRootView();
     }
 
@@ -116,8 +116,8 @@ public class GameFragment extends Fragment implements
             int symbolColor = getResources().getColor(R.color.primaryColor);
             view.setSymbolForeground(position1, symbolColor);
             view.setSymbolForeground(position2, symbolColor);
-            view.setSymbolValue(position1, game.getCover());
-            view.setSymbolValue(position2, game.getCover());
+            view.setSymbol(position1, game.getCover());
+            view.setSymbol(position2, game.getCover());
         };
         runWithDelay(setSymbolValues, 300);
     }
@@ -146,7 +146,7 @@ public class GameFragment extends Fragment implements
     private void updateSymbolUI(int pos, String symbol) {
         int color = getResources().getColor(R.color.secondaryColor);
         view.setSymbolForeground(pos, color);
-        view.setSymbolValue(pos, symbol);
+        view.setSymbol(pos, symbol);
     }
 
     private void reportBegin() {

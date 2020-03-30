@@ -21,8 +21,8 @@ public class RandomModeActivity extends AppCompatActivity implements
         GameFragment.GameProgressListener,
         CountDownTimerReporter.TimeListener,
         MessageDialog.ResponseListener {
-    private static final int GAME_DURATION = 20000;
     private static final int TIME_INTERVAL = 100;
+    private static final int GAME_DURATION = 20000;
     private static final String REPEAT_DIALOG = "repeat dialog";
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
