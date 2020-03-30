@@ -55,27 +55,15 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
-    public void setSymbolColor(int pos, int colorRes) {
+    public void setSymbolForeground(int pos, int colorRes) {
         Button b = symbols[pos];
         b.setTextColor(colorRes);
     }
 
     @Override
-    public void setAllSymbolsColor(int color) {
-        for (Button b : symbols)
-            b.setTextColor(color);
-    }
-
-    @Override
-    public void setAllSymbolsBackgroundColor(int colorRes) {
+    public void setAllSymbolsBackground(int colorRes) {
         for (Button b : symbols)
             b.setBackgroundColor(colorRes);
-    }
-
-    @Override
-    public void setAllSymbolsBackgroundToDefault() {
-        for (Button b : symbols)
-            b.setBackgroundResource(android.R.drawable.btn_default);
     }
 
     @Override
@@ -94,12 +82,6 @@ public class GameViewImpl implements GameView {
     public void disableAllSymbols() {
         for (Button b : symbols)
             b.setEnabled(false);
-    }
-
-    @Override
-    public void enableAllSymbols() {
-        for (Button b : symbols)
-            b.setEnabled(true);
     }
 
     @Override

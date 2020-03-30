@@ -15,7 +15,6 @@ import sk3m3l1io.kalymnos.memogame.dialogs.MessageDialog;
 import sk3m3l1io.kalymnos.memogame.pojos.Game;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
-import sk3m3l1io.kalymnos.memogame.view.game.RandomView;
 import sk3m3l1io.kalymnos.memogame.view.game.RandomViewImp;
 
 public class RandomModeActivity extends AppCompatActivity implements
@@ -28,7 +27,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
     private int currentGame;
-    private RandomView view;
+    private RandomViewImp view;
     private List<Game> games;
     private CountDownTimerReporter timer;
 

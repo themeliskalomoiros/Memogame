@@ -11,21 +11,15 @@ public interface GameView extends ViewMvc {
 
     void setSymbolClickListener(SymbolClickListener listener);
 
-    void setSymbolColor(int pos, int colorRes);
+    void setSymbolForeground(int pos, int colorRes);
 
-    void setAllSymbolsColor(int color);
-
-    void setAllSymbolsBackgroundColor(int colorRes);
-
-    void setAllSymbolsBackgroundToDefault();
+    void setAllSymbolsBackground(int colorRes);
 
     void setSymbolValue(int pos, String value);
 
     void setAllSymbolsValue(String cover);
 
     void disableSymbol(int pos);
-
-    void enableAllSymbols();
 
     void disableAllSymbols();
 }

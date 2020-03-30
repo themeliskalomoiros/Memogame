@@ -8,14 +8,16 @@ import android.widget.TextView;
 
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
+import sk3m3l1io.kalymnos.memogame.view.GameContainerView;
+import sk3m3l1io.kalymnos.memogame.view.TimeView;
 
-public class RandomViewImp implements RandomView {
+public class RandomViewImp implements TimeView, GameContainerView {
     private final View root;
     private final TextView title, difficulty;
     private final ProgressBar progressBar;
 
     public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_random_mode, container, false);
+        root = inflater.inflate(R.layout.activity_random, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);

@@ -106,16 +106,16 @@ public class GameFragment extends Fragment implements
         view.disableSymbol(symbolPos1);
         view.disableSymbol(symbolPos2);
         int symbolColor = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolColor(symbolPos1, symbolColor);
-        view.setSymbolColor(symbolPos2, symbolColor);
+        view.setSymbolForeground(symbolPos1, symbolColor);
+        view.setSymbolForeground(symbolPos2, symbolColor);
     }
 
     @Override
     public void onMatchFailure(int position1, int position2) {
         Runnable setSymbolValues = () -> {
             int symbolColor = getResources().getColor(R.color.primaryColor);
-            view.setSymbolColor(position1, symbolColor);
-            view.setSymbolColor(position2, symbolColor);
+            view.setSymbolForeground(position1, symbolColor);
+            view.setSymbolForeground(position2, symbolColor);
             view.setSymbolValue(position1, game.getCover());
             view.setSymbolValue(position2, game.getCover());
         };
@@ -145,7 +145,7 @@ public class GameFragment extends Fragment implements
 
     private void updateSymbolUI(int pos, String symbol) {
         int color = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolColor(pos, color);
+        view.setSymbolForeground(pos, color);
         view.setSymbolValue(pos, symbol);
     }
 
@@ -159,7 +159,7 @@ public class GameFragment extends Fragment implements
     public void freezeUI() {
         view.disableAllSymbols();
         int color = getResources().getColor(R.color.primaryDarkColor);
-        view.setAllSymbolsBackgroundColor(color);
+        view.setAllSymbolsBackground(color);
     }
 
     public interface GameProgressListener {
