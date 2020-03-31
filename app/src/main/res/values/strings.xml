@@ -14,10 +14,10 @@
     <string name="game_begun">Game Begun</string>
     <string name="repeat_game">Repeat this game?</string>
     <string name="time_up">Time up!</string>
-    <string name="lightning_round_not_good">Not so good, you\'ve completed only</string>
+    <string name="arcade_not_good">Not so good, you\'ve completed only</string>
     <string name="games">games</string>
-    <string name="lightning_round_completed_prefix">"Lightning Round completed. You scored"</string>
-    <string name="lightning_round">"Lightning Round"</string>
+    <string name="arcade_completed_prefix">"Arcade round completed. You scored"</string>
+    <string name="arcade_round">"Arcade Round"</string>
     <string name="results">"Results"</string>
     <string name="result_perfect">Perfect!</string>
     <string name="result_very_good">Very good!</string>
@@ -42,7 +42,7 @@
     <string name="score_analysis">Score Analysis:</string>
     <string name="practise">Practise</string>
     <string name="random">Random Game</string>
-    <string name="lightning_round_message">"You have two and a half minutes to complete as many games as you can!"</string>
+    <string name="arcade_message">"You have two and a half minutes to complete as many games as you can!"</string>
     <string name="practise_message">Explore all games.No clock ticking no competition.</string>
     <string name="random_message">Screen will freeze for 3 secs. The countdown timer starts and you try to complete the game without loosing all your lives.</string>
     <string name="take_a_look">Take a look...</string>
@@ -50,4 +50,7 @@
     <string name="lost_on_time_repeat_game">"Time out! "</string>
     <string name="no_more_live">You\'ve lost of your lives!</string>
     <string name="swipe_label">Swipe between modes</string>
+    <string name="tick_tock">Tick-tack!!!</string>
+    <string name="get_ready_for_next">Get ready for next!</string>
+    <string name="game_started">Game started</string>
 </resources>

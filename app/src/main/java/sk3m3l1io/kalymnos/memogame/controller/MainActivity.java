@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLightningModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            gameMode = GameMode.LIGHTNING_ROUND;
+            gameMode = GameMode.ARCADE;
             addMenuItemDetailsFragmentToBackStack(gameMode);
         } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
@@ -262,8 +262,8 @@ public class MainActivity extends AppCompatActivity
         i.putExtra(Player.class.getSimpleName(), p);
 
         switch (mode) {
-            case LIGHTNING_ROUND:
-                i.setClass(this, LightningModeActivity.class);
+            case ARCADE:
+                i.setClass(this, ArcadeActivity.class);
                 break;
             case PRACTISE:
                 i.setClass(this, PractiseModeActivity.class);

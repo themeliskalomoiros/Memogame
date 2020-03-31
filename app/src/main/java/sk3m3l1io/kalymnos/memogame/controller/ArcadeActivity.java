@@ -1,12 +1,13 @@
 package sk3m3l1io.kalymnos.memogame.controller;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,24 +21,25 @@ import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.kalymnos.memogame.services.Score;
 import sk3m3l1io.kalymnos.memogame.utils.ArrayUtils;
-import sk3m3l1io.kalymnos.memogame.view.game.LightningView;
-import sk3m3l1io.kalymnos.memogame.view.game.LightningViewImp;
+import sk3m3l1io.kalymnos.memogame.utils.RunnableUtils;
+import sk3m3l1io.kalymnos.memogame.view.game.ArcadeView;
+import sk3m3l1io.kalymnos.memogame.view.game.ArcadeViewImp;
 
-public class LightningModeActivity extends AppCompatActivity implements
+public class ArcadeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameFragment.GameProgressListener,
         MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 150000;
+    private static final int GAME_DURATION = 20000;
+    private static final int GAME_DELAY = 2400;
 
     private int currentGame = 0;
-    private boolean firstGameBegun;
     private List<Game> games;
     private List<Game> completedGames;
 
     private Player player;
-    private LightningView view;
+    private ArcadeView view;
     private CountDownTimerReporter timer;
 
     @Override
@@ -51,29 +53,28 @@ public class LightningModeActivity extends AppCompatActivity implements
         player = getIntent().getParcelableExtra(Player.class.getSimpleName());
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
-        view = new LightningViewImp(getLayoutInflater(), null);
+        view = new ArcadeViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
         setContentView(view.getRootView());
-        addGameFragment();
+        replaceWithGameFragment();
     }
 
-    private void addGameFragment() {
+    private void replaceWithGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), new GameFragment())
-                .commit();
+                .commitNow();
     }
 
     @Override
-    public void onAttachFragment(@NonNull Fragment fragment) {
-        super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment && currentGame < games.size() - 1) {
-            GameFragment f = (GameFragment) fragment;
-            Game g = games.get(++currentGame);
+    public void onAttachFragment(@NonNull Fragment f) {
+        super.onAttachFragment(f);
+        if (f instanceof GameFragment && currentGame < games.size() - 1) {
+            Game g = games.get(currentGame);
             ArrayUtils.shuffle(g.getSymbols());
-            f.setGame(g);
+            ((GameFragment) f).setGame(g);
             updateUI(g);
         }
     }
@@ -81,19 +82,14 @@ public class LightningModeActivity extends AppCompatActivity implements
     private void updateUI(Game g) {
         view.setCompletedGamesCount(completedGames.size());
         view.setDifficulty(g.getDifficulty());
-        if (!firstGameBegun) {
-            view.setTitle(getString(R.string.tap_to_start));
-            view.setTimeProgressMax(GAME_DURATION);
-            view.setTimeProgress(GAME_DURATION);
-        } else {
-            view.setTitle(g.getTitle());
-        }
+        view.setTitle(g.getTitle());
+        view.setTimeProgress(GAME_DURATION);
+        view.setTimeProgressMax(GAME_DURATION);
     }
 
     @Override
     public void onTimerBegin() {
-        if (!firstGameBegun)
-            view.setTitle(getString(R.string.game_begun));
+        view.setTitle(R.string.play);
     }
 
     @Override
@@ -107,18 +103,12 @@ public class LightningModeActivity extends AppCompatActivity implements
         if (f instanceof GameFragment) {
             view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
-            addResultFragment();
+            replaceWithResultFragment();
             saveScore();
         }
     }
 
-    private void saveScore() {
-        int score = Score.calculate(completedGames);
-        Log.d("malakia", "Saving " + score + " score.");
-        new LightningScores().saveScore(score, player);
-    }
-
-    private void addResultFragment() {
+    private void replaceWithResultFragment() {
         ResultFragment f = new ResultFragment();
         f.setCompletedGames(completedGames);
         f.setGameCount(games.size());
@@ -126,27 +116,31 @@ public class LightningModeActivity extends AppCompatActivity implements
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), f)
-                .commit();
+                .commitNow();
+    }
+
+    private void saveScore() {
+        int score = Score.calculate(completedGames);
+        new LightningScores().saveScore(score, player);
     }
 
     @Override
     public void onGameBegin() {
-        if (!firstGameBegun) {
-            // Always call begin() instead of start to get a callback
-            timer.begin();
-            firstGameBegun = true;
-        }
+        Snackbar.make(view.getRootView(),R.string.game_started, Snackbar.LENGTH_SHORT).show();
+        timer.begin();
     }
 
     @Override
     public void onGameCompleted() {
+        timer.cancel();
         completedGames.add(games.get(currentGame));
         if (completedGames.size() == games.size()) {
-            timer.cancel();
-            addResultFragment();
+            replaceWithResultFragment();
             saveScore();
         } else {
-            addGameFragment();
+            currentGame++;
+            Snackbar.make(view.getRootView(), R.string.get_ready_for_next, Snackbar.LENGTH_LONG).show();
+            RunnableUtils.runDelayed(()-> replaceWithGameFragment(), 1000);
         }
     }
 

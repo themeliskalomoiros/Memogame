@@ -101,7 +101,7 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
     }
 
     private String getMessage() {
-        String prefix = getString(R.string.lightning_round_completed_prefix) + " " +
+        String prefix = getString(R.string.arcade_completed_prefix) + " " +
                 completedGames.size() + " " +
                 getString(R.string.out_of_sufix) + " " +
                 gameCount + ". ";

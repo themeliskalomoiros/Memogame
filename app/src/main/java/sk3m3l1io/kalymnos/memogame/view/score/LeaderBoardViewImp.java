@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import sk3m3l1io.kalymnos.memogame.R;
-import sk3m3l1io.kalymnos.memogame.controller.LightningScorePage;
+import sk3m3l1io.kalymnos.memogame.controller.ArcadeScorePage;
 import sk3m3l1io.kalymnos.memogame.controller.RandomScorePage;
 import sk3m3l1io.kalymnos.memogame.controller.ScoresFragment;
 import sk3m3l1io.kalymnos.memogame.pojos.Player;
@@ -27,7 +27,7 @@ public class LeaderBoardViewImp implements LeaderBoardView {
     private MyAdapter adapter;
 
     public LeaderBoardViewImp(LayoutInflater inflater, ViewGroup container, FragmentManager manager) {
-        root = inflater.inflate(R.layout.activity_leader_board, container, false);
+        root = inflater.inflate(R.layout.activity_leaderboard, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         adapter = new MyAdapter(manager);
@@ -108,7 +108,7 @@ public class LeaderBoardViewImp implements LeaderBoardView {
             if (position == 0) {
                 f = new RandomScorePage();
             } else {
-                f = new LightningScorePage();
+                f = new ArcadeScorePage();
             }
 
             f.setUser(user);

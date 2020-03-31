@@ -71,8 +71,8 @@ public class MenuItemDetailsFragment extends Fragment
         switch (m) {
             case RANDOM:
                 return R.string.random;
-            case LIGHTNING_ROUND:
-                return R.string.lightning_round;
+            case ARCADE:
+                return R.string.arcade_round;
             default:
                 return R.string.practise;
         }
@@ -82,8 +82,8 @@ public class MenuItemDetailsFragment extends Fragment
         switch (m) {
             case RANDOM:
                 return R.string.random_message;
-            case LIGHTNING_ROUND:
-                return R.string.lightning_round_message;
+            case ARCADE:
+                return R.string.arcade_message;
             default:
                 return R.string.practise_message;
         }

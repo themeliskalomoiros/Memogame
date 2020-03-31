@@ -37,7 +37,7 @@ public class LeaderBoardActivity extends AppCompatActivity
 
     @Override
     public void onLightningPage() {
-        view.setTitle(R.string.lightning_round);
+        view.setTitle(R.string.arcade_round);
     }
 
     @Override

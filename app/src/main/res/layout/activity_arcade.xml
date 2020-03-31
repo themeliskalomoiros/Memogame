@@ -31,20 +31,8 @@
         android:id="@+id/title"
         style="@style/Title_Style"
         app:layout_constraintEnd_toStartOf="@+id/games_completed"
-        app:layout_constraintStart_toEndOf="@+id/previous"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/lightning_bolt_yellow_48px"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/game_container"

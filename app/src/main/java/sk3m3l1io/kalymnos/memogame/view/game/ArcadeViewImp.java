@@ -9,13 +9,13 @@ import android.widget.TextView;
 import sk3m3l1io.kalymnos.memogame.R;
 import sk3m3l1io.kalymnos.memogame.pojos.GameDifficulty;
 
-public class LightningViewImp implements LightningView {
+public class ArcadeViewImp implements ArcadeView {
     private final View root;
     private final TextView title, gamesCompleted, difficulty;
     private final ProgressBar progressBar;
 
-    public LightningViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_lightning, container, false);
+    public ArcadeViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.activity_arcade, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);
