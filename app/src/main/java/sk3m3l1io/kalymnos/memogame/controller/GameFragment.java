@@ -46,6 +46,7 @@ public class GameFragment extends Fragment implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        celebrationSound = MediaPlayer.create(getContext(), R.raw.hero_celebration);
         gameProcedure = new GameProcedure(GameView.SYMBOL_COUNT);
         gameProcedure.setMatchListener(this);
         gameProcedure.setCompletionListener(this);
@@ -66,7 +67,6 @@ public class GameFragment extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        celebrationSound = MediaPlayer.create(getContext(), R.raw.hero_celebration);
         if (gameFragmentCreationListener != null)
             gameFragmentCreationListener.onGameFragmentViewCreated(this);
     }

@@ -33,12 +33,12 @@ public class MenuViewImp implements MenuView {
 
     @Override
     public void setUserIconToSignOut() {
-        user.setImageResource(R.drawable.sign_out_48px);
+        user.setImageResource(R.drawable.sign_out_pink);
     }
 
     @Override
     public void setUserIconToDefault() {
-        user.setImageResource(R.drawable.user_pink_48px);
+        user.setImageResource(R.drawable.user_pink);
     }
 
     @Override
