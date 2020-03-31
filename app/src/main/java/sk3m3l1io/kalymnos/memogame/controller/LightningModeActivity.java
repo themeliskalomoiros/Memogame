@@ -50,7 +50,7 @@ public class LightningModeActivity extends AppCompatActivity implements
         completedGames = new ArrayList<>();
         player = getIntent().getParcelableExtra(Player.class.getSimpleName());
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        Collections.shuffle(games);
+        Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
         view = new LightningViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
