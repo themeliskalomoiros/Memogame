@@ -29,23 +29,28 @@ public class ResultViewImp implements ResultView {
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(String t) {
+        title.setText(t);
     }
 
     @Override
-    public void setMessage(String message) {
-        this.message.setText(message);
+    public void setTitle(int res) {
+        title.setText(res);
     }
 
     @Override
-    public void setGameDetails(String details) {
-        this.details.setText(details);
+    public void setMessage(String m) {
+        this.message.setText(m);
     }
 
     @Override
-    public void setScore(String score) {
-        this.score.setText(score);
+    public void setGameDetails(String d) {
+        this.details.setText(d);
+    }
+
+    @Override
+    public void setScore(String s) {
+        this.score.setText(s);
     }
 
     @Override

@@ -41,8 +41,13 @@ public class LeaderBoardViewImp implements LeaderBoardView {
     }
 
     @Override
-    public void setTitle(int titleRes) {
-        title.setText(titleRes);
+    public void setTitle(String t) {
+        title.setText(t);
+    }
+
+    @Override
+    public void setTitle(int res) {
+        title.setText(res);
     }
 
     @Override
@@ -80,8 +85,8 @@ public class LeaderBoardViewImp implements LeaderBoardView {
     }
 
     @Override
-    public void set(Player user) {
-        adapter.setUser(user);
+    public void setUser(Player p) {
+        adapter.setUser(p);
     }
 
     public static class MyAdapter extends FragmentPagerAdapter {

@@ -24,18 +24,23 @@ public class MenuItemDetailsViewImp implements MenuItemDetailsView {
     }
 
     @Override
-    public void setPlayClickListener(ButtonClickListener listener) {
+    public void setButtonClickListener(ButtonClickListener listener) {
         this.listener = listener;
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(String t) {
+        title.setText(t);
     }
 
     @Override
-    public void setMessage(String message) {
-        this.message.setText(message);
+    public void setTitle(int res) {
+        title.setText(res);
+    }
+
+    @Override
+    public void setMessage(String m) {
+        this.message.setText(m);
     }
 
     @Override

@@ -30,8 +30,8 @@ public class MainViewImp implements MainView {
     }
 
     @Override
-    public void setPlayerName(String name) {
-        this.name.setText(name);
+    public void setPlayerName(String n) {
+        this.name.setText(n);
     }
 
     @Override

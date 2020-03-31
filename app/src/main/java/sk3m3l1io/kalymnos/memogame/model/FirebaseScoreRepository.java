@@ -34,7 +34,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                scoresListener.onScoresLoaded(getScoresFrom(snapshot));
+                scoresListener.onScoresLoad(getScoresFrom(snapshot));
             }
 
             private Map<Integer, Player> getScoresFrom(@NonNull DataSnapshot snapshot) {
@@ -53,23 +53,23 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveScore(int score, Player player) {
-        Record dataToSave = new Record(score, player);
+    public void saveScore(int score, Player p) {
+        Record dataToSave = new Record(score, p);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    boolean playerFound = player.getId().equals(ds.getKey());
+                    boolean playerFound = p.getId().equals(ds.getKey());
                     if (playerFound) {
                         Record dataFound = ds.getValue(Record.class);
                         if (score > dataFound.score) {
-                            ref.child(player.getId()).setValue(dataToSave);
+                            ref.child(p.getId()).setValue(dataToSave);
                         }
                         return;
                     }
                 }
 
-                ref.child(player.getId()).setValue(dataToSave);
+                ref.child(p.getId()).setValue(dataToSave);
             }
 
             @Override

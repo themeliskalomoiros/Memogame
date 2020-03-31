@@ -49,8 +49,13 @@ public class PractiseViewImp implements PractiseView {
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(String t) {
+        title.setText(t);
+    }
+
+    @Override
+    public void setTitle(int res) {
+        title.setText(res);
     }
 
     @Override

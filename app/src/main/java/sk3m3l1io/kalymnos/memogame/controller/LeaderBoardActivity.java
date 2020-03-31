@@ -21,7 +21,7 @@ public class LeaderBoardActivity extends AppCompatActivity
         user = getIntent().getParcelableExtra(Player.class.getSimpleName());
         view = new LeaderBoardViewImp(getLayoutInflater(), null, getSupportFragmentManager());
         view.setScorePageChangeListener(this);
-        view.set(user);
+        view.setUser(user);
         setContentView(view.getRootView());
     }
 

@@ -23,8 +23,13 @@ public class LightningViewImp implements LightningView {
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(String t) {
+        title.setText(t);
+    }
+
+    @Override
+    public void setTitle(int res) {
+        title.setText(res);
     }
 
     @Override
@@ -48,8 +53,8 @@ public class LightningViewImp implements LightningView {
     }
 
     @Override
-    public void setGamesCompleted(int count) {
-        gamesCompleted.setText("" + count);
+    public void setCompletedGamesCount(int c) {
+        gamesCompleted.setText("" + c);
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface MainView extends ViewMvc {
 
     void hidePlayerName();
 
-    void setPlayerName(String name);
+    void setPlayerName(String n);
 
     int getMenuContainerId();
 }

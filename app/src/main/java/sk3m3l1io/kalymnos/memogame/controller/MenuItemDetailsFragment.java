@@ -39,7 +39,7 @@ public class MenuItemDetailsFragment extends Fragment
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         view = new MenuItemDetailsViewImp(inflater, container);
-        view.setPlayClickListener(this);
+        view.setButtonClickListener(this);
         view.setTitle(getString(titleRes));
         view.setMessage(getString(messageRes));
         return view.getRootView();
@@ -48,7 +48,7 @@ public class MenuItemDetailsFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        view.setPlayClickListener(null);
+        view.setButtonClickListener(null);
     }
 
     @Override

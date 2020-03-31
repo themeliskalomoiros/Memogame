@@ -68,12 +68,6 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
-    public void setAllSymbolsBackground(Drawable drawable) {
-        for (Button b : symbols)
-            b.setBackground(drawable);
-    }
-
-    @Override
     public void setSymbol(int pos, String s) {
         Button b = symbols[pos];
         b.setText(s);

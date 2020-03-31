@@ -22,7 +22,8 @@ import sk3m3l1io.kalymnos.memogame.pojos.Player;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreView;
 import sk3m3l1io.kalymnos.memogame.view.score.ScoreViewImp;
 
-public abstract class ScoresFragment extends Fragment implements ScoreRepository.ScoresListener {
+public abstract class ScoresFragment extends Fragment
+        implements ScoreRepository.ScoresListener {
     private Player user;
     private ScoreView view;
     protected ScoreRepository repo;
@@ -68,7 +69,7 @@ public abstract class ScoresFragment extends Fragment implements ScoreRepository
     }
 
     @Override
-    public void onScoresLoaded(Map<Integer, Player> scores) {
+    public void onScoresLoad(Map<Integer, Player> scores) {
         if (scores != null && scores.size() > 0) {
             SortedMap<Integer, Player> sortedScores = new TreeMap<>((s1, s2) -> s2 - s1);
             sortedScores.putAll(scores);

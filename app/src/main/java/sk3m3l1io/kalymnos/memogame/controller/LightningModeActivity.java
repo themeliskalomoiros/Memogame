@@ -79,7 +79,7 @@ public class LightningModeActivity extends AppCompatActivity implements
     }
 
     private void updateUI(Game g) {
-        view.setGamesCompleted(completedGames.size());
+        view.setCompletedGamesCount(completedGames.size());
         view.setDifficulty(g.getDifficulty());
         if (!firstGameBegun) {
             view.setTitle(getString(R.string.tap_to_start));

@@ -9,22 +9,12 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/Title_Style"
+        android:text="@string/random"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/molly_jack"
-        android:gravity="center_horizontal"
-        android:lines="1"
-        android:text="@string/random"
-        android:textAlignment="center"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="@dimen/title"
         app:layout_constraintBottom_toTopOf="@+id/progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +22,6 @@
 
     <FrameLayout
         android:id="@+id/game_container"
-        android:name="sk3m3l1io.kalymnos.memogame.controller.GameFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"

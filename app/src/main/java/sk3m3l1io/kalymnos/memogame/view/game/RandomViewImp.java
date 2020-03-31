@@ -23,8 +23,13 @@ public class RandomViewImp implements RandomView {
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(String t) {
+        title.setText(t);
+    }
+
+    @Override
+    public void setTitle(int res) {
+        title.setText(res);
     }
 
     @Override
@@ -65,7 +70,7 @@ public class RandomViewImp implements RandomView {
     }
 
     @Override
-    public void setLives(int lives) {
-        this.lives.setText("" + lives);
+    public void setLives(int l) {
+        this.lives.setText("" + l);
     }
 }
