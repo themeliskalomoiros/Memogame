@@ -14,7 +14,7 @@
 
         <Button
             android:id="@+id/symbol_0"
-            style="@style/Symbol_Style" />
+            style="@style/Symbol_Style"/>
 
         <Button
             android:id="@+id/symbol_1"

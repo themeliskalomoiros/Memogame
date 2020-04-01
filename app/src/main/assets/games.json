@@ -1,6 +1,63 @@
 {
   "games": [
     {
+      "title": "Orchestra",
+      "cover": "\uD83C\uDFB6",
+      "symbols": ["\uD83C\uDFB7", "\uD83C\uDFB7", "\uD83C\uDFB8", "\uD83C\uDFB8", "\uD83C\uDFB9", "\uD83C\uDFB9",
+        "\uD83C\uDFBA", "\uD83C\uDFBA", "\uD83C\uDFBB", "\uD83C\uDFBB", "\uD83C\uDFBC", "\uD83C\uDFBC"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Happy Birthday",
+      "cover": "\uD83C\uDF65",
+      "symbols": ["\uD83C\uDF7B", "\uD83C\uDF7B", "\uD83C\uDF82", "\uD83C\uDF82", "\uD83C\uDF7E", "\uD83C\uDF7E",
+        "\uD83C\uDF88", "\uD83C\uDF88", "\uD83C\uDF89", "\uD83C\uDF89", "\uD83C\uDF80", "\uD83C\uDF80"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "Good Food",
+      "cover": "\uD83C\uDF74",
+      "symbols": ["\uD83C\uDF2D", "\uD83C\uDF2D", "\uD83C\uDF2E", "\uD83C\uDF2E", "\uD83C\uDF2F", "\uD83C\uDF2F",
+        "\uD83C\uDF54", "\uD83C\uDF54", "\uD83C\uDF55", "\uD83C\uDF55", "\uD83C\uDF5F", "\uD83C\uDF5F"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Camping",
+      "cover": "\uD83C\uDF1E",
+      "symbols": ["\uD83C\uDFD4", "\uD83C\uDFD4", "\uD83C\uDFD5", "\uD83C\uDFD5", "\uD83C\uDFD6", "\uD83C\uDFD6", "\uD83C\uDFDC", "\uD83C\uDFDC", "\uD83C\uDFDD", "\uD83C\uDFDD", "\uD83C\uDFDE", "\uD83C\uDFDE"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "In the Jungle",
+      "cover": "✝",
+      "symbols": ["\uD83E\uDD81", "\uD83E\uDD81", "\uD83E\uDD8D", "\uD83E\uDD8D", "\uD83E\uDD8F", "\uD83E\uDD8F", "\uD83D\uDC0A", "\uD83D\uDC0A", "\uD83E\uDD83", "\uD83E\uDD83", "\uD83D\uDC2F", "\uD83D\uDC2F"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "Medieval",
+      "cover": "✝",
+      "symbols": ["⚔", "⚔", "⚜", "⚜", "\uD83C\uDFF9", "\uD83C\uDFF9", "\uD83D\uDDE1", "\uD83D\uDDE1", "\uD83D\uDDDD", "\uD83D\uDDDD", "\uD83D\uDD4E", "\uD83D\uDD4E"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Rock Paper Scissors",
+      "cover": "☺",
+      "symbols": ["\uD83D\uDD95", "\uD83D\uDD95", "☹", "☹", "✊", "✊", "✋", "✋", "✌", "✌", "✍", "✍"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "CD Player",
+      "cover": "⏏",
+      "symbols": ["⏩", "⏩", "⏪", "⏪", "\u23F9", "\u23F9", "\u23F8", "\u23F8", "↪", "↪", "▶", "▶"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Breakfast",
+      "cover": "◽",
+      "symbols": ["\uD83E\uDD50", "\uD83E\uDD50", "\uD83C\uDF73", "\uD83C\uDF73", "\uD83C\uDF1E", "\uD83C\uDF1E", "\uD83C\uDF5E", "\uD83C\uDF5E", "\uD83E\uDD5B", "\uD83E\uDD5B", "\uD83E\uDD5E", "\uD83E\uDD5E"],
+      "difficulty": "easy"
+    },
+    {
       "title": "Volume",
       "cover": "□",
       "symbols": ["❍", "❍", "❏", "❏", "❐", "❐", "❑", "❑", "❒", "❒", "❙", "❙"],
@@ -9,7 +66,7 @@
     {
       "title": "Luck",
       "cover": "❖",
-      "symbols": ["♠", "♠", "♣", "♣", "♥", "♥", "♦", "♦", "☹", "☹", "☺", "☺"],
+      "symbols": ["♠", "♠", "♣", "♣", "♥", "♥", "♦", "♦", "\uD83C\uDFB2", "\uD83C\uDFB2", "\uD83C\uDFB0", "\uD83C\uDFB0"],
       "difficulty": "hard"
     },
     {
@@ -25,13 +82,13 @@
       "difficulty": "easy"
     },
     {
-      "title": "Construct",
+      "title": "Concrete",
       "cover": "⛓",
       "symbols": ["⛔", "⛒", "⛑", "⛏", "⛟", "⛡", "⛔", "⛒", "⛑", "⛏", "⛟", "⛡"],
       "difficulty": "normal"
     },
     {
-      "title": "On Drugs",
+      "title": "L S D",
       "cover": "⚇",
       "symbols": ["☹", "☺", "☻", "⚆", "⚈", "⚉", "☹", "☺", "☻", "⚆", "⚈", "⚉"],
       "difficulty": "normal"
@@ -55,13 +112,13 @@
       "difficulty": "normal"
     },
     {
-      "title": "Xiratus",
+      "title": "Xanadu",
       "cover": "✕",
       "symbols": ["✘", "✖", "❎", "✔", "✓", "✗", "✘", "✖", "❎", "✔", "✓", "✗"],
       "difficulty": "hard"
     },
     {
-      "title": "Letters",
+      "title": "Latin Circle",
       "cover": "Ⓐ",
       "symbols": ["Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ", "Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ"],
       "difficulty": "easy"
@@ -85,13 +142,13 @@
       "difficulty": "hard"
     },
     {
-      "title": "Bad Weather",
+      "title": "Winter",
       "cover": "★",
       "symbols": ["☀", "☁", "☂", "☃", "☄", "☔", "☀", "☁", "☂", "☃", "☄", "☔"],
       "difficulty": "easy"
     },
     {
-      "title": "Corona Virus",
+      "title": "Lab Accident",
       "cover": "☨",
       "symbols": ["☠", "☦", "☢", "☣", "☤", "☥", "☠", "☦", "☢", "☣", "☤", "☥"],
       "difficulty": "normal"
@@ -109,9 +166,15 @@
       "difficulty": "hard"
     },
     {
-      "title": "Astrology",
-      "cover": "♎",
-      "symbols": ["♈", "♉", "♊", "♋", "♌", "♍", "♈", "♉", "♊", "♋", "♌", "♍"],
+      "title": "Astrology 1",
+      "cover": "⬛",
+      "symbols": ["♈", "♈", "♉", "♉", "♊", "♊", "♋", "♋", "♌", "♌", "♍", "♍"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Astrology 2",
+      "cover": "⬛",
+      "symbols": ["♎", "♎", "♏", "♏", "♐", "♐", "♑", "♑", "♒", "♒", "♓", "♓"],
       "difficulty": "normal"
     },
     {
@@ -139,13 +202,13 @@
       "difficulty": "easy"
     },
     {
-      "title": "Sex",
+      "title": "S E X",
       "cover": "⚨",
       "symbols": ["⚢", "⚣", "⚤", "⚥", "⚦", "⚧", "⚢", "⚣", "⚤", "⚥", "⚦", "⚧"],
       "difficulty": "normal"
     },
     {
-      "title": "Stars",
+      "title": "Astro",
       "cover": "✪",
       "symbols": ["✫", "✬", "✭", "✮", "✯", "✰", "✫", "✬", "✭", "✮", "✯", "✰"],
       "difficulty": "hard"
@@ -163,13 +226,7 @@
       "difficulty": "normal"
     },
     {
-      "title": "Alphabet",
-      "cover": "ᴪ",
-      "symbols": ["ἒ", "ώ", "ϑ", "ά", "ᾼ", "ὒ", "ἒ", "ώ", "ϑ", "ά", "ᾼ", "ὒ"],
-      "difficulty": "normal"
-    },
-    {
-      "title": "Calculator",
+      "title": "Calculus",
       "cover": "⊚",
       "symbols": ["⊜", "⊜", "⊙", "⊙", "⊘", "⊘", "⊗", "⊗", "⊖", "⊖", "⊕", "⊕"],
       "difficulty": "hard"
@@ -181,7 +238,7 @@
       "difficulty": "easy"
     },
     {
-      "title": "DoReMi",
+      "title": "Do Re Mi",
       "cover": "♯",
       "symbols": ["♮", "♮", "♭", "♭", "♬", "♬", "♫", "♫", "♪", "♪", "♩", "♩"],
       "difficulty": "normal"
