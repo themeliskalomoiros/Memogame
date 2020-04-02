@@ -1,6 +1,27 @@
 {
   "games": [
     {
+      "title": "Seoul",
+      "cover": "\uD83C\uDDF8",
+      "symbols": ["\uD83C\uDF03", "\uD83C\uDF03", "\uD83C\uDF04", "\uD83C\uDF04", "\uD83C\uDF01", "\uD83C\uDF01",
+        "\uD83C\uDF06", "\uD83C\uDF06", "\uD83C\uDF07", "\uD83C\uDF07", "\uD83C\uDF09", "\uD83C\uDF09"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Naruto",
+      "cover": "\uD83C\uDE1A",
+      "symbols": ["\uD83C\uDE2F", "\uD83C\uDE2F", "\uD83C\uDE32", "\uD83C\uDE32", "\uD83C\uDE33", "\uD83C\uDE33",
+        "\uD83C\uDE34", "\uD83C\uDE34", "\uD83C\uDE35", "\uD83C\uDE35", "\uD83C\uDE36", "\uD83C\uDE36"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "La Luna",
+      "cover": "\uD83C\uDF11",
+      "symbols": ["\uD83C\uDF12", "\uD83C\uDF12", "\uD83C\uDF13", "\uD83C\uDF13", "\uD83C\uDF13", "\uD83C\uDF13",
+        "\uD83C\uDF15", "\uD83C\uDF15", "\uD83C\uDF16", "\uD83C\uDF16", "\uD83C\uDF17", "\uD83C\uDF17"],
+      "difficulty": "hard"
+    },
+    {
       "title": "Orchestra",
       "cover": "\uD83C\uDFB6",
       "symbols": ["\uD83C\uDFB7", "\uD83C\uDFB7", "\uD83C\uDFB8", "\uD83C\uDFB8", "\uD83C\uDFB9", "\uD83C\uDFB9",
