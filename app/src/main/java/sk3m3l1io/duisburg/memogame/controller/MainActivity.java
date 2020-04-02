@@ -38,6 +38,7 @@ import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
 public class MainActivity extends AppCompatActivity
         implements MenuFragment.MenuItemClickListener,
+        MenuFragment.ViewCreationListener,
         MenuItemDetailsFragment.PlayClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnSuccessListener<Void> {
@@ -54,8 +55,17 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         view = new MainViewImp(getLayoutInflater(), null);
         setContentView(view.getRootView());
+        addMenuFragment();
         loadGames(savedInstanceState);
         initGoogleSignInClient();
+    }
+
+    private void addMenuFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .replace(view.getMenuContainerId(), new MenuFragment())
+                .commit();
     }
 
     private void loadGames(Bundle savedInstanceState) {
@@ -78,17 +88,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        boolean fragmentDontExist = !getSupportFragmentManager().popBackStackImmediate();
-        if (fragmentDontExist) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                    .replace(view.getMenuContainerId(), new MenuFragment())
-                    .commitNow();
-            updateMenuUI(GoogleSignIn.getLastSignedInAccount(this));
-        }
+    public void onMenuViewCreation() {
+        updateMenuUI(GoogleSignIn.getLastSignedInAccount(this));
     }
 
     @Override
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity
     public void onArcadeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             gameMode = GameMode.ARCADE;
-            addMenuItemDetailsFragmentToBackStack(gameMode);
+            addMenuItemDetailsFragment(gameMode);
         } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
         }
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity
     public void onRandomModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             gameMode = GameMode.RANDOM;
-            addMenuItemDetailsFragmentToBackStack(gameMode);
+            addMenuItemDetailsFragment(gameMode);
         } else {
             Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
         }
@@ -156,10 +157,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPractiseModeClick() {
         gameMode = GameMode.PRACTISE;
-        addMenuItemDetailsFragmentToBackStack(gameMode);
+        addMenuItemDetailsFragment(gameMode);
     }
 
-    private void addMenuItemDetailsFragmentToBackStack(GameMode mode) {
+    private void addMenuItemDetailsFragment(GameMode mode) {
         MenuItemDetailsFragment f = MenuItemDetailsFragment.getInstanceOf(mode);
         getSupportFragmentManager()
                 .beginTransaction()

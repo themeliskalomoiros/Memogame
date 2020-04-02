@@ -118,7 +118,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/lightning_bolt_24px"
+        android:src="@drawable/ic_chevron_right_black_24dp"
         app:backgroundTint="@color/secondaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -16,16 +16,19 @@ import sk3m3l1io.duisburg.memogame.view.menu.MenuViewImp;
 public class MenuFragment extends Fragment implements MenuView.SymbolClickListener {
 
     private MenuView view;
-    private MenuItemClickListener listener;
+    private MenuItemClickListener itemClickListener;
+    private ViewCreationListener viewCreationListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (MenuItemClickListener) context;
+            itemClickListener = (MenuItemClickListener) context;
+            viewCreationListener = (ViewCreationListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + MenuItemClickListener.class.getSimpleName());
+                    + " must implement " + MenuItemClickListener.class.getSimpleName() +
+                    " and "+ViewCreationListener.class.getSimpleName());
         }
     }
 
@@ -49,7 +52,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+        itemClickListener = null;
     }
 
     public void setDefaultSignInIcon() {
@@ -62,27 +65,27 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
 
     @Override
     public void onLightningClick() {
-        listener.onArcadeModeClick();
+        itemClickListener.onArcadeModeClick();
     }
 
     @Override
     public void onDiceClick() {
-        listener.onRandomModeClick();
+        itemClickListener.onRandomModeClick();
     }
 
     @Override
     public void onJoystickClick() {
-        listener.onPractiseModeClick();
+        itemClickListener.onPractiseModeClick();
     }
 
     @Override
     public void onLeaderboardClick() {
-        listener.onLeaderboardClick();
+        itemClickListener.onLeaderboardClick();
     }
 
     @Override
     public void onUserClick() {
-        listener.onSignInClick();
+        itemClickListener.onSignInClick();
     }
 
     public interface MenuItemClickListener {
@@ -95,5 +98,9 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
         void onSignInClick();
 
         void onLeaderboardClick();
+    }
+
+    public interface ViewCreationListener{
+        void onMenuViewCreation();
     }
 }
