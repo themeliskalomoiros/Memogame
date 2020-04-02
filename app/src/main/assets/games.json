@@ -88,13 +88,13 @@
       "difficulty": "normal"
     },
     {
-      "title": "L S D",
+      "title": "Lost",
       "cover": "⚇",
       "symbols": ["☹", "☺", "☻", "⚆", "⚈", "⚉", "☹", "☺", "☻", "⚆", "⚈", "⚉"],
       "difficulty": "normal"
     },
     {
-      "title": "Judas",
+      "title": "The Finger",
       "cover": "☡",
       "symbols": ["☟", "☞", "☝", "☜", "☛", "☚", "☟", "☞", "☝", "☜", "☛", "☚"],
       "difficulty": "hard"
@@ -124,7 +124,7 @@
       "difficulty": "easy"
     },
     {
-      "title": "Level Up",
+      "title": "Levels",
       "cover": "▀",
       "symbols": ["▁", "▂", "▃", "▄", "▅", "▆", "▁", "▂", "▃", "▄", "▅", "▆"],
       "difficulty": "hard"
@@ -148,7 +148,7 @@
       "difficulty": "easy"
     },
     {
-      "title": "Lab Accident",
+      "title": "Lab",
       "cover": "☨",
       "symbols": ["☠", "☦", "☢", "☣", "☤", "☥", "☠", "☦", "☢", "☣", "☤", "☥"],
       "difficulty": "normal"
@@ -160,19 +160,19 @@
       "difficulty": "normal"
     },
     {
-      "title": "Hard Triplet",
+      "title": "Triplet",
       "cover": "☰",
       "symbols": ["☱", "☲", "☳", "☴", "☵", "☶", "☱", "☲", "☳", "☴", "☵", "☶"],
       "difficulty": "hard"
     },
     {
-      "title": "Astrology 1",
+      "title": "Astrology",
       "cover": "⬛",
       "symbols": ["♈", "♈", "♉", "♉", "♊", "♊", "♋", "♋", "♌", "♌", "♍", "♍"],
       "difficulty": "normal"
     },
     {
-      "title": "Astrology 2",
+      "title": "Astrology",
       "cover": "⬛",
       "symbols": ["♎", "♎", "♏", "♏", "♐", "♐", "♑", "♑", "♒", "♒", "♓", "♓"],
       "difficulty": "normal"
@@ -202,7 +202,7 @@
       "difficulty": "easy"
     },
     {
-      "title": "S E X",
+      "title": "Gender",
       "cover": "⚨",
       "symbols": ["⚢", "⚣", "⚤", "⚥", "⚦", "⚧", "⚢", "⚣", "⚤", "⚥", "⚦", "⚧"],
       "difficulty": "normal"
@@ -226,7 +226,7 @@
       "difficulty": "normal"
     },
     {
-      "title": "Calculus",
+      "title": "Computer",
       "cover": "⊚",
       "symbols": ["⊜", "⊜", "⊙", "⊙", "⊘", "⊘", "⊗", "⊗", "⊖", "⊖", "⊕", "⊕"],
       "difficulty": "hard"
@@ -256,7 +256,7 @@
       "difficulty": "hard"
     },
     {
-      "title": "Math Class",
+      "title": "Algebra",
       "cover": "∅",
       "symbols": ["¾", "¾", "∑", "∑", "∈", "∈", "∛", "∛", "∞", "∞", "∡", "∡"],
       "difficulty": "normal"

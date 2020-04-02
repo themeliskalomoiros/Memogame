@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3371339439:android:247200a3c548b8d9b08e5a",
+        "mobilesdk_app_id": "1:3371339439:android:3ee2bf20e26a631fb08e5a",
         "android_client_info": {
-          "package_name": "sk3m3l1io.kalymnos.memogame"
+          "package_name": "sk3m3l1io.duisburg.memogame"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "3371339439-omd95bftnitcpkvl3bcc69qkoochnems.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sk3m3l1io.kalymnos.memogame",
-            "certificate_hash": "0402fb092a3b95d3f90a7cece591a08ec61b7868"
-          }
-        },
         {
           "client_id": "3371339439-0e28g6i6fcf9rkrat09966e83t0f2imh.apps.googleusercontent.com",
           "client_type": 3

@@ -62,7 +62,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
 
     @Override
     public void onLightningClick() {
-        listener.onLightningModeClick();
+        listener.onArcadeModeClick();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     }
 
     public interface MenuItemClickListener {
-        void onLightningModeClick();
+        void onArcadeModeClick();
 
         void onRandomModeClick();
 

@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLightningModeClick() {
+    public void onArcadeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             gameMode = GameMode.ARCADE;
             addMenuItemDetailsFragmentToBackStack(gameMode);

@@ -104,9 +104,11 @@
         android:padding="4dp"
         android:textSize="20sp"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Congratulations, you've done well! You passed 21 out of 26 games. Try again next time!" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
