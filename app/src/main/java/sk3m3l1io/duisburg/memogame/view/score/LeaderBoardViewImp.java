@@ -63,7 +63,7 @@ public class LeaderBoardViewImp implements LeaderBoardView {
                 if (position == 0) {
                     listener.onRandomPage();
                 } else {
-                    listener.onLightningPage();
+                    listener.onArcadePage();
                 }
             }
 

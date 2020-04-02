@@ -5,7 +5,7 @@ import sk3m3l1io.duisburg.memogame.view.TitleView;
 
 public interface LeaderBoardView extends TitleView {
     interface PageChangeListener {
-        void onLightningPage();
+        void onArcadePage();
 
         void onRandomPage();
     }

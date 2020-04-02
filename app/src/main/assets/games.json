@@ -118,12 +118,6 @@
       "difficulty": "hard"
     },
     {
-      "title": "Latin Circle",
-      "cover": "Ⓐ",
-      "symbols": ["Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ", "Ⓤ", "Ⓥ", "Ⓦ", "Ⓧ", "Ⓨ", "Ⓩ"],
-      "difficulty": "easy"
-    },
-    {
       "title": "Levels",
       "cover": "▀",
       "symbols": ["▁", "▂", "▃", "▄", "▅", "▆", "▁", "▂", "▃", "▄", "▅", "▆"],
