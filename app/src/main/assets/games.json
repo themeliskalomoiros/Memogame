@@ -181,13 +181,13 @@
       "difficulty": "hard"
     },
     {
-      "title": "Astrology",
+      "title": "Astrology 1",
       "cover": "⬛",
       "symbols": ["♈", "♈", "♉", "♉", "♊", "♊", "♋", "♋", "♌", "♌", "♍", "♍"],
       "difficulty": "normal"
     },
     {
-      "title": "Astrology",
+      "title": "Astrology 2",
       "cover": "⬛",
       "symbols": ["♎", "♎", "♏", "♏", "♐", "♐", "♑", "♑", "♒", "♒", "♓", "♓"],
       "difficulty": "normal"

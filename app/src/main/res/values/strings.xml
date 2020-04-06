@@ -42,9 +42,9 @@
     <string name="score_analysis">Score Analysis:</string>
     <string name="practise">Practise</string>
     <string name="random">Random Game</string>
-    <string name="arcade_message">"You have two and a half minutes to complete as many games as you can!"</string>
-    <string name="practise_message">Explore all games.No clock ticking no competition.</string>
-    <string name="random_message">Screen will freeze for 3 secs. The countdown timer starts and you try to complete the game without loosing all your lives.</string>
+    <string name="arcade_message">"Complete as many games as you can.\n\nOn time!"</string>
+    <string name="practise_message">Try all games for free!\n\nNo clock ticking thus no competition (there will be no scores to save).</string>
+    <string name="random_message">You have 3 seconds to memorize the game.\n\nComplete the game on time and without loosing all of your lives!</string>
     <string name="take_a_look">Take a look...</string>
     <string name="play">Play!</string>
     <string name="lost_on_time_repeat_game">"Time out! "</string>
