@@ -75,16 +75,22 @@ public class PractiseModeActivity extends AppCompatActivity implements
     public void onPreviousGameClick() {
         if (currentGame > 0) {
             --currentGame;
-            addGameFragment();
+        }else{
+            currentGame = games.size() -1;
         }
+
+        addGameFragment();
     }
 
     @Override
     public void onNextGameClick() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
-            addGameFragment();
+        }else{
+            currentGame = 0;
         }
+
+        addGameFragment();
     }
 
     @Override

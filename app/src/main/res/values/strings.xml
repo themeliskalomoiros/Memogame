@@ -43,7 +43,7 @@
     <string name="practise">Practise</string>
     <string name="random">Random Game</string>
     <string name="arcade_message">"Complete as many games as you can.\n\nOn time!"</string>
-    <string name="practise_message">Try all games for free!\n\nNo clock ticking thus no competition (there will be no scores to save).</string>
+    <string name="practise_message">Try all games for free!\n(No scores saved)</string>
     <string name="random_message">You have 3 seconds to memorize the game.\n\nComplete the game on time and without loosing all of your lives!</string>
     <string name="take_a_look">Take a look...</string>
     <string name="play">Play!</string>
@@ -53,4 +53,5 @@
     <string name="tick_tock">Tick-tack!!!</string>
     <string name="get_ready_for_next">Get ready for next!</string>
     <string name="game_started">Game started</string>
+    <string name="arcade_quit_message">Are you sure you wanna quit?\nNo score will be saved.</string>
 </resources>
