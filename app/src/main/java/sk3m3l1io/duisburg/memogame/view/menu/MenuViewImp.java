@@ -3,13 +3,15 @@ package sk3m3l1io.duisburg.memogame.view.menu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import sk3m3l1io.duisburg.memogame.R;
 
 public class MenuViewImp implements MenuView {
     private View root;
-    private ImageButton lightning, practise, random, leaderboard, user;
+    private ImageButton lightning, random, leaderboard, user;
+    private Button practise;
     private SymbolClickListener listener;
 
     public MenuViewImp(LayoutInflater inflater, ViewGroup container) {

@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         if (f != null && acc != null) {
             f.setSignOutIcon();
             if (acc.getDisplayName() != null) {
-                view.setPlayerName(acc.getDisplayName());
+                view.setPlayerName(getString(R.string.player_name_prefix) + " " + acc.getDisplayName());
                 view.showPlayerName();
             }
         } else {
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
             gameMode = GameMode.ARCADE;
             addMenuItemDetailsFragment(gameMode);
         } else {
-            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+            showSignInSnackbar();
         }
     }
 
@@ -150,8 +150,14 @@ public class MainActivity extends AppCompatActivity
             gameMode = GameMode.RANDOM;
             addMenuItemDetailsFragment(gameMode);
         } else {
-            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+            showSignInSnackbar();
         }
+    }
+
+    private void showSignInSnackbar() {
+        Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
+                .setAction(R.string.sign_in, v ->  onSignInClick())
+                .show();
     }
 
     @Override
@@ -187,7 +193,7 @@ public class MainActivity extends AppCompatActivity
             i.putExtra(Player.class.getSimpleName(), p);
             startActivity(i);
         } else {
-            Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG).show();
+            showSignInSnackbar();
         }
     }
 

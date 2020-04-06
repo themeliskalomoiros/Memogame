@@ -9,23 +9,24 @@
 
     <TextView
         android:id="@+id/player_name"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="4dp"
         android:ellipsize="end"
         android:fontFamily="@font/molly_jack"
         android:gravity="center_horizontal"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
+        tools:text="Signed in as George Sponge"
         android:textAlignment="center"
         android:textColor="@color/secondaryTextColor"
         android:textSize="@dimen/player_name"
         android:textStyle="italic"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        tools:text="George Sponge"
         tools:visibility="visible" />
 
     <TextView
@@ -46,7 +47,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintBottom_toTopOf="@+id/player_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
