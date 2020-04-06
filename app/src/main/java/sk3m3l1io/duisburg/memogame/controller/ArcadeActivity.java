@@ -1,6 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -139,19 +140,23 @@ public class ArcadeActivity extends AppCompatActivity implements
             saveScore();
         } else {
             currentGame++;
-            Snackbar.make(view.getRootView(), R.string.get_ready_for_next, Snackbar.LENGTH_LONG).show();
-            RunnableUtils.runDelayed(()-> replaceWithGameFragment(), 1000);
+            Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
+            RunnableUtils.runDelayed(()-> replaceWithGameFragment(), 200);
         }
     }
 
     @Override
+    public void onBackPressed() {
+        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.arcade_quit_message), null);
+    }
+
+    @Override
     public void onDialogPositiveResponse(MessageDialog dialog) {
-        recreate();
+        finish();
     }
 
     @Override
     public void onDialogNegativeResponse(MessageDialog dialog) {
-        finish();
     }
 
     @Override
