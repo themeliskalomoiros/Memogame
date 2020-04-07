@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -41,6 +42,7 @@ public class RandomModeActivity extends AppCompatActivity implements
 
     private List<Game> games;
     private RandomViewImp view;
+    private MediaPlayer successSound;
     private CountDownTimerReporter timer;
 
     @Override
@@ -58,6 +60,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         addGameFragment();
+        successSound = MediaPlayer.create(this, R.raw.game_success);
     }
 
     private void addGameFragment() {
@@ -79,6 +82,12 @@ public class RandomModeActivity extends AppCompatActivity implements
             ArrayUtils.shuffle(g.getSymbols());
             f.setGame(g);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        successSound.release();
     }
 
     @Override
@@ -123,6 +132,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     public void onGameCompleted() {
         timer.cancel();
         view.setTitle(getString(R.string.victory));
+        successSound.start();
         MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.next_game), NEXT_GAME_DIALOG);
         saveScore();
     }

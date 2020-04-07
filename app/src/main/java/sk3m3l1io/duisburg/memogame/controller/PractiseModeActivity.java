@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
     private int currentGame;
     private List<Game> games;
     private PractiseView view;
+    private MediaPlayer successSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         addGameFragment();
+        successSound = MediaPlayer.create(this, R.raw.game_success);
     }
 
     private void addGameFragment() {
@@ -69,6 +72,12 @@ public class PractiseModeActivity extends AppCompatActivity implements
     private void updateUI(Game g) {
         view.setTitle(g.getTitle());
         view.setDifficulty(g.getDifficulty());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        successSound.release();
     }
 
     @Override
@@ -100,6 +109,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
     @Override
     public void onGameCompleted() {
         view.setTitle(getString(R.string.victory));
+        successSound.start();
         MessageDialog.show(
                 this,
                 getSupportFragmentManager(),

@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class ArcadeActivity extends AppCompatActivity implements
 
     private Player player;
     private ArcadeView view;
+    private MediaPlayer successSound;
     private CountDownTimerReporter timer;
 
     @Override
@@ -70,6 +72,12 @@ public class ArcadeActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        successSound = MediaPlayer.create(this, R.raw.game_success);
+    }
+
+    @Override
     public void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
         if (f instanceof GameFragment && currentGame < games.size() - 1) {
@@ -86,6 +94,12 @@ public class ArcadeActivity extends AppCompatActivity implements
         view.setTitle(g.getTitle());
         view.setTimeProgress(GAME_DURATION);
         view.setTimeProgressMax(GAME_DURATION);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        successSound.release();
     }
 
     @Override
@@ -141,6 +155,7 @@ public class ArcadeActivity extends AppCompatActivity implements
         } else {
             currentGame++;
             Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
+            successSound.start();
             RunnableUtils.runDelayed(()-> replaceWithGameFragment(), 200);
         }
     }
