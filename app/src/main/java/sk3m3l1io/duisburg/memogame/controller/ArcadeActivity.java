@@ -19,6 +19,7 @@ import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.dialogs.MessageDialog;
 import sk3m3l1io.duisburg.memogame.model.LightningScores;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.services.Score;
@@ -34,7 +35,6 @@ public class ArcadeActivity extends AppCompatActivity implements
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 20000;
-    private static final int GAME_DELAY = 2400;
 
     private int currentGame = 0;
     private List<Game> games;
@@ -55,20 +55,46 @@ public class ArcadeActivity extends AppCompatActivity implements
         completedGames = new ArrayList<>();
         player = getIntent().getParcelableExtra(Player.class.getSimpleName());
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
+        shuffle(games);
         view = new ArcadeViewImp(getLayoutInflater(), null);
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
         setContentView(view.getRootView());
-        replaceWithGameFragment();
+        addGameFragment();
     }
 
-    private void replaceWithGameFragment() {
+    private void shuffle(List<Game> games) {
+        Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
+        int easyUpperBound = 0;
+        int normalUpperBound = 0;
+
+        for (int i = 0; i < games.size(); i++) {
+            Game g1 = games.get(i);
+            Game g2 = games.get(i + 1);
+
+            if (g1.getDifficulty() == GameDifficulty.EASY &&
+                g2.getDifficulty() == GameDifficulty.NORMAL){
+                easyUpperBound = i;
+                continue;
+            }
+
+            if (g1.getDifficulty() == GameDifficulty.NORMAL &&
+                g2.getDifficulty() == GameDifficulty.HARD){
+                normalUpperBound = i;
+                break;
+            }
+        }
+
+        Collections.shuffle(games.subList(0, easyUpperBound + 1));
+        Collections.shuffle(games.subList(normalUpperBound, games.size()));
+    }
+
+    private void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), new GameFragment())
-                .commitNow();
+                .commit();
     }
 
     @Override
@@ -156,7 +182,7 @@ public class ArcadeActivity extends AppCompatActivity implements
             currentGame++;
             Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
             successSound.start();
-            RunnableUtils.runDelayed(()-> replaceWithGameFragment(), 200);
+            RunnableUtils.runDelayed(()-> addGameFragment(), 200);
         }
     }
 
