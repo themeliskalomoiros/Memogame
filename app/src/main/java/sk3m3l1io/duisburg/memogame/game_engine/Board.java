@@ -4,38 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Board {
-    private final List<Box> boxes;
+    private static final int SYMBOL_COUNT = 12;
+
+    private final char cover;
+    private final List<Character> boxes;
+
     public Board(char s1,char s2,char s3,char s4,char s5,char s6,char cover) {
-        boxes = new ArrayList<>(12);
-        populateBoxes(s1, s2, s3, s4, s5, s6, cover);
+        this.cover = cover;
+        boxes = new ArrayList<>(SYMBOL_COUNT);
+        populateBoxes(s1, s2, s3, s4, s5, s6);
     }
 
-    private void populateBoxes(char s1, char s2, char s3, char s4, char s5, char s6, char cover) {
-        Box b = new Box(s1, cover);
-        boxes.add(b);
-        boxes.add(b);
-        b = new Box(s2, cover);
-        boxes.add(b);
-        boxes.add(b);
-        b = new Box(s3, cover);
-        boxes.add(b);
-        boxes.add(b);
-        b = new Box(s4, cover);
-        boxes.add(b);
-        boxes.add(b);
-        b = new Box(s5, cover);
-        boxes.add(b);
-        boxes.add(b);
-        b = new Box(s6, cover);
-        boxes.add(b);
-        boxes.add(b);
+    private void populateBoxes(char s1, char s2, char s3, char s4, char s5, char s6) {
+        boxes.add(s1);
+        boxes.add(s1);
+        boxes.add(s2);
+        boxes.add(s2);
+        boxes.add(s3);
+        boxes.add(s3);
+        boxes.add(s4);
+        boxes.add(s4);
+        boxes.add(s5);
+        boxes.add(s5);
+        boxes.add(s6);
+        boxes.add(s6);
     }
 
     public char getSymbolAt(int position) {
-        return boxes.get(position).symbol;
+        return boxes.get(position);
     }
 
     public char getCoverAt(int position) {
-        return boxes.get(position).cover;
+        return boxes.get(position);
     }
 }

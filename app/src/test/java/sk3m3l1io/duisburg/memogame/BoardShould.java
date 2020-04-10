@@ -4,13 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sk3m3l1io.duisburg.memogame.game_engine.Board;
-import sk3m3l1io.duisburg.memogame.game_engine.Box;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-
-import sk3m3l1io.duisburg.memogame.game_engine.Box;
 
 public class BoardShould {
     private Board sut;
@@ -39,20 +36,5 @@ public class BoardShould {
     @Test (expected = IndexOutOfBoundsException.class)
     public void throwIndexOutOfBoundsWhenTryingToGetInvalidSymbol(){
         sut.getSymbolAt(12);
-    }
-
-    @Test
-    public void haveSameCoverForAllBoxes(){
-        char cover = 'c';
-        boolean isSameCover = true;
-
-        for (int i = 0; i < 11; i++) {
-            if (cover != sut.getCoverAt(i)){
-                isSameCover = false;
-                break;
-            }
-        }
-
-        assertEquals(true, isSameCover);
     }
 }
