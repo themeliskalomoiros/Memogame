@@ -23,7 +23,6 @@ public class GameEngineFragment extends Fragment
         GameState.SymbolAlreadyUncoveredListener {
 
     private GameView view;
-    private Game game;
     private GameState gameState;
 
     @Override
@@ -58,12 +57,11 @@ public class GameEngineFragment extends Fragment
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
-        view.coverAllSymbols(game.getCover());
+        view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
     }
 
     public void set(Game game){
-        this.game = game;
         initGameStateOf(game);
     }
 
@@ -77,7 +75,7 @@ public class GameEngineFragment extends Fragment
     }
 
     private char[] createSymbolCharactersFrom(Game game) {
-        char[] symbols = new char[GameState.MAX_MATCHES];
+        char[] symbols = new char[game.getSymbols().length];
         for (int i = 0; i < symbols.length; i++) {
             char s = game.getSymbols()[i].charAt(0);
             symbols[i] = s;
