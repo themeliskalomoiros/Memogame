@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class GameEngineFragment extends Fragment
 
     private GameView view;
     private GameState gameState;
+    private MediaPlayer matchCelebration, completionCelebration;
 
     @Override
     public void onSymbolClick(int position) {
@@ -43,6 +45,7 @@ public class GameEngineFragment extends Fragment
         int color = getResources().getColor(R.color.symbolMatchColor);
         view.setSymbolForeground(position1, color);
         view.setSymbolForeground(position2, color);
+        matchCelebration.start();
     }
 
     @Override
@@ -63,6 +66,7 @@ public class GameEngineFragment extends Fragment
         view.disableAllSymbols();
         int color = getResources().getColor(R.color.primaryDarkColor);
         view.setAllSymbolsBackground(color);
+        completionCelebration.start();
     }
 
     @Override
@@ -79,6 +83,20 @@ public class GameEngineFragment extends Fragment
         view = new GameViewImpl(inflater, container);
         view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        matchCelebration = MediaPlayer.create(getContext(), R.raw.match_success);
+        completionCelebration = MediaPlayer.create(getContext(), R.raw.game_success);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        matchCelebration.release();
+        completionCelebration.release();
     }
 
     public void set(Game game){
