@@ -3,10 +3,10 @@ package sk3m3l1io.duisburg.memogame.game_engine;
 import androidx.annotation.Nullable;
 
 public final class Box {
-    public final char content, cover;
+    public final char symbol, cover;
 
-    public Box(char content, char cover) {
-        this.content = content;
+    public Box(char symbol, char cover) {
+        this.symbol = symbol;
         this.cover = cover;
     }
 
@@ -17,6 +17,6 @@ public final class Box {
         if (!(o instanceof Box)) return false;
 
         Box other = (Box)o;
-        return content == other.content && cover == other.cover;
+        return symbol == other.symbol && cover == other.cover;
     }
 }

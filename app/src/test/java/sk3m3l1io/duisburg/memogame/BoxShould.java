@@ -19,8 +19,8 @@ public class BoxShould {
     }
 
     @Test
-    public void haveNonEmptyContentByDefault() {
-        assertNotEquals('\0', sut.content);
+    public void haveNonEmptySymbolByDefault() {
+        assertNotEquals('\0', sut.symbol);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class BoxShould {
     }
 
     @Test
-    public void beEqualWithAnotherBoxByContentAndCover(){
+    public void beEqualWithAnotherBoxBySymbolAndCover(){
         Box other = new Box('M', 'O');
 
         assertEquals(sut, other);
