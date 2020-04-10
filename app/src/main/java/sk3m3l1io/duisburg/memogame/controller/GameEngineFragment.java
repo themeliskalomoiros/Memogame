@@ -1,6 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,16 @@ import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;
 import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
 
+// TODO: Don't forget to clear resources, detach listeners, etc...
 public class GameEngineFragment extends Fragment
         implements GameView.SymbolClickListener,
         GameState.PairMatchListener,
         GameState.PairMatchCompletionListener,
         GameState.SymbolAlreadyUncoveredListener {
+
     private GameView view;
+    private Game game;
+    private GameState gameState;
 
     @Override
     public void onSymbolClick(int pos) {
@@ -53,7 +58,30 @@ public class GameEngineFragment extends Fragment
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
-        view.setSymbolClickListener(this);
+        view.coverAllSymbols(game.getCover());
         return view.getRootView();
+    }
+
+    public void set(Game game){
+        this.game = game;
+        initGameStateOf(game);
+    }
+
+    private void initGameStateOf(Game game) {
+        try {
+            char cover = game.getCover().charAt(0);
+            gameState = new GameState(createSymbolCharactersFrom(game), cover);
+        } catch (Exception e) {
+            Log.e(GameEngineFragment.class.getSimpleName(), e.getMessage());
+        }
+    }
+
+    private char[] createSymbolCharactersFrom(Game game) {
+        char[] symbols = new char[GameState.MAX_MATCHES];
+        for (int i = 0; i < symbols.length; i++) {
+            char s = game.getSymbols()[i].charAt(0);
+            symbols[i] = s;
+        }
+        return symbols;
     }
 }
