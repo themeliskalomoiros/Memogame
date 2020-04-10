@@ -5,13 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;
 import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
 
@@ -26,28 +29,45 @@ public class GameEngineFragment extends Fragment
     private GameState gameState;
 
     @Override
-    public void onSymbolClick(int pos) {
-
+    public void onSymbolClick(int position) {
+        int color = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolForeground(position, color);
+        String symbol = "" + gameState.getSymbolAt(position);
+        view.setSymbol(position, symbol);
     }
 
     @Override
     public void onPairMatch(int position1, int position2) {
-
+        view.disableSymbol(position1);
+        view.disableSymbol(position2);
+        int color = getResources().getColor(R.color.symbolMatchColor);
+        view.setSymbolForeground(position1, color);
+        view.setSymbolForeground(position2, color);
     }
 
     @Override
     public void onPairMatchFail(int position1, int position2) {
-
+        Runnable setSymbolValues = () -> {
+            int color = getResources().getColor(R.color.primaryColor);
+            view.setSymbolForeground(position1, color);
+            view.setSymbolForeground(position2, color);
+            String cover = "" + gameState.getCover();
+            view.setSymbol(position1, cover);
+            view.setSymbol(position2, cover);
+        };
+        RunnableUtils.runDelayed(setSymbolValues, 300);
     }
 
     @Override
     public void onPairMatchesCompleted() {
-
+        view.disableAllSymbols();
+        int color = getResources().getColor(R.color.primaryDarkColor);
+        view.setAllSymbolsBackground(color);
     }
 
     @Override
     public void onSymbolAlreadyUncovered(int position) {
-
+        Toast.makeText(getContext(), "You already tapped that!", Toast.LENGTH_SHORT).show();
     }
 
     @Nullable
