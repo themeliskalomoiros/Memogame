@@ -6,57 +6,22 @@ import java.util.Stack;
 
 public final class GameState {
     public static final int PAIR = 2;
-    public static final int MAX_MATCHES = 6;
 
     private final char cover;
     private final Board board;
+
     private int matchCount;
-    private final Stack<Integer> match;
+    private final Stack<Integer> matchHolder;
+
     private PairMatchListener matchListener;
     private PairMatchCompletionListener matchCompletionListener;
     private SymbolAlreadyUncoveredListener symbolUncoveredListener;
 
-    public GameState(char[] symbols, char cover)
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
-        throwOnInvalidSymbolCount(symbols);
-        throwOnDuplicateSymbols(symbols);
-        throwOnInvalidCover(symbols, cover);
-
+    public GameState(char[] symbols, char cover) throws InvalidCoverException {
+        throwIfCoverIsInvalid(symbols, cover);
         this.cover = cover;
-        match = new Stack<>();
+        matchHolder = new Stack<>();
         board = new Board(symbols);
-    }
-
-    private void throwOnInvalidCover(char[] symbols, char cover) throws InvalidCoverException {
-        Set<Character> set = new HashSet<>(7);
-        set.add(symbols[0]);
-        set.add(symbols[1]);
-        set.add(symbols[2]);
-        set.add(symbols[3]);
-        set.add(symbols[4]);
-        set.add(symbols[5]);
-        set.add(cover);
-
-        if (set.size() < 7)
-            throw new InvalidCoverException();
-    }
-
-    private void throwOnInvalidSymbolCount(char[] symbols) throws InvalidSymbolCountException {
-        if (symbols.length != MAX_MATCHES)
-            throw new InvalidSymbolCountException();
-    }
-
-    private void throwOnDuplicateSymbols(char[] symbols) throws DuplicateSymbolsException {
-        Set<Character> set = new HashSet<>(6);
-        set.add(symbols[0]);
-        set.add(symbols[1]);
-        set.add(symbols[2]);
-        set.add(symbols[3]);
-        set.add(symbols[4]);
-        set.add(symbols[5]);
-
-        if (set.size() < 6)
-            throw new DuplicateSymbolsException();
     }
 
     public char getSymbolAt(int position) {
@@ -72,40 +37,10 @@ public final class GameState {
     }
 
     public void uncover(int position) {
-        handleUncoveringOfSymbolAt(position);
+        handleUncoveredSymbolAt(position);
 
-        if (match.size() == PAIR)
+        if (matchHolder.size() == PAIR)
             reportPairMatch();
-    }
-
-    private void handleUncoveringOfSymbolAt(int position) {
-        if (match.size() < PAIR) {
-            boolean isSameSymbol = !match.isEmpty() && position == match.peek();
-            if (isSameSymbol) {
-                if (symbolUncoveredListener != null)
-                    symbolUncoveredListener.onSymbolAlreadyUncovered(position);
-            } else {
-                match.push(position);
-            }
-        }
-    }
-
-    private void reportPairMatch() {
-        int last = match.pop();
-        int first = match.pop();
-
-        boolean matchFound = getSymbolAt(first) == getSymbolAt(last);
-        if (matchFound) {
-            if (matchListener != null)
-                matchListener.onPairMatch(first, last);
-
-            if (matchCompletionListener != null && ++matchCount == MAX_MATCHES)
-                matchCompletionListener.onPairMatchesCompleted();
-        } else {
-            if (matchListener != null)
-                matchListener.onPairMatchFail(first, last);
-        }
-
     }
 
     public void setPairMatchCompletionListener(PairMatchCompletionListener listener) {
@@ -114,6 +49,47 @@ public final class GameState {
 
     public void setSymbolAlreadyUncoveredListener(SymbolAlreadyUncoveredListener listener) {
         symbolUncoveredListener = listener;
+    }
+
+    private void throwIfCoverIsInvalid(char[] symbols, char cover) throws InvalidCoverException {
+        Set<Character> set = new HashSet<>();
+        for(char s : symbols){
+            set.add(s);
+        }
+        set.add(cover);
+
+        if (set.size() != (Board.SYMBOL_COUNT/2)+1)
+            throw new InvalidCoverException();
+    }
+
+    private void handleUncoveredSymbolAt(int position) {
+        if (matchHolder.size() < PAIR) {
+            boolean isSameSymbol = !matchHolder.isEmpty() && position == matchHolder.peek();
+            if (isSameSymbol) {
+                if (symbolUncoveredListener != null)
+                    symbolUncoveredListener.onSymbolAlreadyUncovered(position);
+            } else {
+                matchHolder.push(position);
+            }
+        }
+    }
+
+    private void reportPairMatch() {
+        int last = matchHolder.pop();
+        int first = matchHolder.pop();
+
+        boolean matchFound = getSymbolAt(first) == getSymbolAt(last);
+        if (matchFound) {
+            if (matchListener != null)
+                matchListener.onPairMatch(first, last);
+
+            if (matchCompletionListener != null && ++matchCount == Board.SYMBOL_COUNT / 2)
+                matchCompletionListener.onPairMatchesCompleted();
+        } else {
+            if (matchListener != null)
+                matchListener.onPairMatchFail(first, last);
+        }
+
     }
 
     public interface PairMatchListener {

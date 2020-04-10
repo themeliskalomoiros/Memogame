@@ -6,10 +6,8 @@ import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import sk3m3l1io.duisburg.memogame.game_engine.DuplicateSymbolsException;
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
 import sk3m3l1io.duisburg.memogame.game_engine.InvalidCoverException;
-import sk3m3l1io.duisburg.memogame.game_engine.InvalidSymbolCountException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -35,7 +33,7 @@ public class GameStateShould {
 
     @Before
     public void setup()
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
+            throws InvalidCoverException {
         initPredicates();
         initListeners();
         initSut();
@@ -64,9 +62,10 @@ public class GameStateShould {
         symbolAlreadyUncoveredListener = (pos) -> symbolAlreadyUncoveredPredicate.set(true);
     }
 
-    private void initSut() 
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
-        char[] symbols = {SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
+    private void initSut() throws InvalidCoverException {
+        char[] symbols = {
+                SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
+                SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6 };
         sut = new GameState(symbols, COVER);
         sut.setPairMatchListener(matchListener);
         sut.setPairMatchCompletionListener(completionListener);
@@ -74,46 +73,31 @@ public class GameStateShould {
     }
 
     @Test
-    public void createNonNullBoard() throws DuplicateSymbolsException {
+    public void createValidBoard()  {
         assertEquals(SYMBOL_1, sut.getSymbolAt(0));
-        assertEquals(SYMBOL_1, sut.getSymbolAt(1));
-        assertEquals(SYMBOL_2, sut.getSymbolAt(2));
-        assertEquals(SYMBOL_2, sut.getSymbolAt(3));
-        assertEquals(SYMBOL_3, sut.getSymbolAt(4));
-        assertEquals(SYMBOL_3, sut.getSymbolAt(5));
-        assertEquals(SYMBOL_4, sut.getSymbolAt(6));
-        assertEquals(SYMBOL_4, sut.getSymbolAt(7));
-        assertEquals(SYMBOL_5, sut.getSymbolAt(8));
-        assertEquals(SYMBOL_5, sut.getSymbolAt(9));
-        assertEquals(SYMBOL_6, sut.getSymbolAt(10));
+        assertEquals(SYMBOL_2, sut.getSymbolAt(1));
+        assertEquals(SYMBOL_3, sut.getSymbolAt(2));
+        assertEquals(SYMBOL_4, sut.getSymbolAt(3));
+        assertEquals(SYMBOL_5, sut.getSymbolAt(4));
+        assertEquals(SYMBOL_6, sut.getSymbolAt(5));
+        assertEquals(SYMBOL_1, sut.getSymbolAt(6));
+        assertEquals(SYMBOL_2, sut.getSymbolAt(7));
+        assertEquals(SYMBOL_3, sut.getSymbolAt(8));
+        assertEquals(SYMBOL_4, sut.getSymbolAt(9));
+        assertEquals(SYMBOL_5, sut.getSymbolAt(10));
         assertEquals(SYMBOL_6, sut.getSymbolAt(11));
         assertEquals(COVER, sut.getCover());
     }
 
-    @Test(expected = InvalidSymbolCountException.class)
-    public void throwInvalidSymbolCountException()
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
-        char[] symbols = {SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6, '7'};
-        sut = new GameState(symbols, COVER);
-    }
-
-    @Test(expected = DuplicateSymbolsException.class)
-    public void throwDuplicateSymbolsException()
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
-        char[] symbols = {SYMBOL_1, SYMBOL_1, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
-        sut = new GameState(symbols, COVER);
-    }
-
     @Test(expected = InvalidCoverException.class)
-    public void throwInvalidCoverException()
-            throws DuplicateSymbolsException, InvalidSymbolCountException, InvalidCoverException {
+    public void throwInvalidCoverException() throws InvalidCoverException {
         char[] symbols = {SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
         sut = new GameState(symbols, SYMBOL_6);
     }
 
     @Test
     public void reportPairMatch() {
-        sut.uncover(1);
+        sut.uncover(6);
         sut.uncover(0);
 
         assertTrue(matchPredicate.get());
@@ -137,7 +121,7 @@ public class GameStateShould {
 
     @Test
     public void notReportPairMatchFailure() {
-        sut.uncover(1);
+        sut.uncover(6);
         sut.uncover(0);
 
         assertFalse(matchFailPredicate.get());
@@ -145,8 +129,9 @@ public class GameStateShould {
 
     @Test
     public void reportGameCompletion() {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 6; i++) {
             sut.uncover(i);
+            sut.uncover(i+6);
         }
 
         assertTrue(matchCompletionPredicate.get());
