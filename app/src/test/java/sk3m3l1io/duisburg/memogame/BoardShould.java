@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sk3m3l1io.duisburg.memogame.game_engine.Board;
-import sk3m3l1io.duisburg.memogame.game_engine.DuplicateSymbolsException;
 
 import static org.junit.Assert.assertEquals;
 

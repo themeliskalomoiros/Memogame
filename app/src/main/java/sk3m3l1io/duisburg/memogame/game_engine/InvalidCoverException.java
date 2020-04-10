@@ -2,10 +2,10 @@ package sk3m3l1io.duisburg.memogame.game_engine;
 
 import androidx.annotation.Nullable;
 
-public final class DuplicateSymbolsException extends Exception {
+public final class InvalidCoverException extends Exception {
     @Nullable
     @Override
     public String getMessage() {
-        return "Found duplicate symbols!";
+        return "Invalid cover, a symbol with same value exists!";
     }
 }
