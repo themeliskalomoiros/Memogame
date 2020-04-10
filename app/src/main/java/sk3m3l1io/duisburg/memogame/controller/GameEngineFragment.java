@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,6 @@ import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;
 import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
 
-// TODO: Don't forget to clear resources, detach listeners, etc...
 public class GameEngineFragment extends Fragment
         implements GameView.SymbolClickListener,
         GameState.PairMatchListener,
@@ -29,6 +29,7 @@ public class GameEngineFragment extends Fragment
     private GameView view;
     private GameState gameState;
     private MediaPlayer matchCelebration, completionCelebration;
+    private GameCompletionListener completionListener;
 
     @Override
     public void onSymbolClick(int position) {
@@ -67,11 +68,23 @@ public class GameEngineFragment extends Fragment
         int color = getResources().getColor(R.color.primaryDarkColor);
         view.setAllSymbolsBackground(color);
         completionCelebration.start();
+        completionListener.onGameCompleted();
     }
 
     @Override
     public void onSymbolAlreadyUncovered(int position) {
         Toast.makeText(getContext(), "You already tapped that!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            completionListener = (GameCompletionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement " + GameCompletionListener.class.getSimpleName());
+        }
     }
 
     @Nullable
@@ -99,6 +112,13 @@ public class GameEngineFragment extends Fragment
         completionCelebration.release();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        completionListener = null;
+        view.setSymbolClickListener(null);
+    }
+
     public void set(Game game){
         initGameStateOf(game);
     }
@@ -119,5 +139,9 @@ public class GameEngineFragment extends Fragment
             symbols[i] = s;
         }
         return symbols;
+    }
+
+    public interface GameCompletionListener{
+        void onGameCompleted();
     }
 }
