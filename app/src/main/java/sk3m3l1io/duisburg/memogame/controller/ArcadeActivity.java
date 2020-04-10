@@ -73,13 +73,13 @@ public class ArcadeActivity extends AppCompatActivity implements
             Game g2 = games.get(i + 1);
 
             if (g1.getDifficulty() == GameDifficulty.EASY &&
-                g2.getDifficulty() == GameDifficulty.NORMAL){
+                    g2.getDifficulty() == GameDifficulty.NORMAL) {
                 easyUpperBound = i;
                 continue;
             }
 
             if (g1.getDifficulty() == GameDifficulty.NORMAL &&
-                g2.getDifficulty() == GameDifficulty.HARD){
+                    g2.getDifficulty() == GameDifficulty.HARD) {
                 normalUpperBound = i;
                 break;
             }
@@ -167,7 +167,7 @@ public class ArcadeActivity extends AppCompatActivity implements
 
     @Override
     public void onGameBegin() {
-        Snackbar.make(view.getRootView(),R.string.game_started, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
         timer.begin();
     }
 
@@ -182,7 +182,7 @@ public class ArcadeActivity extends AppCompatActivity implements
             currentGame++;
             Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
             successSound.start();
-            RunnableUtils.runDelayed(()-> addGameFragment(), 200);
+            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
     }
 

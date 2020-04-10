@@ -28,7 +28,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
                     + " must implement " + MenuItemClickListener.class.getSimpleName() +
-                    " and "+ViewCreationListener.class.getSimpleName());
+                    " and " + ViewCreationListener.class.getSimpleName());
         }
     }
 
@@ -100,7 +100,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
         void onLeaderboardClick();
     }
 
-    public interface ViewCreationListener{
+    public interface ViewCreationListener {
         void onMenuViewCreation();
     }
 }

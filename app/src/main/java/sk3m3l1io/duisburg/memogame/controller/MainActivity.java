@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showSignInSnackbar() {
         Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
-                .setAction(R.string.sign_in, v ->  onSignInClick())
+                .setAction(R.string.sign_in, v -> onSignInClick())
                 .show();
     }
 
