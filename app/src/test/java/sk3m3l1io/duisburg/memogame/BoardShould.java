@@ -12,8 +12,8 @@ public class BoardShould {
     private Board sut;
 
     @Before
-    public void setUpSut() throws DuplicateSymbolsException {
-        sut = new Board('1', '2', '3', '4', '5', '6', 'c');
+    public void setup() {
+        sut = new Board(new char[]{'1', '2', '3', '4', '5', '6'});
     }
 
     @Test
@@ -35,11 +35,5 @@ public class BoardShould {
     @Test(expected = IndexOutOfBoundsException.class)
     public void throwIndexOutOfBoundsWhenTryingToGetInvalidSymbol() {
         sut.getSymbolAt(12);
-    }
-
-    // TODO: Move that test to game state class
-    @Test(expected = DuplicateSymbolsException.class)
-    public void throwIfHaveDuplicateSymbols() throws DuplicateSymbolsException {
-        sut = new Board('1', '1', '3', '4', '5', '6', 'c');
     }
 }
