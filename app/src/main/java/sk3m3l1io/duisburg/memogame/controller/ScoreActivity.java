@@ -18,8 +18,11 @@ import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {
-    private List<Game> gamesCompleted = new ArrayList<>();
+    private final List<Game> gamesCompleted = new ArrayList<>();
 
+    protected final int getCompletedGamesCount(){
+        return gamesCompleted.size();
+    }
 
     @Override
     protected final void arrangeGameSequence() {
