@@ -33,73 +33,6 @@ public class GameEngineFragment extends Fragment
     private GameProcedureListener gameProcedureListener;
 
     @Override
-    public void onSymbolClick(int position) {
-        updateUiOnSymbolClick(position);
-        gameState.uncover(position);
-    }
-
-    private void updateUiOnSymbolClick(int s) {
-        int c = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolForeground(s, c);
-        String symbol = "" + gameState.getSymbolAt(s);
-        view.setSymbol(s, symbol);
-    }
-
-    @Override
-    public void onMatch(int position1, int position2) {
-        updateUiOnMatch(position1, position2);
-        matchCelebration.start();
-    }
-
-    private void updateUiOnMatch(int s1, int s2) {
-        view.disableSymbol(s1);
-        view.disableSymbol(s2);
-        int c = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolForeground(s1, c);
-        view.setSymbolForeground(s2, c);
-    }
-
-    @Override
-    public void onMatchFail(int position1, int position2) {
-        updateUiOnMatchFail(position1, position2);
-    }
-
-    private void updateUiOnMatchFail(int position1, int position2) {
-        Runnable setSymbolValues = () -> {
-            int color = getResources().getColor(R.color.primaryColor);
-            view.setSymbolForeground(position1, color);
-            view.setSymbolForeground(position2, color);
-            String cover = "" + gameState.getCover();
-            view.setSymbol(position1, cover);
-            view.setSymbol(position2, cover);
-        };
-        RunnableUtils.runDelayed(setSymbolValues, 300);
-    }
-
-    @Override
-    public void onGameBegin() {
-        gameProcedureListener.onGameStart();
-    }
-
-    @Override
-    public void onGameCompleted() {
-        updateUiOnGameCompleted();
-        completionCelebration.start();
-        gameProcedureListener.onGameComplete();
-    }
-
-    private void updateUiOnGameCompleted() {
-        view.disableAllSymbols();
-        int color = getResources().getColor(R.color.primaryDarkColor);
-        view.setAllSymbolsBackground(color);
-    }
-
-    @Override
-    public void onSymbolAlreadyUncovered(int position) {
-        Toast.makeText(getContext(), "You already tapped that!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
@@ -145,10 +78,10 @@ public class GameEngineFragment extends Fragment
     }
 
     public void setGame(Game game){
-        initGameStateOf(game);
+        initGameStateFrom(game);
     }
 
-    private void initGameStateOf(Game game) {
+    private void initGameStateFrom(Game game) {
         try {
             char cover = game.getCover().charAt(0);
             gameState = new GameState(createSymbolCharactersFrom(game), cover);
@@ -157,6 +90,7 @@ public class GameEngineFragment extends Fragment
             gameState.setGameCompletionListener(this);
             gameState.setMatchListener(this);
         } catch (Exception e) {
+            e.printStackTrace();
             Log.e(GameEngineFragment.class.getSimpleName(), e.getMessage());
         }
     }
@@ -168,6 +102,70 @@ public class GameEngineFragment extends Fragment
             symbols[i] = s;
         }
         return symbols;
+    }
+
+    @Override
+    public void onGameBegin() {
+        gameProcedureListener.onGameStart();
+    }
+
+    @Override
+    public void onSymbolClick(int position) {
+        updateUiOnSymbolClick(position);
+        gameState.uncover(position);
+    }
+
+    private void updateUiOnSymbolClick(int s) {
+        int c = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolForeground(s, c);
+        String symbol = "" + gameState.getSymbolAt(s);
+        view.setSymbol(s, symbol);
+    }
+
+    @Override
+    public void onSymbolAlreadyUncovered(int position) {
+        Toast.makeText(getContext(), "You already tapped that!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMatch(int position1, int position2) {
+        updateUiOnMatch(position1, position2);
+        matchCelebration.start();
+    }
+
+    private void updateUiOnMatch(int s1, int s2) {
+        view.disableSymbol(s1);
+        view.disableSymbol(s2);
+        int c = getResources().getColor(R.color.symbolMatchColor);
+        view.setSymbolForeground(s1, c);
+        view.setSymbolForeground(s2, c);
+    }
+
+    @Override
+    public void onMatchFail(int position1, int position2) {
+        RunnableUtils.runDelayed(() -> updateUiOnMatchFail(position1, position2), 300);
+    }
+
+    private void updateUiOnMatchFail(int position1, int position2) {
+        int color = getResources().getColor(R.color.primaryColor);
+        view.setSymbolForeground(position1, color);
+        view.setSymbolForeground(position2, color);
+        String cover = "" + gameState.getCover();
+        view.setSymbol(position1, cover);
+        view.setSymbol(position2, cover);
+    }
+
+    @Override
+    public void onGameCompleted() {
+        updateUiOnGameCompleted();
+        completionCelebration.start();
+        gameProcedureListener.onGameComplete();
+    }
+
+    private void updateUiOnGameCompleted() {
+        view.disableAllSymbols();
+        int color = getResources().getColor(R.color.primaryDarkColor);
+        view.setAllSymbolsBackground(color);
     }
 
     public interface GameProcedureListener {
