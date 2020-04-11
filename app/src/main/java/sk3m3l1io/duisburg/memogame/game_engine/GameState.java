@@ -9,13 +9,14 @@ public final class GameState {
 
     private final char cover;
     private final Board board;
-
     private int matchCount;
     private final Stack<Integer> matchHolder;
 
-    private PairMatchListener matchListener;
-    private PairMatchCompletionListener matchCompletionListener;
+    private MatchListener matchListener;
+    private GameCompletionListener gameCompletionListener;
     private SymbolAlreadyUncoveredListener symbolUncoveredListener;
+    private boolean gameStarted;
+    private GameBeginListener gameBeginListener;
 
     public GameState(char[] symbols, char cover) throws InvalidCoverException {
         throwIfCoverIsInvalid(symbols, cover);
@@ -32,23 +33,36 @@ public final class GameState {
         return cover;
     }
 
-    public void setPairMatchListener(PairMatchListener listener) {
-        matchListener = listener;
-    }
-
     public void uncover(int position) {
+        reportOnStart();
+
         handleUncoveredSymbolAt(position);
 
         if (matchHolder.size() == PAIR)
             reportPairMatch();
     }
 
-    public void setPairMatchCompletionListener(PairMatchCompletionListener listener) {
-        matchCompletionListener = listener;
+    public void setMatchListener(MatchListener listener) {
+        matchListener = listener;
+    }
+
+    public void setGameBeginListener(GameBeginListener listener){
+        gameBeginListener = listener;
+    }
+
+    public void setGameCompletionListener(GameCompletionListener listener) {
+        gameCompletionListener = listener;
     }
 
     public void setSymbolAlreadyUncoveredListener(SymbolAlreadyUncoveredListener listener) {
         symbolUncoveredListener = listener;
+    }
+
+    public void detachListeners(){
+        symbolUncoveredListener = null;
+        gameCompletionListener = null;
+        matchListener = null;
+        gameBeginListener = null;
     }
 
     private void throwIfCoverIsInvalid(char[] symbols, char cover) throws InvalidCoverException {
@@ -60,6 +74,14 @@ public final class GameState {
 
         if (set.size() != (Board.SYMBOL_COUNT/2)+1)
             throw new InvalidCoverException();
+    }
+
+    private void reportOnStart() {
+        if (!gameStarted){
+            if (gameBeginListener != null)
+                gameBeginListener.onGameBegin();
+            gameStarted = true;
+        }
     }
 
     private void handleUncoveredSymbolAt(int position) {
@@ -81,25 +103,29 @@ public final class GameState {
         boolean matchFound = getSymbolAt(first) == getSymbolAt(last);
         if (matchFound) {
             if (matchListener != null)
-                matchListener.onPairMatch(first, last);
+                matchListener.onMatch(first, last);
 
-            if (matchCompletionListener != null && ++matchCount == Board.SYMBOL_COUNT / 2)
-                matchCompletionListener.onPairMatchesCompleted();
+            if (gameCompletionListener != null && ++matchCount == Board.SYMBOL_COUNT / 2)
+                gameCompletionListener.onGameCompleted();
         } else {
             if (matchListener != null)
-                matchListener.onPairMatchFail(first, last);
+                matchListener.onMatchFail(first, last);
         }
 
     }
 
-    public interface PairMatchListener {
-        void onPairMatch(int position1, int position2);
+    public interface MatchListener {
+        void onMatch(int position1, int position2);
 
-        void onPairMatchFail(int position1, int position2);
+        void onMatchFail(int position1, int position2);
     }
 
-    public interface PairMatchCompletionListener {
-        void onPairMatchesCompleted();
+    public interface GameBeginListener {
+        void onGameBegin();
+    }
+
+    public interface GameCompletionListener {
+        void onGameCompleted();
     }
 
     public interface SymbolAlreadyUncoveredListener {

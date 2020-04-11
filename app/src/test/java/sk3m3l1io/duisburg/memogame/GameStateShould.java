@@ -25,11 +25,13 @@ public class GameStateShould {
     private GameState sut;
     private AtomicBoolean matchPredicate;
     private AtomicBoolean matchFailPredicate;
-    private GameState.PairMatchListener matchListener;
+    private GameState.MatchListener matchListener;
     private AtomicBoolean matchCompletionPredicate;
-    private GameState.PairMatchCompletionListener completionListener;
+    private GameState.GameCompletionListener gameCompletionListener;
     private AtomicBoolean symbolAlreadyUncoveredPredicate;
     private GameState.SymbolAlreadyUncoveredListener symbolAlreadyUncoveredListener;
+    private AtomicBoolean startPredicate;
+    private GameState.GameBeginListener gameBeginListener;
 
     @Before
     public void setup()
@@ -44,22 +46,24 @@ public class GameStateShould {
         matchFailPredicate = new AtomicBoolean(false);
         matchCompletionPredicate = new AtomicBoolean(false);
         symbolAlreadyUncoveredPredicate = new AtomicBoolean(false);
+        startPredicate = new AtomicBoolean(false);
     }
 
     private void initListeners() {
-        matchListener = new GameState.PairMatchListener() {
+        matchListener = new GameState.MatchListener() {
             @Override
-            public void onPairMatch(int position1, int position2) {
+            public void onMatch(int position1, int position2) {
                 matchPredicate.set(sut.getSymbolAt(position1) == sut.getSymbolAt(position2));
             }
 
             @Override
-            public void onPairMatchFail(int position1, int position2) {
+            public void onMatchFail(int position1, int position2) {
                 matchFailPredicate.set(sut.getSymbolAt(position1) != sut.getSymbolAt(position2));
             }
         };
-        completionListener = () -> matchCompletionPredicate.set(true);
+        gameCompletionListener = () -> matchCompletionPredicate.set(true);
         symbolAlreadyUncoveredListener = (pos) -> symbolAlreadyUncoveredPredicate.set(true);
+        gameBeginListener = () -> startPredicate.set(true);
     }
 
     private void initSut() throws InvalidCoverException {
@@ -67,9 +71,10 @@ public class GameStateShould {
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6 };
         sut = new GameState(symbols, COVER);
-        sut.setPairMatchListener(matchListener);
-        sut.setPairMatchCompletionListener(completionListener);
+        sut.setMatchListener(matchListener);
+        sut.setGameCompletionListener(gameCompletionListener);
         sut.setSymbolAlreadyUncoveredListener(symbolAlreadyUncoveredListener);
+        sut.setGameBeginListener(gameBeginListener);
     }
 
     @Test
@@ -165,10 +170,28 @@ public class GameStateShould {
         assertFalse(symbolAlreadyUncoveredPredicate.get());
     }
 
+    @Test
+    public void reportStart() {
+        sut.uncover(0);
+
+        assertTrue(startPredicate.get());
+    }
+
+    @Test
+    public void notReportStartTwice() {
+        sut.uncover(0);
+        assertTrue(startPredicate.get());
+        startPredicate.set(false);
+
+        sut.uncover(1);
+
+        assertFalse(startPredicate.get());
+    }
+
     @After
     public void tearDown() {
-        sut.setPairMatchListener(null);
-        sut.setPairMatchCompletionListener(null);
+        sut.setMatchListener(null);
+        sut.setGameCompletionListener(null);
         sut.setSymbolAlreadyUncoveredListener(null);
     }
 }
