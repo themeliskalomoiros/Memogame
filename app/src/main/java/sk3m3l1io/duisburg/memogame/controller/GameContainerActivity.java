@@ -34,7 +34,7 @@ public abstract class GameContainerActivity extends AppCompatActivity
 
     protected abstract void arrangeGameSequence();
 
-    private void addGameFragment() {
+    protected void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(view.getGameContainerId(), getCurrentGameFragment())

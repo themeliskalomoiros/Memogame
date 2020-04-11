@@ -16,60 +16,33 @@ import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseView;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseViewImp;
 
-public class PractiseModeActivity extends AppCompatActivity implements
+public class PractiseModeActivity extends GameContainerActivity implements
         GameFragment.GameEventListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener {
     private static final String REPEAT_DIALOG = "repeat dialog";
     private static final String NEXT_GAME_DIALOG = "move to next dialog";
 
-    private int currentGame;
-    private List<Game> games;
-    private PractiseView view;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        init();
-        Collections.sort(games, (g1, g2) -> g1.getTitle().compareTo(g2.getTitle()));
-        addGameFragment();
-        setContentView(view.getRootView());
-    }
-
-    private void init() {
-        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+    protected void initView() {
         view = new PractiseViewImp(getLayoutInflater(), null);
-        view.setChangeGameClickListener(this);
-    }
-
-    private void addGameFragment() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(view.getGameContainerId(), createCurrentGameFragment())
-                .commit();
-    }
-
-    private GameFragment createCurrentGameFragment(){
-        Game g = games.get(currentGame);
-        ArrayUtils.shuffle(g.getSymbols());
-        GameFragment f = new GameFragment();
-        f.setGame(g);
-        return f;
+        ((PractiseView) view).setChangeGameClickListener(this);
     }
 
     @Override
-    public void onAttachFragment(@NonNull Fragment fragment) {
-        super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment) {
-            view.setTitle(games.get(currentGame).getTitle());
-            view.setDifficulty(games.get(currentGame).getDifficulty());
-        }
+    protected void arrangeGameSequence() {
+        Collections.sort(games, (g1, g2) -> g1.getTitle().compareTo(g2.getTitle()));
+    }
+
+    @Override
+    protected void onAttachGameFragment(GameFragment f) {
+        view.setTitle(games.get(currentGame).getTitle());
+        view.setDifficulty(games.get(currentGame).getDifficulty());
     }
 
     @Override
     public void onPreviousGameClick() {
         setGameIndexOnPreviousClick();
-
         addGameFragment();
     }
 
