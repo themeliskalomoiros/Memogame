@@ -26,7 +26,7 @@ import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
 
 public class ArcadeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
-        GameEngineFragment.GameEventListener,
+        GameFragment.GameEventListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 20000;
@@ -90,10 +90,10 @@ public class ArcadeActivity extends AppCompatActivity implements
                 .commit();
     }
 
-    private GameEngineFragment createCurrentGameFragment(){
+    private GameFragment createCurrentGameFragment(){
         Game g = games.get(currentGame);
         ArrayUtils.shuffle(g.getSymbols());
-        GameEngineFragment f = new GameEngineFragment();
+        GameFragment f = new GameFragment();
         f.setGame(g);
         return f;
     }
@@ -101,7 +101,7 @@ public class ArcadeActivity extends AppCompatActivity implements
     @Override
     public void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
-        if (f instanceof GameEngineFragment) {
+        if (f instanceof GameFragment) {
             if (currentGame < games.size() - 1){
                 updateUiOnFragmentAttach();
             }
@@ -162,7 +162,7 @@ public class ArcadeActivity extends AppCompatActivity implements
     @Override
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
-        if (f instanceof GameEngineFragment) {
+        if (f instanceof GameFragment) {
             view.setTimeProgress(0);
             view.setTitle(getString(R.string.time_up));
             addResultFragment();

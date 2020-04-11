@@ -22,7 +22,7 @@ import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;
 import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
 
-public class GameEngineFragment extends Fragment
+public class GameFragment extends Fragment
         implements GameView.SymbolClickListener,
         GameState.MatchListener,
         GameState.GameBeginListener,
@@ -190,6 +190,6 @@ public class GameEngineFragment extends Fragment
     }
 
     public interface ViewCreationListener{
-        void onFragmentViewCreated(GameEngineFragment f);
+        void onFragmentViewCreated(GameFragment f);
     }
 }

@@ -17,7 +17,7 @@ import sk3m3l1io.duisburg.memogame.view.game.PractiseView;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseViewImp;
 
 public class PractiseModeActivity extends AppCompatActivity implements
-        GameEngineFragment.GameEventListener,
+        GameFragment.GameEventListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener {
     private static final String REPEAT_DIALOG = "repeat dialog";
@@ -49,10 +49,10 @@ public class PractiseModeActivity extends AppCompatActivity implements
                 .commit();
     }
 
-    private GameEngineFragment createCurrentGameFragment(){
+    private GameFragment createCurrentGameFragment(){
         Game g = games.get(currentGame);
         ArrayUtils.shuffle(g.getSymbols());
-        GameEngineFragment f = new GameEngineFragment();
+        GameFragment f = new GameFragment();
         f.setGame(g);
         return f;
     }
@@ -60,7 +60,7 @@ public class PractiseModeActivity extends AppCompatActivity implements
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (fragment instanceof GameEngineFragment) {
+        if (fragment instanceof GameFragment) {
             view.setTitle(games.get(currentGame).getTitle());
             view.setDifficulty(games.get(currentGame).getDifficulty());
         }

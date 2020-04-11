@@ -21,8 +21,8 @@ import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;
 
 public class RandomModeActivity extends AppCompatActivity implements
-        GameEngineFragment.GameEventListener,
-        GameEngineFragment.ViewCreationListener,
+        GameFragment.GameEventListener,
+        GameFragment.ViewCreationListener,
         ResultFragment.ResultButtonClickListener{
     private static final int DEFAULT_LIVES = 4;
     private static final int EXPOSURE_DURATION = 3000;
@@ -84,10 +84,10 @@ public class RandomModeActivity extends AppCompatActivity implements
                 .commit();
     }
 
-    private GameEngineFragment createCurrentGameFragment(){
+    private GameFragment createCurrentGameFragment(){
         Game g = games.get(currentGame);
         ArrayUtils.shuffle(g.getSymbols());
-        GameEngineFragment f = new GameEngineFragment();
+        GameFragment f = new GameFragment();
         f.setViewCreationListener(this);
         f.setGame(g);
         return f;
@@ -96,7 +96,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     @Override
     public void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
-        if (f instanceof GameEngineFragment) {
+        if (f instanceof GameFragment) {
             if (currentGame < games.size() - 1){
                 updateUiOnFragmentAttach();
             }
@@ -111,7 +111,7 @@ public class RandomModeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentViewCreated(GameEngineFragment f) {
+    public void onFragmentViewCreated(GameFragment f) {
         view.setTitle(R.string.take_a_look);
         f.showAllSymbols();
         RunnableUtils.runDelayed(() -> {
