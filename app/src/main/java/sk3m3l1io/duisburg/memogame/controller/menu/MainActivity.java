@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements
     private MainView view;
     private GameMode gameMode;
     private List<Game> games;
-    private MediaPlayer tapSound;
     private GoogleSignInClient googleSignInClient;
+    private MediaPlayer forwardSound, backwardSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        tapSound = MediaPlayer.create(this, R.raw.navigation_forward_minimal);
+        forwardSound = MediaPlayer.create(this, R.raw.navigation_forward_minimal);
+        backwardSound = MediaPlayer.create(this, R.raw.navigation_backward_minimal);
     }
 
     @Override
@@ -112,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStop() {
         super.onStop();
-        tapSound.release();
+        forwardSound.release();
+        backwardSound.release();
     }
 
     @NonNull
@@ -206,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements
 //        } else {
 //            showSignInSnackbar();
 //        }
-        tapSound.start();
+        forwardSound.start();
         addGameBriefingFragment(gameMode = GameMode.ARCADE);
     }
 
@@ -219,20 +223,20 @@ public class MainActivity extends AppCompatActivity implements
 //        } else {
 //            showSignInSnackbar();
 //        }
-        tapSound.start();
+        forwardSound.start();
         addGameBriefingFragment(gameMode = GameMode.RANDOM);
     }
 
     @Override
     public void onPractiseModeClick() {
-        tapSound.start();
+        forwardSound.start();
         gameMode = GameMode.PRACTISE;
         addGameBriefingFragment(gameMode);
     }
 
     @Override
     public void onSignInClick() {
-        tapSound.start();
+        forwardSound.start();
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             googleSignInClient.signOut().addOnSuccessListener(this);
         } else {
@@ -242,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLeaderboardClick() {
-        tapSound.start();
+        forwardSound.start();
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
         Player p = GoogleUtils.createPlayerFrom(acc);
         if (p != null) {
@@ -262,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onStartGameClick() {
-        tapSound.start();
+        forwardSound.start();
         startActivity(getPlayModeIntent(gameMode));
     }
 
@@ -307,5 +311,14 @@ public class MainActivity extends AppCompatActivity implements
                 .addToBackStack(null)
                 .replace(view.getMenuContainerId(), f)
                 .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment f = getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
+        if (f!=null && f instanceof GameBriefingFragment){
+            backwardSound.start();
+        }
+        super.onBackPressed();
     }
 }
