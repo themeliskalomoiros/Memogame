@@ -42,7 +42,7 @@ public class ArcadeActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        shuffle(games);
+        shuffleByDifficulty(games);
         addGameFragment();
         setContentView(view.getRootView());
     }
@@ -55,7 +55,7 @@ public class ArcadeActivity extends AppCompatActivity implements
         view = new ArcadeViewImp(getLayoutInflater(), null);
     }
 
-    private void shuffle(List<Game> games) {
+    private void shuffleByDifficulty(List<Game> games) {
         // TODO: Refactor that
         Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
         int easyUpperBound = 0;
