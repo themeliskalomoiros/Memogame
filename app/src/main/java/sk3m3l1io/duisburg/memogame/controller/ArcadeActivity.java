@@ -34,7 +34,6 @@ public class ArcadeActivity extends AppCompatActivity implements
     private static final int GAME_DURATION = 20000;
 
     private ArcadeView view;
-    private Player player;
     private CountDownTimerReporter timer;
 
     private int currentGame;
@@ -54,7 +53,6 @@ public class ArcadeActivity extends AppCompatActivity implements
         gamesCompleted = new ArrayList<>();
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
-        player = getIntent().getParcelableExtra(Player.class.getSimpleName());
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         view = new ArcadeViewImp(getLayoutInflater(), null);
     }
@@ -173,8 +171,9 @@ public class ArcadeActivity extends AppCompatActivity implements
 
     private void saveScore() {
         // TODO: uncomment this
-//        int score = Score.calculate(gamesCompleted);
-//        new LightningScores().saveScore(score, player);
+//        int s = Score.calculate(gamesCompleted);
+//        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
+//        new LightningScores().saveScore(s, p);
         Log.d(LogUtils.TAG, "score saved");
     }
 
