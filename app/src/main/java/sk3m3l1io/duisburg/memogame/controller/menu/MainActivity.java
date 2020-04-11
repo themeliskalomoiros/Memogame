@@ -1,9 +1,8 @@
-package sk3m3l1io.duisburg.memogame.controller;
+package sk3m3l1io.duisburg.memogame.controller.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
+import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
+import sk3m3l1io.duisburg.memogame.controller.game.ArcadeActivity;
+import sk3m3l1io.duisburg.memogame.controller.game.PractiseModeActivity;
+import sk3m3l1io.duisburg.memogame.controller.game.RandomModeActivity;
 import sk3m3l1io.duisburg.memogame.model.GameRepository;
 import sk3m3l1io.duisburg.memogame.model.GameRepositoryImp;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
@@ -183,22 +186,27 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onArcadeModeClick() {
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            gameMode = GameMode.ARCADE;
-            addGameBriefingFragment(gameMode);
-        } else {
-            showSignInSnackbar();
-        }
+        // TODO: Uncomment this
+//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+//            gameMode = GameMode.ARCADE;
+//            addGameBriefingFragment(gameMode);
+//        } else {
+//            showSignInSnackbar();
+//        }
+
+        addGameBriefingFragment(gameMode = GameMode.ARCADE);
     }
 
     @Override
     public void onRandomModeClick() {
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            gameMode = GameMode.RANDOM;
-            addGameBriefingFragment(gameMode);
-        } else {
-            showSignInSnackbar();
-        }
+        // TODO: Uncomment this
+//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+//            gameMode = GameMode.RANDOM;
+//            addGameBriefingFragment(gameMode);
+//        } else {
+//            showSignInSnackbar();
+//        }
+        addGameBriefingFragment(gameMode = GameMode.RANDOM);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package sk3m3l1io.duisburg.memogame.controller;
+package sk3m3l1io.duisburg.memogame.controller.stats;
 
 import sk3m3l1io.duisburg.memogame.model.RandomScores;
 

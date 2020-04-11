@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.controller.ArcadeScorePage;
-import sk3m3l1io.duisburg.memogame.controller.RandomScorePage;
-import sk3m3l1io.duisburg.memogame.controller.ScoresFragment;
+import sk3m3l1io.duisburg.memogame.controller.stats.ArcadeScorePage;
+import sk3m3l1io.duisburg.memogame.controller.stats.RandomScorePage;
+import sk3m3l1io.duisburg.memogame.controller.stats.ScoresFragment;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
 
 public class LeaderBoardViewImp implements LeaderBoardView {

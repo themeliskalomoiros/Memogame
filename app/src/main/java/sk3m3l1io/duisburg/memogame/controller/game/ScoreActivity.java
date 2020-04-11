@@ -1,4 +1,4 @@
-package sk3m3l1io.duisburg.memogame.controller;
+package sk3m3l1io.duisburg.memogame.controller.game;
 
 import android.util.Log;
 
@@ -12,8 +12,6 @@ import java.util.List;
 import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
-import sk3m3l1io.duisburg.memogame.services.Score;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class ScoreActivity extends GameActivity

@@ -1,27 +1,15 @@
-package sk3m3l1io.duisburg.memogame.controller;
-
-import android.os.Bundle;
-import android.util.Log;
+package sk3m3l1io.duisburg.memogame.controller.game;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.LightningScores;
 import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
-import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
