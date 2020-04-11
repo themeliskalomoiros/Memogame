@@ -1,6 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,197 +8,175 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.dialogs.MessageDialog;
-import sk3m3l1io.duisburg.memogame.model.RandomScores;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
-import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
-import sk3m3l1io.duisburg.memogame.services.Score;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
+import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;
 
-import static sk3m3l1io.duisburg.memogame.utils.RunnableUtils.runDelayed;
-
 public class RandomModeActivity extends AppCompatActivity implements
-        GameFragment.GameProgressListener,
-        GameFragment.GameFragmentCreationListener,
-        GameFragment.MatchFailListener,
-        CountDownTimerReporter.TimeListener,
-        MessageDialog.ResponseListener {
-    private static final int TIME_INTERVAL = 100;
-    private static final int GAME_DURATION = 20000;
-    private static final String REPEAT_DIALOG = "repeat dialog";
-    private static final String NEXT_GAME_DIALOG = "move to next dialog";
+        GameEngineFragment.GameEventListener,
+        GameEngineFragment.ViewCreationListener,
+        ResultFragment.ResultButtonClickListener{
+    private static final int DEFAULT_LIVES = 4;
+    private static final int EXPOSURE_DURATION = 3000;
 
-    private int lives;
-    private int gameIndex;
-    private int ellapsedTime;
-
-    private List<Game> games;
+    private int lives = DEFAULT_LIVES;
     private RandomViewImp view;
-    private MediaPlayer successSound;
-    private CountDownTimerReporter timer;
+
+    private int currentGame;
+    private List<Game> games;
+    private List<Game> gamesCompleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        Collections.shuffle(games);
-        view = new RandomViewImp(getLayoutInflater(), null);
-        timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
-        timer.setTimeListener(this);
+        init();
+        shuffleByDifficulty(games);
+        addGameFragment();
         setContentView(view.getRootView());
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        addGameFragment();
-        successSound = MediaPlayer.create(this, R.raw.game_success);
+    private void init() {
+        games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        gamesCompleted = new ArrayList<>();
+        view = new RandomViewImp(getLayoutInflater(), null);
+    }
+
+    private void shuffleByDifficulty(List<Game> games) {
+        // TODO: Refactor that
+        Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
+        int easyUpperBound = 0;
+        int normalUpperBound = 0;
+
+        for (int i = 0; i < games.size(); i++) {
+            Game g1 = games.get(i);
+            Game g2 = games.get(i + 1);
+
+            if (g1.getDifficulty() == GameDifficulty.EASY &&
+                    g2.getDifficulty() == GameDifficulty.NORMAL) {
+                easyUpperBound = i;
+                continue;
+            }
+
+            if (g1.getDifficulty() == GameDifficulty.NORMAL &&
+                    g2.getDifficulty() == GameDifficulty.HARD) {
+                normalUpperBound = i;
+                break;
+            }
+        }
+
+        Collections.shuffle(games.subList(0, easyUpperBound + 1));
+        Collections.shuffle(games.subList(normalUpperBound, games.size()));
     }
 
     private void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .replace(view.getGameContainerId(), new GameFragment())
-                .commitNow();
+                .replace(view.getGameContainerId(), createCurrentGameFragment())
+                .commit();
+    }
+
+    private GameEngineFragment createCurrentGameFragment(){
+        Game g = games.get(currentGame);
+        ArrayUtils.shuffle(g.getSymbols());
+        GameEngineFragment f = new GameEngineFragment();
+        f.setViewCreationListener(this);
+        f.setGame(g);
+        return f;
     }
 
     @Override
-    public void onAttachFragment(@NonNull Fragment fragment) {
-        super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment) {
-            GameFragment f = (GameFragment) fragment;
-            f.setGameFragmentCreationListener(this);
-            f.setMatchFailListener(this);
-            Game g = games.get(gameIndex);
-            ArrayUtils.shuffle(g.getSymbols());
-            f.setGame(g);
+    public void onAttachFragment(@NonNull Fragment f) {
+        super.onAttachFragment(f);
+        if (f instanceof GameEngineFragment) {
+            if (currentGame < games.size() - 1){
+                updateUiOnFragmentAttach();
+            }
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        successSound.release();
+    private void updateUiOnFragmentAttach() {
+        Game g = games.get(currentGame);
+        view.setDifficulty(g.getDifficulty());
+        view.setTitle(g.getTitle());
+        view.setLives(lives);
     }
 
     @Override
-    public void onGameFragmentViewCreated(GameFragment f) {
-        f.disableUI();
-        f.openAllSymbols();
-        view.setTitle(getString(R.string.take_a_look));
-        Game g = games.get(gameIndex);
-        updateUI(g);
-        view.setDifficulty(g.getDifficulty());
-        runDelayed(() -> {
+    public void onFragmentViewCreated(GameEngineFragment f) {
+        view.setTitle(R.string.take_a_look);
+        f.showAllSymbols();
+        RunnableUtils.runDelayed(() -> {
+            view.setTitle(games.get(currentGame).getTitle());
             f.coverAllSymbols();
-            f.enableUI();
-            timer.begin();
-        }, 3000);
-    }
-
-    private void updateUI(Game g) {
-        view.setDifficulty(g.getDifficulty());
-        view.setTimeProgress(GAME_DURATION);
-        view.setTimeProgressMax(GAME_DURATION);
-        view.setDifficulty(g.getDifficulty());
-        view.setLives(lives = getLivesOf(g.getDifficulty()));
-    }
-
-    private int getLivesOf(GameDifficulty d) {
-        switch (d) {
-            case EASY:
-                return 3;
-            case HARD:
-                return 5;
-            default:
-                return 4;
-        }
+        }, EXPOSURE_DURATION);
     }
 
     @Override
-    public void onGameBegin() {
+    protected void onStart() {
+        super.onStart();
+        exposeGameFor(EXPOSURE_DURATION);
+    }
+
+    private void exposeGameFor(int exposureDuration) {
     }
 
     @Override
-    public void onGameCompleted() {
-        timer.cancel();
-        view.setTitle(getString(R.string.victory));
-        successSound.start();
-        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.next_game), NEXT_GAME_DIALOG);
+    public void onGameStart() {
+
+    }
+
+    @Override
+    public void onGameComplete() {
+        gamesCompleted.add(games.get(currentGame));
         saveScore();
+
+        if (gamesCompleted.size() == games.size()) {
+            addResultFragment();
+        } else {
+            currentGame++;
+            lives = DEFAULT_LIVES;
+            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
+        }
     }
 
     private void saveScore() {
-        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
-        int s = Score.calculate(ellapsedTime, lives);
-        new RandomScores().saveScore(s, p);
+        // TODO: Uncomment this
+//        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
+//        int s = Score.calculate(ellapsedTime, lives);
+//        new RandomScores().saveScore(s, p);
+        Log.d(LogUtils.TAG, "score saved");
+    }
+
+    private void addResultFragment() {
+        ResultFragment f = new ResultFragment();
+        f.setCompletedGames(gamesCompleted);
+        f.setGameCount(games.size());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(view.getGameContainerId(), f)
+                .commit();
     }
 
     @Override
-    public void onTimerBegin() {
-        view.setTitle(getString(R.string.play));
-    }
-
-    @Override
-    public void onTimerTick(int elapsedMilli) {
-        view.setTimeProgress(ellapsedTime = elapsedMilli);
-    }
-
-    @Override
-    public void onTimerFinish() {
-        view.setTimeProgress(0);
-        handleLoss(getString(R.string.time_up) + " " + getString(R.string.repeat_game));
-    }
-
-    private void handleLoss(String message) {
-        timer.cancel();
-        view.setTitle(getString(R.string.defeat));
-        view.setLives(lives = 0);
-        GameFragment f = (GameFragment) getSupportFragmentManager().findFragmentById(view.getGameContainerId());
-        if (f != null) {
-            f.freezeUI();
+    public void onGameMatchFail() {
+        if(--lives == 0){
+            addResultFragment();
         }
-        MessageDialog.show(this, getSupportFragmentManager(), message, REPEAT_DIALOG);
+        view.setLives(lives);
     }
 
     @Override
-    public void onDialogPositiveResponse(MessageDialog dialog) {
-        dialog.dismiss();
-        if (dialog.getTag().equals(NEXT_GAME_DIALOG))
-            setNextGame();
-
-        timer.cancel();
-        addGameFragment();
-    }
-
-    private void setNextGame() {
-        if (gameIndex < games.size() - 1) {
-            ++gameIndex;
-        } else {
-            Collections.shuffle(games);
-            gameIndex = 0;
-        }
-    }
-
-    @Override
-    public void onDialogNegativeResponse(MessageDialog dialog) {
-        finish();
-    }
-
-    @Override
-    public void onMatchFail() {
-        if (--lives > 0) {
-            view.setLives(lives);
-        } else {
-            handleLoss(getString(R.string.no_more_live) + " " + getString(R.string.repeat_game));
-        }
+    public void onResultButtonClick() {
+        recreate();
     }
 }

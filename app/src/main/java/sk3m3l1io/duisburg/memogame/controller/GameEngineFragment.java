@@ -33,6 +33,7 @@ public class GameEngineFragment extends Fragment
     private GameState gameState;
     private GameEventListener gameEventListener;
     private MediaPlayer matchCelebration, completionCelebration;
+    private ViewCreationListener viewCreationListener;
 
     @Override
     public void onAttach(Context context) {
@@ -60,6 +61,8 @@ public class GameEngineFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (viewCreationListener != null)
+            viewCreationListener.onFragmentViewCreated(this);
         matchCelebration = MediaPlayer.create(getContext(), R.raw.match_success);
         completionCelebration = MediaPlayer.create(getContext(), R.raw.game_success);
     }
@@ -77,6 +80,22 @@ public class GameEngineFragment extends Fragment
         gameEventListener = null;
         view.setSymbolClickListener(null);
         gameState.detachListeners();
+    }
+
+    public void showAllSymbols(){
+        for (int i = 0; i < 12; i++) {
+            view.setSymbol(i, gameState.getSymbolAt(i));
+        }
+        view.disableAllSymbols();
+    }
+
+    public void coverAllSymbols(){
+        view.coverAllSymbols(gameState.getCover());
+        view.enableAllSymbols();
+    }
+
+    public void setViewCreationListener(ViewCreationListener listener){
+        viewCreationListener = listener;
     }
 
     public void setGame(Game game){
@@ -168,5 +187,9 @@ public class GameEngineFragment extends Fragment
         void onGameComplete();
 
         void onGameMatchFail();
+    }
+
+    public interface ViewCreationListener{
+        void onFragmentViewCreated(GameEngineFragment f);
     }
 }

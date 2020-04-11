@@ -29,7 +29,7 @@ public class RandomViewImp implements RandomView {
     public void setTitle(int res) {
         title.setText(res);
     }
-    
+
     @Override
     public int getGameContainerId() {
         return R.id.game_container;
