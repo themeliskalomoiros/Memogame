@@ -13,7 +13,7 @@ import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
 import sk3m3l1io.duisburg.memogame.view.GameContainerView;
 
-public abstract class GameContainerActivity extends AppCompatActivity
+public abstract class GameActivity extends AppCompatActivity
         implements GameFragment.GameEventListener {
 
     protected int currentGame;

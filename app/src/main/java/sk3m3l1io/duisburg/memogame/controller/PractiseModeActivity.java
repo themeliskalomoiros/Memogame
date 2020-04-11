@@ -1,22 +1,13 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import java.util.Collections;
-import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.dialogs.MessageDialog;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseView;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseViewImp;
 
-public class PractiseModeActivity extends GameContainerActivity implements
+public class PractiseModeActivity extends GameActivity implements
         GameFragment.GameEventListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener {
