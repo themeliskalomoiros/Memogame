@@ -1,6 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import sk3m3l1io.duisburg.memogame.view.game.PractiseView;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseViewImp;
 
 public class PractiseModeActivity extends AppCompatActivity implements
-        GameEngineFragment.GameProcedureListener,
+        GameEngineFragment.GameEventListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener {
     private static final String REPEAT_DIALOG = "repeat dialog";
@@ -113,7 +112,10 @@ public class PractiseModeActivity extends AppCompatActivity implements
 
     @Override
     public void onGameStart() {
+    }
 
+    @Override
+    public void onGameMatchFail(){
     }
 
     @Override

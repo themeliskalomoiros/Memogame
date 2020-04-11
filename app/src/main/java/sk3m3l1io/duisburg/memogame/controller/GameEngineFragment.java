@@ -31,17 +31,17 @@ public class GameEngineFragment extends Fragment
 
     private GameView view;
     private GameState gameState;
-    private GameProcedureListener gameProcedureListener;
+    private GameEventListener gameEventListener;
     private MediaPlayer matchCelebration, completionCelebration;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            gameProcedureListener = (GameProcedureListener) context;
+            gameEventListener = (GameEventListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + GameProcedureListener.class.getSimpleName());
+                    + " must implement " + GameEventListener.class.getSimpleName());
         }
     }
 
@@ -74,7 +74,7 @@ public class GameEngineFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        gameProcedureListener = null;
+        gameEventListener = null;
         view.setSymbolClickListener(null);
         gameState.detachListeners();
     }
@@ -99,7 +99,7 @@ public class GameEngineFragment extends Fragment
 
     @Override
     public void onGameBegin() {
-        gameProcedureListener.onGameStart();
+        gameEventListener.onGameStart();
     }
 
     @Override
@@ -135,7 +135,10 @@ public class GameEngineFragment extends Fragment
 
     @Override
     public void onMatchFail(int position1, int position2) {
-        RunnableUtils.runDelayed(() -> updateUiOnMatchFail(position1, position2), 300);
+        RunnableUtils.runDelayed(() -> {
+            updateUiOnMatchFail(position1, position2);
+            gameEventListener.onGameMatchFail();
+        }, 300);
     }
 
     private void updateUiOnMatchFail(int pos1, int pos2) {
@@ -150,7 +153,7 @@ public class GameEngineFragment extends Fragment
     public void onGameCompleted() {
         updateUiOnGameCompleted();
         completionCelebration.start();
-        gameProcedureListener.onGameComplete();
+        gameEventListener.onGameComplete();
     }
 
     private void updateUiOnGameCompleted() {
@@ -159,9 +162,11 @@ public class GameEngineFragment extends Fragment
         view.setAllSymbolsBackground(clr);
     }
 
-    public interface GameProcedureListener {
+    public interface GameEventListener {
         void onGameStart();
 
         void onGameComplete();
+
+        void onGameMatchFail();
     }
 }

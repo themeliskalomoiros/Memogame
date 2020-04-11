@@ -15,10 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.dialogs.MessageDialog;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
@@ -28,7 +26,7 @@ import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
 
 public class ArcadeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
-        GameEngineFragment.GameProcedureListener,
+        GameEngineFragment.GameEventListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 20000;
@@ -167,6 +165,11 @@ public class ArcadeActivity extends AppCompatActivity implements
             currentGame++;
             RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
+    }
+
+    @Override
+    public void onGameMatchFail() {
+        
     }
 
     private void saveScore() {
