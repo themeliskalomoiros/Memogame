@@ -26,6 +26,11 @@ public class PractiseModeActivity extends GameActivity implements
     }
 
     @Override
+    protected GameFragment.ViewCreationListener getGameFragmentViewCreationListener() {
+        return null;
+    }
+
+    @Override
     protected void onAttachGameFragment(GameFragment f) {
         view.setTitle(games.get(currentGame).getTitle());
         view.setDifficulty(games.get(currentGame).getDifficulty());

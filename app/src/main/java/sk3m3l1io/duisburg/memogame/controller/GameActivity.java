@@ -21,7 +21,7 @@ public abstract class GameActivity extends AppCompatActivity
     protected GameContainerView view;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
         initView();
@@ -34,7 +34,7 @@ public abstract class GameActivity extends AppCompatActivity
 
     protected abstract void arrangeGameSequence();
 
-    protected void addGameFragment() {
+    protected final void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(view.getGameContainerId(), getCurrentGameFragment())
@@ -45,17 +45,24 @@ public abstract class GameActivity extends AppCompatActivity
         Game g = games.get(currentGame);
         ArrayUtils.shuffle(g.getSymbols());
         GameFragment f = new GameFragment();
-        // TODO: RandomActivity needs set ViewCreationListener, so override there
+        f.setViewCreationListener(getGameFragmentViewCreationListener());
         f.setGame(g);
         return f;
     }
 
+    protected abstract GameFragment.ViewCreationListener getGameFragmentViewCreationListener();
+
     @Override
-    public void onAttachFragment(@NonNull Fragment f) {
+    public final void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
         if (f instanceof GameFragment) {
             onAttachGameFragment((GameFragment) f);
         }
+    }
+
+    @Override
+    public final void onAttachFragment(android.app.Fragment fragment) {
+        super.onAttachFragment(fragment);
     }
 
     protected abstract void onAttachGameFragment(GameFragment f);
