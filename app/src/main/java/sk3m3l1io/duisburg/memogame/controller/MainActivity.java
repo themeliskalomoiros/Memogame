@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
@@ -36,10 +37,10 @@ import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
-public class MainActivity extends AppCompatActivity
-        implements MenuFragment.MenuItemClickListener,
+public class MainActivity extends AppCompatActivity implements
+        MenuFragment.MenuItemClickListener,
         MenuFragment.ViewCreationListener,
-        MenuItemDetailsFragment.PlayClickListener,
+        GameBriefingFragment.StartGameClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnSuccessListener<Void> {
     private static final int LOADER_ID = 123;
@@ -88,11 +89,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMenuViewCreation() {
-        updateMenuUI(GoogleSignIn.getLastSignedInAccount(this));
-    }
-
-    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (games != null && games.size() >= 0) {
@@ -100,6 +96,52 @@ public class MainActivity extends AppCompatActivity
                     Game.class.getSimpleName(),
                     (ArrayList<? extends Parcelable>) games);
         }
+    }
+
+    @NonNull
+    @Override
+    public Loader<List<Game>> onCreateLoader(int id, @Nullable Bundle args) {
+        return new AsyncTaskLoader<List<Game>>(this) {
+
+            @Override
+            protected void onStartLoading() {
+                if (games == null) {
+                    view.showLoadingIndicator();
+                    view.getRootView().setEnabled(false);
+                    forceLoad();
+                }
+            }
+
+            @Nullable
+            @Override
+            public List<Game> loadInBackground() {
+                try {
+                    String[] paths = getAssets().list("");
+                    for (String p : paths) {
+                        if (p.contains("games.json")) {
+                            GameRepository repo = new GameRepositoryImp(getAssets().open(p));
+                            return repo.getGames();
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+        };
+
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<List<Game>> loader, List<Game> data) {
+        view.hideLoadingIndicator();
+        view.getRootView().setEnabled(true);
+        games = data;
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<List<Game>> loader) {
     }
 
     @Override
@@ -121,6 +163,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onMenuViewCreation() {
+        updateMenuUI(GoogleSignIn.getLastSignedInAccount(this));
+    }
+
     private void updateMenuUI(GoogleSignInAccount acc) {
         MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
         if (f != null && acc != null) {
@@ -138,7 +185,7 @@ public class MainActivity extends AppCompatActivity
     public void onArcadeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             gameMode = GameMode.ARCADE;
-            addMenuItemDetailsFragment(gameMode);
+            addGameBriefingFragment(gameMode);
         } else {
             showSignInSnackbar();
         }
@@ -148,31 +195,16 @@ public class MainActivity extends AppCompatActivity
     public void onRandomModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             gameMode = GameMode.RANDOM;
-            addMenuItemDetailsFragment(gameMode);
+            addGameBriefingFragment(gameMode);
         } else {
             showSignInSnackbar();
         }
     }
 
-    private void showSignInSnackbar() {
-        Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
-                .setAction(R.string.sign_in, v -> onSignInClick())
-                .show();
-    }
-
     @Override
     public void onPractiseModeClick() {
         gameMode = GameMode.PRACTISE;
-        addMenuItemDetailsFragment(gameMode);
-    }
-
-    private void addMenuItemDetailsFragment(GameMode mode) {
-        MenuItemDetailsFragment f = MenuItemDetailsFragment.getInstanceOf(mode);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(view.getMenuContainerId(), f)
-                .commit();
+        addGameBriefingFragment(gameMode);
     }
 
     @Override
@@ -197,67 +229,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @NonNull
-    @Override
-    public Loader<List<Game>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new AsyncTaskLoader<List<Game>>(this) {
-
-            @Override
-            protected void onStartLoading() {
-                if (games == null) {
-                    view.showLoadingIndicator();
-                    view.getRootView().setEnabled(false);
-                    forceLoad();
-                }
-            }
-
-            @Nullable
-            @Override
-            public List<Game> loadInBackground() {
-                Log.d(MainActivity.class.getSimpleName(), "loadingInBackground() called");
-                return getGames();
-            }
-
-            private List<Game> getGames() {
-                try {
-                    String[] paths = getAssets().list("");
-                    for (String p : paths) {
-                        if (p.contains("games.json")) {
-                            GameRepository repo = new GameRepositoryImp(getAssets().open(p));
-                            return repo.getGames();
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-
+    private void showSignInSnackbar() {
+        Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
+                .setAction(R.string.sign_in, v -> onSignInClick())
+                .show();
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<List<Game>> loader, List<Game> data) {
-        view.hideLoadingIndicator();
-        view.getRootView().setEnabled(true);
-        games = data;
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<List<Game>> loader) {
-
-    }
-
-    @Override
-    public void onSuccess(Void aVoid) {
-        MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
-        f.setDefaultSignInIcon();
-        view.hidePlayerName();
-        Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPlayClick() {
+    public void onStartGameClick() {
         startActivity(getPlayModeIntent(gameMode));
     }
 
@@ -281,5 +260,26 @@ public class MainActivity extends AppCompatActivity
         }
 
         return i;
+    }
+
+    @Override
+    public void onSuccess(Void aVoid) {
+        updateUiOnSignOut();
+    }
+
+    private void updateUiOnSignOut() {
+        Fragment f = getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
+        ((MenuFragment) f).setDefaultSignInIcon();
+        view.hidePlayerName();
+        Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void addGameBriefingFragment(GameMode mode) {
+        GameBriefingFragment f = GameBriefingFragment.instanceOf(mode);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(view.getMenuContainerId(), f)
+                .commit();
     }
 }
