@@ -123,6 +123,33 @@ public class ArcadeActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onGameComplete() {
+        timer.cancel();
+        gamesCompleted.add(games.get(currentGame));
+        saveScore();
+
+        if (gamesCompleted.size() == games.size()) {
+            addResultFragment();
+        } else {
+            currentGame++;
+            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
+        }
+    }
+
+    private void saveScore() {
+        // TODO: uncomment this
+//        int s = Score.calculate(gamesCompleted);
+//        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
+//        new LightningScores().saveScore(s, p);
+        Log.d(LogUtils.TAG, "score saved");
+    }
+
+    @Override
+    public void onGameMatchFail() {
+
+    }
+
+    @Override
     public void onTimerBegin() {
         Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
     }
@@ -151,33 +178,6 @@ public class ArcadeActivity extends AppCompatActivity implements
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .replace(view.getGameContainerId(), f)
                 .commit();
-    }
-
-    @Override
-    public void onGameComplete() {
-        timer.cancel();
-        gamesCompleted.add(games.get(currentGame));
-        saveScore();
-
-        if (gamesCompleted.size() == games.size()) {
-            addResultFragment();
-        } else {
-            currentGame++;
-            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
-        }
-    }
-
-    @Override
-    public void onGameMatchFail() {
-        
-    }
-
-    private void saveScore() {
-        // TODO: uncomment this
-//        int s = Score.calculate(gamesCompleted);
-//        Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
-//        new LightningScores().saveScore(s, p);
-        Log.d(LogUtils.TAG, "score saved");
     }
 
     @Override

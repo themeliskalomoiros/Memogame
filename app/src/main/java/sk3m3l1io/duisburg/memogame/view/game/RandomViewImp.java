@@ -11,12 +11,10 @@ import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
 
 public class RandomViewImp implements RandomView {
     private final View root;
-    private final ProgressBar timeBar;
     private final TextView title, difficulty, lives;
 
     public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.activity_random, container, false);
-        timeBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         lives = root.findViewById(R.id.lives);
         difficulty = root.findViewById(R.id.difficulty);
@@ -31,17 +29,7 @@ public class RandomViewImp implements RandomView {
     public void setTitle(int res) {
         title.setText(res);
     }
-
-    @Override
-    public void setTimeProgress(int progress) {
-        timeBar.setProgress(progress);
-    }
-
-    @Override
-    public void setTimeProgressMax(int progress) {
-        timeBar.setMax(progress);
-    }
-
+    
     @Override
     public int getGameContainerId() {
         return R.id.game_container;
