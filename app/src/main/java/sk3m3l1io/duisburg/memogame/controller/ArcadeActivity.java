@@ -124,13 +124,12 @@ public class ArcadeActivity extends AppCompatActivity implements
 
     @Override
     public void onGameStart() {
-        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
         timer.begin();
     }
 
     @Override
     public void onTimerBegin() {
-        view.setTitle(R.string.play);
+        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -141,19 +140,11 @@ public class ArcadeActivity extends AppCompatActivity implements
     @Override
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
-        if (f instanceof GameFragment) {
+        if (f instanceof GameEngineFragment) {
             view.setTimeProgress(0);
             view.setTitle(getString(R.string.time_up));
             addResultFragment();
-            saveScore();
         }
-    }
-
-    private void saveScore() {
-        // TODO: uncomment this
-//        int score = Score.calculate(gamesCompleted);
-//        new LightningScores().saveScore(score, player);
-        Log.d(LogUtils.TAG, "score saved");
     }
 
     private void addResultFragment() {
@@ -179,6 +170,13 @@ public class ArcadeActivity extends AppCompatActivity implements
             currentGame++;
             RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
+    }
+
+    private void saveScore() {
+        // TODO: uncomment this
+//        int score = Score.calculate(gamesCompleted);
+//        new LightningScores().saveScore(score, player);
+        Log.d(LogUtils.TAG, "score saved");
     }
 
     @Override
