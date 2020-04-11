@@ -29,7 +29,6 @@ import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
 public class ArcadeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
         GameEngineFragment.GameProcedureListener,
-        MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 20000;
@@ -153,7 +152,7 @@ public class ArcadeActivity extends AppCompatActivity implements
         f.setGameCount(games.size());
         getSupportFragmentManager()
                 .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .replace(view.getGameContainerId(), f)
                 .commit();
     }
@@ -182,19 +181,5 @@ public class ArcadeActivity extends AppCompatActivity implements
     @Override
     public void onResultButtonClick() {
         recreate();
-    }
-
-    @Override
-    public void onDialogPositiveResponse(MessageDialog dialog) {
-        finish();
-    }
-
-    @Override
-    public void onDialogNegativeResponse(MessageDialog dialog) {
-    }
-
-    @Override
-    public void onBackPressed() {
-        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.arcade_quit_message), null);
     }
 }
