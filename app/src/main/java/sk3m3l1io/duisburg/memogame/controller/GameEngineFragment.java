@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
+import sk3m3l1io.duisburg.memogame.game_engine.InvalidCoverException;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
@@ -52,7 +53,6 @@ public class GameEngineFragment extends Fragment
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
         view.setSymbolClickListener(this);
-        // TODO: Fix bug: Attempt to invoke virtual method 'char sk3m3l1io.duisburg.memogame.game_engine.GameState.getCover()' on a null object reference
         view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
     }
@@ -90,7 +90,7 @@ public class GameEngineFragment extends Fragment
             gameState.setGameBeginListener(this);
             gameState.setGameCompletionListener(this);
             gameState.setMatchListener(this);
-        } catch (Exception e) {
+        } catch (InvalidCoverException e) {
             String msg = e.getMessage() + "(on game " + g.getTitle() + ")";
             Log.e(LogUtils.TAG, msg);
             e.printStackTrace();

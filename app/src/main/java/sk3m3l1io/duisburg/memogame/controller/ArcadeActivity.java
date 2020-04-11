@@ -150,8 +150,9 @@ public class ArcadeActivity extends AppCompatActivity implements
     }
 
     private void saveScore() {
-        int score = Score.calculate(gamesCompleted);
-        new LightningScores().saveScore(score, player);
+        // TODO: uncomment this
+//        int score = Score.calculate(gamesCompleted);
+//        new LightningScores().saveScore(score, player);
     }
 
     private void addResultFragment() {

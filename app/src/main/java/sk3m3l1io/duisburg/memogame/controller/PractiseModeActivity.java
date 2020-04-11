@@ -18,7 +18,7 @@ import sk3m3l1io.duisburg.memogame.view.game.PractiseView;
 import sk3m3l1io.duisburg.memogame.view.game.PractiseViewImp;
 
 public class PractiseModeActivity extends AppCompatActivity implements
-        GameFragment.GameProgressListener,
+        GameEngineFragment.GameProcedureListener,
         MessageDialog.ResponseListener,
         PractiseView.ChangeGameClickListener {
     private static final String REPEAT_DIALOG = "repeat dialog";
@@ -27,94 +27,73 @@ public class PractiseModeActivity extends AppCompatActivity implements
     private int currentGame;
     private List<Game> games;
     private PractiseView view;
-    private MediaPlayer successSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+        Collections.sort(games, (g1, g2) -> g1.getTitle().compareTo(g2.getTitle()));
+        addGameFragment();
+        setContentView(view.getRootView());
     }
 
     private void init() {
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
-        Collections.sort(games, (g1, g2) -> g1.getTitle().compareTo(g2.getTitle()));
         view = new PractiseViewImp(getLayoutInflater(), null);
         view.setChangeGameClickListener(this);
-        setContentView(view.getRootView());
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        addGameFragment();
-        successSound = MediaPlayer.create(this, R.raw.game_success);
     }
 
     private void addGameFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(view.getGameContainerId(), new GameFragment())
-                .commitNow();
+                .replace(view.getGameContainerId(), createCurrentGameFragment())
+                .commit();
+    }
+
+    private GameEngineFragment createCurrentGameFragment(){
+        Game g = games.get(currentGame);
+        ArrayUtils.shuffle(g.getSymbols());
+        GameEngineFragment f = new GameEngineFragment();
+        f.setGame(g);
+        return f;
     }
 
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (fragment instanceof GameFragment) {
-            GameFragment f = (GameFragment) fragment;
-            Game g = games.get(currentGame);
-            ArrayUtils.shuffle(g.getSymbols());
-            f.setGame(g);
-            updateUI(g);
+        if (fragment instanceof GameEngineFragment) {
+            view.setTitle(games.get(currentGame).getTitle());
+            view.setDifficulty(games.get(currentGame).getDifficulty());
         }
-    }
-
-    private void updateUI(Game g) {
-        view.setTitle(g.getTitle());
-        view.setDifficulty(g.getDifficulty());
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        successSound.release();
     }
 
     @Override
     public void onPreviousGameClick() {
-        if (currentGame > 0) {
-            --currentGame;
-        } else {
-            currentGame = games.size() - 1;
-        }
+        setGameIndexOnPreviousClick();
 
         addGameFragment();
     }
 
+    private void setGameIndexOnPreviousClick() {
+        if (currentGame > 0) {
+            --currentGame;
+        } else{
+            currentGame = games.size() - 1;
+        }
+    }
+
     @Override
     public void onNextGameClick() {
+        setIndexOnNextClick();
+        addGameFragment();
+    }
+
+    private void setIndexOnNextClick() {
         if (currentGame < games.size() - 1) {
             ++currentGame;
         } else {
             currentGame = 0;
         }
-
-        addGameFragment();
-    }
-
-    @Override
-    public void onGameBegin() {
-    }
-
-    @Override
-    public void onGameCompleted() {
-        view.setTitle(getString(R.string.victory));
-        successSound.start();
-        MessageDialog.show(
-                this,
-                getSupportFragmentManager(),
-                getString(R.string.next_game),
-                NEXT_GAME_DIALOG);
     }
 
     @Override
@@ -130,5 +109,20 @@ public class PractiseModeActivity extends AppCompatActivity implements
     @Override
     public void onDialogNegativeResponse(MessageDialog dialog) {
         finish();
+    }
+
+    @Override
+    public void onGameStart() {
+
+    }
+
+    @Override
+    public void onGameComplete() {
+        view.setTitle(getString(R.string.victory));
+        MessageDialog.show(
+                this,
+                getSupportFragmentManager(),
+                getString(R.string.next_game),
+                NEXT_GAME_DIALOG);
     }
 }

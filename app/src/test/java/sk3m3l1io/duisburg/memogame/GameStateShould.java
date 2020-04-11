@@ -8,7 +8,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
 import sk3m3l1io.duisburg.memogame.game_engine.InvalidCoverException;
-import sk3m3l1io.duisburg.memogame.game_engine.InvalidSymbolException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -35,8 +34,7 @@ public class GameStateShould {
     private GameState.GameBeginListener gameBeginListener;
 
     @Before
-    public void setup()
-            throws InvalidCoverException, InvalidSymbolException {
+    public void setup() throws InvalidCoverException {
         initPredicates();
         initListeners();
         initSut();
@@ -67,8 +65,7 @@ public class GameStateShould {
         gameBeginListener = () -> startPredicate.set(true);
     }
 
-    private void initSut()
-            throws InvalidCoverException, InvalidSymbolException {
+    private void initSut() throws InvalidCoverException {
         String[] symbols = {
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6 };
@@ -97,16 +94,14 @@ public class GameStateShould {
     }
 
     @Test(expected = InvalidCoverException.class)
-    public void throwInvalidCoverException()
-            throws InvalidCoverException, InvalidSymbolException {
+    public void throwInvalidCoverException() throws InvalidCoverException {
         String[] symbols = {SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
         sut = new GameState(symbols, SYMBOL_6);
     }
 
     @Test()
-    public void notThrowInvalidCoverException()
-            throws InvalidSymbolException {
+    public void notThrowInvalidCoverException() {
         boolean threwException = false;
         String[] symbols = {SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
                 SYMBOL_1, SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
@@ -118,14 +113,6 @@ public class GameStateShould {
         }
 
         assertFalse(threwException);
-    }
-
-    @Test(expected = InvalidSymbolException.class)
-    public void throwInvalidSymbolException()
-            throws InvalidCoverException, InvalidSymbolException {
-        String[] symbols = {"Ela", SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6,
-                "Ela", SYMBOL_2, SYMBOL_3, SYMBOL_4, SYMBOL_5, SYMBOL_6};
-        sut = new GameState(symbols, COVER);
     }
 
     @Test

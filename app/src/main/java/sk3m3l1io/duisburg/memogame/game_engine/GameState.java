@@ -20,10 +20,8 @@ public final class GameState {
     private boolean gameStarted;
     private GameBeginListener gameBeginListener;
 
-    public GameState(String[] symbols, String cover)
-            throws InvalidCoverException, InvalidSymbolException {
+    public GameState(String[] symbols, String cover) throws InvalidCoverException{
         throwIfCoverIsInvalid(symbols, cover);
-        throwIfAnySymbolIsInvalid(symbols);
         this.cover = cover;
         matchHolder = new Stack<>();
         board = new Board(symbols);
@@ -38,13 +36,6 @@ public final class GameState {
 
         if (set.size() != (Board.SYMBOL_COUNT / 2) + 1)
             throw new InvalidCoverException();
-    }
-
-    private void throwIfAnySymbolIsInvalid(String[] symbols)
-            throws InvalidSymbolException {
-        for (String s : symbols)
-            if(s.length() != 1)
-                throw new InvalidSymbolException();
     }
 
     public String getSymbolAt(int position) {

@@ -15,13 +15,6 @@
       "difficulty": "hard"
     },
     {
-      "title": "La Luna",
-      "cover": "\uD83C\uDF11",
-      "symbols": ["\uD83C\uDF12", "\uD83C\uDF12", "\uD83C\uDF13", "\uD83C\uDF13", "\uD83C\uDF13", "\uD83C\uDF13",
-        "\uD83C\uDF15", "\uD83C\uDF15", "\uD83C\uDF16", "\uD83C\uDF16", "\uD83C\uDF17", "\uD83C\uDF17"],
-      "difficulty": "hard"
-    },
-    {
       "title": "Orchestra",
       "cover": "\uD83C\uDFB6",
       "symbols": ["\uD83C\uDFB7", "\uD83C\uDFB7", "\uD83C\uDFB8", "\uD83C\uDFB8", "\uD83C\uDFB9", "\uD83C\uDFB9",
@@ -311,12 +304,6 @@
       "title": "Runic",
       "cover": "ᚢ",
       "symbols": ["ᚠ", "ᚠ", "ᚸ", "ᚸ", "ᚦ", "ᚦ", "ᛤ", "ᛤ", "ᛔ", "ᛔ", "ᛯ", "ᛯ"],
-      "difficulty": "hard"
-    },
-    {
-      "title": "Sinhala",
-      "cover": "උ",
-      "symbols": ["ඬ", "ඬ", "ණ", "ණ", "ඬ", "ඬ", "ඣ", "ඣ", "ප", "ප", "ඹ", "ඹ"],
       "difficulty": "hard"
     },
     {
