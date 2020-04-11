@@ -9,22 +9,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import sk3m3l1io.duisburg.memogame.R;
 
-public class MenuItemDetailsViewImp implements MenuItemDetailsView {
+public class GameBriefingViewImp implements GameBriefingView {
     private View root;
     private FloatingActionButton play;
     private TextView title, message;
-    private ButtonClickListener listener;
+    private StartGameClickListener listener;
 
-    public MenuItemDetailsViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_menu_item_details, container, false);
+    public GameBriefingViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.fragment_game_briefing, container, false);
         play = root.findViewById(R.id.fab);
-        play.setOnClickListener(v -> listener.onButtonClick());
+        play.setOnClickListener(v -> listener.onStartGameClick());
         title = root.findViewById(R.id.title);
         message = root.findViewById(R.id.message);
     }
 
     @Override
-    public void setButtonClickListener(ButtonClickListener listener) {
+    public void setStartGameClickListener(StartGameClickListener listener) {
         this.listener = listener;
     }
 

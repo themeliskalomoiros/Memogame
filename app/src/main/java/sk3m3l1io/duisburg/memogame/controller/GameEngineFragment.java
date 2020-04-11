@@ -126,7 +126,7 @@ public class GameEngineFragment extends Fragment
         gameState.detachListeners();
     }
 
-    public void set(Game game){
+    public void setGame(Game game){
         initGameStateOf(game);
     }
 

@@ -12,23 +12,23 @@ import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.pojos.GameMode;
-import sk3m3l1io.duisburg.memogame.view.menu.MenuItemDetailsView;
-import sk3m3l1io.duisburg.memogame.view.menu.MenuItemDetailsViewImp;
+import sk3m3l1io.duisburg.memogame.view.menu.GameBriefingView;
+import sk3m3l1io.duisburg.memogame.view.menu.GameBriefingViewImp;
 
-public class MenuItemDetailsFragment extends Fragment
-        implements MenuItemDetailsView.ButtonClickListener {
+public class GameBriefingFragment extends Fragment
+        implements GameBriefingView.StartGameClickListener {
     private int titleRes, messageRes;
-    private MenuItemDetailsView view;
-    private PlayClickListener listener;
+    private GameBriefingView view;
+    private StartGameClickListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (PlayClickListener) context;
+            listener = (StartGameClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + PlayClickListener.class.getSimpleName());
+                    + " must implement " + StartGameClickListener.class.getSimpleName());
         }
     }
 
@@ -38,8 +38,8 @@ public class MenuItemDetailsFragment extends Fragment
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        view = new MenuItemDetailsViewImp(inflater, container);
-        view.setButtonClickListener(this);
+        view = new GameBriefingViewImp(inflater, container);
+        view.setStartGameClickListener(this);
         try {
             // TODO: Fix bug -> android.content.res.Resources$NotFoundException: String resource ID #0x0
             // hacky (also lazy) solution
@@ -54,20 +54,20 @@ public class MenuItemDetailsFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        view.setButtonClickListener(null);
+        view.setStartGameClickListener(null);
     }
 
     @Override
-    public void onButtonClick() {
-        listener.onPlayClick();
+    public void onStartGameClick() {
+        listener.onStartGameClick();
     }
 
-    public interface PlayClickListener {
-        void onPlayClick();
+    public interface StartGameClickListener {
+        void onStartGameClick();
     }
 
-    public static MenuItemDetailsFragment getInstanceOf(GameMode mode) {
-        MenuItemDetailsFragment f = new MenuItemDetailsFragment();
+    public static GameBriefingFragment instanceOf(GameMode mode) {
+        GameBriefingFragment f = new GameBriefingFragment();
         f.titleRes = getTitleResOf(mode);
         f.messageRes = getMessageResOf(mode);
         return f;
