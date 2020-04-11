@@ -22,14 +22,15 @@ import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
 
 public class GameEngineFragment extends Fragment
         implements GameView.SymbolClickListener,
-        GameState.PairMatchListener,
-        GameState.PairMatchCompletionListener,
+        GameState.MatchListener,
+        GameState.GameBeginListener,
+        GameState.GameCompletionListener,
         GameState.SymbolAlreadyUncoveredListener {
 
     private GameView view;
     private GameState gameState;
     private MediaPlayer matchCelebration, completionCelebration;
-    private GameCompletionListener completionListener;
+    private GameProcedureListener gameProcedureListener;
 
     @Override
     public void onSymbolClick(int position) {
@@ -40,7 +41,7 @@ public class GameEngineFragment extends Fragment
     }
 
     @Override
-    public void onPairMatch(int position1, int position2) {
+    public void onMatch(int position1, int position2) {
         view.disableSymbol(position1);
         view.disableSymbol(position2);
         int color = getResources().getColor(R.color.symbolMatchColor);
@@ -50,7 +51,7 @@ public class GameEngineFragment extends Fragment
     }
 
     @Override
-    public void onPairMatchFail(int position1, int position2) {
+    public void onMatchFail(int position1, int position2) {
         Runnable setSymbolValues = () -> {
             int color = getResources().getColor(R.color.primaryColor);
             view.setSymbolForeground(position1, color);
@@ -63,12 +64,17 @@ public class GameEngineFragment extends Fragment
     }
 
     @Override
-    public void onPairMatchesCompleted() {
+    public void onGameBegin() {
+        gameProcedureListener.onGameStart();
+    }
+
+    @Override
+    public void onGameCompleted() {
         view.disableAllSymbols();
         int color = getResources().getColor(R.color.primaryDarkColor);
         view.setAllSymbolsBackground(color);
         completionCelebration.start();
-        completionListener.onGameCompleted();
+        gameProcedureListener.onGameComplete();
     }
 
     @Override
@@ -80,10 +86,10 @@ public class GameEngineFragment extends Fragment
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            completionListener = (GameCompletionListener) context;
+            gameProcedureListener = (GameProcedureListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + GameCompletionListener.class.getSimpleName());
+                    + " must implement " + GameProcedureListener.class.getSimpleName());
         }
     }
 
@@ -115,8 +121,9 @@ public class GameEngineFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        completionListener = null;
+        gameProcedureListener = null;
         view.setSymbolClickListener(null);
+        gameState.detachListeners();
     }
 
     public void set(Game game){
@@ -127,6 +134,10 @@ public class GameEngineFragment extends Fragment
         try {
             char cover = game.getCover().charAt(0);
             gameState = new GameState(createSymbolCharactersFrom(game), cover);
+            gameState.setSymbolAlreadyUncoveredListener(this);
+            gameState.setGameBeginListener(this);
+            gameState.setGameCompletionListener(this);
+            gameState.setMatchListener(this);
         } catch (Exception e) {
             Log.e(GameEngineFragment.class.getSimpleName(), e.getMessage());
         }
@@ -141,7 +152,9 @@ public class GameEngineFragment extends Fragment
         return symbols;
     }
 
-    public interface GameCompletionListener{
-        void onGameCompleted();
+    public interface GameProcedureListener {
+        void onGameStart();
+
+        void onGameComplete();
     }
 }
