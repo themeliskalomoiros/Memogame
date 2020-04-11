@@ -1,7 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +16,12 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.dialogs.MessageDialog;
-import sk3m3l1io.duisburg.memogame.model.LightningScores;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
 import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
-import sk3m3l1io.duisburg.memogame.services.Score;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
@@ -109,13 +108,14 @@ public class ArcadeActivity extends AppCompatActivity implements
         super.onAttachFragment(f);
         if (f instanceof GameEngineFragment) {
             if (currentGame < games.size() - 1){
-                updateUI(games.get(currentGame));
+                updateUiOnFragmentAttach();
             }
         }
     }
 
-    private void updateUI(Game g) {
+    private void updateUiOnFragmentAttach() {
         view.setCompletedGamesCount(gamesCompleted.size());
+        Game g = games.get(currentGame);
         view.setDifficulty(g.getDifficulty());
         view.setTitle(g.getTitle());
         view.setTimeProgressMax(GAME_DURATION);
@@ -153,6 +153,7 @@ public class ArcadeActivity extends AppCompatActivity implements
         // TODO: uncomment this
 //        int score = Score.calculate(gamesCompleted);
 //        new LightningScores().saveScore(score, player);
+        Log.d(LogUtils.TAG, "score saved");
     }
 
     private void addResultFragment() {
