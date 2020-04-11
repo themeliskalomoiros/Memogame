@@ -141,9 +141,6 @@ public class RandomModeActivity extends AppCompatActivity implements
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
         int s = Score.calculate(ellapsedTime, lives);
         new RandomScores().saveScore(s, p);
-        Log.d("malakia", "ellapsed time is " + ellapsedTime);
-        Log.d("malakia", "lives are " + lives);
-        Log.d("malakia", "score saved is " + s);
     }
 
     @Override

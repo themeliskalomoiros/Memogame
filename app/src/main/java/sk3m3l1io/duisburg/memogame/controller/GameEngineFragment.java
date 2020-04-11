@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
 import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;
 import sk3m3l1io.duisburg.memogame.view.game.GameViewImpl;
@@ -29,8 +30,8 @@ public class GameEngineFragment extends Fragment
 
     private GameView view;
     private GameState gameState;
-    private MediaPlayer matchCelebration, completionCelebration;
     private GameProcedureListener gameProcedureListener;
+    private MediaPlayer matchCelebration, completionCelebration;
 
     @Override
     public void onAttach(Context context) {
@@ -51,6 +52,7 @@ public class GameEngineFragment extends Fragment
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
         view.setSymbolClickListener(this);
+        // TODO: Fix bug: Attempt to invoke virtual method 'char sk3m3l1io.duisburg.memogame.game_engine.GameState.getCover()' on a null object reference
         view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
     }
@@ -81,27 +83,18 @@ public class GameEngineFragment extends Fragment
         initGameStateFrom(game);
     }
 
-    private void initGameStateFrom(Game game) {
+    private void initGameStateFrom(Game g) {
         try {
-            char cover = game.getCover().charAt(0);
-            gameState = new GameState(createSymbolCharactersFrom(game), cover);
+            gameState = new GameState(g.getSymbols(), g.getCover());
             gameState.setSymbolAlreadyUncoveredListener(this);
             gameState.setGameBeginListener(this);
             gameState.setGameCompletionListener(this);
             gameState.setMatchListener(this);
         } catch (Exception e) {
+            String msg = e.getMessage() + "(on game " + g.getTitle() + ")";
+            Log.e(LogUtils.TAG, msg);
             e.printStackTrace();
-            Log.e(GameEngineFragment.class.getSimpleName(), e.getMessage());
         }
-    }
-
-    private char[] createSymbolCharactersFrom(Game game) {
-        char[] symbols = new char[game.getSymbols().length];
-        for (int i = 0; i < symbols.length; i++) {
-            char s = game.getSymbols()[i].charAt(0);
-            symbols[i] = s;
-        }
-        return symbols;
     }
 
     @Override
@@ -115,11 +108,10 @@ public class GameEngineFragment extends Fragment
         gameState.uncover(position);
     }
 
-    private void updateUiOnSymbolClick(int s) {
-        int c = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolForeground(s, c);
-        String symbol = "" + gameState.getSymbolAt(s);
-        view.setSymbol(s, symbol);
+    private void updateUiOnSymbolClick(int pos) {
+        int clr = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolForeground(pos, clr);
+        view.setSymbol(pos, gameState.getSymbolAt(pos));
     }
 
     @Override
@@ -133,12 +125,12 @@ public class GameEngineFragment extends Fragment
         matchCelebration.start();
     }
 
-    private void updateUiOnMatch(int s1, int s2) {
-        view.disableSymbol(s1);
-        view.disableSymbol(s2);
-        int c = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolForeground(s1, c);
-        view.setSymbolForeground(s2, c);
+    private void updateUiOnMatch(int pos1, int pos2) {
+        view.disableSymbol(pos1);
+        view.disableSymbol(pos2);
+        int clr = getResources().getColor(R.color.symbolMatchColor);
+        view.setSymbolForeground(pos1, clr);
+        view.setSymbolForeground(pos2, clr);
     }
 
     @Override
@@ -146,13 +138,12 @@ public class GameEngineFragment extends Fragment
         RunnableUtils.runDelayed(() -> updateUiOnMatchFail(position1, position2), 300);
     }
 
-    private void updateUiOnMatchFail(int position1, int position2) {
-        int color = getResources().getColor(R.color.primaryColor);
-        view.setSymbolForeground(position1, color);
-        view.setSymbolForeground(position2, color);
-        String cover = "" + gameState.getCover();
-        view.setSymbol(position1, cover);
-        view.setSymbol(position2, cover);
+    private void updateUiOnMatchFail(int pos1, int pos2) {
+        int clr = getResources().getColor(R.color.primaryColor);
+        view.setSymbolForeground(pos1, clr);
+        view.setSymbolForeground(pos2, clr);
+        view.setSymbol(pos1, gameState.getCover());
+        view.setSymbol(pos2, gameState.getCover());
     }
 
     @Override
@@ -164,8 +155,8 @@ public class GameEngineFragment extends Fragment
 
     private void updateUiOnGameCompleted() {
         view.disableAllSymbols();
-        int color = getResources().getColor(R.color.primaryDarkColor);
-        view.setAllSymbolsBackground(color);
+        int clr = getResources().getColor(R.color.primaryDarkColor);
+        view.setAllSymbolsBackground(clr);
     }
 
     public interface GameProcedureListener {

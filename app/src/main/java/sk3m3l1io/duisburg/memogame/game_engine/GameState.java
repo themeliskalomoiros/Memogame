@@ -64,29 +64,6 @@ public final class GameState {
             reportPairMatch();
     }
 
-    public void setMatchListener(MatchListener listener) {
-        matchListener = listener;
-    }
-
-    public void setGameBeginListener(GameBeginListener listener){
-        gameBeginListener = listener;
-    }
-
-    public void setGameCompletionListener(GameCompletionListener listener) {
-        gameCompletionListener = listener;
-    }
-
-    public void setSymbolAlreadyUncoveredListener(SymbolAlreadyUncoveredListener listener) {
-        symbolUncoveredListener = listener;
-    }
-
-    public void detachListeners(){
-        symbolUncoveredListener = null;
-        gameCompletionListener = null;
-        matchListener = null;
-        gameBeginListener = null;
-    }
-
     private void reportOnStart() {
         if (!gameStarted){
             if (gameBeginListener != null)
@@ -111,8 +88,7 @@ public final class GameState {
         int last = matchHolder.pop();
         int first = matchHolder.pop();
 
-        boolean matchFound = getSymbolAt(first) == getSymbolAt(last);
-        if (matchFound) {
+        if (getSymbolAt(first).equals(getSymbolAt(last))) {
             if (matchListener != null)
                 matchListener.onMatch(first, last);
 
@@ -122,7 +98,29 @@ public final class GameState {
             if (matchListener != null)
                 matchListener.onMatchFail(first, last);
         }
+    }
 
+    public void setMatchListener(MatchListener listener) {
+        matchListener = listener;
+    }
+
+    public void setGameBeginListener(GameBeginListener listener){
+        gameBeginListener = listener;
+    }
+
+    public void setGameCompletionListener(GameCompletionListener listener) {
+        gameCompletionListener = listener;
+    }
+
+    public void setSymbolAlreadyUncoveredListener(SymbolAlreadyUncoveredListener listener) {
+        symbolUncoveredListener = listener;
+    }
+
+    public void detachListeners(){
+        symbolUncoveredListener = null;
+        gameCompletionListener = null;
+        matchListener = null;
+        gameBeginListener = null;
     }
 
     public interface MatchListener {

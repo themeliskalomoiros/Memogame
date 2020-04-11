@@ -62,6 +62,7 @@ public class ArcadeActivity extends AppCompatActivity implements
     }
 
     private void shuffle(List<Game> games) {
+        // TODO: Refactor that
         Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
         int easyUpperBound = 0;
         int normalUpperBound = 0;
@@ -91,18 +92,25 @@ public class ArcadeActivity extends AppCompatActivity implements
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .replace(view.getGameContainerId(), new GameEngineFragment())
-                .commitNow();
+                .replace(view.getGameContainerId(), createCurrentGameFragment())
+                .commit();
+    }
+
+    private GameEngineFragment createCurrentGameFragment(){
+        Game g = games.get(currentGame);
+        ArrayUtils.shuffle(g.getSymbols());
+        GameEngineFragment f = new GameEngineFragment();
+        f.setGame(g);
+        return f;
     }
 
     @Override
     public void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
-        if (f instanceof GameEngineFragment && currentGame < games.size() - 1) {
-            Game g = games.get(currentGame);
-            ArrayUtils.shuffle(g.getSymbols());
-            ((GameEngineFragment) f).setGame(g);
-            updateUI(g);
+        if (f instanceof GameEngineFragment) {
+            if (currentGame < games.size() - 1){
+                updateUI(games.get(currentGame));
+            }
         }
     }
 
@@ -110,8 +118,8 @@ public class ArcadeActivity extends AppCompatActivity implements
         view.setCompletedGamesCount(gamesCompleted.size());
         view.setDifficulty(g.getDifficulty());
         view.setTitle(g.getTitle());
-        view.setTimeProgress(GAME_DURATION);
         view.setTimeProgressMax(GAME_DURATION);
+        view.setTimeProgress(GAME_DURATION);
     }
 
     @Override
@@ -134,8 +142,8 @@ public class ArcadeActivity extends AppCompatActivity implements
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
-            view.setTitle(getString(R.string.time_up));
             view.setTimeProgress(0);
+            view.setTitle(getString(R.string.time_up));
             addResultFragment();
             saveScore();
         }
@@ -154,19 +162,19 @@ public class ArcadeActivity extends AppCompatActivity implements
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(view.getGameContainerId(), f)
-                .commitNow();
+                .commit();
     }
 
     @Override
     public void onGameComplete() {
         timer.cancel();
         gamesCompleted.add(games.get(currentGame));
+        saveScore();
+
         if (gamesCompleted.size() == games.size()) {
             addResultFragment();
-            saveScore();
         } else {
             currentGame++;
-            Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
             RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
     }
