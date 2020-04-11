@@ -37,9 +37,8 @@ public class GameViewImpl implements GameView {
 
     private void addClickListenerTo(Button[] symbols) {
         for (int i = 0; i < symbols.length; i++) {
-            Button b = symbols[i];
             int pos = i;
-            b.setOnClickListener(v -> symbolClickListener.onSymbolClick(pos));
+            symbols[i].setOnClickListener(v -> symbolClickListener.onSymbolClick(pos));
         }
     }
 

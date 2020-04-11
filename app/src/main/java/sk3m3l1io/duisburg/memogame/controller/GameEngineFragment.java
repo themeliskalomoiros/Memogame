@@ -34,24 +34,37 @@ public class GameEngineFragment extends Fragment
 
     @Override
     public void onSymbolClick(int position) {
-        int color = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolForeground(position, color);
-        String symbol = "" + gameState.getSymbolAt(position);
-        view.setSymbol(position, symbol);
+        updateUiOnSymbolClick(position);
+        gameState.uncover(position);
+    }
+
+    private void updateUiOnSymbolClick(int s) {
+        int c = getResources().getColor(R.color.secondaryColor);
+        view.setSymbolForeground(s, c);
+        String symbol = "" + gameState.getSymbolAt(s);
+        view.setSymbol(s, symbol);
     }
 
     @Override
     public void onMatch(int position1, int position2) {
-        view.disableSymbol(position1);
-        view.disableSymbol(position2);
-        int color = getResources().getColor(R.color.symbolMatchColor);
-        view.setSymbolForeground(position1, color);
-        view.setSymbolForeground(position2, color);
+        updateUiOnMatch(position1, position2);
         matchCelebration.start();
+    }
+
+    private void updateUiOnMatch(int s1, int s2) {
+        view.disableSymbol(s1);
+        view.disableSymbol(s2);
+        int c = getResources().getColor(R.color.symbolMatchColor);
+        view.setSymbolForeground(s1, c);
+        view.setSymbolForeground(s2, c);
     }
 
     @Override
     public void onMatchFail(int position1, int position2) {
+        updateUiOnMatchFail(position1, position2);
+    }
+
+    private void updateUiOnMatchFail(int position1, int position2) {
         Runnable setSymbolValues = () -> {
             int color = getResources().getColor(R.color.primaryColor);
             view.setSymbolForeground(position1, color);
@@ -70,11 +83,15 @@ public class GameEngineFragment extends Fragment
 
     @Override
     public void onGameCompleted() {
+        updateUiOnGameCompleted();
+        completionCelebration.start();
+        gameProcedureListener.onGameComplete();
+    }
+
+    private void updateUiOnGameCompleted() {
         view.disableAllSymbols();
         int color = getResources().getColor(R.color.primaryDarkColor);
         view.setAllSymbolsBackground(color);
-        completionCelebration.start();
-        gameProcedureListener.onGameComplete();
     }
 
     @Override
@@ -100,6 +117,7 @@ public class GameEngineFragment extends Fragment
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
+        view.setSymbolClickListener(this);
         view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
     }

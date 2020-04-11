@@ -1,6 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -30,7 +29,7 @@ import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
 
 public class ArcadeActivity extends AppCompatActivity implements
         CountDownTimerReporter.TimeListener,
-        GameFragment.GameProgressListener,
+        GameEngineFragment.GameProcedureListener,
         MessageDialog.ResponseListener,
         ResultFragment.ResultButtonClickListener {
     private static final int TIME_INTERVAL = 100;
@@ -42,8 +41,67 @@ public class ArcadeActivity extends AppCompatActivity implements
 
     private Player player;
     private ArcadeView view;
-    private MediaPlayer successSound;
     private CountDownTimerReporter timer;
+
+    @Override
+    public void onGameStart() {
+        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
+        timer.begin();
+    }
+
+    @Override
+    public void onGameComplete() {
+        timer.cancel();
+        completedGames.add(games.get(currentGame));
+        if (completedGames.size() == games.size()) {
+            addResultFragment();
+            saveScore();
+        } else {
+            currentGame++;
+            Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
+            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
+        }
+    }
+
+    @Override
+    public void onTimerBegin() {
+        view.setTitle(R.string.play);
+    }
+
+    @Override
+    public void onTimerTick(int elapsedMilli) {
+        view.setTimeProgress(elapsedMilli);
+    }
+
+    @Override
+    public void onTimerFinish() {
+        Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
+        if (f instanceof GameFragment) {
+            view.setTitle(getString(R.string.time_up));
+            view.setTimeProgress(0);
+            addResultFragment();
+            saveScore();
+        }
+    }
+
+    @Override
+    public void onResultButtonClick() {
+        recreate();
+    }
+
+    @Override
+    public void onDialogPositiveResponse(MessageDialog dialog) {
+        finish();
+    }
+
+    @Override
+    public void onDialogNegativeResponse(MessageDialog dialog) {
+    }
+
+    @Override
+    public void onBackPressed() {
+        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.arcade_quit_message), null);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,23 +151,17 @@ public class ArcadeActivity extends AppCompatActivity implements
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .replace(view.getGameContainerId(), new GameFragment())
-                .commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        successSound = MediaPlayer.create(this, R.raw.game_success);
+                .replace(view.getGameContainerId(), new GameEngineFragment())
+                .commitNow();
     }
 
     @Override
     public void onAttachFragment(@NonNull Fragment f) {
         super.onAttachFragment(f);
-        if (f instanceof GameFragment && currentGame < games.size() - 1) {
+        if (f instanceof GameEngineFragment && currentGame < games.size() - 1) {
             Game g = games.get(currentGame);
             ArrayUtils.shuffle(g.getSymbols());
-            ((GameFragment) f).setGame(g);
+            ((GameEngineFragment) f).setGame(g);
             updateUI(g);
         }
     }
@@ -122,34 +174,7 @@ public class ArcadeActivity extends AppCompatActivity implements
         view.setTimeProgressMax(GAME_DURATION);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        successSound.release();
-    }
-
-    @Override
-    public void onTimerBegin() {
-        view.setTitle(R.string.play);
-    }
-
-    @Override
-    public void onTimerTick(int elapsedMilli) {
-        view.setTimeProgress(elapsedMilli);
-    }
-
-    @Override
-    public void onTimerFinish() {
-        Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
-        if (f instanceof GameFragment) {
-            view.setTitle(getString(R.string.time_up));
-            view.setTimeProgress(0);
-            replaceWithResultFragment();
-            saveScore();
-        }
-    }
-
-    private void replaceWithResultFragment() {
+    private void addResultFragment() {
         ResultFragment f = new ResultFragment();
         f.setCompletedGames(completedGames);
         f.setGameCount(games.size());
@@ -163,45 +188,5 @@ public class ArcadeActivity extends AppCompatActivity implements
     private void saveScore() {
         int score = Score.calculate(completedGames);
         new LightningScores().saveScore(score, player);
-    }
-
-    @Override
-    public void onGameBegin() {
-        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
-        timer.begin();
-    }
-
-    @Override
-    public void onGameCompleted() {
-        timer.cancel();
-        completedGames.add(games.get(currentGame));
-        if (completedGames.size() == games.size()) {
-            replaceWithResultFragment();
-            saveScore();
-        } else {
-            currentGame++;
-            Toast.makeText(this, R.string.well_done, Toast.LENGTH_SHORT).show();
-            successSound.start();
-            RunnableUtils.runDelayed(() -> addGameFragment(), 200);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        MessageDialog.show(this, getSupportFragmentManager(), getString(R.string.arcade_quit_message), null);
-    }
-
-    @Override
-    public void onDialogPositiveResponse(MessageDialog dialog) {
-        finish();
-    }
-
-    @Override
-    public void onDialogNegativeResponse(MessageDialog dialog) {
-    }
-
-    @Override
-    public void onResultButtonClick() {
-        recreate();
     }
 }
