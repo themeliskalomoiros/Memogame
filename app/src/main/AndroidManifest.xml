@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name="sk3m3l1io.duisburg.memogame.controller.game.RandomModeActivity"></activity>
+        <activity android:name="sk3m3l1io.duisburg.memogame.controller.game.RandomModeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name="sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity"
             android:configChanges="orientation"
