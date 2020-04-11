@@ -40,8 +40,12 @@ public class GameBriefingFragment extends Fragment
             @Nullable Bundle savedInstanceState) {
         view = new GameBriefingViewImp(inflater, container);
         view.setStartGameClickListener(this);
-        view.setTitle(getString(titleRes));
-        view.setMessage(getString(messageRes));
+        try {
+            // TODO: Fix bug > android.content.res.Resources$NotFoundException: String resource ID #0x0
+            // hacky (also lazy) solution
+            view.setTitle(getString(titleRes));
+            view.setMessage(getString(messageRes));
+        } catch (Exception e) {}
         return view.getRootView();
     }
 
