@@ -9,32 +9,32 @@ import java.util.Set;
 public final class Board {
     public static final int SYMBOL_COUNT = 12;
 
-    private final char[] symbols;
+    private final String[] symbols;
 
-    public Board(char[] symbols) {
+    public Board(String[] symbols) {
         throwIfInvalidSymbolCount(symbols);
         throwIfSymbolsAreNotInPairs(symbols);
         this.symbols = symbols;
     }
 
-    public char getSymbolAt(int position) {
+    public String getSymbolAt(int position) {
         return symbols[position];
     }
 
-    private void throwIfInvalidSymbolCount(char[] symbols) {
+    private void throwIfInvalidSymbolCount(String[] symbols) {
         if (symbols.length != SYMBOL_COUNT)
             throw new UnsupportedOperationException("Symbol count must be " + SYMBOL_COUNT);
     }
 
-    private void throwIfSymbolsAreNotInPairs(char[] symbols) {
-        List<Character> chars = new ArrayList<>(symbols.length);
-        for(char s : symbols)
-            chars.add(s);
+    private void throwIfSymbolsAreNotInPairs(String[] symbols) {
+        List<String> list = new ArrayList<>(symbols.length);
+        for(String s : symbols)
+            list.add(s);
 
-        for(char c : chars){
-            int timesFound = Collections.frequency(chars, c);
+        for(String s : list){
+            int timesFound = Collections.frequency(list, s);
             if ( timesFound != 2)
-                throw new UnsupportedOperationException("Symbol " + c + " found " + timesFound +
+                throw new UnsupportedOperationException("Symbol " + s + " found " + timesFound +
                         "times. Only 2 are allowed.");
         }
     }

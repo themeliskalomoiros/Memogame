@@ -1,5 +1,7 @@
 package sk3m3l1io.duisburg.memogame.game_engine;
 
+import android.util.Log;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -7,7 +9,7 @@ import java.util.Stack;
 public final class GameState {
     public static final int PAIR = 2;
 
-    private final char cover;
+    private final String cover;
     private final Board board;
     private int matchCount;
     private final Stack<Integer> matchHolder;
@@ -18,18 +20,38 @@ public final class GameState {
     private boolean gameStarted;
     private GameBeginListener gameBeginListener;
 
-    public GameState(char[] symbols, char cover) throws InvalidCoverException {
+    public GameState(String[] symbols, String cover)
+            throws InvalidCoverException, InvalidSymbolException {
         throwIfCoverIsInvalid(symbols, cover);
+        throwIfAnySymbolIsInvalid(symbols);
         this.cover = cover;
         matchHolder = new Stack<>();
         board = new Board(symbols);
     }
 
-    public char getSymbolAt(int position) {
+    private void throwIfCoverIsInvalid(String[] symbols, String cover)
+            throws InvalidCoverException {
+        Set<String> set = new HashSet<>();
+        set.add(cover);
+        for(String s : symbols)
+            set.add(s);
+
+        if (set.size() != (Board.SYMBOL_COUNT / 2) + 1)
+            throw new InvalidCoverException();
+    }
+
+    private void throwIfAnySymbolIsInvalid(String[] symbols)
+            throws InvalidSymbolException {
+        for (String s : symbols)
+            if(s.length() != 1)
+                throw new InvalidSymbolException();
+    }
+
+    public String getSymbolAt(int position) {
         return board.getSymbolAt(position);
     }
 
-    public char getCover() {
+    public String getCover() {
         return cover;
     }
 
@@ -63,17 +85,6 @@ public final class GameState {
         gameCompletionListener = null;
         matchListener = null;
         gameBeginListener = null;
-    }
-
-    private void throwIfCoverIsInvalid(char[] symbols, char cover) throws InvalidCoverException {
-        Set<Character> set = new HashSet<>();
-        for(char s : symbols){
-            set.add(s);
-        }
-        set.add(cover);
-
-        if (set.size() != (Board.SYMBOL_COUNT/2)+1)
-            throw new InvalidCoverException();
     }
 
     private void reportOnStart() {
