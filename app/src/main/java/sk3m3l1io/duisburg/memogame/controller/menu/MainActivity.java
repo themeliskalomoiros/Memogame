@@ -1,6 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller.menu;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements
     private MainView view;
     private GameMode gameMode;
     private List<Game> games;
+    private MediaPlayer tapSound;
     private GoogleSignInClient googleSignInClient;
 
     @Override
@@ -92,6 +94,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        tapSound = MediaPlayer.create(this, R.raw.navigation_forward_minimal);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (games != null && games.size() >= 0) {
@@ -99,6 +107,12 @@ public class MainActivity extends AppCompatActivity implements
                     Game.class.getSimpleName(),
                     (ArrayList<? extends Parcelable>) games);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        tapSound.release();
     }
 
     @NonNull
@@ -133,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements
                 return null;
             }
         };
-
     }
 
     @Override
@@ -193,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements
 //        } else {
 //            showSignInSnackbar();
 //        }
-
+        tapSound.start();
         addGameBriefingFragment(gameMode = GameMode.ARCADE);
     }
 
@@ -206,17 +219,20 @@ public class MainActivity extends AppCompatActivity implements
 //        } else {
 //            showSignInSnackbar();
 //        }
+        tapSound.start();
         addGameBriefingFragment(gameMode = GameMode.RANDOM);
     }
 
     @Override
     public void onPractiseModeClick() {
+        tapSound.start();
         gameMode = GameMode.PRACTISE;
         addGameBriefingFragment(gameMode);
     }
 
     @Override
     public void onSignInClick() {
+        tapSound.start();
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             googleSignInClient.signOut().addOnSuccessListener(this);
         } else {
@@ -226,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLeaderboardClick() {
+        tapSound.start();
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
         Player p = GoogleUtils.createPlayerFrom(acc);
         if (p != null) {
@@ -245,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onStartGameClick() {
+        tapSound.start();
         startActivity(getPlayModeIntent(gameMode));
     }
 
