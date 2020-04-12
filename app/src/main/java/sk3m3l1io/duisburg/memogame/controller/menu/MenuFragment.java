@@ -39,7 +39,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        view = new MenuViewImp(inflater, container);
+        view = new BoxMenuViewImp(inflater, container);
         view.setMenuClickListener(this);
         return view.getRootView();
     }
