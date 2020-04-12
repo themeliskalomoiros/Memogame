@@ -47,20 +47,17 @@
         <ImageButton
             android:id="@+id/random"
             style="@style/Symbol_Style"
-            android:src="@drawable/dice_pink"/>
+            android:src="@drawable/heart_with_pulse_pink"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/practise"
             style="@style/Symbol_Style"
-            android:text="M"
-            android:fontFamily="@font/molly_jack"
-            android:textColor="@color/secondaryColor"
-            android:src="@drawable/gamepad_pink"/>
+            android:src="@drawable/joystick_pink"/>
 
         <ImageButton
             android:id="@+id/lightning_round"
             style="@style/Symbol_Style"
-            android:src="@drawable/joystick_pink"/>
+            android:src="@drawable/stopwatch_pink"/>
     </LinearLayout>
 
     <LinearLayout

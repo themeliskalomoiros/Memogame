@@ -84,7 +84,7 @@ public class ArcadeActivity extends ScoreActivity implements
 
     @Override
     public void onTimerBegin() {
-        Snackbar.make(view.getRootView(), R.string.game_started, Snackbar.LENGTH_SHORT).show();
+
     }
 
     @Override

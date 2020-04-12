@@ -44,7 +44,7 @@ public class RandomModeActivity extends ScoreActivity implements
 
     @Override
     public void onFragmentViewCreated(GameFragment f) {
-        view.setTitle(R.string.take_a_look);
+        view.setTitle(R.string.look);
         f.showAllSymbols();
         RunnableUtils.runDelayed(() -> {
             view.setTitle(games.get(currentGame).getTitle());

@@ -19,20 +19,20 @@
 
     <Button
         android:id="@+id/random"
-        android:text="@string/random"
+        android:text="@string/survival_mode"
         style="@style/MainMenu_Item_Style"
         android:drawableRight="@drawable/heart_with_pulse_pink"/>
 
     <Button
         android:id="@+id/lightning_round"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/arcade_round"
+        android:text="@string/time_mode"
         android:drawableRight="@drawable/stopwatch_pink"/>
 
     <Button
         android:id="@+id/practise"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/practise"
+        android:text="@string/practise_mode"
         android:drawableRight="@drawable/joystick_pink"/>
 
     <Button

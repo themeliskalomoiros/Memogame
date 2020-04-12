@@ -95,13 +95,11 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
     }
 
     private String getTitle() {
-        String prefix = getString(R.string.you_did) + " ";
-        String result = getString(getResult().getNameRes()) + " ";
-        return prefix + result;
+        return getString(getResult().getNameRes()) + " ";
     }
 
     private String getMessage() {
-        String prefix = getString(R.string.arcade_completed_prefix) + " " +
+        String prefix = getString(R.string.time_mode_completed_prefix) + " " +
                 completedGames.size() + " " +
                 getString(R.string.out_of_sufix) + " " +
                 gameCount + ". ";

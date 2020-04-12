@@ -37,11 +37,11 @@ public class LeaderBoardActivity extends AppCompatActivity
 
     @Override
     public void onArcadePage() {
-        view.setTitle(R.string.arcade_round);
+        view.setTitle(R.string.time_mode);
     }
 
     @Override
     public void onRandomPage() {
-        view.setTitle(R.string.random);
+        view.setTitle(R.string.survival_mode);
     }
 }

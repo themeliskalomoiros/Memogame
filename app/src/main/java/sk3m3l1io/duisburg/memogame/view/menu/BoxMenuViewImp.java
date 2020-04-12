@@ -10,12 +10,11 @@ import sk3m3l1io.duisburg.memogame.R;
 
 public class BoxMenuViewImp implements MenuView {
     private View root;
-    private ImageButton lightning, random, leaderboard, user;
-    private Button practise;
+    private ImageButton lightning, random, leaderboard, user, practise;
     private SymbolClickListener listener;
 
     public BoxMenuViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_menu_from_boxes, container, false);
+        root = inflater.inflate(R.layout.fragment_box_menu, container, false);
         lightning = root.findViewById(R.id.lightning_round);
         lightning.setOnClickListener(v -> listener.onLightningClick());
         practise = root.findViewById(R.id.practise);
