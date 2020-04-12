@@ -203,28 +203,20 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onArcadeModeClick() {
-        // TODO: Uncomment this
-//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-//            gameMode = GameMode.ARCADE;
-//            addGameBriefingFragment(gameMode);
-//        } else {
-//            showSignInSnackbar();
-//        }
-        forwardSound.start();
-        addGameBriefingFragment(gameMode = GameMode.ARCADE);
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            addGameBriefingFragment(gameMode = GameMode.ARCADE);
+        } else {
+            showSignInSnackbar();
+        }
     }
 
     @Override
     public void onRandomModeClick() {
-        // TODO: Uncomment this
-//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-//            gameMode = GameMode.RANDOM;
-//            addGameBriefingFragment(gameMode);
-//        } else {
-//            showSignInSnackbar();
-//        }
-        forwardSound.start();
-        addGameBriefingFragment(gameMode = GameMode.RANDOM);
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            addGameBriefingFragment(gameMode = GameMode.RANDOM);
+        } else {
+            showSignInSnackbar();
+        }
     }
 
     @Override
