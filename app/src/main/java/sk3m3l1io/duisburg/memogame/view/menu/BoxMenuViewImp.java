@@ -8,14 +8,14 @@ import android.widget.ImageButton;
 
 import sk3m3l1io.duisburg.memogame.R;
 
-public class MenuViewImp implements MenuView {
+public class BoxMenuViewImp implements MenuView {
     private View root;
-    private Button lightning, random, leaderboard, user;
+    private ImageButton lightning, random, leaderboard, user;
     private Button practise;
     private SymbolClickListener listener;
 
-    public MenuViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.fragment_menu, container, false);
+    public BoxMenuViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.fragment_menu_from_boxes, container, false);
         lightning = root.findViewById(R.id.lightning_round);
         lightning.setOnClickListener(v -> listener.onLightningClick());
         practise = root.findViewById(R.id.practise);
@@ -35,12 +35,12 @@ public class MenuViewImp implements MenuView {
 
     @Override
     public void setUserIconToSignOut() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.sign_out_pink),null,null,null);
+        user.setImageResource(R.drawable.sign_out_pink);
     }
 
     @Override
     public void setUserIconToDefault() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.user_green),null,null,null);
+        user.setImageResource(R.drawable.user_pink);
     }
 
     @Override

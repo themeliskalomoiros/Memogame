@@ -17,72 +17,36 @@
         android:layout_marginBottom="8sp"
         android:gravity="center_horizontal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+    <Button
+        android:id="@+id/random"
+        android:text="@string/random"
+        style="@style/MainMenu_Item_Style"
+        android:drawableRight="@drawable/heart_with_pulse_pink"/>
 
-        <ImageButton
-            android:id="@+id/symbol_0"
-            style="@style/Symbol_Style.Disabled" />
+    <Button
+        android:id="@+id/lightning_round"
+        style="@style/MainMenu_Item_Style"
+        android:text="@string/arcade_round"
+        android:drawableRight="@drawable/stopwatch_pink"/>
 
-        <ImageButton
-            android:id="@+id/leaderboard"
-            style="@style/Symbol_Style"
-            android:src="@drawable/leaderboard_pink"/>
+    <Button
+        android:id="@+id/practise"
+        style="@style/MainMenu_Item_Style"
+        android:text="@string/practise"
+        android:drawableRight="@drawable/joystick_pink"/>
 
-        <ImageButton
-            android:id="@+id/symbol_2"
-            style="@style/Symbol_Style.Disabled" />
+    <Button
+        android:id="@+id/leaderboard"
+        style="@style/MainMenu_Item_Style"
+        android:text="@string/leaderboard"
+        android:drawableRight="@drawable/medal_first_place_green"/>
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/user"
+        style="@style/MainMenu_Item_Style"
+        android:text="@string/sign_in"
+        android:drawableRight="@drawable/user_green"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/random"
-            style="@style/Symbol_Style"
-            android:src="@drawable/dice_pink"/>
-
-        <Button
-            android:id="@+id/practise"
-            style="@style/Symbol_Style"
-            android:text="M"
-            android:fontFamily="@font/molly_jack"
-            android:textColor="@color/secondaryColor"
-            android:src="@drawable/gamepad_pink"/>
-
-        <ImageButton
-            android:id="@+id/lightning_round"
-            style="@style/Symbol_Style"
-            android:src="@drawable/joystick_pink"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/symbol_7"
-            style="@style/Symbol_Style.Disabled" />
-
-        <ImageButton
-            android:id="@+id/user"
-            style="@style/Symbol_Style"
-            android:src="@drawable/user_pink"/>
-
-        <ImageButton
-            android:id="@+id/symbol_8"
-            style="@style/Symbol_Style.Disabled" />
-
-    </LinearLayout>
 
 </LinearLayout>
 
