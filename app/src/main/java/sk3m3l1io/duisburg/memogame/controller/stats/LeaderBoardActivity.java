@@ -11,7 +11,7 @@ import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardViewImp;
 
 public class LeaderBoardActivity extends AppCompatActivity implements
         ScoresFragment.ScoresLoadListener,
-        LeaderBoardView.GameModePageChangeListener {
+        LeaderBoardView.PageChangeListener {
     private Player user;
     private LeaderBoardView view;
 

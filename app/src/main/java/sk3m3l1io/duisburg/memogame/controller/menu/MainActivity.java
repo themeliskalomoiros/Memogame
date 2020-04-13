@@ -219,6 +219,12 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void showSignInSnackbar() {
+        Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
+                .setAction(R.string.sign_in, v -> onSignInClick())
+                .show();
+    }
+
     @Override
     public void onPractiseModeClick() {
         forwardSound.start();
@@ -239,21 +245,16 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLeaderboardClick() {
         forwardSound.start();
-        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        Player p = GoogleUtils.createPlayerFrom(acc);
-        if (p != null) {
-            Intent i = new Intent(this, LeaderBoardActivity.class);
-            i.putExtra(Player.class.getSimpleName(), p);
-            startActivity(i);
-        } else {
-            showSignInSnackbar();
-        }
+        startLeaderBoardActivity();
     }
 
-    private void showSignInSnackbar() {
-        Snackbar.make(view.getRootView(), R.string.must_sign_in, Snackbar.LENGTH_LONG)
-                .setAction(R.string.sign_in, v -> onSignInClick())
-                .show();
+    private void startLeaderBoardActivity() {
+        Intent i = new Intent(this, LeaderBoardActivity.class);
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
+        Player p = GoogleUtils.createPlayerFrom(acc);
+        if (p != null)
+            i.putExtra(Player.class.getSimpleName(), p);
+        startActivity(i);
     }
 
     @Override
