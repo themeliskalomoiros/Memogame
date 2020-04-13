@@ -2,6 +2,7 @@ package sk3m3l1io.duisburg.memogame.controller.stats;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.TreeMap;
 
 import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 

@@ -1,5 +1,7 @@
 package sk3m3l1io.duisburg.memogame.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class FirebaseScoreRepository implements ScoreRepository {
     protected static final String SCORES = "scores";
@@ -40,9 +43,10 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
             private Map<Integer, Player> getScoresFrom(@NonNull DataSnapshot snapshot) {
                 Map<Integer, Player> scores = new HashMap<>();
                 for (DataSnapshot s : snapshot.getChildren()) {
-                    Record r = s.getValue(Record.class);
+                    PlayerScore r = s.getValue(PlayerScore.class);
                     scores.put(r.score, r.player);
                 }
+                Log.d(LogUtils.TAG, "Returning scores are  "+scores.size());
                 return scores;
             }
 
@@ -54,14 +58,14 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
 
     @Override
     public void saveScore(int score, Player p) {
-        Record dataToSave = new Record(score, p);
+        PlayerScore dataToSave = new PlayerScore(score, p);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     boolean playerFound = p.getId().equals(ds.getKey());
                     if (playerFound) {
-                        Record dataFound = ds.getValue(Record.class);
+                        PlayerScore dataFound = ds.getValue(PlayerScore.class);
                         if (score > dataFound.score) {
                             ref.child(p.getId()).setValue(dataToSave);
                         }
@@ -78,15 +82,15 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
         });
     }
 
-    private static class Record {
-        int score;
-        Player player;
+    private static class PlayerScore {
+        private int score;
+        private Player player;
 
-        Record() {
+        PlayerScore() {
             // Default constructor required for calls to DataSnapshot.getValue(User.class)
         }
 
-        public Record(int score, Player player) {
+        public PlayerScore(int score, Player player) {
             this.score = score;
             this.player = player;
         }

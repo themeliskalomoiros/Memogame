@@ -2,6 +2,7 @@ package sk3m3l1io.duisburg.memogame.view.score;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
     private static final int TYPE_NUMERIC = 1313;
@@ -73,11 +75,17 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public int getItemCount() {
-        if (scores != null && players != null)
-            if (scores.length > 0 && players.length == scores.length)
-                return scores.length;
+        if (dataExists()){
+            return scores.length;
+        }
 
         return 0;
+    }
+
+    private boolean dataExists() {
+        return
+            scores != null && players != null &&
+            scores.length > 0 && players.length == scores.length;
     }
 
     abstract class ScoreViewHolder extends RecyclerView.ViewHolder {
@@ -93,7 +101,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
         void bind(int s, Player p) {
             name.setText(p.getName());
-            boolean isUser = p.getId().equals(user.getId());
+            boolean isUser = user != null && user.getId().equals(p.getId());
             if (isUser) {
                 name.setTextColor(context.getResources().getColor(R.color.symbolMatchColor));
                 name.setTypeface(Typeface.DEFAULT_BOLD);
