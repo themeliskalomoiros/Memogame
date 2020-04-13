@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 
 public class ScoreViewImp implements ScoreView {
     private View root;
@@ -26,9 +29,8 @@ public class ScoreViewImp implements ScoreView {
     }
 
     @Override
-    public void setScores(int[] scores, Player[] players, Player user) {
+    public void setScores(List<PlayerScore> scores, Player user) {
         adapter.setScores(scores);
-        adapter.setPlayers(players);
         adapter.setUser(user);
         adapter.notifyDataSetChanged();
     }

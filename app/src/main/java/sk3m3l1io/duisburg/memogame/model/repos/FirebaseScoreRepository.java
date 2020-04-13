@@ -1,7 +1,5 @@
 package sk3m3l1io.duisburg.memogame.model.repos;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -9,12 +7,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class FirebaseScoreRepository implements ScoreRepository {
     protected static final String SCORES = "scores";
@@ -41,13 +38,11 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
                 scoresListener.onScoresLoad(getScoresFrom(snapshot));
             }
 
-            private Map<Integer, Player> getScoresFrom(@NonNull DataSnapshot snapshot) {
-                Map<Integer, Player> scores = new HashMap<>();
+            private List<PlayerScore> getScoresFrom(@NonNull DataSnapshot snapshot) {
+                final List<PlayerScore> scores = new ArrayList<>();
                 for (DataSnapshot s : snapshot.getChildren()) {
-                    PlayerScore r = s.getValue(PlayerScore.class);
-                    scores.put(r.getScore(), r.getPlayer());
+                    scores.add(s.getValue(PlayerScore.class));
                 }
-                Log.d(LogUtils.TAG, "Returning scores are  "+scores.size());
                 return scores;
             }
 

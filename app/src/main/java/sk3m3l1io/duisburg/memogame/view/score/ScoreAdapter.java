@@ -13,28 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
     private static final int TYPE_NUMERIC = 1313;
     private static final int TYPE_MEDAL = 1314;
 
     private Player user;
-    private int[] scores;
-    private Player[] players;
+    List<PlayerScore> scores;
     private final Context context;
 
     public ScoreAdapter(Context context) {
         this.context = context;
     }
 
-    public void setScores(int[] scores) {
+    public void setScores(List<PlayerScore> scores) {
         this.scores = scores;
-    }
-
-    public void setPlayers(Player[] players) {
-        this.players = players;
     }
 
     public void setUser(Player user) {
@@ -66,24 +64,16 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder vh, int i) {
-        Player p = players[i];
-        int s = scores[i];
-        vh.bind(s, p);
+        vh.bind(scores.get(i));
     }
 
     @Override
     public int getItemCount() {
-        if (dataExists()){
-            return scores.length;
+        if (scores!=null && scores.size() > 0){
+            return scores.size();
         }
 
         return 0;
-    }
-
-    private boolean dataExists() {
-        return
-            scores != null && players != null &&
-            scores.length > 0 && players.length == scores.length;
     }
 
     abstract class ScoreViewHolder extends RecyclerView.ViewHolder {
@@ -97,17 +87,17 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             image = itemView.findViewById(R.id.user_image);
         }
 
-        void bind(int s, Player p) {
-            name.setText(p.getName());
-            boolean isUser = user != null && user.getId().equals(p.getId());
+        void bind(PlayerScore ps) {
+            name.setText(ps.getPlayer().getName());
+            boolean isUser = user != null && user.getId().equals(ps.getPlayer().getId());
             if (isUser) {
                 name.setTextColor(context.getResources().getColor(R.color.symbolMatchColor));
                 name.setTypeface(Typeface.DEFAULT_BOLD);
             }
-            score.setText("" + s);
-            if (p.getPhotoUrl() != null) {
+            score.setText("" + ps.getScore());
+            if (ps.getPlayer().getPhotoUrl() != null) {
                 Picasso.get()
-                        .load(p.getPhotoUrl())
+                        .load(ps.getPlayer().getPhotoUrl())
                         .placeholder(R.drawable.user_48px)
                         .error(R.drawable.ic_error_outline_black_48dp)
                         .into(image);
@@ -124,8 +114,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         @Override
-        void bind(int s, Player p) {
-            super.bind(s, p);
+        void bind(PlayerScore ps) {
+            super.bind(ps);
             position.setText("" + (getAdapterPosition() + 1));
         }
     }
@@ -139,8 +129,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         @Override
-        void bind(int s, Player p) {
-            super.bind(s, p);
+        void bind(PlayerScore ps) {
+            super.bind(ps);
             if (getAdapterPosition() == 0)
                 medal.setImageResource(R.drawable.medal_first_place_48px);
             if (getAdapterPosition() == 1)

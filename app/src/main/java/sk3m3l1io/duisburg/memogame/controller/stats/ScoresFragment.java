@@ -10,13 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.Collections;
+import java.util.List;
 
+import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
@@ -72,35 +69,12 @@ public abstract class ScoresFragment extends Fragment
     }
 
     @Override
-    public void onScoresLoad(Map<Integer, Player> scores) {
+    public void onScoresLoad(List<PlayerScore> scores) {
         if (scores != null && scores.size() > 0) {
-            SortedMap<Integer, Player> sortedScores = new TreeMap<>((s1, s2) -> s2 - s1);
-            sortedScores.putAll(scores);
-            int[] s = getKeysFrom(sortedScores.keySet());
-            Player[] p = getPlayersFrom(sortedScores.values());
-            view.setScores(s, p, user);
+            Collections.sort(scores, (s1, s2) -> s2.getScore() - s1.getScore());
+            view.setScores(scores, user);
             listener.onLoadFinished();
         }
-    }
-
-    private int[] getKeysFrom(Set<Integer> keys) {
-        int[] s = new int[keys.size()];
-        Iterator<Integer> it = keys.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            s[i++] = it.next();
-        }
-        return s;
-    }
-
-    private Player[] getPlayersFrom(Collection<Player> values) {
-        Player[] p = new Player[values.size()];
-        Iterator<Player> it = values.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            p[i++] = it.next();
-        }
-        return p;
     }
 
     public void setUser(Player user) {
