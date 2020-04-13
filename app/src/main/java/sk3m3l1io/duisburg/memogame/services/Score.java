@@ -2,7 +2,7 @@ package sk3m3l1io.duisburg.memogame.services;
 
 import java.util.List;
 
-import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 
 public final class Score {
     public static final int POINTS_EASY = 100;

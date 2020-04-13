@@ -1,8 +1,8 @@
-package sk3m3l1io.duisburg.memogame.model;
+package sk3m3l1io.duisburg.memogame.model.repos;
 
 import java.util.Map;
 
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 
 public interface ScoreRepository {
     interface ScoresListener {

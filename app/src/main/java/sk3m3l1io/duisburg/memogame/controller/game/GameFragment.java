@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.game_engine.GameState;
 import sk3m3l1io.duisburg.memogame.game_engine.InvalidCoverException;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.GameView;

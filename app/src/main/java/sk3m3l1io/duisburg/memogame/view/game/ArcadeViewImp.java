@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 
 public class ArcadeViewImp implements ArcadeView {
     private final View root;

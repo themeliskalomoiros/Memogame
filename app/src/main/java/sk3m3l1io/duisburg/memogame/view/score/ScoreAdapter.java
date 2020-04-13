@@ -2,7 +2,6 @@ package sk3m3l1io.duisburg.memogame.view.score;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
     private static final int TYPE_NUMERIC = 1313;

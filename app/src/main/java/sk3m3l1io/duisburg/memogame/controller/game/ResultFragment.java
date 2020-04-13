@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.services.Score;
 import sk3m3l1io.duisburg.memogame.view.score.ResultView;
 import sk3m3l1io.duisburg.memogame.view.score.ResultViewImp;

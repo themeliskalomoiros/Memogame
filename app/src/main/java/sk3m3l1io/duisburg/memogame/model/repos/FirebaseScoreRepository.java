@@ -1,4 +1,4 @@
-package sk3m3l1io.duisburg.memogame.model;
+package sk3m3l1io.duisburg.memogame.model.repos;
 
 import android.util.Log;
 
@@ -12,7 +12,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class FirebaseScoreRepository implements ScoreRepository {
@@ -44,7 +45,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
                 Map<Integer, Player> scores = new HashMap<>();
                 for (DataSnapshot s : snapshot.getChildren()) {
                     PlayerScore r = s.getValue(PlayerScore.class);
-                    scores.put(r.score, r.player);
+                    scores.put(r.getScore(), r.getPlayer());
                 }
                 Log.d(LogUtils.TAG, "Returning scores are  "+scores.size());
                 return scores;
@@ -66,7 +67,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
                     boolean playerFound = p.getId().equals(ds.getKey());
                     if (playerFound) {
                         PlayerScore dataFound = ds.getValue(PlayerScore.class);
-                        if (score > dataFound.score) {
+                        if (score > dataFound.getScore()) {
                             ref.child(p.getId()).setValue(dataToSave);
                         }
                         return;
@@ -82,25 +83,4 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
         });
     }
 
-    private static class PlayerScore {
-        private int score;
-        private Player player;
-
-        PlayerScore() {
-            // Default constructor required for calls to DataSnapshot.getValue(User.class)
-        }
-
-        public PlayerScore(int score, Player player) {
-            this.score = score;
-            this.player = player;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public Player getPlayer() {
-            return player;
-        }
-    }
 }

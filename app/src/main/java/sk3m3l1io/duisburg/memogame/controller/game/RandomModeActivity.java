@@ -3,9 +3,9 @@ package sk3m3l1io.duisburg.memogame.controller.game;
 import androidx.annotation.NonNull;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.model.RandomScores;
-import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.repos.RandomScores;
+import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomView;
 import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;

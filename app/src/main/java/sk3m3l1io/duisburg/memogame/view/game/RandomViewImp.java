@@ -3,11 +3,10 @@ package sk3m3l1io.duisburg.memogame.view.game;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 
 public class RandomViewImp implements RandomView {
     private final View root;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,13 +32,12 @@ import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.ArcadeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.PractiseModeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.RandomModeActivity;
-import sk3m3l1io.duisburg.memogame.model.GameRepository;
-import sk3m3l1io.duisburg.memogame.model.GameRepositoryImp;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.pojos.GameMode;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.GameRepository;
+import sk3m3l1io.duisburg.memogame.model.repos.GameRepositoryImp;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 

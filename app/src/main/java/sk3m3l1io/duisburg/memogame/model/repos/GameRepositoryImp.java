@@ -1,4 +1,4 @@
-package sk3m3l1io.duisburg.memogame.model;
+package sk3m3l1io.duisburg.memogame.model.repos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,8 +8,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.utils.FileUtils;
 
 public class GameRepositoryImp implements GameRepository {

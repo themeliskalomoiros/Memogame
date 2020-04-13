@@ -1,4 +1,4 @@
-package sk3m3l1io.duisburg.memogame.pojos;
+package sk3m3l1io.duisburg.memogame.model.pojos;
 
 import android.os.Parcel;
 import android.os.Parcelable;

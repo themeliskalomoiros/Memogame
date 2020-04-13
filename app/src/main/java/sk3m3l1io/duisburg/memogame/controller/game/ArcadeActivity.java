@@ -3,12 +3,10 @@ package sk3m3l1io.duisburg.memogame.controller.game;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.model.LightningScores;
-import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.repos.LightningScores;
+import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;

@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.GameMode;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.view.menu.GameBriefingView;
 import sk3m3l1io.duisburg.memogame.view.menu.GameBriefingViewImp;
 

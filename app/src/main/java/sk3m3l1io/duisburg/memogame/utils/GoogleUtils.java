@@ -2,7 +2,7 @@ package sk3m3l1io.duisburg.memogame.utils;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 
 public final class GoogleUtils {
     private GoogleUtils() {

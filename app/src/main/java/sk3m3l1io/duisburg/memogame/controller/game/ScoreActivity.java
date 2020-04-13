@@ -1,7 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -9,12 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sk3m3l1io.duisburg.memogame.model.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.pojos.Game;
-import sk3m3l1io.duisburg.memogame.pojos.GameDifficulty;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.services.Score;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardView;
 import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardViewImp;
 

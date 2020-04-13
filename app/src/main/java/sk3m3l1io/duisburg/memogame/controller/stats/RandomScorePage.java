@@ -1,6 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller.stats;
 
-import sk3m3l1io.duisburg.memogame.model.RandomScores;
+import sk3m3l1io.duisburg.memogame.model.repos.RandomScores;
 
 public class RandomScorePage extends ScoresFragment {
     @Override

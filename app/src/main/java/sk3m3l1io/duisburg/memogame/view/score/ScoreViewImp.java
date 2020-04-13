@@ -1,6 +1,5 @@
 package sk3m3l1io.duisburg.memogame.view.score;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.pojos.Player;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 
 public class ScoreViewImp implements ScoreView {
     private View root;
