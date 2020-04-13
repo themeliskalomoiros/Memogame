@@ -51,7 +51,7 @@ public class LeaderBoardViewImp implements LeaderBoardView {
     }
 
     @Override
-    public void setScorePageChangeListener(PageChangeListener listener) {
+    public void setScorePageChangeListener(GameModePageChangeListener listener) {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -61,9 +61,9 @@ public class LeaderBoardViewImp implements LeaderBoardView {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    listener.onRandomPage();
+                    listener.onSurvivalModePage();
                 } else {
-                    listener.onArcadePage();
+                    listener.onTimeModePage();
                 }
             }
 

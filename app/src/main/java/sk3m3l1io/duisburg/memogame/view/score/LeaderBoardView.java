@@ -4,13 +4,13 @@ import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.view.TitleView;
 
 public interface LeaderBoardView extends TitleView {
-    interface PageChangeListener {
-        void onArcadePage();
+    interface GameModePageChangeListener {
+        void onTimeModePage();
 
-        void onRandomPage();
+        void onSurvivalModePage();
     }
 
-    void setScorePageChangeListener(PageChangeListener listener);
+    void setScorePageChangeListener(GameModePageChangeListener listener);
 
     void showLoadingIndicator();
 

@@ -9,9 +9,9 @@ import sk3m3l1io.duisburg.memogame.pojos.Player;
 import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardView;
 import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardViewImp;
 
-public class LeaderBoardActivity extends AppCompatActivity
-        implements ScoresFragment.ScoresLoadListener,
-        LeaderBoardView.PageChangeListener {
+public class LeaderBoardActivity extends AppCompatActivity implements
+        ScoresFragment.ScoresLoadListener,
+        LeaderBoardView.GameModePageChangeListener {
     private Player user;
     private LeaderBoardView view;
 
@@ -36,12 +36,12 @@ public class LeaderBoardActivity extends AppCompatActivity
     }
 
     @Override
-    public void onArcadePage() {
+    public void onTimeModePage() {
         view.setTitle(R.string.time_mode);
     }
 
     @Override
-    public void onRandomPage() {
+    public void onSurvivalModePage() {
         view.setTitle(R.string.survival_mode);
     }
 }
