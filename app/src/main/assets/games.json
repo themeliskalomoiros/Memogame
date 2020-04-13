@@ -1,326 +1,375 @@
 {
   "games": [
     {
+      "title": "AAAAAAA",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDDFA", "\uD83D\uDDFA", "\uD83D\uDDD3", "\uD83D\uDDD3", "\uD83D\uDDFC", "\uD83D\uDDFC",
+        "\uD83D\uDDFD", "\uD83D\uDDFD", "\uD83D\uDEEB", "\uD83D\uDEEB", "\uD83D\uDDFF", "\uD83D\uDDFF"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Cat",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDE38", "\uD83D\uDE38", "\uD83D\uDE39", "\uD83D\uDE39", "\uD83D\uDE3E", "\uD83D\uDE3E",
+        "\uD83D\uDE3F", "\uD83D\uDE3F", "\uD83D\uDE40", "\uD83D\uDE40", "\uD83D\uDE3C", "\uD83D\uDE3C"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "Beasts",
+      "cover": "⭘",
+      "symbols": ["\uD83E\uDD84", "\uD83E\uDD84", "\uD83E\uDD85", "\uD83E\uDD85", "\uD83E\uDD86", "\uD83E\uDD86",
+        "\uD83E\uDD88", "\uD83E\uDD88", "\uD83E\uDD91", "\uD83E\uDD91", "\uD83E\uDD89", "\uD83E\uDD89"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "Athleticism",
+      "cover": "⭘",
+      "symbols": ["\uD83E\uDD38", "\uD83E\uDD38", "\uD83E\uDD39", "\uD83E\uDD39", "\uD83E\uDD3A", "\uD83E\uDD3A",
+        "\uD83E\uDD3C", "\uD83E\uDD3C", "\uD83E\uDD3D", "\uD83E\uDD3D", "\uD83E\uDD3E", "\uD83E\uDD3E"],
+      "difficulty": "easy"
+    },
+    {
+      "title": "Outdoors",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDEA3", "\uD83D\uDEA3", "\uD83D\uDEA4", "\uD83D\uDEA4", "\uD83D\uDEB4", "\uD83D\uDEB4",
+        "\uD83D\uDEB5", "\uD83D\uDEB5", "\uD83D\uDEB6", "\uD83D\uDEB6", "\uD83D\uDEB2", "\uD83D\uDEB2"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Train",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDE82", "\uD83D\uDE82", "\uD83D\uDE83", "\uD83D\uDE83", "\uD83D\uDE84", "\uD83D\uDE84",
+        "\uD83D\uDE86", "\uD83D\uDE86", "\uD83D\uDE88", "\uD83D\uDE88", "\uD83D\uDE8A", "\uD83D\uDE8A"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Automobile",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDE97", "\uD83D\uDE97", "\uD83D\uDE96", "\uD83D\uDE96", "\uD83D\uDE94", "\uD83D\uDE94",
+        "\uD83D\uDEA6", "\uD83D\uDEA6", "\uD83D\uDE99", "\uD83D\uDE99", "\uD83D\uDE98", "\uD83D\uDE98"],
+      "difficulty": "normal"
+    },
+    {
       "title": "Seoul",
-      "cover": "\uD83C\uDDF8",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDF03", "\uD83C\uDF03", "\uD83C\uDF04", "\uD83C\uDF04", "\uD83C\uDF01", "\uD83C\uDF01",
         "\uD83C\uDF06", "\uD83C\uDF06", "\uD83C\uDF07", "\uD83C\uDF07", "\uD83C\uDF09", "\uD83C\uDF09"],
       "difficulty": "normal"
     },
     {
       "title": "Naruto",
-      "cover": "\uD83C\uDE1A",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDE2F", "\uD83C\uDE2F", "\uD83C\uDE32", "\uD83C\uDE32", "\uD83C\uDE33", "\uD83C\uDE33",
         "\uD83C\uDE34", "\uD83C\uDE34", "\uD83C\uDE35", "\uD83C\uDE35", "\uD83C\uDE36", "\uD83C\uDE36"],
       "difficulty": "hard"
     },
     {
       "title": "Orchestra",
-      "cover": "\uD83C\uDFB6",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDFB7", "\uD83C\uDFB7", "\uD83C\uDFB8", "\uD83C\uDFB8", "\uD83C\uDFB9", "\uD83C\uDFB9",
         "\uD83C\uDFBA", "\uD83C\uDFBA", "\uD83C\uDFBB", "\uD83C\uDFBB", "\uD83C\uDFBC", "\uD83C\uDFBC"],
       "difficulty": "normal"
     },
     {
       "title": "Celebration",
-      "cover": "\uD83C\uDF65",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDF7B", "\uD83C\uDF7B", "\uD83C\uDF82", "\uD83C\uDF82", "\uD83C\uDF7E", "\uD83C\uDF7E",
         "\uD83C\uDF88", "\uD83C\uDF88", "\uD83C\uDF89", "\uD83C\uDF89", "\uD83C\uDF80", "\uD83C\uDF80"],
       "difficulty": "easy"
     },
     {
       "title": "Good Food",
-      "cover": "\uD83C\uDF74",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDF2D", "\uD83C\uDF2D", "\uD83C\uDF2E", "\uD83C\uDF2E", "\uD83C\uDF2F", "\uD83C\uDF2F",
         "\uD83C\uDF54", "\uD83C\uDF54", "\uD83C\uDF55", "\uD83C\uDF55", "\uD83C\uDF5F", "\uD83C\uDF5F"],
       "difficulty": "normal"
     },
     {
       "title": "Camping",
-      "cover": "\uD83C\uDF1E",
+      "cover": "⭘",
       "symbols": ["\uD83C\uDFD4", "\uD83C\uDFD4", "\uD83C\uDFD5", "\uD83C\uDFD5", "\uD83C\uDFD6", "\uD83C\uDFD6", "\uD83C\uDFDC", "\uD83C\uDFDC", "\uD83C\uDFDD", "\uD83C\uDFDD", "\uD83C\uDFDE", "\uD83C\uDFDE"],
       "difficulty": "normal"
     },
     {
       "title": "In the Jungle",
-      "cover": "✝",
+      "cover": "⭘",
       "symbols": ["\uD83E\uDD81", "\uD83E\uDD81", "\uD83E\uDD8D", "\uD83E\uDD8D", "\uD83E\uDD8F", "\uD83E\uDD8F", "\uD83D\uDC0A", "\uD83D\uDC0A", "\uD83E\uDD83", "\uD83E\uDD83", "\uD83D\uDC2F", "\uD83D\uDC2F"],
       "difficulty": "easy"
     },
     {
       "title": "Medieval",
-      "cover": "✝",
+      "cover": "⭘",
       "symbols": ["⚔", "⚔", "⚜", "⚜", "\uD83C\uDFF9", "\uD83C\uDFF9", "\uD83D\uDDE1", "\uD83D\uDDE1", "\uD83D\uDDDD", "\uD83D\uDDDD", "\uD83D\uDD4E", "\uD83D\uDD4E"],
       "difficulty": "normal"
     },
     {
       "title": "Rock Paper Scissors",
-      "cover": "☺",
+      "cover": "⭘",
       "symbols": ["\uD83D\uDD95", "\uD83D\uDD95", "☹", "☹", "✊", "✊", "✋", "✋", "✌", "✌", "✍", "✍"],
       "difficulty": "normal"
     },
     {
       "title": "CD Player",
-      "cover": "⏏",
+      "cover": "⭘",
       "symbols": ["⏩", "⏩", "⏪", "⏪", "\u23F9", "\u23F9", "\u23F8", "\u23F8", "↪", "↪", "▶", "▶"],
       "difficulty": "normal"
     },
     {
       "title": "Breakfast",
-      "cover": "◽",
+      "cover": "⭘",
       "symbols": ["\uD83E\uDD50", "\uD83E\uDD50", "\uD83C\uDF73", "\uD83C\uDF73", "\uD83C\uDF1E", "\uD83C\uDF1E",
         "\uD83C\uDF5E", "\uD83C\uDF5E", "\uD83E\uDD5B", "\uD83E\uDD5B", "\uD83E\uDD5E", "\uD83E\uDD5E"],
       "difficulty": "easy"
     },
     {
       "title": "Volume",
-      "cover": "□",
+      "cover": "⭘",
       "symbols": ["❍", "❍", "❏", "❏", "❐", "❐", "❑", "❑", "❒", "❒", "❙", "❙"],
       "difficulty": "hard"
     },
     {
       "title": "Luck",
-      "cover": "❖",
+      "cover": "⭘",
       "symbols": ["♠", "♠", "♣", "♣", "♥", "♥", "♦", "♦", "\uD83C\uDFB2", "\uD83C\uDFB2", "\uD83C\uDFB0", "\uD83C\uDFB0"],
       "difficulty": "hard"
     },
     {
       "title": "Summer",
-      "cover": "⛶",
+      "cover": "⭘",
       "symbols": ["⛺", "⛱", "⛲", "⛴", "⛵", "⛭", "⛺", "⛱", "⛲", "⛴", "⛵", "⛭"],
       "difficulty": "easy"
     },
     {
       "title": "Sports",
-      "cover": "⛶",
+      "cover": "⭘",
       "symbols": ["⛳", "⛷", "⛸", "⛹", "⚽", "⚾", "⛳", "⛷", "⛸", "⛹", "⚽", "⚾"],
       "difficulty": "easy"
     },
     {
       "title": "Concrete",
-      "cover": "⛓",
+      "cover": "⭘",
       "symbols": ["⛔", "⛒", "⛑", "⛏", "⛟", "⛡", "⛔", "⛒", "⛑", "⛏", "⛟", "⛡"],
       "difficulty": "normal"
     },
     {
       "title": "Lost",
-      "cover": "⚇",
+      "cover": "⭘",
       "symbols": ["☹", "☺", "☻", "⚆", "⚈", "⚉", "☹", "☺", "☻", "⚆", "⚈", "⚉"],
       "difficulty": "normal"
     },
     {
       "title": "The Finger",
-      "cover": "☡",
+      "cover": "⭘",
       "symbols": ["☟", "☞", "☝", "☜", "☛", "☚", "☟", "☞", "☝", "☜", "☛", "☚"],
       "difficulty": "hard"
     },
     {
       "title": "Pagan",
-      "cover": "⛦",
+      "cover": "⭘",
       "symbols": ["✡", "✝", "✞", "⛧", "⛩", "⛪", "✡", "✝", "✞", "⛧", "⛩", "⛪"],
       "difficulty": "normal"
     },
     {
       "title": "Blossom",
-      "cover": "✻",
+      "cover": "⭘",
       "symbols": ["✿", "❀", "❁", "❂", "❃", "❈", "✿", "❀", "❁", "❂", "❃", "❈"],
       "difficulty": "normal"
     },
     {
       "title": "Xanadu",
-      "cover": "✕",
+      "cover": "⭘",
       "symbols": ["✘", "✖", "❎", "✔", "✓", "✗", "✘", "✖", "❎", "✔", "✓", "✗"],
       "difficulty": "hard"
     },
     {
       "title": "Levels",
-      "cover": "▀",
+      "cover": "⭘",
       "symbols": ["▁", "▂", "▃", "▄", "▅", "▆", "▁", "▂", "▃", "▄", "▅", "▆"],
       "difficulty": "hard"
     },
     {
       "title": "Pointer",
-      "cover": "➯",
+      "cover": "⭘",
       "symbols": ["➩", "➪", "➫", "➬", "➭", "➮", "➩", "➪", "➫", "➬", "➭", "➮"],
       "difficulty": "hard"
     },
     {
       "title": "Arrow",
-      "cover": "➳",
+      "cover": "⭘",
       "symbols": ["➴", "➵", "➶", "➷", "➸", "➹", "➴", "➵", "➶", "➷", "➸", "➹"],
       "difficulty": "hard"
     },
     {
       "title": "Winter",
-      "cover": "★",
+      "cover": "⭘",
       "symbols": ["☀", "☁", "☂", "☃", "☄", "☔", "☀", "☁", "☂", "☃", "☄", "☔"],
       "difficulty": "easy"
     },
     {
       "title": "Lab",
-      "cover": "☨",
+      "cover": "⭘",
       "symbols": ["☠", "☦", "☢", "☣", "☤", "☥", "☠", "☦", "☢", "☣", "☤", "☥"],
       "difficulty": "normal"
     },
     {
       "title": "Emblem",
-      "cover": "☗",
+      "cover": "⭘",
       "symbols": ["☪", "☫", "☬", "☭", "☮", "☯", "☪", "☫", "☬", "☭", "☮", "☯"],
       "difficulty": "normal"
     },
     {
       "title": "Triplet",
-      "cover": "☰",
+      "cover": "⭘",
       "symbols": ["☱", "☲", "☳", "☴", "☵", "☶", "☱", "☲", "☳", "☴", "☵", "☶"],
       "difficulty": "hard"
     },
     {
       "title": "Astrology 1",
-      "cover": "⬛",
+      "cover": "⭘",
       "symbols": ["♈", "♈", "♉", "♉", "♊", "♊", "♋", "♋", "♌", "♌", "♍", "♍"],
       "difficulty": "normal"
     },
     {
       "title": "Astrology 2",
-      "cover": "⬛",
+      "cover": "⭘",
       "symbols": ["♎", "♎", "♏", "♏", "♐", "♐", "♑", "♑", "♒", "♒", "♓", "♓"],
       "difficulty": "normal"
     },
     {
       "title": "Chess Attack",
-      "cover": "⚑",
+      "cover": "⭘",
       "symbols": ["♔", "♕", "♖", "♗", "♘", "♙", "♔", "♕", "♖", "♗", "♘", "♙"],
       "difficulty": "easy"
     },
     {
       "title": "Chess Defence",
-      "cover": "⚐",
+      "cover": "⭘",
       "symbols": ["♚", "♛", "♜", "♝", "♞", "♟", "♚", "♛", "♜", "♝", "♞", "♟"],
       "difficulty": "easy"
     },
     {
       "title": "Roll the Dice",
-      "cover": "⚙",
+      "cover": "⭘",
       "symbols": ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"],
       "difficulty": "easy"
     },
     {
       "title": "Recycle",
-      "cover": "♻",
+      "cover": "⭘",
       "symbols": ["♳", "♴", "♵", "♶", "♷", "♸", "♳", "♴", "♵", "♶", "♷", "♸"],
       "difficulty": "easy"
     },
     {
       "title": "Gender",
-      "cover": "⚨",
+      "cover": "⭘",
       "symbols": ["⚢", "⚣", "⚤", "⚥", "⚦", "⚧", "⚢", "⚣", "⚤", "⚥", "⚦", "⚧"],
       "difficulty": "normal"
     },
     {
       "title": "Astro",
-      "cover": "✪",
+      "cover": "⭘",
       "symbols": ["✫", "✬", "✭", "✮", "✯", "✰", "✫", "✬", "✭", "✮", "✯", "✰"],
       "difficulty": "hard"
     },
     {
       "title": "Letter",
-      "cover": "✉",
+      "cover": "⭘",
       "symbols": ["✍", "✎", "✏", "✐", "✑", "✒", "✍", "✎", "✏", "✐", "✑", "✒"],
       "difficulty": "hard"
     },
     {
       "title": "Tetris",
-      "cover": "⠶",
+      "cover": "⭘",
       "symbols": ["⠼", "⠹", "⠺", "⣿", "⠞", "⠸", "⠼", "⠹", "⠺", "⣿", "⠞", "⠸"],
       "difficulty": "normal"
     },
     {
       "title": "Computer",
-      "cover": "⊚",
+      "cover": "⭘",
       "symbols": ["⊜", "⊜", "⊙", "⊙", "⊘", "⊘", "⊗", "⊗", "⊖", "⊖", "⊕", "⊕"],
       "difficulty": "hard"
     },
     {
       "title": "Office",
-      "cover": "⏎",
+      "cover": "⭘",
       "symbols": ["☕", "☕", "✂", "✂", "☎", "☎", "☏", "☏", "⌚", "⌚", "⌨", "⌨"],
       "difficulty": "easy"
     },
     {
       "title": "Do Re Mi",
-      "cover": "♯",
+      "cover": "⭘",
       "symbols": ["♮", "♮", "♭", "♭", "♬", "♬", "♫", "♫", "♪", "♪", "♩", "♩"],
       "difficulty": "normal"
     },
     {
       "title": "Science",
-      "cover": "⚝",
+      "cover": "⭘",
       "symbols": ["⚛", "⚛", "⚙", "⚙", "⚘", "⚘", "⚗", "⚗", "⚖", "⚖", "⚕", "⚕"],
       "difficulty": "easy"
     },
     {
       "title": "Dot",
-      "cover": "․",
+      "cover": "⭘",
       "symbols": ["‥", "‥", "…", "…", "⁘", "⁘", "⁙", "⁙", "⁝", "⁝", "⁞", "⁞"],
       "difficulty": "hard"
     },
     {
       "title": "Algebra",
-      "cover": "∅",
+      "cover": "⭘",
       "symbols": ["¾", "¾", "∑", "∑", "∈", "∈", "∛", "∛", "∞", "∞", "∡", "∡"],
       "difficulty": "normal"
     },
     {
       "title": "Pie",
-      "cover": "●",
+      "cover": "⭘",
       "symbols": ["◐", "◐", "◑", "◑", "◒", "◒", "◓", "◓", "◔", "◔", "◕", "◕"],
       "difficulty": "normal"
     },
     {
       "title": "Pattern",
-      "cover": "▦",
+      "cover": "⭘",
       "symbols": ["▨", "▨", "▧", "▧", "▩", "▩", "▓", "▓", "▒", "▒", "░", "░"],
       "difficulty": "hard"
     },
     {
       "title": "Hieroglyphics",
-      "cover": "𓂊",
+      "cover": "⭘",
       "symbols": ["𓀀", "𓀀", "𓀁", "𓀁", "𓀄", "𓀄", "𓀉", "𓀉", "𓁕", "𓁕", "𓁓", "𓁓"],
       "difficulty": "normal"
     },
     {
       "title": "Gujarati",
-      "cover": "ઈ",
+      "cover": "⭘",
       "symbols": ["ઋ", "ઋ", "ઍ", "ઍ", "ડ", "ડ", "શ", "શ", "ય", "ય", "ભ", "ભ"],
       "difficulty": "hard"
     },
     {
       "title": "Han",
-      "cover": "⻉",
+      "cover": "⭘",
       "symbols": ["⻛", "⻛", "⺏", "⺏", "⺐", "⺐", "⻂", "⻂", "⻟", "⻟", "⺛", "⺛"],
       "difficulty": "hard"
     },
     {
       "title": "Runic",
-      "cover": "ᚢ",
+      "cover": "⭘",
       "symbols": ["ᚠ", "ᚠ", "ᚸ", "ᚸ", "ᚦ", "ᚦ", "ᛤ", "ᛤ", "ᛔ", "ᛔ", "ᛯ", "ᛯ"],
       "difficulty": "hard"
     },
     {
       "title": "Phoenician",
-      "cover": "𐤋",
+      "cover": "⭘",
       "symbols": ["𐤕", "𐤕", "𐤇", "𐤇", "𐤌", "𐤌", "𐤎", "𐤎", "𐤐", "𐤐", "𐤑", "𐤑"],
       "difficulty": "hard"
     },
     {
       "title": "Valentine",
-      "cover": "⚫",
+      "cover": "⭘",
       "symbols": ["❢", "❢", "❣", "❣", "❤", "❤", "❥", "❥", "❦", "❦", "❧", "❧"],
       "difficulty": "normal"
     },
     {
       "title": "Mountain",
-      "cover": "ᨏ",
+      "cover": "⭘",
       "symbols": ["ᨐ", "ᨐ", "ᨎ", "ᨎ", "ᨕ", "ᨕ", "ᨓ", "ᨓ", "ᨒ", "ᨒ", "ᨋ", "ᨋ"],
       "difficulty": "normal"
     }
