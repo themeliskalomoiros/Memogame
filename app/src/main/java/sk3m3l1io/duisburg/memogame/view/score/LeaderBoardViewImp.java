@@ -20,7 +20,7 @@ import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 
 public class LeaderBoardViewImp implements LeaderBoardView {
     private View root;
-    private TextView title;
+    private TextView title, swipeMsg;
     private ProgressBar progressBar;
 
     private ViewPager pager;
@@ -30,6 +30,7 @@ public class LeaderBoardViewImp implements LeaderBoardView {
         root = inflater.inflate(R.layout.activity_leaderboard, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
+        swipeMsg = root.findViewById(R.id.swipe_msg);
         adapter = new MyPagerAdapter(manager);
         pager = root.findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -60,11 +61,15 @@ public class LeaderBoardViewImp implements LeaderBoardView {
 
             @Override
             public void onPageSelected(int position) {
+                String swipeText = "";
                 if (position == 0) {
+                    swipeText = "("+root.getContext().getString(R.string.swipe_for) +" "+ root.getContext().getString(R.string.time_mode)+")";
                     listener.onSurvivalModePage();
                 } else {
+                    swipeText = "("+root.getContext().getString(R.string.swipe_for) + " "+root.getContext().getString(R.string.survival_mode)+")";
                     listener.onTimeModePage();
                 }
+                swipeMsg.setText(swipeText);
             }
 
             @Override
