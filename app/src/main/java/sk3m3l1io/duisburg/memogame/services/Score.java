@@ -8,13 +8,8 @@ public final class Score {
     public static final int POINTS_EASY = 100;
     public static final int POINTS_NORMAL = 150;
     public static final int POINTS_HARD = 200;
-    private static final int LIFE = 50;
 
     private Score() {
-    }
-
-    public static int calculate(int ellapsedTime, int lives) {
-        return ellapsedTime / 10 + lives * LIFE;
     }
 
     public static int calculate(List<Game> completedGames) {

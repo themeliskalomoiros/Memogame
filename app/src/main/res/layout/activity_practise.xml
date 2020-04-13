@@ -84,7 +84,7 @@
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/molly_jack"
         android:text="@string/level"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toStartOf="@+id/guideline" />
 
@@ -97,7 +97,7 @@
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/molly_jack"
         android:textColor="@color/symbolMatchLightColor"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         tools:text="Easy" />
