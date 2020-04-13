@@ -24,13 +24,13 @@ public class LeaderBoardViewImp implements LeaderBoardView {
     private ProgressBar progressBar;
 
     private ViewPager pager;
-    private MyAdapter adapter;
+    private MyPagerAdapter adapter;
 
     public LeaderBoardViewImp(LayoutInflater inflater, ViewGroup container, FragmentManager manager) {
         root = inflater.inflate(R.layout.activity_leaderboard, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
-        adapter = new MyAdapter(manager);
+        adapter = new MyPagerAdapter(manager);
         pager = root.findViewById(R.id.pager);
         pager.setAdapter(adapter);
     }
@@ -89,10 +89,10 @@ public class LeaderBoardViewImp implements LeaderBoardView {
         adapter.setUser(p);
     }
 
-    public static class MyAdapter extends FragmentPagerAdapter {
+    public static class MyPagerAdapter extends FragmentPagerAdapter {
         private Player user;
 
-        public MyAdapter(@NonNull FragmentManager fm) {
+        public MyPagerAdapter(@NonNull FragmentManager fm) {
             super(fm);
             this.user = user;
         }

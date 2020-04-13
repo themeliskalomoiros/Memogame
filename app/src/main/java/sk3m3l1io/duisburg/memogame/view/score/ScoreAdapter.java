@@ -20,10 +20,10 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     private static final int TYPE_NUMERIC = 1313;
     private static final int TYPE_MEDAL = 1314;
 
-    private final Context context;
+    private Player user;
     private int[] scores;
     private Player[] players;
-    private Player user;
+    private final Context context;
 
     public ScoreAdapter(Context context) {
         this.context = context;
@@ -37,25 +37,31 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         this.players = players;
     }
 
+    public void setUser(Player user) {
+        this.user = user;
+    }
+
     @NonNull
     @Override
     public ScoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == TYPE_MEDAL) {
-            View v = LayoutInflater.from(context).inflate(R.layout.item_player_score_medal, parent, false);
+            View v = LayoutInflater.from(context)
+                    .inflate(R.layout.item_player_score_medal, parent, false);
             return new MedalViewHolder(v);
         } else {
-            View v = LayoutInflater.from(context).inflate(R.layout.item_player_score_numeric, parent, false);
+            View v = LayoutInflater.from(context)
+                    .inflate(R.layout.item_player_score_numeric, parent, false);
             return new NumericViewHolder(v);
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 || position == 1 || position == 2) {
+        if (position == 0 || position == 1 || position == 2){
             return TYPE_MEDAL;
+        }else{
+            return TYPE_NUMERIC;
         }
-
-        return TYPE_NUMERIC;
     }
 
     @Override
@@ -74,13 +80,9 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return 0;
     }
 
-    public void setUser(Player user) {
-        this.user = user;
-    }
-
     abstract class ScoreViewHolder extends RecyclerView.ViewHolder {
-        TextView name, score;
         ImageView image;
+        TextView name, score;
 
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
