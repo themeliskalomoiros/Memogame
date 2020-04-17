@@ -1,6 +1,76 @@
 {
   "games": [
     {
+      "title": "Feet",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC5E", "\uD83D\uDC5E", "\uD83D\uDC5F", "\uD83D\uDC5F", "\uD83D\uDC60", "\uD83D\uDC60",
+        "\uD83D\uDC61", "\uD83D\uDC61", "\uD83D\uDC62", "\uD83D\uDC62", "\uD83D\uDC63", "\uD83D\uDC63"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Townsmen 2",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDFE8", "\uD83C\uDFE8", "\uD83C\uDFE9", "\uD83C\uDFE9", "\uD83C\uDFEA", "\uD83C\uDFEA",
+        "\uD83C\uDFEB", "\uD83C\uDFEB", "\uD83C\uDFEC", "\uD83C\uDFEC", "\uD83C\uDFED", "\uD83C\uDFED"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Townsmen 1",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDFE2", "\uD83C\uDFE2", "\uD83C\uDFE3", "\uD83C\uDFE3", "\uD83C\uDFE4", "\uD83C\uDFE4",
+        "\uD83C\uDFE5", "\uD83C\uDFE5", "\uD83C\uDFE6", "\uD83C\uDFE6", "\uD83C\uDFE7", "\uD83C\uDFE7"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Asian Fest",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF8A", "\uD83C\uDF8A", "\uD83C\uDF8B", "\uD83C\uDF8B", "\uD83C\uDF8D", "\uD83C\uDF8D",
+        "\uD83C\uDF8E", "\uD83C\uDF8E", "\uD83C\uDF8F", "\uD83C\uDF8F", "\uD83C\uDF90", "\uD83C\uDF90"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Mexico",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF2E", "\uD83C\uDF2E", "\uD83C\uDF2F", "\uD83C\uDF2F", "\uD83C\uDF35", "\uD83C\uDF35",
+        "\uD83C\uDF36", "\uD83C\uDF36", "\uD83C\uDF45", "\uD83C\uDF45", "\uD83C\uDF4D", "\uD83C\uDF4D"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Sh*t Weather",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF26", "\uD83C\uDF26", "\uD83C\uDF27", "\uD83C\uDF27", "\uD83C\uDF28", "\uD83C\uDF28",
+        "\uD83C\uDF29", "\uD83C\uDF29", "\uD83C\uDF2A", "\uD83C\uDF2A", "\uD83C\uDF2B", "\uD83C\uDF2B"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Earth Realm",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF0D", "\uD83C\uDF0D", "\uD83C\uDF0E", "\uD83C\uDF0E", "\uD83C\uDF0F", "\uD83C\uDF0F",
+        "\uD83C\uDF10", "\uD83C\uDF10", "\uD83C\uDF1B", "\uD83C\uDF1B", "\uD83C\uDF1C", "\uD83C\uDF1C"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "La Luna",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF11", "\uD83C\uDF11", "\uD83C\uDF12", "\uD83C\uDF12", "\uD83C\uDF13", "\uD83C\uDF13",
+        "\uD83C\uDF14", "\uD83C\uDF14", "\uD83C\uDF16", "\uD83C\uDF16", "\uD83C\uDF17", "\uD83C\uDF17"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Koreatown",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDE36", "\uD83C\uDE36", "\uD83C\uDE37", "\uD83C\uDE37", "\uD83C\uDE38", "\uD83C\uDE38",
+        "\uD83C\uDE39", "\uD83C\uDE39", "\uD83C\uDE3A", "\uD83C\uDE3A", "\uD83C\uDE51", "\uD83C\uDE51"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Chinatown",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDE1A", "\uD83C\uDE1A", "\uD83C\uDE2F", "\uD83C\uDE2F", "\uD83C\uDE32", "\uD83C\uDE32",
+        "\uD83C\uDE33", "\uD83C\uDE33", "\uD83C\uDE34", "\uD83C\uDE34", "\uD83C\uDE35", "\uD83C\uDE35"],
+      "difficulty": "hard"
+    },
+    {
       "title": "Travel",
       "cover": "⭘",
       "symbols": ["\uD83D\uDDFA", "\uD83D\uDDFA", "\uD83D\uDDD3", "\uD83D\uDDD3", "\uD83D\uDDFC", "\uD83D\uDDFC",
