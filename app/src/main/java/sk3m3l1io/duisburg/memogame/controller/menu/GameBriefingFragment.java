@@ -73,9 +73,9 @@ public class GameBriefingFragment extends Fragment
 
     private static int getTitleResOf(GameMode m) {
         switch (m) {
-            case RANDOM:
+            case SURVIVAL:
                 return R.string.survival_mode;
-            case ARCADE:
+            case TIME:
                 return R.string.time_mode;
             default:
                 return R.string.practise_mode;
@@ -84,9 +84,9 @@ public class GameBriefingFragment extends Fragment
 
     private static int getMessageResOf(GameMode m) {
         switch (m) {
-            case RANDOM:
+            case SURVIVAL:
                 return R.string.survival_mode_message;
-            case ARCADE:
+            case TIME:
                 return R.string.time_mode_message;
             default:
                 return R.string.practise_mode_message;

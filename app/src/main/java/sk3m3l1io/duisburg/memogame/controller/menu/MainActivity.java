@@ -200,18 +200,18 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onArcadeModeClick() {
+    public void onTimeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.ARCADE);
+            addGameBriefingFragment(gameMode = GameMode.TIME);
         } else {
             showSignInSnackbar();
         }
     }
 
     @Override
-    public void onRandomModeClick() {
+    public void onSurvivalModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.RANDOM);
+            addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
         } else {
             showSignInSnackbar();
         }
@@ -269,13 +269,13 @@ public class MainActivity extends AppCompatActivity implements
         i.putExtra(Player.class.getSimpleName(), p);
 
         switch (mode) {
-            case ARCADE:
+            case TIME:
                 i.setClass(this, ArcadeActivity.class);
                 break;
             case PRACTISE:
                 i.setClass(this, PractiseModeActivity.class);
                 break;
-            case RANDOM:
+            case SURVIVAL:
                 i.setClass(this, RandomModeActivity.class);
                 break;
         }
