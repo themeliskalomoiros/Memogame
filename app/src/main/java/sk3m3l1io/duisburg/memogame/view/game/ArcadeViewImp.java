@@ -15,7 +15,7 @@ public class ArcadeViewImp implements ArcadeView {
     private final ProgressBar progressBar;
 
     public ArcadeViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_arcade, container, false);
+        root = inflater.inflate(R.layout.activity_time, container, false);
         progressBar = root.findViewById(R.id.progressbar);
         title = root.findViewById(R.id.title);
         difficulty = root.findViewById(R.id.difficulty);

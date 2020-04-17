@@ -64,10 +64,10 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/top_line_height</item>
         <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginStart">64dp</item>
+        <item name="android:layout_marginLeft">64dp</item>
+        <item name="android:layout_marginEnd">64dp</item>
+        <item name="android:layout_marginRight">64dp</item>
         <item name="android:background">@color/primaryDarkColor</item>
     </style>
 

@@ -13,7 +13,7 @@ public class RandomViewImp implements RandomView {
     private final TextView title, difficulty, lives;
 
     public RandomViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_random, container, false);
+        root = inflater.inflate(R.layout.activity_survival, container, false);
         title = root.findViewById(R.id.title);
         lives = root.findViewById(R.id.lives);
         difficulty = root.findViewById(R.id.difficulty);
