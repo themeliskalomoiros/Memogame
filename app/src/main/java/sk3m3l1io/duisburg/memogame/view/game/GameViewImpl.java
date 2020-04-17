@@ -60,6 +60,12 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
+    public void setSymbolBackground(int pos, int colorRes) {
+        Button b = symbols[pos];
+        b.setBackgroundColor(colorRes);
+    }
+
+    @Override
     public void setAllSymbolsBackground(int colorRes) {
         for (Button b : symbols)
             b.setBackgroundColor(colorRes);

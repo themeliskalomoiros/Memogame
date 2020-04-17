@@ -150,6 +150,9 @@ public class GameFragment extends Fragment
         int clr = getResources().getColor(R.color.symbolMatchColor);
         view.setSymbolForeground(pos1, clr);
         view.setSymbolForeground(pos2, clr);
+        clr = getResources().getColor(R.color.primaryColor);
+        view.setSymbolBackground(pos1, clr);
+        view.setSymbolBackground(pos2, clr);
     }
 
     @Override
