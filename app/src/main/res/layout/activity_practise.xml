@@ -8,43 +8,40 @@
     tools:context=".controller.menu.MainActivity">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_navigate_next_black"
-        android:visibility="visible"
-        app:backgroundTint="@color/primaryLightColor"
-        app:elevation="0dp"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
+        android:backgroundTint="@color/primaryColor"
+        android:src="@drawable/ic_navigate_next_white"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title" />
+        app:layout_constraintTop_toTopOf="@+id/viewTop" />
 
     <TextView
         android:id="@+id/title"
         style="@style/Title_Style"
+        android:layout_width="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/next"
-        app:layout_constraintStart_toEndOf="@+id/previous"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Astrology 1" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_navigate_before_black_24dp"
-        android:visibility="visible"
-        app:elevation="0dp"
-        app:backgroundTint="@color/primaryLightColor"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
+        android:backgroundTint="@color/primaryColor"
+        android:src="@drawable/ic_navigate_before_white"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title" />
+        app:layout_constraintTop_toTopOf="@+id/viewTop" />
 
     <FrameLayout
         android:id="@+id/game_container"
@@ -63,16 +60,12 @@
 
     <View
         android:id="@+id/viewTop"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="4dp"
+        android:layout_marginTop="8dp"
         android:background="@color/primaryDarkColor"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/next"
+        app:layout_constraintStart_toEndOf="@+id/previous"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView

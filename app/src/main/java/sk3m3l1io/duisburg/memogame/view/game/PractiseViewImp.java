@@ -3,6 +3,7 @@ package sk3m3l1io.duisburg.memogame.view.game;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,7 +14,7 @@ import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 public class PractiseViewImp implements PractiseView {
     private final View root;
     private final TextView title, difficulty;
-    private final FloatingActionButton next, previous;
+    private final ImageButton next, previous;
     private ChangeGameClickListener changeGameClickListener;
 
     public PractiseViewImp(LayoutInflater inflater, ViewGroup container) {
