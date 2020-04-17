@@ -5,14 +5,14 @@
       "cover": "⭘",
       "symbols": ["\uD83D\uDDFA", "\uD83D\uDDFA", "\uD83D\uDDD3", "\uD83D\uDDD3", "\uD83D\uDDFC", "\uD83D\uDDFC",
         "\uD83D\uDDFD", "\uD83D\uDDFD", "\uD83D\uDEEB", "\uD83D\uDEEB", "\uD83D\uDDFF", "\uD83D\uDDFF"],
-      "difficulty": "easy"
+      "difficulty": "normal"
     },
     {
       "title": "The Cat",
       "cover": "⭘",
       "symbols": ["\uD83D\uDE38", "\uD83D\uDE38", "\uD83D\uDE39", "\uD83D\uDE39", "\uD83D\uDE3E", "\uD83D\uDE3E",
         "\uD83D\uDE3F", "\uD83D\uDE3F", "\uD83D\uDE40", "\uD83D\uDE40", "\uD83D\uDE3C", "\uD83D\uDE3C"],
-      "difficulty": "easy"
+      "difficulty": "hard"
     },
     {
       "title": "Beasts",
@@ -26,7 +26,7 @@
       "cover": "⭘",
       "symbols": ["\uD83E\uDD38", "\uD83E\uDD38", "\uD83E\uDD39", "\uD83E\uDD39", "\uD83E\uDD3A", "\uD83E\uDD3A",
         "\uD83E\uDD3C", "\uD83E\uDD3C", "\uD83E\uDD3D", "\uD83E\uDD3D", "\uD83E\uDD3E", "\uD83E\uDD3E"],
-      "difficulty": "easy"
+      "difficulty": "normal"
     },
     {
       "title": "Outdoors",

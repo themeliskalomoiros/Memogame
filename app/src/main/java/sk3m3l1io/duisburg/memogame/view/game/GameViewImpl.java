@@ -72,14 +72,6 @@ public class GameViewImpl implements GameView {
     }
 
     @Override
-    public void setAllSymbols(String[] symbols) {
-        for (int i = 0; i < symbols.length; i++) {
-            Button b = this.symbols[i];
-            b.setText(symbols[i]);
-        }
-    }
-
-    @Override
     public void disableSymbol(int pos) {
         Button b = symbols[pos];
         b.setEnabled(false);

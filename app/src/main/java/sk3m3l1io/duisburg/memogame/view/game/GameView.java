@@ -18,8 +18,6 @@ public interface GameView extends ViewMvc {
 
     void setSymbol(int pos, String s);
 
-    void setAllSymbols(String[] symbols);
-
     void coverAllSymbols(String cover);
 
     void disableSymbol(int pos);
