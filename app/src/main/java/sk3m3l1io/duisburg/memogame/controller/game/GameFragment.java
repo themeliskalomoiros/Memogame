@@ -82,23 +82,23 @@ public class GameFragment extends Fragment
         gameState.detachListeners();
     }
 
-    public void showAllSymbols(){
+    public void showAllSymbols() {
         for (int i = 0; i < 12; i++) {
             view.setSymbol(i, gameState.getSymbolAt(i));
         }
         view.disableAllSymbols();
     }
 
-    public void coverAllSymbols(){
+    public void coverAllSymbols() {
         view.coverAllSymbols(gameState.getCover());
         view.enableAllSymbols();
     }
 
-    public void setViewCreationListener(ViewCreationListener listener){
+    public void setViewCreationListener(ViewCreationListener listener) {
         viewCreationListener = listener;
     }
 
-    public void setGame(Game game){
+    public void setGame(Game game) {
         initGameStateFrom(game);
     }
 
@@ -192,7 +192,7 @@ public class GameFragment extends Fragment
         void onGameMatchFail();
     }
 
-    public interface ViewCreationListener{
+    public interface ViewCreationListener {
         void onFragmentViewCreated(GameFragment f);
     }
 }

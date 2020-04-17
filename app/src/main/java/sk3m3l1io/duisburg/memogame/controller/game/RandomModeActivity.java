@@ -3,16 +3,16 @@ package sk3m3l1io.duisburg.memogame.controller.game;
 import androidx.annotation.NonNull;
 
 import sk3m3l1io.duisburg.memogame.R;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.repos.RandomScores;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomView;
 import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;
 
 public class RandomModeActivity extends ScoreActivity implements
         GameFragment.GameEventListener,
-        GameFragment.ViewCreationListener{
+        GameFragment.ViewCreationListener {
     private static final int DEFAULT_LIVES = 4;
     private static final int EXPOSURE_DURATION = 3000;
 
@@ -30,7 +30,7 @@ public class RandomModeActivity extends ScoreActivity implements
 
     @Override
     protected void onAttachGameFragment(GameFragment f) {
-        if (currentGame < games.size() - 1){
+        if (currentGame < games.size() - 1) {
             updateUiOnFragmentAttach();
         }
     }
@@ -39,7 +39,7 @@ public class RandomModeActivity extends ScoreActivity implements
         Game g = games.get(currentGame);
         view.setDifficulty(g.getDifficulty());
         view.setTitle(g.getTitle());
-        ((RandomView)view).setLives(lives);
+        ((RandomView) view).setLives(lives);
     }
 
     @Override
@@ -78,9 +78,9 @@ public class RandomModeActivity extends ScoreActivity implements
 
     @Override
     public void onGameMatchFail() {
-        if(--lives == 0){
+        if (--lives == 0) {
             addResultFragment();
         }
-        ((RandomView)view).setLives(lives);
+        ((RandomView) view).setLives(lives);
     }
 }

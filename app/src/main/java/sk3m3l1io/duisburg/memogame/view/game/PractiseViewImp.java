@@ -6,8 +6,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 

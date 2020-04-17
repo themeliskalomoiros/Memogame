@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import sk3m3l1io.duisburg.memogame.view.menu.MenuView;
 import sk3m3l1io.duisburg.memogame.view.menu.BoxMenuViewImp;
+import sk3m3l1io.duisburg.memogame.view.menu.MenuView;
 
 public class MenuFragment extends Fragment implements MenuView.SymbolClickListener {
 

@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import sk3m3l1io.duisburg.memogame.R;
 
@@ -35,12 +34,12 @@ public class MenuViewImp implements MenuView {
 
     @Override
     public void setUserIconToSignOut() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.sign_out_pink),null,null,null);
+        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.sign_out_pink), null, null, null);
     }
 
     @Override
     public void setUserIconToDefault() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.user_green),null,null,null);
+        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.user_green), null, null, null);
     }
 
     @Override

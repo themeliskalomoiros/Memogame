@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
+import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.repos.LightningScores;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;
@@ -36,7 +36,7 @@ public class ArcadeActivity extends ScoreActivity implements
 
     @Override
     protected void onAttachGameFragment(GameFragment f) {
-        if (currentGame < games.size() - 1){
+        if (currentGame < games.size() - 1) {
             updateUiOnFragmentAttach();
         }
     }
@@ -87,14 +87,14 @@ public class ArcadeActivity extends ScoreActivity implements
 
     @Override
     public void onTimerTick(int elapsedMilli) {
-        ((ArcadeView)view).setTimeProgress(elapsedMilli);
+        ((ArcadeView) view).setTimeProgress(elapsedMilli);
     }
 
     @Override
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
-            ((ArcadeView)view).setTimeProgress(0);
+            ((ArcadeView) view).setTimeProgress(0);
             view.setTitle(getString(R.string.time_up));
             addResultFragment();
         }

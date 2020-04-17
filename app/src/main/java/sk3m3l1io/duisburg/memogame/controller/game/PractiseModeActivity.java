@@ -45,7 +45,7 @@ public class PractiseModeActivity extends GameActivity implements
     private void setGameIndexOnPreviousClick() {
         if (currentGame > 0) {
             --currentGame;
-        } else{
+        } else {
             currentGame = games.size() - 1;
         }
     }
@@ -84,7 +84,7 @@ public class PractiseModeActivity extends GameActivity implements
     }
 
     @Override
-    public void onGameMatchFail(){
+    public void onGameMatchFail() {
     }
 
     @Override

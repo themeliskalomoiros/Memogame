@@ -3,7 +3,6 @@ package sk3m3l1io.duisburg.memogame.view.menu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import sk3m3l1io.duisburg.memogame.R;

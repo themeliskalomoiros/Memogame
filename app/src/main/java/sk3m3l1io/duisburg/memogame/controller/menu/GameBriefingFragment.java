@@ -45,7 +45,8 @@ public class GameBriefingFragment extends Fragment
             // hacky (also lazy) solution
             view.setTitle(getString(titleRes));
             view.setMessage(getString(messageRes));
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return view.getRootView();
     }
 

@@ -63,10 +63,10 @@ public class LeaderBoardViewImp implements LeaderBoardView {
             public void onPageSelected(int position) {
                 String swipeText = "";
                 if (position == 0) {
-                    swipeText = "("+root.getContext().getString(R.string.swipe_for) +" "+ root.getContext().getString(R.string.time_mode)+")";
+                    swipeText = "(" + root.getContext().getString(R.string.swipe_for) + " " + root.getContext().getString(R.string.time_mode) + ")";
                     listener.onSurvivalModePage();
                 } else {
-                    swipeText = "("+root.getContext().getString(R.string.swipe_for) + " "+root.getContext().getString(R.string.survival_mode)+")";
+                    swipeText = "(" + root.getContext().getString(R.string.swipe_for) + " " + root.getContext().getString(R.string.survival_mode) + ")";
                     listener.onTimeModePage();
                 }
                 swipeMsg.setText(swipeText);

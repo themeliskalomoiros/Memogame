@@ -28,15 +28,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.ArcadeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.PractiseModeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.RandomModeActivity;
-import sk3m3l1io.duisburg.memogame.model.repos.GameRepository;
-import sk3m3l1io.duisburg.memogame.model.repos.GameRepositoryImp;
+import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.GameRepository;
+import sk3m3l1io.duisburg.memogame.model.repos.GameRepositoryImp;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
-        if (f!=null && f instanceof GameBriefingFragment){
+        if (f != null && f instanceof GameBriefingFragment) {
             backwardSound.start();
         }
         super.onBackPressed();

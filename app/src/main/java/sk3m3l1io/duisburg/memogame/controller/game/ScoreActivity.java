@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.Score;
 
 public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {
     private final List<Game> gamesCompleted = new ArrayList<>();
 
-    protected final int getCompletedGamesCount(){
+    protected final int getCompletedGamesCount() {
         return gamesCompleted.size();
     }
 
@@ -65,7 +65,8 @@ public abstract class ScoreActivity extends GameActivity
         getScoreRepo().saveScore(s, p);
     }
 
-    protected abstract @NonNull ScoreRepository getScoreRepo();
+    protected abstract @NonNull
+    ScoreRepository getScoreRepo();
 
     protected final void addResultFragment() {
         ResultFragment f = new ResultFragment();

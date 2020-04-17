@@ -44,7 +44,7 @@ public abstract class GameActivity extends AppCompatActivity
                 .commit();
     }
 
-    private GameFragment getCurrentGameFragment(){
+    private GameFragment getCurrentGameFragment() {
         Game g = games.get(currentGame);
         ArrayUtils.shuffle(g.getSymbols());
         GameFragment f = new GameFragment();

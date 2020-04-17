@@ -1,7 +1,5 @@
 package sk3m3l1io.duisburg.memogame.game_engine;
 
-import android.util.Log;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -20,7 +18,7 @@ public final class GameState {
     private boolean gameStarted;
     private GameBeginListener gameBeginListener;
 
-    public GameState(String[] symbols, String cover) throws InvalidCoverException{
+    public GameState(String[] symbols, String cover) throws InvalidCoverException {
         throwIfCoverIsInvalid(symbols, cover);
         this.cover = cover;
         matchHolder = new Stack<>();
@@ -31,7 +29,7 @@ public final class GameState {
             throws InvalidCoverException {
         Set<String> set = new HashSet<>();
         set.add(cover);
-        for(String s : symbols)
+        for (String s : symbols)
             set.add(s);
 
         if (set.size() != (Board.SYMBOL_COUNT / 2) + 1)
@@ -56,7 +54,7 @@ public final class GameState {
     }
 
     private void reportOnStart() {
-        if (!gameStarted){
+        if (!gameStarted) {
             if (gameBeginListener != null)
                 gameBeginListener.onGameBegin();
             gameStarted = true;
@@ -95,7 +93,7 @@ public final class GameState {
         matchListener = listener;
     }
 
-    public void setGameBeginListener(GameBeginListener listener){
+    public void setGameBeginListener(GameBeginListener listener) {
         gameBeginListener = listener;
     }
 
@@ -107,7 +105,7 @@ public final class GameState {
         symbolUncoveredListener = listener;
     }
 
-    public void detachListeners(){
+    public void detachListeners() {
         symbolUncoveredListener = null;
         gameCompletionListener = null;
         matchListener = null;

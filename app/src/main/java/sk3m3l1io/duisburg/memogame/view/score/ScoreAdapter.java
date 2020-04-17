@@ -55,9 +55,9 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 || position == 1 || position == 2){
+        if (position == 0 || position == 1 || position == 2) {
             return TYPE_MEDAL;
-        }else{
+        } else {
             return TYPE_NUMERIC;
         }
     }
@@ -69,7 +69,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public int getItemCount() {
-        if (scores!=null && scores.size() > 0){
+        if (scores != null && scores.size() > 0) {
             return scores.size();
         }
 
