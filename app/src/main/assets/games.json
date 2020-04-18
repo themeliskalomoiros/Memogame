@@ -1,6 +1,210 @@
 {
   "games": [
     {
+      "title": "Green",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF31", "\uD83C\uDF31", "\uD83C\uDF32", "\uD83C\uDF32", "\uD83C\uDF33", "\uD83C\uDF33",
+                  "\uD83C\uDF3F", "\uD83C\uDF3F", "\uD83C\uDF40", "\uD83C\uDF40", "\uD83C\uDF3E", "\uD83C\uDF3E"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Fruit 1",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF47", "\uD83C\uDF47", "\uD83C\uDF48", "\uD83C\uDF48", "\uD83C\uDF49", "\uD83C\uDF49",
+                  "\uD83C\uDF4A", "\uD83C\uDF4A", "\uD83C\uDF4B", "\uD83C\uDF4B", "\uD83C\uDF4C", "\uD83C\uDF4C"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Fruit 2",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF4E", "\uD83C\uDF4E", "\uD83C\uDF4F", "\uD83C\uDF4F", "\uD83C\uDF51", "\uD83C\uDF51",
+                  "\uD83C\uDF50", "\uD83C\uDF50", "\uD83C\uDF51", "\uD83C\uDF51", "\uD83C\uDF52", "\uD83C\uDF52"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Chinese Food",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF57", "\uD83C\uDF57", "\uD83C\uDF58", "\uD83C\uDF58", "\uD83C\uDF59", "\uD83C\uDF59",
+                  "\uD83C\uDF5A", "\uD83C\uDF5A", "\uD83C\uDF5B", "\uD83C\uDF5B", "\uD83C\uDF5C", "\uD83C\uDF5C"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Gelato",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF65", "\uD83C\uDF65", "\uD83C\uDF66", "\uD83C\uDF66", "\uD83C\uDF67", "\uD83C\uDF67",
+                  "\uD83C\uDF68", "\uD83C\uDF68", "\uD83C\uDF6E", "\uD83C\uDF6E", "\uD83C\uDF70", "\uD83C\uDF70"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Candy",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF6A", "\uD83C\uDF6A", "\uD83C\uDF69", "\uD83C\uDF69", "\uD83C\uDF6B", "\uD83C\uDF6B",
+                  "\uD83C\uDF6C", "\uD83C\uDF6C", "\uD83C\uDF6D", "\uD83C\uDF6D", "\uD83C\uDF6F", "\uD83C\uDF6F"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Luna Park",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF9F", "\uD83C\uDF9F", "\uD83C\uDFA0", "\uD83C\uDFA0", "\uD83C\uDFA1", "\uD83C\uDFA1",
+                  "\uD83C\uDFA2", "\uD83C\uDFA2", "\uD83C\uDFA3", "\uD83C\uDFA3", "\uD83C\uDFAF", "\uD83C\uDFAF"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Extreme Sports",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDFC4", "\uD83C\uDFC4", "\uD83C\uDFC7", "\uD83C\uDFC7", "\uD83C\uDFCA", "\uD83C\uDFCA",
+                  "\uD83C\uDFCD", "\uD83C\uDFCD", "\uD83C\uDFCE", "\uD83C\uDFCE", "\uD83C\uDFC2", "\uD83C\uDFC2"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Farm",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDFC2", "\uD83C\uDFC2", "\uD83D\uDC02", "\uD83D\uDC02", "\uD83D\uDC07", "\uD83D\uDC07",
+                  "\uD83D\uDC14", "\uD83D\uDC14", "\uD83D\uDC16", "\uD83D\uDC16", "\uD83D\uDC15", "\uD83D\uDC15"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Wildlife",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC05", "\uD83D\uDC05", "\uD83D\uDC06", "\uD83D\uDC06", "\uD83D\uDC03", "\uD83D\uDC03",
+                  "\uD83D\uDC12", "\uD83D\uDC12", "\uD83D\uDC0D", "\uD83D\uDC0D", "\uD83D\uDC18", "\uD83D\uDC18"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Chick",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC13", "\uD83D\uDC13", "\uD83D\uDC14", "\uD83D\uDC14", "\uD83D\uDC23", "\uD83D\uDC23",
+                  "\uD83D\uDC24", "\uD83D\uDC24", "\uD83D\uDC25", "\uD83D\uDC25", "\uD83D\uDC26", "\uD83D\uDC26"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Senses",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC4B", "\uD83D\uDC4B", "\uD83D\uDC41", "\uD83D\uDC41", "\uD83D\uDC42", "\uD83D\uDC42",
+                  "\uD83D\uDC43", "\uD83D\uDC43", "\uD83D\uDC44", "\uD83D\uDC44", "\uD83D\uDC45", "\uD83D\uDC45"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Carnival",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC79", "\uD83D\uDC79", "\uD83D\uDC7A", "\uD83D\uDC7A", "\uD83D\uDC7B", "\uD83D\uDC7B",
+                  "\uD83D\uDC7D", "\uD83D\uDC7D", "\uD83D\uDC7E", "\uD83D\uDC7E", "\uD83D\uDC7F", "\uD83D\uDC7F"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Tool",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD26", "\uD83D\uDD26", "\uD83D\uDD27", "\uD83D\uDD27", "\uD83D\uDD28", "\uD83D\uDD28",
+                  "\uD83D\uDD29", "\uD83D\uDD29", "\uD83D\uDD2A", "\uD83D\uDD2A", "\uD83D\uDEE0", "\uD83D\uDEE0"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Hour 1",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD50", "\uD83D\uDD50", "\uD83D\uDD51", "\uD83D\uDD51", "\uD83D\uDD52", "\uD83D\uDD52",
+                  "\uD83D\uDD53", "\uD83D\uDD53", "\uD83D\uDD54", "\uD83D\uDD54", "\uD83D\uDD55", "\uD83D\uDD55"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Hour 2",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD56", "\uD83D\uDD56", "\uD83D\uDD57", "\uD83D\uDD57", "\uD83D\uDD58", "\uD83D\uDD58",
+                  "\uD83D\uDD59", "\uD83D\uDD59", "\uD83D\uDD5A", "\uD83D\uDD5A", "\uD83D\uDD5B", "\uD83D\uDD5B"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Hour 3",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD5C", "\uD83D\uDD5C", "\uD83D\uDD5D", "\uD83D\uDD5D", "\uD83D\uDD5E", "\uD83D\uDD5E",
+                  "\uD83D\uDD5F", "\uD83D\uDD5F", "\uD83D\uDD60", "\uD83D\uDD60", "\uD83D\uDD61", "\uD83D\uDD61"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Hour 4",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD62", "\uD83D\uDD62", "\uD83D\uDD63", "\uD83D\uDD63", "\uD83D\uDD64", "\uD83D\uDD64",
+                  "\uD83D\uDD65", "\uD83D\uDD65", "\uD83D\uDD66", "\uD83D\uDD66", "\uD83D\uDD67", "\uD83D\uDD67"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Computer",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDDA5", "\uD83D\uDDA5", "\uD83D\uDDA8", "\uD83D\uDDA8", "\uD83D\uDDB1", "\uD83D\uDDB1",
+                  "\uD83D\uDDC2", "\uD83D\uDDC2", "\uD83D\uDDC3", "\uD83D\uDDC3", "\uD83D\uDDB2", "\uD83D\uDDB2"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Signs 1",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDEAD", "\uD83D\uDEAD", "\uD83D\uDEAE", "\uD83D\uDEAE", "\uD83D\uDEAF", "\uD83D\uDEAF",
+                  "\uD83D\uDEB0", "\uD83D\uDEB0", "\uD83D\uDEB1", "\uD83D\uDEB1", "\uD83D\uDEB3", "\uD83D\uDEB3"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Signs 2",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDEB7", "\uD83D\uDEB7", "\uD83D\uDEB8", "\uD83D\uDEB8", "\uD83D\uDEB9", "\uD83D\uDEB9",
+                  "\uD83D\uDEBA", "\uD83D\uDEBA", "\uD83D\uDEBB", "\uD83D\uDEBB", "\uD83D\uDEBC", "\uD83D\uDEBC"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Signs 3",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDEBE", "\uD83D\uDEBE", "\uD83D\uDEC2", "\uD83D\uDEC2", "\uD83D\uDEC3", "\uD83D\uDEC3",
+                  "\uD83D\uDEC4", "\uD83D\uDEC4", "\uD83D\uDEC5", "\uD83D\uDEC5", "\uD83D\uDED1", "\uD83D\uDED1"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Champion",
+      "cover": "⭘",
+      "symbols": ["\uD83E\uDD45", "\uD83E\uDD45", "\uD83E\uDD47", "\uD83E\uDD47", "\uD83E\uDD48", "\uD83E\uDD48",
+                  "\uD83E\uDD49", "\uD83E\uDD49", "\uD83E\uDD4A", "\uD83E\uDD4A", "\uD83E\uDD4B", "\uD83E\uDD4B"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Domus",
+      "cover": "⭘",
+      "symbols": ["\uD83E\uDD42", "\uD83E\uDD42", "\uD83E\uDD43", "\uD83E\uDD43", "\uD83C\uDF78", "\uD83C\uDF78",
+                  "\uD83C\uDF77", "\uD83C\uDF77", "\uD83C\uDF79", "\uD83C\uDF79", "\uD83C\uDF7E", "\uD83C\uDF7E"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Frank Ruehl",
+      "cover": "⭘",
+      "symbols": ["ה", "ה", "ו", "ו", "ז", "ז", "ט", "ט", "װ", "װ", "ױ", "ױ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Frank Ramon",
+      "cover": "⭘",
+      "symbols": ["ﬡ", "ﬡ", "ﬢ", "ﬢ", "ﬣ", "ﬣ", "ﬤ", "ﬤ", "ﬥ", "ﬥ", "ﬦ", "ﬦ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "DejaVu",
+      "cover": "⭘",
+      "symbols": ["ﭾ", "ﭾ", "ﭿ", "ﭿ", "ﮀ", "ﮀ", "ﮁ", "ﮁ", "ﮂ", "ﮂ", "ﮃ", "ﮃ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Tangent 1",
+      "cover": "⭘",
+      "symbols": ["ᐍ", "ᐍ", "ᐎ", "ᐎ", "ᐏ", "ᐏ", "ᐐ", "ᐐ", "ᐒ", "ᐒ", "ᐓ", "ᐓ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Tangent 2",
+      "cover": "⭘",
+      "symbols": ["ᑖ", "ᑖ", "ᑗ", "ᑗ", "ᑘ", "ᑘ", "ᑙ", "ᑙ", "ᑚ", "ᑚ", "ᑛ", "ᑛ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Tangent 3",
+      "cover": "⭘",
+      "symbols": ["ᑰ", "ᑰ", "ᑱ", "ᑱ", "ᑴ", "ᑴ", "ᑵ", "ᑵ", "ᑶ", "ᑶ", "ᑷ", "ᑷ"],
+      "difficulty": "hard"
+    },
+    {
       "title": "Feet",
       "cover": "⭘",
       "symbols": ["\uD83D\uDC5E", "\uD83D\uDC5E", "\uD83D\uDC5F", "\uD83D\uDC5F", "\uD83D\uDC60", "\uD83D\uDC60",
@@ -354,7 +558,7 @@
       "difficulty": "normal"
     },
     {
-      "title": "Computer",
+      "title": "Calc",
       "cover": "⭘",
       "symbols": ["⊜", "⊜", "⊙", "⊙", "⊘", "⊘", "⊗", "⊗", "⊖", "⊖", "⊕", "⊕"],
       "difficulty": "hard"
