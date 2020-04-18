@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <dimen name="menu_item_label_width">400dp</dimen>
-    <dimen name="menu_item_label_padding">16dp</dimen>
+    <dimen name="menu_item_label_width">200</dimen>
+    <dimen name="menu_item_label_padding">8dp</dimen>
+    <dimen name="symbol_group_margin">8dp</dimen>
+    <dimen name="title">40sp</dimen>
+    <dimen name="subtitle">32sp</dimen>
+    <dimen name="box">96dp</dimen>
+    <dimen name="loading_indicator">120dp</dimen>
+    <dimen name="symbol_char">56sp</dimen>
+    <dimen name="bottom_line_height">8dp</dimen>
+    <dimen name="top_line_height">4dp</dimen>
+    <dimen name="time_indicator_height">4dp</dimen>
+    <dimen name="player_name">16sp</dimen>
+    <dimen name="menu_item_label">20sp</dimen>
+    <dimen name="menu_item_label_drawable_padding">8dp</dimen>
+    <dimen name="menu_item_label_margin">8dp</dimen>
 </resources>

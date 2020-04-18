@@ -20,34 +20,27 @@
     <Button
         android:id="@+id/random"
         android:text="@string/survival_mode"
-        style="@style/MainMenu_Item_Style"
-        android:drawableRight="@drawable/heart_with_pulse_pink"/>
+        style="@style/MainMenu_Item_Style"/>
 
     <Button
         android:id="@+id/lightning_round"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/time_mode"
-        android:drawableRight="@drawable/stopwatch_pink"/>
+        android:text="@string/time_mode"/>
 
     <Button
         android:id="@+id/practise"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/practise_mode"
-        android:drawableRight="@drawable/joystick_pink"/>
+        android:text="@string/practise_mode"/>
 
     <Button
         android:id="@+id/leaderboard"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/leaderboard"
-        android:drawableRight="@drawable/medal_first_place_green"/>
+        android:text="@string/leaderboard"/>
 
     <Button
         android:id="@+id/user"
         style="@style/MainMenu_Item_Style"
-        android:text="@string/sign_in"
-        android:drawableRight="@drawable/user_green"/>
-
-
+        android:text="@string/sign_in"/>
 </LinearLayout>
 
 
