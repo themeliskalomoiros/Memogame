@@ -40,7 +40,7 @@ public class MenuViewImp implements MenuView {
 
     @Override
     public void setUserIconToDefault() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.user_green), null, null, null);
+        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.google), null, null, null);
     }
 
     @Override

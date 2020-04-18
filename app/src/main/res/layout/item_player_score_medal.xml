@@ -1,65 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:layout_margin="8dp"
-    android:background="@color/primaryTextColor">
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="@dimen/corner_radius">
 
-    <ImageView
-        android:id="@+id/medal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/player_score_margin"
-        android:layout_marginLeft="@dimen/player_score_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/medal_first_place_48px" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/user_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="@dimen/player_score_margin"
-        android:layout_marginLeft="@dimen/player_score_margin"
-        android:scaleType="centerCrop"
-        android:src="@drawable/user_48px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/medal"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="@dimen/player_score_margin"
-        android:layout_marginLeft="@dimen/player_score_margin"
-        android:layout_marginEnd="@dimen/player_score_margin"
-        android:layout_marginRight="@dimen/player_score_margin"
-        android:ellipsize="end"
-        android:textColor="@color/secondaryTextColor"
-        android:textSize="@dimen/player_score_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/user_score"
-        app:layout_constraintStart_toEndOf="@+id/user_image"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="George Kakogiannis" />
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="@dimen/player_score_image_size"
+                android:layout_height="@dimen/player_score_image_size"
+                android:src="@drawable/user_male" />
 
-    <TextView
-        android:id="@+id/user_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/player_score_margin"
-        android:layout_marginRight="@dimen/player_score_margin"
-        android:textColor="@color/secondaryTextColor"
-        android:textSize="@dimen/player_score_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="20.000" />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:ellipsize="end"
+                android:layout_gravity="bottom"
+                android:textSize="@dimen/player_score_text_size"
+                tools:text="George Kakogiannis" />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/medal"
+                android:layout_width="@dimen/player_score_image_size"
+                android:layout_height="@dimen/player_score_image_size"
+                tools:src="@drawable/medal_first_place" />
+
+            <TextView
+                android:id="@+id/user_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/player_score_text_size"
+                tools:text="20.000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="4dp"
+                android:text="@string/points"
+                android:textSize="@dimen/player_score_text_size"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

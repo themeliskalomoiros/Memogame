@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -30,7 +30,6 @@
     <style name="Symbol_Style.Disabled" parent="Symbol_Style">
         <item name="android:clickable">false</item>
         <item name="android:enabled">false</item>
-        <item name="android:src">@drawable/ic_chevron_right_light_green</item>
     </style>
 
     <style name="Title_Style">

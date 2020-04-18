@@ -98,7 +98,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             if (ps.getPlayer().getPhotoUrl() != null) {
                 Picasso.get()
                         .load(ps.getPlayer().getPhotoUrl())
-                        .placeholder(R.drawable.user_48px)
+                        .placeholder(R.drawable.user_male)
                         .error(R.drawable.ic_error_outline_black_48dp)
                         .into(image);
             }
@@ -132,11 +132,11 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         void bind(PlayerScore ps) {
             super.bind(ps);
             if (getAdapterPosition() == 0)
-                medal.setImageResource(R.drawable.medal_first_place_48px);
+                medal.setImageResource(R.drawable.medal_first_place);
             if (getAdapterPosition() == 1)
-                medal.setImageResource(R.drawable.medal_second_place_48px);
+                medal.setImageResource(R.drawable.medal_second_place);
             if (getAdapterPosition() == 2)
-                medal.setImageResource(R.drawable.medal_third_place_48px);
+                medal.setImageResource(R.drawable.medal_third_place);
         }
     }
 }
