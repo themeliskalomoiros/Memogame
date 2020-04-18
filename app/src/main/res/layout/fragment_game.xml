@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -14,7 +13,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_0"
-            style="@style/Symbol_Style"/>
+            style="@style/Symbol_Style" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_1"
@@ -34,17 +33,15 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_3"
-            style="@style/Symbol_Style"
-             />
+            style="@style/Symbol_Style" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_4"
-            style="@style/Symbol_Style"
-             />
+            style="@style/Symbol_Style" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_5"
-            style="@style/Symbol_Style"/>
+            style="@style/Symbol_Style" />
 
     </LinearLayout>
 
@@ -80,7 +77,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_10"
-            style="@style/Symbol_Style"/>
+            style="@style/Symbol_Style" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_11"

@@ -22,31 +22,31 @@
         android:id="@+id/random"
         style="@style/MainMenu_Item_Style"
         app:icon="@drawable/smiling_face_with_heart"
-        android:text="@string/survival_mode"/>
+        android:text="@string/survival_mode" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/lightning_round"
         style="@style/MainMenu_Item_Style"
         app:icon="@drawable/stopwatch_pink"
-        android:text="@string/time_mode"/>
+        android:text="@string/time_mode" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/practise"
         style="@style/MainMenu_Item_Style"
         app:icon="@drawable/joystick_pink"
-        android:text="@string/practise_mode"/>
+        android:text="@string/practise_mode" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/leaderboard"
         style="@style/MainMenu_Item_Style"
         app:icon="@drawable/leaderboard_pink"
-        android:text="@string/leaderboard"/>
+        android:text="@string/leaderboard" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/user"
         style="@style/MainMenu_Item_Style"
         app:icon="@drawable/google"
-        android:text="@string/sign_in"/>
+        android:text="@string/sign_in" />
 </LinearLayout>
 
 

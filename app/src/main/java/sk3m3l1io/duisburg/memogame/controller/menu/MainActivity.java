@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.controller.game.TimeModeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.PractiseModeActivity;
 import sk3m3l1io.duisburg.memogame.controller.game.SurvivalModeActivity;
+import sk3m3l1io.duisburg.memogame.controller.game.TimeModeActivity;
 import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;

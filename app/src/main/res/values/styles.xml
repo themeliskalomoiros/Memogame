@@ -24,7 +24,7 @@
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:layout_margin">8dp</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
-<!--        <item name="android:soundEffectsEnabled">false</item>-->
+        <!--        <item name="android:soundEffectsEnabled">false</item>-->
     </style>
 
     <style name="Symbol_Style.Disabled" parent="Symbol_Style">
