@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -91,7 +92,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             name.setText(ps.getPlayer().getName());
             boolean isUser = user != null && user.getId().equals(ps.getPlayer().getId());
             if (isUser) {
-                name.setTextColor(context.getResources().getColor(R.color.symbolMatchColor));
+                MaterialCardView card = (MaterialCardView) itemView;
+                card.setCardBackgroundColor(context.getResources().getColor(R.color.secondaryColor100));
                 name.setTypeface(Typeface.DEFAULT_BOLD);
             }
             score.setText("" + ps.getScore());

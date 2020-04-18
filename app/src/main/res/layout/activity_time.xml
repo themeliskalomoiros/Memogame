@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:fontFamily="@font/molly_jack"
-            android:textColor="@color/symbolMatchLightColor"
+            android:textColor="@color/secondaryColor100"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="145dp"
             tools:layout_editor_absoluteY="674dp"

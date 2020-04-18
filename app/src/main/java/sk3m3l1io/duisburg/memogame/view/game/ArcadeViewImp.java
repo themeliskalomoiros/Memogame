@@ -62,7 +62,7 @@ public class ArcadeViewImp implements ArcadeView {
         switch (difficulty) {
             case EASY:
                 this.difficulty.setText(R.string.difficulity_easy);
-                this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchLightColor));
+                this.difficulty.setTextColor(root.getResources().getColor(R.color.secondaryColor100));
                 break;
             case HARD:
                 this.difficulty.setText(R.string.difficulity_hard);
@@ -70,7 +70,7 @@ public class ArcadeViewImp implements ArcadeView {
                 break;
             default:
                 this.difficulty.setText(R.string.difficulity_normal);
-                this.difficulty.setTextColor(root.getResources().getColor(R.color.symbolMatchColor));
+                this.difficulty.setTextColor(root.getResources().getColor(R.color.secondaryDarkColor));
         }
     }
 }

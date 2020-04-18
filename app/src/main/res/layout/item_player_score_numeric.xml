@@ -51,6 +51,7 @@
                 android:textColor="@color/secondaryTextColor"
                 android:textAlignment="center"
                 android:textSize="@dimen/player_score_text_size"
+                android:layout_gravity="bottom"
                 tools:text="14"
                 android:gravity="center_horizontal" />
 
