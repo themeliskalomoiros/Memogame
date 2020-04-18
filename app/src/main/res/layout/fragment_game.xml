@@ -12,15 +12,15 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_0"
             style="@style/Symbol_Style"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_1"
             style="@style/Symbol_Style" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_2"
             style="@style/Symbol_Style" />
 
@@ -32,17 +32,17 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_3"
             style="@style/Symbol_Style"
              />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_4"
             style="@style/Symbol_Style"
              />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_5"
             style="@style/Symbol_Style"/>
 
@@ -54,15 +54,15 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_7"
             style="@style/Symbol_Style" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_6"
             style="@style/Symbol_Style" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_8"
             style="@style/Symbol_Style" />
 
@@ -74,15 +74,15 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_9"
             style="@style/Symbol_Style" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_10"
             style="@style/Symbol_Style"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/symbol_11"
             style="@style/Symbol_Style" />
 

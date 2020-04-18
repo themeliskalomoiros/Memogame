@@ -12,14 +12,14 @@ import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
 
-public class ArcadeActivity extends ScoreActivity implements
+public class TimeModeActivity extends ScoreActivity implements
         CountDownTimerReporter.TimeListener {
     private static final int TIME_INTERVAL = 100;
     private static final int GAME_DURATION = 20000;
 
     private CountDownTimerReporter timer;
 
-    public ArcadeActivity() {
+    public TimeModeActivity() {
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
     }

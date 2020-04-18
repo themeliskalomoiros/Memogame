@@ -135,7 +135,7 @@ public class GameFragment extends Fragment
 
     @Override
     public void onSymbolAlreadyUncovered(int position) {
-        Toast.makeText(getContext(), "You already tapped that!", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -147,10 +147,10 @@ public class GameFragment extends Fragment
     private void updateUiOnMatch(int pos1, int pos2) {
         view.disableSymbol(pos1);
         view.disableSymbol(pos2);
-        int clr = getResources().getColor(R.color.symbolMatchColor);
+        int clr = getResources().getColor(R.color.secondaryColor100);
         view.setSymbolForeground(pos1, clr);
         view.setSymbolForeground(pos2, clr);
-        clr = getResources().getColor(R.color.primaryColor);
+        clr = getResources().getColor(android.R.color.transparent);
         view.setSymbolBackground(pos1, clr);
         view.setSymbolBackground(pos2, clr);
     }

@@ -22,7 +22,8 @@
         <item name="android:textSize">@dimen/symbol_char</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
 <!--        <item name="android:soundEffectsEnabled">false</item>-->
     </style>
 

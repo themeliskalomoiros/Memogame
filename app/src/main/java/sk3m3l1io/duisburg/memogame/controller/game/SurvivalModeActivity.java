@@ -10,7 +10,7 @@ import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomView;
 import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;
 
-public class RandomModeActivity extends ScoreActivity implements
+public class SurvivalModeActivity extends ScoreActivity implements
         GameFragment.GameEventListener,
         GameFragment.ViewCreationListener {
     private static final int DEFAULT_LIVES = 4;
