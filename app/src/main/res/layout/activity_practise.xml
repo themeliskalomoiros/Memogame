@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@color/primaryColor100"
     tools:context=".controller.menu.MainActivity">
 
+    <TextView
+        android:id="@+id/title"
+        style="@style/Title_Style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Astrology 1" />
 
     <ImageButton
         android:id="@+id/next"
@@ -16,20 +23,9 @@
         android:layout_marginRight="16dp"
         android:backgroundTint="@color/primaryColor"
         android:src="@drawable/ic_navigate_next_white"
-        app:layout_constraintBottom_toBottomOf="@+id/viewTop"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewTop" />
-
-    <TextView
-        android:id="@+id/title"
-        style="@style/Title_Style"
-        android:layout_width="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Astrology 1" />
+        app:layout_constraintTop_toTopOf="@+id/title" />
 
     <ImageButton
         android:id="@+id/previous"
@@ -39,9 +35,9 @@
         android:layout_marginLeft="16dp"
         android:backgroundTint="@color/primaryColor"
         android:src="@drawable/ic_navigate_before_white"
-        app:layout_constraintBottom_toBottomOf="@+id/viewTop"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewTop" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/game_container"
@@ -53,62 +49,44 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTop" />
-
-    <View
-        android:id="@+id/viewTop"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/primaryDarkColor"
-        app:layout_constraintEnd_toStartOf="@+id/next"
-        app:layout_constraintStart_toEndOf="@+id/previous"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="@font/molly_jack"
-        android:text="@string/level"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline" />
-
-    <TextView
-        android:id="@+id/difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="@font/molly_jack"
-        android:textColor="@color/symbolMatchLightColor"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        tools:text="Easy" />
-
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="0dp"
-        android:layout_height="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/primaryDarkColor"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        style="@style/Bottom_Bar"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/molly_jack"
+            android:text="@string/level"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="674dp" />
+
+        <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/molly_jack"
+            android:textColor="@color/symbolMatchLightColor"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="674dp"
+            tools:text="Easy" />
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

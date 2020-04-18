@@ -8,7 +8,7 @@
     <dimen name="box">96dp</dimen>
     <dimen name="loading_indicator">120dp</dimen>
     <dimen name="symbol_char">56sp</dimen>
-    <dimen name="bottom_line_height">8dp</dimen>
+    <dimen name="bottom_bar_height">64dp</dimen>
     <dimen name="top_line_height">4dp</dimen>
     <dimen name="time_indicator_height">4dp</dimen>
     <dimen name="player_name">16sp</dimen>
