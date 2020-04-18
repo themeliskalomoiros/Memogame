@@ -53,7 +53,8 @@ public class GameFragment extends Fragment
             @Nullable Bundle savedInstanceState) {
         view = new GameViewImpl(inflater, container);
         view.setSymbolClickListener(this);
-        view.coverAllSymbols("" + gameState.getCover());
+        if(gameState != null)
+            view.coverAllSymbols("" + gameState.getCover());
         return view.getRootView();
     }
 
@@ -78,7 +79,8 @@ public class GameFragment extends Fragment
         super.onDestroyView();
         gameEventListener = null;
         view.setSymbolClickListener(null);
-        gameState.detachListeners();
+        if (gameState!=null)
+            gameState.detachListeners();
     }
 
     public void showAllSymbols() {
