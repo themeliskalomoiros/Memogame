@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="menu_item_label_width">200dp</dimen>
+    <dimen name="menu_item_label_width">280dp</dimen>
     <dimen name="menu_item_label_padding">8dp</dimen>
     <dimen name="symbol_group_margin">8dp</dimen>
-    <dimen name="title">40sp</dimen>
+    <dimen name="title">48sp</dimen>
     <dimen name="subtitle">32sp</dimen>
     <dimen name="box">96dp</dimen>
     <dimen name="loading_indicator">120dp</dimen>

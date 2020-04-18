@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.view.menu.BoxMenuViewImp;
 import sk3m3l1io.duisburg.memogame.view.menu.MenuView;
+import sk3m3l1io.duisburg.memogame.view.menu.MenuViewImp;
 
 public class MenuFragment extends Fragment implements MenuView.SymbolClickListener {
 
@@ -38,7 +39,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        view = new BoxMenuViewImp(inflater, container);
+        view = new MenuViewImp(inflater, container);
         view.setMenuClickListener(this);
         return view.getRootView();
     }

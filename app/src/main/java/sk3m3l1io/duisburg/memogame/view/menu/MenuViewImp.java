@@ -5,12 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
+
 import sk3m3l1io.duisburg.memogame.R;
 
 public class MenuViewImp implements MenuView {
     private View root;
-    private Button lightning, random, leaderboard, user;
-    private Button practise;
+    private MaterialButton lightning, random, leaderboard, user, practise;
     private SymbolClickListener listener;
 
     public MenuViewImp(LayoutInflater inflater, ViewGroup container) {
