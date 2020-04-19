@@ -1,6 +1,41 @@
 {
   "games": [
     {
+      "title": "Soil",
+      "cover": "⭘",
+      "symbols": ["ꦸ", "ꦸ", "ꦹ", "ꦹ", "ꦺ", "ꦺ",
+        "ꦻ", "ꦻ", "ꦼꦾ", "ꦾ", "ꦿ", "ꦿ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Fraction",
+      "cover": "⭘",
+      "symbols": ["¼", "¼", "½", "½", "¾", "¾",
+        "⅛", "⅛", "⅜", "⅜", "⅝", "⅝"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Omega",
+      "cover": "⭘",
+      "symbols": ["ᘯ", "ᘯ", "ᘰ", "ᘰ", "ᘱ", "ᘱ",
+        "ᘲ", "ᘲ", "ᘳ", "ᘳ", "ᙡ", "ᙡ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Beta",
+      "cover": "⭘",
+      "symbols": ["ᗷ", "ᗷ", "ᗸ", "ᗸ", "ᗹ", "ᗹ",
+        "ᗺ", "ᗺ", "ᗽ", "ᗽ", "ᗾ", "ᗾ"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Alpha",
+      "cover": "⭘",
+      "symbols": ["ᗄ", "ᗄ", "ᗅ", "ᗅ", "ᗆ", "ᗆ",
+        "ᗇ", "ᗇ", "ᗈ", "ᗈ", "ᗉ", "ᗉ"],
+      "difficulty": "hard"
+    },
+    {
       "title": "Emoji Sick",
       "cover": "⭘",
       "symbols": ["\uD83E\uDD10", "\uD83E\uDD10", "\uD83E\uDD12", "\uD83E\uDD12", "\uD83E\uDD15", "\uD83E\uDD15",
