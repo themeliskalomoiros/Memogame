@@ -18,7 +18,7 @@
       "title": "Fruit 2",
       "cover": "⭘",
       "symbols": ["\uD83C\uDF4E", "\uD83C\uDF4E", "\uD83C\uDF4F", "\uD83C\uDF4F", "\uD83C\uDF51", "\uD83C\uDF51",
-                  "\uD83C\uDF50", "\uD83C\uDF50", "\uD83C\uDF51", "\uD83C\uDF51", "\uD83C\uDF52", "\uD83C\uDF52"],
+                  "\uD83C\uDF50", "\uD83C\uDF50", "\uD83C\uDF53", "\uD83C\uDF53", "\uD83C\uDF52", "\uD83C\uDF52"],
       "difficulty": "normal"
     },
     {
@@ -85,7 +85,7 @@
       "difficulty": "normal"
     },
     {
-      "title": "Carnival",
+      "title": "Halloween",
       "cover": "⭘",
       "symbols": ["\uD83D\uDC79", "\uD83D\uDC79", "\uD83D\uDC7A", "\uD83D\uDC7A", "\uD83D\uDC7B", "\uD83D\uDC7B",
                   "\uD83D\uDC7D", "\uD83D\uDC7D", "\uD83D\uDC7E", "\uD83D\uDC7E", "\uD83D\uDC7F", "\uD83D\uDC7F"],
