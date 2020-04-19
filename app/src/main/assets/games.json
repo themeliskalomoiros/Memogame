@@ -1,6 +1,111 @@
 {
   "games": [
     {
+      "title": "Emoji Sick",
+      "cover": "⭘",
+      "symbols": ["\uD83E\uDD10", "\uD83E\uDD10", "\uD83E\uDD12", "\uD83E\uDD12", "\uD83E\uDD15", "\uD83E\uDD15",
+                  "\uD83D\uDE37", "\uD83D\uDE37", "\uD83D\uDE35", "\uD83D\uDE35", "\uD83D\uDE2A", "\uD83D\uDE2A"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Emoji 2",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDE06", "\uD83D\uDE06", "\uD83D\uDE07", "\uD83D\uDE07", "\uD83D\uDE08", "\uD83D\uDE08",
+                  "\uD83D\uDE09", "\uD83D\uDE09", "\uD83D\uDE0A", "\uD83D\uDE0A", "\uD83D\uDE0B", "\uD83D\uDE0B"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Emoji 1",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDE00", "\uD83D\uDE00", "\uD83D\uDE01", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE02",
+                  "\uD83D\uDE03", "\uD83D\uDE03", "\uD83D\uDE04", "\uD83D\uDE04", "\uD83D\uDE05", "\uD83D\uDE05"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Credit",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCB8", "\uD83D\uDCB8", "\uD83D\uDCB7", "\uD83D\uDCB7", "\uD83D\uDCB6", "\uD83D\uDCB6",
+                  "\uD83D\uDCB5", "\uD83D\uDCB5", "\uD83D\uDCB4", "\uD83D\uDCB4", "\uD83D\uDCB3", "\uD83D\uDCB3"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Valentines",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC96", "\uD83D\uDC96", "\uD83D\uDC99", "\uD83D\uDC99", "\uD83D\uDC9A", "\uD83D\uDC9A",
+                  "\uD83D\uDC9B", "\uD83D\uDC9B", "\uD83D\uDC9C", "\uD83D\uDC9C", "\uD83D\uDC9D", "\uD83D\uDC9D"],
+      "difficulty": "Normal"
+    },
+    {
+      "title": "Marriage",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC8F", "\uD83D\uDC8F", "\uD83D\uDC90", "\uD83D\uDC90", "\uD83D\uDC91", "\uD83D\uDC91",
+                  "\uD83D\uDC92", "\uD83D\uDC92", "\uD83D\uDC93", "\uD83D\uDC93", "\uD83D\uDC94", "\uD83D\uDC94"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Single Lady",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDC81", "\uD83D\uDC81", "\uD83D\uDC83", "\uD83D\uDC83", "\uD83D\uDC84", "\uD83D\uDC84",
+                  "\uD83D\uDC85", "\uD83D\uDC85", "\uD83D\uDC86", "\uD83D\uDC86", "\uD83D\uDC87", "\uD83D\uDC87"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Japanese",
+      "cover": "⭘",
+      "symbols": ["\uD83C\uDF60", "\uD83C\uDF60", "\uD83C\uDF61", "\uD83C\uDF61", "\uD83C\uDF62", "\uD83C\uDF62",
+                  "\uD83C\uDF63", "\uD83C\uDF63", "\uD83C\uDF64", "\uD83C\uDF64", "\uD83C\uDF65", "\uD83C\uDF65"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Controversy",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDD49", "\uD83D\uDD49", "\uD83D\uDD4A", "\uD83D\uDD4A", "\uD83D\uDD4B", "\uD83D\uDD4B",
+                  "\uD83D\uDD4C", "\uD83D\uDD4C", "\uD83D\uDD4D", "\uD83D\uDD4D", "\uD83D\uDD2F", "\uD83D\uDD2F"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Old Tech",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCF7", "\uD83D\uDCF7", "\uD83D\uDCF9", "\uD83D\uDCF9", "\uD83D\uDCFA", "\uD83D\uDCFA",
+                  "\uD83D\uDCFB", "\uD83D\uDCFB", "\uD83D\uDCFC", "\uD83D\uDCFC", "\uD83D\uDCFD", "\uD83D\uDCFD"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Mobile",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCF1", "\uD83D\uDCF1", "\uD83D\uDCF2", "\uD83D\uDCF2", "\uD83D\uDCF3", "\uD83D\uDCF3",
+                  "\uD83D\uDCF5", "\uD83D\uDCF5", "\uD83D\uDCF6", "\uD83D\uDCF6", "\uD83D\uDCF4", "\uD83D\uDCF4"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Communication",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCDD", "\uD83D\uDCDD", "\uD83D\uDCDE", "\uD83D\uDCDE", "\uD83D\uDCDF", "\uD83D\uDCDF",
+                  "\uD83D\uDCE0", "\uD83D\uDCE0", "\uD83D\uDCE1", "\uD83D\uDCE1", "\uD83D\uDCE2", "\uD83D\uDCE2"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Notebook",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCD2", "\uD83D\uDCD2", "\uD83D\uDCD1", "\uD83D\uDCD1", "\uD83D\uDCD3", "\uD83D\uDCD3",
+                  "\uD83D\uDCD4", "\uD83D\uDCD4", "\uD83D\uDCD5", "\uD83D\uDCD5", "\uD83D\uDCD6", "\uD83D\uDCD6"],
+      "difficulty": "hard"
+    },
+    {
+      "title": "Finance",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCC8", "\uD83D\uDCC8", "\uD83D\uDCC9", "\uD83D\uDCC9", "\uD83D\uDCCA", "\uD83D\uDCCA",
+                  "\uD83D\uDCCB", "\uD83D\uDCCB", "\uD83D\uDCC3", "\uD83D\uDCC3", "\uD83D\uDCCD", "\uD83D\uDCCD"],
+      "difficulty": "normal"
+    },
+    {
+      "title": "Company",
+      "cover": "⭘",
+      "symbols": ["\uD83D\uDCBA", "\uD83D\uDCBA", "\uD83D\uDCBB", "\uD83D\uDCBB", "\uD83D\uDCBC", "\uD83D\uDCBC",
+                  "\uD83D\uDCBF", "\uD83D\uDCBF", "\uD83D\uDCC0", "\uD83D\uDCC0", "\uD83D\uDCC1", "\uD83D\uDCC1"],
+      "difficulty": "normal"
+    },
+    {
       "title": "Green",
       "cover": "⭘",
       "symbols": ["\uD83C\uDF31", "\uD83C\uDF31", "\uD83C\uDF32", "\uD83C\uDF32", "\uD83C\uDF33", "\uD83C\uDF33",
@@ -88,7 +193,7 @@
       "title": "Halloween",
       "cover": "⭘",
       "symbols": ["\uD83D\uDC79", "\uD83D\uDC79", "\uD83D\uDC7A", "\uD83D\uDC7A", "\uD83D\uDC7B", "\uD83D\uDC7B",
-                  "\uD83D\uDC7D", "\uD83D\uDC7D", "\uD83D\uDC7E", "\uD83D\uDC7E", "\uD83D\uDC7F", "\uD83D\uDC7F"],
+                  "\uD83D\uDC7D", "\uD83D\uDC7D", "\uD83C\uDF65", "\uD83C\uDF65", "\uD83D\uDC7F", "\uD83D\uDC7F"],
       "difficulty": "normal"
     },
     {
