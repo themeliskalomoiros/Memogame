@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -77,7 +77,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         void bind(ScoreData s) {
             name.setText(s.getPlayer().getName());
             rank.setText("" + (getAdapterPosition() + 1));
-            points.setText(s.getTotalPoints());
+            points.setText("" + s.getTotalPoints());
 
             if (isUser(s.getPlayer()))
                 updateUserUi();
@@ -107,11 +107,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         private void loadImage(String url) {
-            Picasso.get()
-                    .load(url)
-                    .placeholder(R.drawable.user_male)
-                    .error(R.drawable.error)
-                    .into(image);
+            Glide.with(context).load(url).placeholder(R.drawable.user_male).into(image);
         }
 
         private boolean isMedalWinner() {
