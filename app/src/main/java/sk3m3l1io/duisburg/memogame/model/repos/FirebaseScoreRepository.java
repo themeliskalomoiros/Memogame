@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 
@@ -53,7 +54,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveScore(int score, Player p) {
+    public void saveScore(GameMode mode, int score, Player p) {
         PlayerScore dataToSave = new PlayerScore(score, p);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

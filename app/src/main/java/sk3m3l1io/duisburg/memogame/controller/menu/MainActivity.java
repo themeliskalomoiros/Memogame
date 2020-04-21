@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent getPlayModeIntent(GameMode mode) {
         Intent i = new Intent();
         i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
+        i.putExtra(GameMode.class.getSimpleName(), mode);
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
         Player p = GoogleUtils.createPlayerFrom(acc);
         i.putExtra(Player.class.getSimpleName(), p);

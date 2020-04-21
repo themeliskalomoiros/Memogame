@@ -62,7 +62,7 @@ public abstract class ScoreActivity extends GameActivity
     private void saveScore() {
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
-        getScoreRepo().saveScore(s, p);
+        getScoreRepo().saveScore(gameMode, s, p);
     }
 
     protected abstract @NonNull

@@ -12,6 +12,7 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
 import sk3m3l1io.duisburg.memogame.view.GameContainerView;
 
@@ -20,6 +21,7 @@ public abstract class GameActivity extends AppCompatActivity
 
     protected int currentGame;
     protected List<Game> games;
+    protected GameMode gameMode;
     protected GameContainerView view;
     private MediaPlayer backwardSound;
 
@@ -27,6 +29,7 @@ public abstract class GameActivity extends AppCompatActivity
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         games = getIntent().getParcelableArrayListExtra(Game.class.getSimpleName());
+        gameMode = (GameMode) getIntent().getSerializableExtra(GameMode.class.getSimpleName());
         initView();
         arrangeGameSequence();
         addGameFragment();
