@@ -32,7 +32,7 @@
     <string name="score_analysis">Ανάλυση σκορ:</string>
     <string name="practise_mode">Εξάσκηση</string>
     <string name="survival_mode">Επιβίωση</string>
-    <string name="time_mode_message">"Ο εχθρός είανι ο χρόνος!\nΚατάφερε όσα περισσότερα παιχνίδια μπορείς, σώσε τις επιδόσεις σου και ανταγωνίσου με άλλους παίκτες." Έτοιμος;</string>
+    <string name="time_mode_message">"Ο εχθρός είναι ο χρόνος!\nΚατάφερε όσα περισσότερα παιχνίδια μπορείς, σώσε τις επιδόσεις σου και ανταγωνίσου με άλλους παίκτες." Έτοιμος;</string>
     <string name="practise_mode_message">Περιηγήσου σε κάθε παιχνίδι του Memogame και βελτιώσε τις ικανότητές σου.</string>
     <string name="survival_mode_message">Έχεις 3 δευτερόλεπτα να απομνημονεύσεις τα ζευγάρια ενός παιχνιδιού.\nΟλοκλήρωσε το παιχνίδι χωρίς να χάσεις τις ζωές σου. Καλή επιτυχία!</string>
     <string name="look">👀</string>
