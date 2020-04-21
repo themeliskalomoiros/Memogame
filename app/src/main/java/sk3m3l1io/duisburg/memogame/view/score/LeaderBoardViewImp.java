@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.view.TitleView;
 
 public class LeaderBoardViewImp implements LeaderBoardView {
     private View root;

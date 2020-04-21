@@ -1,6 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller.stats;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

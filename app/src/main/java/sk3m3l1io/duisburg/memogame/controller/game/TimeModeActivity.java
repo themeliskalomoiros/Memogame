@@ -1,11 +1,9 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
-import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;

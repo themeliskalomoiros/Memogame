@@ -34,6 +34,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(view.getFragmentContainerId(), f)
-        .commit();
+                .commit();
     }
 }

@@ -1,9 +1,5 @@
 package sk3m3l1io.duisburg.memogame.model.pojos;
 
-import android.util.Log;
-
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
-
 public class ScoreData implements Comparable<ScoreData> {
     private int matches;
     private int failedMatches;
@@ -72,7 +68,7 @@ public class ScoreData implements Comparable<ScoreData> {
     }
 
     private double getAccuracyPoints() {
-        if (failedMatches != 0){
+        if (failedMatches != 0) {
             return ((matches * 1.0) / failedMatches) * getGamePoints() * 0.1;
         }
 
