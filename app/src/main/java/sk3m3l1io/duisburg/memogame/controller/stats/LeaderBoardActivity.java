@@ -19,6 +19,11 @@ public class LeaderBoardActivity extends AppCompatActivity {
         user = getIntent().getParcelableExtra(Player.class.getSimpleName());
         view = new LeaderBoardViewImp(getLayoutInflater(), null, getSupportFragmentManager());
         setContentView(view.getRootView());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         addScoreFragment();
     }
 
@@ -28,6 +33,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(view.getFragmentContainerId(), f);
+                .replace(view.getFragmentContainerId(), f)
+        .commit();
     }
 }
