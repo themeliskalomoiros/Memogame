@@ -71,7 +71,8 @@ public abstract class ScoreDataFragment extends Fragment
     @Override
     public void onScoreDataLoad(List<ScoreData> scores) {
         if (scores != null && scores.size() > 0) {
-            Collections.sort(scores, (s1, s2) -> s2.getScore() - s1.getScore());
+            // TODO: must find another way to sort the scores
+//            Collections.sort(scores, (s1, s2) -> s2.getScore() - s1.getScore());
             view.setScores(scores, user);
             listener.onLoadFinished();
         }
