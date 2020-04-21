@@ -42,4 +42,6 @@
     <string name="sign_in">Sign in</string>
     <string name="swipe_for">swipe for</string>
     <string name="rank">Rank</string>
+    <string name="badges">Bagdes</string>
+    <string name="points_label">Points</string>
 </resources>

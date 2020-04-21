@@ -41,4 +41,7 @@
     <string name="player_name_prefix">Angemeldet als</string>
     <string name="sign_in">Anmelden</string>
     <string name="swipe_for">Wechsel zu</string>
+    <string name="rank">Rang</string>
+    <string name="badges">Preis</string>
+    <string name="points_label">Punkt</string>
 </resources>

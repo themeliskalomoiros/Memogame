@@ -41,4 +41,7 @@
     <string name="player_name_prefix">Συνδέθηκες ως</string>
     <string name="sign_in">Σύνδεση</string>
     <string name="swipe_for">σύρε για</string>
+    <string name="rank">Κατάταξη</string>
+    <string name="badges">Παράσημα</string>
+    <string name="points_label">Πόντοι</string>
 </resources>
