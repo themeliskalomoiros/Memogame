@@ -60,6 +60,7 @@ public class ScoreDataFragment extends Fragment implements ScoreRepository.Score
         if (scores != null && scores.size() > 0) {
             Collections.sort(scores);
             view.setScores(scores, user);
+            view.hideLoadingIndicator();
         }
     }
 
