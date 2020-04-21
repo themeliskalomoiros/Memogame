@@ -88,11 +88,10 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             if (isMedalWinner())
                 updateMedalUi();
 
-            if (s.isTimeCompleted())
-                leftBadge.setVisibility(View.VISIBLE);
+            if (hasBadge(s)) {
+                updateBadgeUi(s);
+            }
 
-            if (s.isSurvivalCompleted())
-                rightBadge.setVisibility(View.VISIBLE);
         }
 
         private boolean isUser(Player p) {
@@ -125,6 +124,21 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             }
 
             medal.setVisibility(View.VISIBLE);
+        }
+
+        private boolean hasBadge(ScoreData s) {
+            return s.isSurvivalCompleted() || s.isTimeCompleted();
+        }
+
+        private void updateBadgeUi(ScoreData s) {
+            if (s.isTimeCompleted())
+                leftBadge.setVisibility(View.VISIBLE);
+
+            if (s.isSurvivalCompleted())
+                rightBadge.setVisibility(View.VISIBLE);
+
+            ViewGroup container = itemView.findViewById(R.id.badges);
+            container.setVisibility(View.VISIBLE);
         }
     }
 }
