@@ -20,6 +20,20 @@ public final class Score {
         return sum;
     }
 
+    public static double gameModePoints(List<Game> completedGames, List<Double> accuracyPerGame) {
+        double points = 0;
+        for (int i = 0; i < completedGames.size(); i++) {
+            Game g = completedGames.get(i);
+            double a = accuracyPerGame.get(i);
+            points += getPoints(g) * a;
+        }
+        return points;
+    }
+
+    public double totalScore(double survival, double time, int allGamesCompleted) {
+        return survival * 0.495 + time * 0.495 + allGamesCompleted * 0.01;
+    }
+
     private static int getPoints(Game g) {
         switch (g.getDifficulty()) {
             case EASY:
