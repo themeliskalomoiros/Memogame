@@ -72,18 +72,21 @@
                     android:id="@+id/medal"
                     android:layout_width="@dimen/player_score_image_size"
                     android:layout_height="@dimen/player_score_image_size"
+                    android:visibility="gone"
                     tools:src="@drawable/medal_first_place" />
 
                 <ImageView
                     android:id="@+id/badge_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:src="@drawable/badge" />
 
                 <ImageView
                     android:id="@+id/badge_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:src="@drawable/badge" />
             </LinearLayout>
 
@@ -104,7 +107,7 @@
                 android:textSize="@dimen/player_score_text_size" />
 
             <TextView
-                android:id="@+id/user_score"
+                android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
