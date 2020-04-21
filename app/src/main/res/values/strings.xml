@@ -44,4 +44,9 @@
     <string name="rank">Rank</string>
     <string name="badges">Bagdes</string>
     <string name="points_label">Points</string>
+    <string name="game_analysis">Game Analysis</string>
+    <string name="average">Avg</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="bonus_points_label">Bonus Points</string>
+    <string name="total">Total</string>
 </resources>
