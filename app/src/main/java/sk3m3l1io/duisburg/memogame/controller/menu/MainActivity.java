@@ -28,16 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
-import sk3m3l1io.duisburg.memogame.controller.game.PractiseModeActivity;
-import sk3m3l1io.duisburg.memogame.controller.game.SurvivalModeActivity;
-import sk3m3l1io.duisburg.memogame.controller.game.TimeModeActivity;
+import sk3m3l1io.duisburg.memogame.controller.game.GameActivity;
 import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
-import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
@@ -267,30 +264,16 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPlayClick() {
         forwardSound.start();
-        startActivity(getPlayModeIntent(gameMode));
+        startActivity(GameActivity.createIntent(this, gameMode, getPlayData()));
     }
 
-    private Intent getPlayModeIntent(GameMode mode) {
-        Intent i = new Intent();
-        i.putExtra(Game.class.getSimpleName(), (ArrayList<Game>) games);
-        i.putExtra(GameMode.class.getSimpleName(), mode);
-        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        Player p = GoogleUtils.createPlayerFrom(acc);
-        i.putExtra(Player.class.getSimpleName(), p);
-
-        switch (mode) {
-            case TIME:
-                i.setClass(this, TimeModeActivity.class);
-                break;
-            case PRACTISE:
-                i.setClass(this, PractiseModeActivity.class);
-                break;
-            case SURVIVAL:
-                i.setClass(this, SurvivalModeActivity.class);
-                break;
-        }
-
-        return i;
+    private Bundle getPlayData() {
+        Bundle data = new Bundle();
+        data.putParcelableArrayList(Game.class.getSimpleName(), (ArrayList<Game>) games);
+        data.putSerializable(GameMode.class.getSimpleName(), gameMode);
+        Player p = createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
+        data.putParcelable(Player.class.getSimpleName(), p);
+        return data;
     }
 
     @Override

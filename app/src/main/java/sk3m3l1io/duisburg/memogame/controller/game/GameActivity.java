@@ -1,5 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -8,12 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
+import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.utils.ArrayUtils;
+import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.GameContainerView;
 
 public abstract class GameActivity extends AppCompatActivity
@@ -89,5 +97,23 @@ public abstract class GameActivity extends AppCompatActivity
     public final void onBackPressed() {
         backwardSound.start();
         super.onBackPressed();
+    }
+
+    public static Intent createIntent(Context c, GameMode mode, Bundle data) {
+        Intent i = new Intent();
+        i.putExtras(data);
+        switch (mode) {
+            case TIME:
+                i.setClass(c, TimeModeActivity.class);
+                break;
+            case PRACTISE:
+                i.setClass(c, PractiseModeActivity.class);
+                break;
+            case SURVIVAL:
+                i.setClass(c, SurvivalModeActivity.class);
+                break;
+        }
+
+        return i;
     }
 }
