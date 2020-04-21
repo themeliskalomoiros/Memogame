@@ -6,6 +6,8 @@ public class ScoreData {
     private int gamesCompleted;
     private int timeHighScore;
     private int survivalHighScore;
+    private boolean timeCompleted;
+    private boolean survivalCompleted;
 
     ScoreData() {
         // Required for Firebase
@@ -29,5 +31,13 @@ public class ScoreData {
 
     public int getSurvivalHighScore() {
         return survivalHighScore;
+    }
+
+    public boolean isTimeCompleted() {
+        return timeCompleted;
+    }
+
+    public boolean isSurvivalCompleted() {
+        return survivalCompleted;
     }
 }
