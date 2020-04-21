@@ -17,5 +17,5 @@ public interface ScoreRepository {
 
     void loadScores();
 
-    void saveScore(GameMode mode, int score, Player p);
+    void savePlayerGameScore(Player p, GameMode mode, int score);
 }

@@ -54,7 +54,7 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveScore(GameMode mode, int score, Player p) {
+    public void savePlayerGameScore(Player p, GameMode mode, int score) {
         PlayerScore dataToSave = new PlayerScore(score, p);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
