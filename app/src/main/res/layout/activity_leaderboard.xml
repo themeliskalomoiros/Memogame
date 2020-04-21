@@ -10,59 +10,32 @@
     <TextView
         android:id="@+id/title"
         style="@style/Title_Style"
-        android:text="@string/survival_mode"
+        android:text="@string/leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="@dimen/loading_indicator"
-        android:layout_height="@dimen/loading_indicator"
-        android:visibility="visible"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/secondaryColor"
-        app:layout_constraintBottom_toBottomOf="@+id/pager"
-        app:layout_constraintEnd_toEndOf="@+id/pager"
-        app:layout_constraintStart_toStartOf="@+id/pager"
-        app:layout_constraintTop_toTopOf="@+id/pager" />
-
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         style="@style/Bottom_Bar"
-        android:gravity="center"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
-        <TextView
-            android:id="@+id/swipe_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/molly_jack"
-            android:text="@string/swipe_label"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="658dp" />
-    </LinearLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
