@@ -1,30 +1,26 @@
 package sk3m3l1io.duisburg.memogame.model.repos;
 
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.database.FirebaseDatabase;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
 
-public abstract class FirebaseScoreRepository implements ScoreRepository {
-    protected static final String SCORES = "scores";
+public class FirebaseScoreRepository implements ScoreRepository {
+    private static final String VERSION_2 = "version 2";
 
-    protected DatabaseReference ref;
+    private final DatabaseReference ref;
     private ScoresListener scoresListener;
+    private HighScoreListener highScoresListener;
 
     public FirebaseScoreRepository() {
-        ref = getDatabaseRef();
+        ref = FirebaseDatabase.getInstance().getReference().child(VERSION_2);
     }
 
-    protected abstract DatabaseReference getDatabaseRef();
+    @Override
+    public void setHighScoreListener(HighScoreListener listener) {
+        highScoresListener = listener;
+    }
 
     @Override
     public void setScoresListener(ScoresListener listener) {
@@ -33,50 +29,26 @@ public abstract class FirebaseScoreRepository implements ScoreRepository {
 
     @Override
     public void loadScores() {
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                scoresListener.onScoresLoad(getScoresFrom(snapshot));
-            }
 
-            private List<PlayerScore> getScoresFrom(@NonNull DataSnapshot snapshot) {
-                final List<PlayerScore> scores = new ArrayList<>();
-                for (DataSnapshot s : snapshot.getChildren()) {
-                    scores.add(s.getValue(PlayerScore.class));
-                }
-                return scores;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
 
     @Override
-    public void savePlayerGameScore(Player p, GameMode mode, int score) {
-        PlayerScore dataToSave = new PlayerScore(score, p);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    boolean playerFound = p.getId().equals(ds.getKey());
-                    if (playerFound) {
-                        PlayerScore dataFound = ds.getValue(PlayerScore.class);
-                        if (score > dataFound.getScore()) {
-                            ref.child(p.getId()).setValue(dataToSave);
-                        }
-                        return;
-                    }
-                }
+    public void saveScore(int score, GameMode mode, Player p) {
 
-                ref.child(p.getId()).setValue(dataToSave);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
 
+    @Override
+    public void updateCompletedGames(int count, Player p) {
+
+    }
+
+    @Override
+    public void updateMatches(int count, Player p) {
+
+    }
+
+    @Override
+    public void updateFailedMatches(int count, Player p) {
+
+    }
 }

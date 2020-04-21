@@ -4,11 +4,11 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
+import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 
 public interface ScoreRepository {
     interface ScoresListener {
-        void onScoresLoad(List<PlayerScore> scores);
+        void onScoresLoad(List<ScoreData> scores);
     }
 
     interface HighScoreListener {
@@ -21,11 +21,11 @@ public interface ScoreRepository {
 
     void loadScores();
 
-    void savePlayerGameScore(Player p, GameMode mode, int score);
+    void saveScore(int score, GameMode mode, Player p);
 
-    void updateCompletedGames(int count);
+    void updateCompletedGames(int count, Player p);
 
-    void updateMatches(int count);
+    void updateMatches(int count, Player p);
 
-    void updateFailedMatches(int count);
+    void updateFailedMatches(int count, Player p);
 }
