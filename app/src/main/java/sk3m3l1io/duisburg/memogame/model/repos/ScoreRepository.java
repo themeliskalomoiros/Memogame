@@ -21,7 +21,7 @@ public interface ScoreRepository {
 
     void loadScores();
 
-    void saveScore(int score, GameMode mode, Player p);
+    void saveHighScore(int score, GameMode mode, Player p);
 
     void saveCompletedGames(int count, Player p);
 

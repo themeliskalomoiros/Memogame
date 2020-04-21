@@ -61,13 +61,30 @@ public class FirebaseScoreRepository implements ScoreRepository {
 
             private ScoreData getScoreData(DataSnapshot s) {
                 Player p = s.child(Player.class.getSimpleName()).getValue(Player.class);
-                int survivalHighScore = s.child(SURVIVAL_HIGHSCORE).getValue(Integer.class);
-                boolean survivalCompleted = s.child(SURVIVAL_COMPLETION).getValue(Boolean.class);
-                int timeHighScore = s.child(TIME_HIGHSCORE).getValue(Integer.class);
-                boolean timeCompleted = s.child(TIME_COMPLETION).getValue(Boolean.class);
-                int gamesCompleted = s.child(GAMES_COMPLETED).getValue(Integer.class);
-                int matches = s.child(MATCHES).getValue(Integer.class);
-                int failedMatches = s.child(FAILED_MATCHES).getValue(Integer.class);
+
+                int survivalHighScore = 0;
+                int timeHighScore = 0;
+                int gamesCompleted = 0;
+                int matches = 0;
+                int failedMatches = 0;
+                boolean survivalCompleted = false;
+                boolean timeCompleted = false;
+
+                if (s.child(SURVIVAL_HIGHSCORE).getValue() != null)
+                    survivalHighScore = s.child(SURVIVAL_HIGHSCORE).getValue(Integer.class);
+                if (s.child(TIME_HIGHSCORE).getValue() != null)
+                    timeHighScore = s.child(TIME_HIGHSCORE).getValue(Integer.class);
+                if (s.child(GAMES_COMPLETED).getValue() != null)
+                    gamesCompleted = s.child(GAMES_COMPLETED).getValue(Integer.class);
+                if (s.child(MATCHES).getValue() != null)
+                    matches = s.child(MATCHES).getValue(Integer.class);
+                if (s.child(FAILED_MATCHES).getValue() != null)
+                    failedMatches = s.child(FAILED_MATCHES).getValue(Integer.class);
+                if (s.child(SURVIVAL_COMPLETION).getValue() != null)
+                    survivalCompleted = s.child(SURVIVAL_COMPLETION).getValue(Boolean.class);
+                if (s.child(TIME_COMPLETION).getValue() != null)
+                    timeCompleted = s.child(TIME_COMPLETION).getValue(Boolean.class);
+
                 return new ScoreData(matches, failedMatches, gamesCompleted, timeHighScore,
                         survivalHighScore, timeCompleted, survivalCompleted, p);
             }
@@ -79,7 +96,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveScore(int score, GameMode mode, Player p) {
+    public void saveHighScore(int score, GameMode mode, Player p) {
         try {
             DatabaseReference ref = rootRef.child(p.getId()).child(getModeHighScoreKey(mode));
             ref.addListenerForSingleValueEvent(new ValueEventListener() {

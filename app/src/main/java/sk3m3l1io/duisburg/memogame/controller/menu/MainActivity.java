@@ -33,6 +33,7 @@ import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             updateMenuUI(acc);
             Snackbar.make(view.getRootView(), R.string.progress_can_be_saved_msg, Snackbar.LENGTH_SHORT).show();
+            new FirebaseScoreRepository().savePlayer(createPlayerFrom(acc));
         } catch (ApiException e) {
             updateMenuUI(null);
         }
@@ -200,20 +202,24 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTimeModeClick() {
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.TIME);
-        } else {
-            showSignInSnackbar();
-        }
+        // TODO: Uncomment after debug
+//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+//            addGameBriefingFragment(gameMode = GameMode.TIME);
+//        } else {
+//            showSignInSnackbar();
+//        }
+        addGameBriefingFragment(gameMode = GameMode.TIME);
     }
 
     @Override
     public void onSurvivalModeClick() {
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
-        } else {
-            showSignInSnackbar();
-        }
+        // TODO: Uncomment after debug
+//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+//            addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
+//        } else {
+//            showSignInSnackbar();
+//        }
+        addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
     }
 
     private void showSignInSnackbar() {
