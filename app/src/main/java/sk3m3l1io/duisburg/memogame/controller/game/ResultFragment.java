@@ -63,6 +63,19 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         }
     }
 
+    private String getTitle() {
+        return getString(getResult().getNameRes()) + " ";
+    }
+
+    private String getMessage() {
+        String prefix = getString(R.string.time_mode_completed_prefix) + " " +
+                completedGames.size() + " " +
+                getString(R.string.out_of_sufix) + " " +
+                gameCount + ". ";
+        String suffix = getString(getResult().getMessageRes());
+        return prefix + suffix;
+    }
+
     private String getDetails() {
         int easy = 0;
         int normal = 0;
@@ -79,32 +92,19 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         StringBuilder sb = new StringBuilder();
         sb.append(getString(R.string.score_analysis) + "\n");
         if (easy > 0) {
-            sb.append(getDetailLine(easy, getString(R.string.difficulity_easy), Points.POINTS_EASY) + "\n");
+            sb.append(detailLine(easy, getString(R.string.difficulity_easy), Points.POINTS_EASY) + "\n");
         }
         if (normal > 0) {
-            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Points.POINTS_NORMAL) + "\n");
+            sb.append(detailLine(normal, getString(R.string.difficulity_normal), Points.POINTS_NORMAL) + "\n");
         }
         if (hard > 0) {
-            sb.append(getDetailLine(hard, getString(R.string.difficulity_hard), Points.POINTS_HARD));
+            sb.append(detailLine(hard, getString(R.string.difficulity_hard), Points.POINTS_HARD));
         }
         return sb.toString();
     }
 
-    private String getDetailLine(int count, String difficulty, int points) {
+    private static String detailLine(int count, String difficulty, int points) {
         return String.format("%d %s (x %d)", count, difficulty, points);
-    }
-
-    private String getTitle() {
-        return getString(getResult().getNameRes()) + " ";
-    }
-
-    private String getMessage() {
-        String prefix = getString(R.string.time_mode_completed_prefix) + " " +
-                completedGames.size() + " " +
-                getString(R.string.out_of_sufix) + " " +
-                gameCount + ". ";
-        String suffix = getString(getResult().getMessageRes());
-        return prefix + suffix;
     }
 
     private ResultFragment.Result getResult() {

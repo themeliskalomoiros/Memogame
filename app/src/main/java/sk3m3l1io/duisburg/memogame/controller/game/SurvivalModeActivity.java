@@ -71,11 +71,12 @@ public class SurvivalModeActivity extends ScoreActivity implements
 
     @Override
     public void onGameMatch() {
-
+        super.onGameMatch();
     }
 
     @Override
     public void onGameMatchFail() {
+        super.onGameMatchFail();
         if (--lives == 0) {
             addResultFragment();
         }

@@ -70,12 +70,12 @@ public class TimeModeActivity extends ScoreActivity implements
 
     @Override
     public void onGameMatch() {
-        
+        super.onGameMatch();
     }
 
     @Override
     public void onGameMatchFail() {
-
+        super.onGameMatchFail();
     }
 
     @Override

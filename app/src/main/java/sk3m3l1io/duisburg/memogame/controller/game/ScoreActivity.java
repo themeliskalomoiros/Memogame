@@ -17,6 +17,7 @@ public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {
     private final List<Game> gamesCompleted = new ArrayList<>();
     private final ScoreRepository repo = new FirebaseScoreRepository();
+    private int matches, failedMatches;
 
     protected final int getCompletedGamesCount() {
         return gamesCompleted.size();
@@ -64,6 +65,11 @@ public abstract class ScoreActivity extends GameActivity
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
         repo.saveHighScore(s, gameMode, p);
+        repo.saveCompletedGames(gamesCompleted.size(), p);
+        repo.saveMatches(matches, p);
+        repo.saveFailedMatches(failedMatches, p);
+        if (gamesCompleted.size() == games.size())
+            repo.saveModeCompletion(gameMode, p);
     }
 
     protected final void addResultFragment() {
@@ -80,5 +86,15 @@ public abstract class ScoreActivity extends GameActivity
     @Override
     public final void onResultButtonClick() {
         recreate();
+    }
+
+    @Override
+    public void onGameMatch() {
+        matches++;
+    }
+
+    @Override
+    public void onGameMatchFail() {
+        failedMatches++;
     }
 }
