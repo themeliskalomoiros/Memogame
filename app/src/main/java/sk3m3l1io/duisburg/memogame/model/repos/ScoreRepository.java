@@ -11,11 +11,21 @@ public interface ScoreRepository {
         void onScoresLoad(List<PlayerScore> scores);
     }
 
-    // TODO: Implement a high score listener which publishes when a new high has being achieved.
+    interface HighScoreListener {
+        void onHighScoreAchieved();
+    }
+
+    void setHighScoreListener(HighScoreListener listener);
 
     void setScoresListener(ScoresListener listener);
 
     void loadScores();
 
     void savePlayerGameScore(Player p, GameMode mode, int score);
+
+    void updateCompletedGames(int count);
+
+    void updateMatches(int count);
+
+    void updateFailedMatches(int count);
 }

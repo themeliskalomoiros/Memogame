@@ -10,4 +10,24 @@ public class RandomScores extends FirebaseScoreRepository {
     protected DatabaseReference getDatabaseRef() {
         return FirebaseDatabase.getInstance().getReference().child(SCORES).child(RANDOM);
     }
+
+    @Override
+    public void setHighScoreListener(HighScoreListener listener) {
+        
+    }
+
+    @Override
+    public void updateCompletedGames(int count) {
+
+    }
+
+    @Override
+    public void updateMatches(int count) {
+
+    }
+
+    @Override
+    public void updateFailedMatches(int count) {
+
+    }
 }
