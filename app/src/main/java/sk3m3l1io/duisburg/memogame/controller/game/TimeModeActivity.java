@@ -69,6 +69,11 @@ public class TimeModeActivity extends ScoreActivity implements
     }
 
     @Override
+    public void onGameMatch() {
+        
+    }
+
+    @Override
     public void onGameMatchFail() {
 
     }

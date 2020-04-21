@@ -96,4 +96,9 @@ public class PractiseModeActivity extends GameActivity implements
                 getString(R.string.next_game),
                 NEXT_GAME_DIALOG);
     }
+
+    @Override
+    public void onGameMatch() {
+
+    }
 }

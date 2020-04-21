@@ -70,6 +70,11 @@ public class SurvivalModeActivity extends ScoreActivity implements
     }
 
     @Override
+    public void onGameMatch() {
+
+    }
+
+    @Override
     public void onGameMatchFail() {
         if (--lives == 0) {
             addResultFragment();

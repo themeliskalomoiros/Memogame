@@ -57,10 +57,10 @@ public abstract class ScoreActivity extends GameActivity
     @Override
     public void onGameComplete() {
         gamesCompleted.add(games.get(currentGame));
-        saveScore();
+        saveScoreData();
     }
 
-    private void saveScore() {
+    private void saveScoreData() {
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
         repo.saveHighScore(s, gameMode, p);

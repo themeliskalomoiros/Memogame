@@ -143,6 +143,7 @@ public class GameFragment extends Fragment
     public void onMatch(int position1, int position2) {
         updateUiOnMatch(position1, position2);
         matchCelebration.start();
+        gameEventListener.onGameMatch();
     }
 
     private void updateUiOnMatch(int pos1, int pos2) {
@@ -189,6 +190,8 @@ public class GameFragment extends Fragment
         void onGameStart();
 
         void onGameComplete();
+
+        void onGameMatch();
 
         void onGameMatchFail();
     }
