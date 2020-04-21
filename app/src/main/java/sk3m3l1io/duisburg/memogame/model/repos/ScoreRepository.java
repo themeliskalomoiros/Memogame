@@ -7,8 +7,8 @@ import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 
 public interface ScoreRepository {
-    interface ScoresListener {
-        void onScoresLoad(List<ScoreData> scores);
+    interface ScoreDataListener {
+        void onScoreDataLoad(List<ScoreData> scores);
     }
 
     interface HighScoreListener {
@@ -17,7 +17,7 @@ public interface ScoreRepository {
 
     void setHighScoreListener(HighScoreListener listener);
 
-    void setScoresListener(ScoresListener listener);
+    void setScoresListener(ScoreDataListener listener);
 
     void loadScores();
 

@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
+import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
@@ -69,7 +69,7 @@ public abstract class ScoresFragment extends Fragment
     }
 
     @Override
-    public void onScoresLoad(List<PlayerScore> scores) {
+    public void onScoresLoad(List<ScoreData> scores) {
         if (scores != null && scores.size() > 0) {
             Collections.sort(scores, (s1, s2) -> s2.getScore() - s1.getScore());
             view.setScores(scores, user);

@@ -10,7 +10,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
     private static final String VERSION_2 = "version 2";
 
     private final DatabaseReference ref;
-    private ScoresListener scoresListener;
+    private ScoreDataListener scoresListener;
     private HighScoreListener highScoresListener;
 
     public FirebaseScoreRepository() {
@@ -23,7 +23,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void setScoresListener(ScoresListener listener) {
+    public void setScoresListener(ScoreDataListener listener) {
         scoresListener = listener;
     }
 
