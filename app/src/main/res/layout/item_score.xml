@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/default_margin"
     android:layout_marginRight="16dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="@dimen/default_margin"
     app:cardCornerRadius="@dimen/corner_radius">
 
     <LinearLayout
@@ -18,13 +18,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/default_margin"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="@dimen/player_score_image_size"
                 android:layout_height="@dimen/player_score_image_size"
+                android:scaleType="centerCrop"
                 android:src="@drawable/user_male" />
 
             <TextView
@@ -32,87 +33,106 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="@dimen/default_margin"
                 android:ellipsize="end"
-                android:textSize="@dimen/player_score_text_size"
+                android:textSize="@dimen/item_score_title"
                 tools:text="George Kakogiannis" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_marginLeft="@dimen/player_score_image_size"
+            android:layout_marginTop="@dimen/default_margin">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="@dimen/default_margin"
                 android:ellipsize="end"
                 android:text="@string/rank"
-                android:textSize="@dimen/player_score_text_size" />
+                android:textSize="@dimen/item_score_text" />
 
             <TextView
                 android:id="@+id/rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="@dimen/half_default_margin"
                 android:ellipsize="end"
                 android:text="1st"
-                android:textSize="@dimen/player_score_text_size" />
+                android:textSize="@dimen/item_score_text" />
 
-            <LinearLayout
-                android:id="@+id/badges"
+            <ImageView
+                android:id="@+id/medal"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_gravity="center_vertical"
+                tools:src="@drawable/medal_first_place" />
 
-                <ImageView
-                    android:id="@+id/medal"
-                    android:layout_width="@dimen/player_score_image_size"
-                    android:layout_height="@dimen/player_score_image_size"
-                    android:visibility="gone"
-                    tools:src="@drawable/medal_first_place" />
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/badge_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:src="@drawable/badge" />
+        <LinearLayout
+            android:id="@+id/badges"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:gravity="bottom"
+            android:layout_marginLeft="@dimen/player_score_image_size">
 
-                <ImageView
-                    android:id="@+id/badge_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:src="@drawable/badge" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/badges"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:textSize="@dimen/item_score_text"/>
 
+            <ImageView
+                android:id="@+id/badge_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:src="@drawable/badge" />
+
+            <ImageView
+                android:id="@+id/badge_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/half_default_margin"
+                android:visibility="gone"
+                android:src="@drawable/badge" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_marginLeft="@dimen/player_score_image_size"
+            android:layout_marginTop="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="4dp"
-                android:text="@string/points"
-                android:textSize="@dimen/player_score_text_size" />
+                android:layout_marginLeft="@dimen/default_margin"
+                android:text="@string/points_label"
+                android:textSize="@dimen/item_score_text" />
 
             <TextView
                 android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="8dp"
-                android:textSize="@dimen/player_score_text_size"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:textSize="@dimen/item_score_text"
                 tools:text="20.000" />
         </LinearLayout>
 
@@ -121,6 +141,9 @@
             style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Details" />
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:text="Details"
+            android:layout_marginRight="@dimen/default_margin" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
