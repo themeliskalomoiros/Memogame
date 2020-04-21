@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
-import sk3m3l1io.duisburg.memogame.model.repos.RandomScores;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.RandomView;
@@ -68,12 +67,6 @@ public class SurvivalModeActivity extends ScoreActivity implements
             lives = DEFAULT_LIVES;
             RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
-    }
-
-    @NonNull
-    @Override
-    protected ScoreRepository getScoreRepo() {
-        return new RandomScores();
     }
 
     @Override
