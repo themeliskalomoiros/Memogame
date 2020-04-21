@@ -4,7 +4,7 @@
     <string name="next_game">Nice, play next?</string>
     <string name="no">No</string>
     <string name="sign_out_success">Sign back for saving progress.</string>
-    <string name="sign_in_msg">Great! Now your progress can be saved.</string>
+    <string name="progress_can_be_saved_msg">Great! Now your progress can be saved.</string>
     <string name="must_sign_in">"Must sign in"</string>
     <string name="time_up">Time up!</string>
     <string name="result_not_good">Not so good, you\'ve completed only</string>

@@ -4,7 +4,7 @@
     <string name="next_game">Sehr gut, weiter spielen?</string>
     <string name="no">Nein</string>
     <string name="sign_out_success">Melde dich erneut an, um deinen Fortschritt zu speichern.</string>
-    <string name="sign_in_msg">Toll! Jetzt kann dein Fortschritt gespeichert werden.</string>
+    <string name="progress_can_be_saved_msg">Toll! Jetzt kann dein Fortschritt gespeichert werden.</string>
     <string name="must_sign_in">"Bitte anmelden"</string>
     <string name="time_up">Ende der Zeit!</string>
     <string name="result_not_good">Nicht so gut, du hast nur</string>

@@ -4,7 +4,7 @@
     <string name="next_game">Εύγε! Πάμε επόμενο;</string>
     <string name="no">Όχι</string>
     <string name="sign_out_success">Συνδέσου ξανά για να αποθηκεύονται τα σκορ σου.</string>
-    <string name="sign_in_msg">Τέλεια! Τα επιτεύγματα σου θα αποθηκεύονται.</string>
+    <string name="progress_can_be_saved_msg">Τέλεια! Τα επιτεύγματα σου θα αποθηκεύονται.</string>
     <string name="must_sign_in">"Απαιτείται σύνδεση."</string>
     <string name="time_up">Τέλος χρόνου</string>
     <string name="result_not_good">Όχι και τόσο καλά, κατάφερες μόνο</string>

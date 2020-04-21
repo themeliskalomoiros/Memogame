@@ -43,7 +43,7 @@ import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
 public class MainActivity extends AppCompatActivity implements
         MenuFragment.MenuItemClickListener,
-        MenuFragment.ViewCreationListener,
+        MenuFragment.OnViewCreationListener,
         GameBriefingFragment.OnPlayClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnSuccessListener<Void> {
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onMenuViewCreation() {
+    public void onMenuFragmentViewCreated() {
         updateMenuUI(GoogleSignIn.getLastSignedInAccount(this));
     }
 
