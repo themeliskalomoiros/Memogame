@@ -18,21 +18,18 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
+import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
-    private static final int TYPE_NUMERIC = 1313;
-    private static final int TYPE_MEDAL = 1314;
-
     private Player user;
-    List<PlayerScore> scores;
+    private List<ScoreData> scores;
     private final Context context;
 
     public ScoreAdapter(Context context) {
         this.context = context;
     }
 
-    public void setScores(List<PlayerScore> scores) {
+    public void setScores(List<ScoreData> scores) {
         this.scores = scores;
     }
 
@@ -43,24 +40,9 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     @NonNull
     @Override
     public ScoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == TYPE_MEDAL) {
-            View v = LayoutInflater.from(context)
-                    .inflate(R.layout.item_player_score_medal, parent, false);
-            return new MedalViewHolder(v);
-        } else {
-            View v = LayoutInflater.from(context)
-                    .inflate(R.layout.item_player_score_numeric, parent, false);
-            return new NumericViewHolder(v);
-        }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0 || position == 1 || position == 2) {
-            return TYPE_MEDAL;
-        } else {
-            return TYPE_NUMERIC;
-        }
+        LayoutInflater i = LayoutInflater.from(context);
+        View v = i.inflate(R.layout.item_score, parent, false);
+        return new ScoreViewHolder(v);
     }
 
     @Override
@@ -77,68 +59,76 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return 0;
     }
 
-    abstract class ScoreViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView name, score;
+    class ScoreViewHolder extends RecyclerView.ViewHolder {
+        TextView name, rank, points;
+        ImageView image, medal, leftBadge, rightBadge;
 
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.user_name);
-            score = itemView.findViewById(R.id.user_score);
-            image = itemView.findViewById(R.id.user_image);
-        }
-
-        void bind(PlayerScore ps) {
-            name.setText(ps.getPlayer().getName());
-            boolean isUser = user != null && user.getId().equals(ps.getPlayer().getId());
-            if (isUser) {
-                MaterialCardView card = (MaterialCardView) itemView;
-                card.setCardBackgroundColor(context.getResources().getColor(R.color.secondaryColor100));
-                name.setTypeface(Typeface.DEFAULT_BOLD);
-            }
-            score.setText("" + ps.getScore());
-            if (ps.getPlayer().getPhotoUrl() != null) {
-                Picasso.get()
-                        .load(ps.getPlayer().getPhotoUrl())
-                        .placeholder(R.drawable.user_male)
-                        .error(R.drawable.ic_error_outline_black_48dp)
-                        .into(image);
-            }
-        }
-    }
-
-    class NumericViewHolder extends ScoreViewHolder {
-        TextView position;
-
-        public NumericViewHolder(@NonNull View itemView) {
-            super(itemView);
-            position = itemView.findViewById(R.id.user_position);
-        }
-
-        @Override
-        void bind(PlayerScore ps) {
-            super.bind(ps);
-            position.setText("" + (getAdapterPosition() + 1));
-        }
-    }
-
-    class MedalViewHolder extends ScoreViewHolder {
-        ImageView medal;
-
-        public MedalViewHolder(@NonNull View itemView) {
-            super(itemView);
+            name = itemView.findViewById(R.id.name);
+            rank = itemView.findViewById(R.id.rank);
+            points = itemView.findViewById(R.id.points);
+            image = itemView.findViewById(R.id.image);
             medal = itemView.findViewById(R.id.medal);
+            leftBadge = itemView.findViewById(R.id.badge_left);
+            rightBadge = itemView.findViewById(R.id.badge_right);
         }
 
-        @Override
-        void bind(PlayerScore ps) {
-            super.bind(ps);
-            if (getAdapterPosition() == 0)
+        void bind(ScoreData s) {
+            name.setText(s.getPlayer().getName());
+            rank.setText("" + (getAdapterPosition() + 1));
+            points.setText(s.getTotalPoints());
+
+            if (isUser(s.getPlayer()))
+                updateUserUi();
+
+            if (s.getPlayer().getPhotoUrl() != null)
+                loadImage(s.getPlayer().getPhotoUrl());
+
+            if (isMedalWinner())
+                updateMedalUi();
+
+            if (s.isTimeCompleted())
+                leftBadge.setVisibility(View.VISIBLE);
+
+            if (s.isSurvivalCompleted())
+                rightBadge.setVisibility(View.VISIBLE);
+        }
+
+        private boolean isUser(Player p) {
+            return user != null && user.getId().equals(p.getId());
+        }
+
+        private void updateUserUi() {
+            MaterialCardView card = (MaterialCardView) itemView;
+            int color = context.getResources().getColor(R.color.secondaryColor100);
+            card.setCardBackgroundColor(color);
+            name.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+
+        private void loadImage(String url) {
+            Picasso.get()
+                    .load(url)
+                    .placeholder(R.drawable.user_male)
+                    .error(R.drawable.error)
+                    .into(image);
+        }
+
+        private boolean isMedalWinner() {
+            int pos = getAdapterPosition();
+            return pos == 0 || pos == 1 || pos == 2;
+        }
+
+        private void updateMedalUi() {
+            if (getAdapterPosition() == 0) {
                 medal.setImageResource(R.drawable.medal_first_place);
-            if (getAdapterPosition() == 1)
+            } else if (getAdapterPosition() == 1) {
                 medal.setImageResource(R.drawable.medal_second_place);
-            if (getAdapterPosition() == 2)
+            } else if (getAdapterPosition() == 2) {
                 medal.setImageResource(R.drawable.medal_third_place);
+            }
+
+            medal.setVisibility(View.VISIBLE);
         }
     }
 }
