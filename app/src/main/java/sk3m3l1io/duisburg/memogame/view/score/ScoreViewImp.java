@@ -3,6 +3,7 @@ package sk3m3l1io.duisburg.memogame.view.score;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,16 +12,22 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.pojos.PlayerScore;
+import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 
 public class ScoreViewImp implements ScoreView {
     private View root;
+    private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private ScoreAdapter adapter;
 
     public ScoreViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_scores, container, false);
+        progressBar = root.findViewById(R.id.progressbar);
         recyclerView = root.findViewById(R.id.recycler_view);
+        setupRecyclerView();
+    }
+
+    private void setupRecyclerView() {
         adapter = new ScoreAdapter(root.getContext());
         recyclerView.setAdapter(adapter);
         LinearLayoutManager lm = new LinearLayoutManager(root.getContext());
@@ -29,10 +36,20 @@ public class ScoreViewImp implements ScoreView {
     }
 
     @Override
-    public void setScores(List<PlayerScore> scores, Player user) {
+    public void setScores(List<ScoreData> scores, Player user) {
         adapter.setScores(scores);
         adapter.setUser(user);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showLoadingIndicator() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

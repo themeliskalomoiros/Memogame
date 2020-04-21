@@ -20,23 +20,10 @@ import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
-public class ScoreDataFragment extends Fragment
-        implements ScoreRepository.ScoreDataListener {
+public class ScoreDataFragment extends Fragment implements ScoreRepository.ScoreDataListener {
     private Player user;
     private ScoreView view;
     protected ScoreRepository repo;
-    private ScoresLoadListener listener;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            listener = (ScoresLoadListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(getActivity().toString()
-                    + " must implement " + ScoresLoadListener.class.getSimpleName());
-        }
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,32 +46,24 @@ public class ScoreDataFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         repo.loadScores();
-        listener.onLoadBegun();
+        view.showLoadingIndicator();
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
+    public void onDestroy() {
+        repo.setScoresListener(null);
+        super.onDestroy();
     }
 
     @Override
     public void onScoreDataLoad(List<ScoreData> scores) {
         if (scores != null && scores.size() > 0) {
-            // TODO: must find another way to sort the scores
             Collections.sort(scores);
             view.setScores(scores, user);
-            listener.onLoadFinished();
         }
     }
 
     public void setUser(Player user) {
         this.user = user;
-    }
-
-    interface ScoresLoadListener {
-        void onLoadBegun();
-
-        void onLoadFinished();
     }
 }
