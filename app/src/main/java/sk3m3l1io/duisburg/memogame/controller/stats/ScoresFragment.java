@@ -19,7 +19,7 @@ import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
-public class ScoreDataFragment extends Fragment implements ScoreRepository.ScoreDataListener {
+public class ScoresFragment extends Fragment implements ScoreRepository.ScoreDataListener {
     private Player user;
     private ScoreView view;
     protected ScoreRepository repo;

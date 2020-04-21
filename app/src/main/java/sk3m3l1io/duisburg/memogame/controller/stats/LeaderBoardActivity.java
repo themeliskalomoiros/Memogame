@@ -28,7 +28,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
     private void addScoreFragment() {
-        ScoreDataFragment f = new ScoreDataFragment();
+        ScoresFragment f = new ScoresFragment();
         f.setUser(user);
         getSupportFragmentManager()
                 .beginTransaction()
