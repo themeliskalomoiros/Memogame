@@ -3,6 +3,8 @@ package sk3m3l1io.duisburg.memogame.controller.game;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,13 +12,15 @@ import java.util.List;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.Points;
 
 public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {
-    private final List<Game> gamesCompleted = new ArrayList<>();
 
+    private final List<Game> gamesCompleted = new ArrayList<>();
+    private final ScoreRepository repository = new FirebaseScoreRepository();
     protected final int getCompletedGamesCount() {
         return gamesCompleted.size();
     }
@@ -62,11 +66,8 @@ public abstract class ScoreActivity extends GameActivity
     private void saveScore() {
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
-        getScoreRepo().savePlayerGameScore(p, gameMode, s);
+        repository.saveScore(s, gameMode, p);
     }
-
-    protected abstract @NonNull
-    ScoreRepository getScoreRepo();
 
     protected final void addResultFragment() {
         ResultFragment f = new ResultFragment();
