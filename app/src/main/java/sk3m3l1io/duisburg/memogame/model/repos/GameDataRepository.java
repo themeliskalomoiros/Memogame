@@ -4,6 +4,6 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 
-public interface GameRepository {
+public interface GameDataRepository {
     List<Game> getGames();
 }

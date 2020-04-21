@@ -3,19 +3,20 @@ package sk3m3l1io.duisburg.memogame.services;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
+import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 
-public final class Score {
+public final class Points {
     public static final int POINTS_EASY = 100;
     public static final int POINTS_NORMAL = 150;
     public static final int POINTS_HARD = 200;
 
-    private Score() {
+    private Points() {
     }
 
     public static int calculate(List<Game> completedGames) {
         int sum = 0;
         for (Game g : completedGames)
-            sum += getPoints(g);
+            sum += getFromDifficulty(g.getDifficulty());
 
         return sum;
     }
@@ -25,7 +26,7 @@ public final class Score {
         for (int i = 0; i < completedGames.size(); i++) {
             Game g = completedGames.get(i);
             double a = accuracyPerGame.get(i);
-            points += getPoints(g) * a;
+            points += getFromDifficulty(g.getDifficulty()) * a;
         }
         return points;
     }
@@ -34,8 +35,8 @@ public final class Score {
         return survival * 0.495 + time * 0.495 + allGamesCompleted * 0.01;
     }
 
-    private static int getPoints(Game g) {
-        switch (g.getDifficulty()) {
+    private static int getFromDifficulty(GameDifficulty difficulty) {
+        switch (difficulty) {
             case EASY:
                 return POINTS_EASY;
             case HARD:

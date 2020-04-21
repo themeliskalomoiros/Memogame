@@ -12,7 +12,7 @@ import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.utils.FileUtils;
 
-public class GameRepositoryImp implements GameRepository {
+public class GameDataRepositoryImp implements GameDataRepository {
     private static final String KEY_TITLE = "title";
     private static final String KEY_COVER = "cover";
     private static final String KEY_SYMBOLS = "symbols";
@@ -21,7 +21,7 @@ public class GameRepositoryImp implements GameRepository {
 
     private final String json;
 
-    public GameRepositoryImp(final InputStream file) {
+    public GameDataRepositoryImp(final InputStream file) {
         json = FileUtils.getTextFrom(file);
     }
 

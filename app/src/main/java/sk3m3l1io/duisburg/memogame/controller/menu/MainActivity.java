@@ -35,8 +35,8 @@ import sk3m3l1io.duisburg.memogame.controller.stats.LeaderBoardActivity;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.repos.GameRepository;
-import sk3m3l1io.duisburg.memogame.model.repos.GameRepositoryImp;
+import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
+import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
                     String[] paths = getAssets().list("");
                     for (String p : paths) {
                         if (p.contains("games.json")) {
-                            GameRepository repo = new GameRepositoryImp(getAssets().open(p));
+                            GameDataRepository repo = new GameDataRepositoryImp(getAssets().open(p));
                             return repo.getGames();
                         }
                     }

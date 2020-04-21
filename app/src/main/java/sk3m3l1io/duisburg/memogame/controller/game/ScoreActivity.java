@@ -11,7 +11,7 @@ import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
-import sk3m3l1io.duisburg.memogame.services.Score;
+import sk3m3l1io.duisburg.memogame.services.Points;
 
 public abstract class ScoreActivity extends GameActivity
         implements ResultFragment.ResultButtonClickListener {
@@ -60,7 +60,7 @@ public abstract class ScoreActivity extends GameActivity
     }
 
     private void saveScore() {
-        int s = Score.calculate(gamesCompleted);
+        int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
         getScoreRepo().saveScore(s, p);
     }

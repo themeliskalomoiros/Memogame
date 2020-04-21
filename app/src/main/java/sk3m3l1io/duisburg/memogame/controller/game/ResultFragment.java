@@ -15,7 +15,7 @@ import java.util.List;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
-import sk3m3l1io.duisburg.memogame.services.Score;
+import sk3m3l1io.duisburg.memogame.services.Points;
 import sk3m3l1io.duisburg.memogame.view.score.ResultView;
 import sk3m3l1io.duisburg.memogame.view.score.ResultViewImp;
 
@@ -54,7 +54,7 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
     private void updateUI() {
         view.setTitle(getTitle());
         view.setMessage(getMessage());
-        int score = Score.calculate(completedGames);
+        int score = Points.calculate(completedGames);
         view.setScore("" + score + " " + getString(R.string.points));
         if (score > 0) {
             view.setGameDetails(getDetails());
@@ -79,13 +79,13 @@ public class ResultFragment extends Fragment implements ResultView.ButtonClickLi
         StringBuilder sb = new StringBuilder();
         sb.append(getString(R.string.score_analysis) + "\n");
         if (easy > 0) {
-            sb.append(getDetailLine(easy, getString(R.string.difficulity_easy), Score.POINTS_EASY) + "\n");
+            sb.append(getDetailLine(easy, getString(R.string.difficulity_easy), Points.POINTS_EASY) + "\n");
         }
         if (normal > 0) {
-            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Score.POINTS_NORMAL) + "\n");
+            sb.append(getDetailLine(normal, getString(R.string.difficulity_normal), Points.POINTS_NORMAL) + "\n");
         }
         if (hard > 0) {
-            sb.append(getDetailLine(hard, getString(R.string.difficulity_hard), Score.POINTS_HARD));
+            sb.append(getDetailLine(hard, getString(R.string.difficulity_hard), Points.POINTS_HARD));
         }
         return sb.toString();
     }
