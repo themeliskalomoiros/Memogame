@@ -63,7 +63,7 @@ public class ScoreData implements Comparable<ScoreData> {
         return o.getTotalPoints() - getTotalPoints();
     }
 
-    private int getTotalPoints() {
+    public int getTotalPoints() {
         return (int) (getGamePoints() + getGamesCompletedPoints() + getAccuracyPoints() + getBadgePoints());
     }
 
