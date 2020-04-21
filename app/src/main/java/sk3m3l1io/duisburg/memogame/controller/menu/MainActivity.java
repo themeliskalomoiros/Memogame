@@ -44,7 +44,7 @@ import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 public class MainActivity extends AppCompatActivity implements
         MenuFragment.MenuItemClickListener,
         MenuFragment.ViewCreationListener,
-        GameBriefingFragment.StartGameClickListener,
+        GameBriefingFragment.OnPlayClickListener,
         LoaderManager.LoaderCallbacks<List<Game>>,
         OnSuccessListener<Void> {
     private static final int LOADER_ID = 123;
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onStartGameClick() {
+    public void onPlayClick() {
         forwardSound.start();
         startActivity(getPlayModeIntent(gameMode));
     }

@@ -19,16 +19,16 @@ public class GameBriefingFragment extends Fragment
         implements GameBriefingView.StartGameClickListener {
     private int titleRes, messageRes;
     private GameBriefingView view;
-    private StartGameClickListener listener;
+    private OnPlayClickListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (StartGameClickListener) context;
+            listener = (OnPlayClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement " + StartGameClickListener.class.getSimpleName());
+                    + " must implement " + OnPlayClickListener.class.getSimpleName());
         }
     }
 
@@ -58,11 +58,11 @@ public class GameBriefingFragment extends Fragment
 
     @Override
     public void onStartGameClick() {
-        listener.onStartGameClick();
+        listener.onPlayClick();
     }
 
-    public interface StartGameClickListener {
-        void onStartGameClick();
+    public interface OnPlayClickListener {
+        void onPlayClick();
     }
 
     public static GameBriefingFragment instanceOf(GameMode mode) {
