@@ -41,6 +41,8 @@ import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
+import static sk3m3l1io.duisburg.memogame.utils.GoogleUtils.createPlayerFrom;
+
 public class MainActivity extends AppCompatActivity implements
         MenuFragment.MenuItemClickListener,
         MenuFragment.OnViewCreationListener,
@@ -230,6 +232,15 @@ public class MainActivity extends AppCompatActivity implements
         addGameBriefingFragment(gameMode);
     }
 
+    private void addGameBriefingFragment(GameMode mode) {
+        GameBriefingFragment f = GameBriefingFragment.instanceOf(mode);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(view.getMenuContainerId(), f)
+                .commit();
+    }
+
     @Override
     public void onSignInClick() {
         forwardSound.start();
@@ -247,11 +258,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startLeaderBoardActivity() {
+        Player p = createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
         Intent i = new Intent(this, LeaderBoardActivity.class);
-        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(this);
-        Player p = GoogleUtils.createPlayerFrom(acc);
-        if (p != null)
-            i.putExtra(Player.class.getSimpleName(), p);
+        i.putExtra(Player.class.getSimpleName(), p);
         startActivity(i);
     }
 
@@ -294,15 +303,6 @@ public class MainActivity extends AppCompatActivity implements
         ((MenuFragment) f).setDefaultSignInIcon();
         view.hidePlayerName();
         Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
-    }
-
-    private void addGameBriefingFragment(GameMode mode) {
-        GameBriefingFragment f = GameBriefingFragment.instanceOf(mode);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(view.getMenuContainerId(), f)
-                .commit();
     }
 
     @Override
