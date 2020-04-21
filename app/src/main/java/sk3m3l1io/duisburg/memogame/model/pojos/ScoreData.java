@@ -1,6 +1,6 @@
 package sk3m3l1io.duisburg.memogame.model.pojos;
 
-public class ScoreData {
+public class ScoreData implements Comparable<ScoreData> {
     private int matches;
     private int failedMatches;
     private int gamesCompleted;
@@ -56,5 +56,37 @@ public class ScoreData {
 
     public Player getPlayer() {
         return player;
+    }
+
+    @Override
+    public int compareTo(ScoreData o) {
+        return o.getTotalPoints() - getTotalPoints();
+    }
+
+    private int getTotalPoints() {
+        return (int) (getGamePoints() + getGamesCompletedPoints() + getAccuracyPoints() + getBadgePoints());
+    }
+
+    private double getAccuracyPoints() {
+        return ((matches * 1.0) / failedMatches) * 0.01;
+    }
+
+    private double getGamesCompletedPoints() {
+        return getGamePoints() * gamesCompleted * 0.001;
+    }
+
+    private double getGamePoints() {
+        return (timeHighScore + survivalHighScore) / 2.0;
+    }
+
+    private double getBadgePoints() {
+        int sum = 0;
+        if (survivalCompleted)
+            sum += getGamePoints() * 0.01;
+
+        if (timeCompleted)
+            sum += getGamePoints() * 0.01;
+
+        return sum;
     }
 }

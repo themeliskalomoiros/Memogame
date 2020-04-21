@@ -15,11 +15,12 @@ import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
+import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
-public abstract class ScoreDataFragment extends Fragment
+public class ScoreDataFragment extends Fragment
         implements ScoreRepository.ScoreDataListener {
     private Player user;
     private ScoreView view;
@@ -40,10 +41,9 @@ public abstract class ScoreDataFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initRepository();
+        repo = new FirebaseScoreRepository();
+        repo.setScoresListener(this);
     }
-
-    public abstract void initRepository();
 
     @Nullable
     @Override
@@ -72,7 +72,7 @@ public abstract class ScoreDataFragment extends Fragment
     public void onScoreDataLoad(List<ScoreData> scores) {
         if (scores != null && scores.size() > 0) {
             // TODO: must find another way to sort the scores
-//            Collections.sort(scores, (s1, s2) -> s2.getScore() - s1.getScore());
+            Collections.sort(scores);
             view.setScores(scores, user);
             listener.onLoadFinished();
         }
