@@ -63,13 +63,14 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(view.getRootView());
         addMenuFragment();
         loadGames(savedInstanceState);
+        // TODO: check from the start if the user is already signed in and update the UI
         initGoogleSignInClient();
     }
 
     private void addMenuFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(view.getMenuContainerId(), new MenuFragment())
                 .commit();
     }
@@ -105,8 +106,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onSaveInstanceState(outState);
         if (games != null && games.size() >= 0) {
             outState.putParcelableArrayList(
-                    Game.class.getSimpleName(),
-                    (ArrayList<? extends Parcelable>) games);
+                    Game.class.getSimpleName(), (ArrayList<? extends Parcelable>) games);
         }
     }
 
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             updateMenuUI(acc);
-            Snackbar.make(view.getRootView(), R.string.sign_in_msg, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(view.getRootView(), R.string.progress_can_be_saved_msg, Snackbar.LENGTH_SHORT).show();
         } catch (ApiException e) {
             updateMenuUI(null);
         }
