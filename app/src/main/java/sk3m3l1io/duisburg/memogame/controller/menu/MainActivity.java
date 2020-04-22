@@ -202,22 +202,20 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTimeModeClick() {
-//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-//            addGameBriefingFragment(gameMode = GameMode.TIME);
-//        } else {
-//            showSignInSnackbar();
-//        }
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             addGameBriefingFragment(gameMode = GameMode.TIME);
+        } else {
+            showSignInSnackbar();
+        }
     }
 
     @Override
     public void onSurvivalModeClick() {
-//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-//            addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
-//        } else {
-//            showSignInSnackbar();
-//        }
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
+        } else {
+            showSignInSnackbar();
+        }
     }
 
     private void showSignInSnackbar() {

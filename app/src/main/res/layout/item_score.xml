@@ -140,6 +140,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/default_margin"
             android:text="@string/details"
+            android:textSize="@dimen/item_score_text"
             android:layout_marginRight="@dimen/default_margin" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -59,11 +59,12 @@
 
     <style name="MainMenu_Item_Style">
         <item name="android:layout_width">@dimen/menu_item_label_width</item>
-        <item name="android:layout_height">68dp</item>
+        <item name="android:layout_height">@dimen/menu_item_height</item>
         <item name="android:textSize">@dimen/menu_item_label</item>
         <item name="android:drawablePadding">@dimen/menu_item_label_drawable_padding</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
-        <item name="android:padding">@dimen/menu_item_label_margin</item>
+        <item name="android:padding">@dimen/menu_item_label_padding</item>
+        <item name="android:layout_margin">@dimen/menu_item_label_margin</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -143,9 +144,4 @@
         <item name="android:backgroundTint">@color/secondaryColor</item>
         <item name="fabSize">mini</item>
     </style>
-
-    <dimen name="corner_radius">16dp</dimen>
-    <dimen name="double_default_margin">16dp</dimen>
-    <dimen name="game_difficulty_text">20sp</dimen>
-    <dimen name="briefing_parent_margin">32dp</dimen>
 </resources>

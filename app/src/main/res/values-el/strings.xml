@@ -37,7 +37,7 @@
     <string name="survival_mode_message">Έχεις 3 δευτερόλεπτα να απομνημονεύσεις τα ζευγάρια ενός παιχνιδιού.\nΟλοκλήρωσε το παιχνίδι χωρίς να χάσεις τις ζωές σου. Καλή επιτυχία!</string>
     <string name="look">👀</string>
     <string name="swipe_label">(σύρε)</string>
-    <string name="choose_an_option">Διάλεξε</string>
+    <string name="options">Επιλογές</string>
     <string name="player_name_prefix">Συνδέθηκες ως</string>
     <string name="sign_in">Σύνδεση</string>
     <string name="swipe_for">σύρε για</string>

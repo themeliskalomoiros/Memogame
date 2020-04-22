@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="half_default_margin">8dp</dimen>
+    <dimen name="item_score_section">40sp</dimen>
+    <dimen name="item_score_text">32sp</dimen>
     <dimen name="player_score_margin">8dp</dimen>
-    <dimen name="item_score_text">40sp</dimen>
-    <dimen name="menu_item_label_width">600dp</dimen>
+    <dimen name="menu_item_label_width">480dp</dimen>
     <dimen name="menu_item_label_padding">16dp</dimen>
     <dimen name="symbol_group_margin">16dp</dimen>
-    <dimen name="title">88sp</dimen>
-    <dimen name="subtitle">64sp</dimen>
-    <dimen name="box">192dp</dimen>
+    <dimen name="title">80sp</dimen>
+    <dimen name="subtitle">56sp</dimen>
+    <dimen name="box">176dp</dimen>
     <dimen name="loading_indicator">240dp</dimen>
-    <dimen name="symbol_char">112sp</dimen>
+    <dimen name="symbol_char">96sp</dimen>
     <dimen name="bottom_bar_height">128dp</dimen>
     <dimen name="top_line_height">8dp</dimen>
     <dimen name="time_indicator_height">8dp</dimen>
     <dimen name="player_name">32sp</dimen>
-    <dimen name="menu_item_label">40sp</dimen>
+    <dimen name="menu_item_label">32sp</dimen>
     <dimen name="menu_item_label_drawable_padding">16dp</dimen>
+    <dimen name="player_score_image_size">104dp</dimen>
+    <dimen name="hearts_text">48sp</dimen>
+    <dimen name="briefing_divider_margin">64dp</dimen>
+    <dimen name="menu_item_height">120dp</dimen>
+    <dimen name="briefing_message_text">40dp</dimen>
+    <dimen name="score_details_image">480dp</dimen>
+    <dimen name="corner_radius">32dp</dimen>
+    <dimen name="double_default_margin">32dp</dimen>
+    <dimen name="game_difficulty_text">40sp</dimen>
+    <dimen name="briefing_parent_margin">64dp</dimen>
     <dimen name="menu_item_label_margin">16dp</dimen>
-    <dimen name="player_score_image_size">96dp</dimen>
 </resources>

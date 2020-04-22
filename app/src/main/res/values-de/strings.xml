@@ -37,7 +37,7 @@
     <string name="survival_mode_message">Du hast 3 Sekunden Zeit, um dir die Paare zu merken! Dann musst du das Spiel beenden, ohne deine ganzen Leben zu verlieren.\nViel Glück!</string>
     <string name="look">👀</string>
     <string name="swipe_label">(Wechsle zwischen Modi)</string>
-    <string name="choose_an_option">Wähle eine Option</string>
+    <string name="options">Optionen</string>
     <string name="player_name_prefix">Angemeldet als</string>
     <string name="sign_in">Anmelden</string>
     <string name="swipe_for">Wechsel zu</string>

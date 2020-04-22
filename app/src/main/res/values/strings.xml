@@ -37,7 +37,7 @@
     <string name="survival_mode_message">You have 3 seconds to memorize the pairs! Then you must complete that game without losing all of your lives.\nGood luck!</string>
     <string name="look">👀</string>
     <string name="swipe_label">(swipe between modes)</string>
-    <string name="choose_an_option">Choose an option</string>
+    <string name="options">Options</string>
     <string name="player_name_prefix">Signed in as</string>
     <string name="sign_in">Sign in</string>
     <string name="swipe_for">swipe for</string>
