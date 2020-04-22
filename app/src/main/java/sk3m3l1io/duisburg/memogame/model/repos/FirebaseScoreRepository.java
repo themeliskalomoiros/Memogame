@@ -19,7 +19,7 @@ import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public class FirebaseScoreRepository implements ScoreRepository {
-    private static final String VERSION_2 = "version 2";
+    private static final String VERSION_2 = "version_2";
     private static final String TIME_HIGHSCORE = "time_highscore";
     private static final String SURVIVAL_HIGHSCORE = "survival_highscore";
     private static final String GAMES_COMPLETED = "games_completed";
