@@ -18,13 +18,11 @@ import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public class ScoreViewImp implements ScoreView {
     private View root;
-    private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private ScoreAdapter adapter;
 
     public ScoreViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_scores, container, false);
-        progressBar = root.findViewById(R.id.progressbar);
         recyclerView = root.findViewById(R.id.recycler_view);
         setupRecyclerView();
     }
@@ -47,16 +45,6 @@ public class ScoreViewImp implements ScoreView {
         adapter.setScores(scores);
         adapter.setUser(user);
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showLoadingIndicator() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoadingIndicator() {
-        progressBar.setVisibility(View.GONE);
     }
 
     @Override

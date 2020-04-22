@@ -4,4 +4,8 @@ import sk3m3l1io.duisburg.memogame.view.TitleView;
 
 public interface LeaderBoardView extends TitleView {
     int getFragmentContainerId();
+
+    void showLoadingIndicator();
+
+    void hideLoadingIndicator();
 }

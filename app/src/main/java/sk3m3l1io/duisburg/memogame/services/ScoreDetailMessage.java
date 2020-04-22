@@ -45,11 +45,11 @@ public final class ScoreDetailMessage {
 
     private String getSecondSentence() {
         if (sd.isTimeCompleted() && sd.isSurvivalCompleted()) {
-            return "He/She gained two badges because of excellence shown in Time and Survival modes.";
+            return "He/She gained honors because of excellence shown in Time and Survival modes.";
         } else if (sd.isTimeCompleted() && !sd.isSurvivalCompleted()) {
-            return "He/She gained a badge because of excellence shown in Time mode.";
+            return "He/She gained an honor because of excellence shown in Time mode.";
         } else if (!sd.isTimeCompleted() && sd.isSurvivalCompleted()) {
-            return "He/She gained a badge because of excellence shown in Survival mode.";
+            return "He/She gained an honor because of excellence shown in Survival mode.";
         } else {
             return "";
         }
@@ -78,11 +78,11 @@ public final class ScoreDetailMessage {
 
     private String getSecondSentenceInGreek() {
         if (sd.isTimeCompleted() && sd.isSurvivalCompleted()) {
-            return "Κέρδισε δύο παράσημα λόγω τέλειας επίδοσης στους γύρους Χρόνου και Επιβίωσης.";
+            return "Κέρδισε επαίνους λόγω τέλειας επίδοσης στους γύρους Χρόνου και Επιβίωσης.";
         } else if (sd.isTimeCompleted() && !sd.isSurvivalCompleted()) {
-            return "Κέρδισε ένα παράσημο λόγω τέλειας επίδοσης στο γύρο Χρόνος.";
+            return "Κέρδισε έπαινο λόγω τέλειας επίδοσης στο γύρο Χρόνος.";
         } else if (!sd.isTimeCompleted() && sd.isSurvivalCompleted()) {
-            return "Κέρδισε ένα παράσημο λόγω τέλειας επίδοσης στο γύρο Επιβίωση.";
+            return "Κέρδισε έπαινο λόγω τέλειας επίδοσης στο γύρο Επιβίωση.";
         } else {
             return "";
         }

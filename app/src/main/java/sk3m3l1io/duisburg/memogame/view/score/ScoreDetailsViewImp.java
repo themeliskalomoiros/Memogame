@@ -15,6 +15,7 @@ public class ScoreDetailsViewImp implements ScoreDetailsView {
     private ImageView image, medal, leftBadge, rightBadge;
     private TextView name, message, survivalPoints, timePoints,
             averagePoints, gamesCompletedPoints, accuracyPoints, badgesPoints, totalPoints;
+    private ViewGroup badgeContainer;
 
     public ScoreDetailsViewImp(LayoutInflater inflater, ViewGroup parent) {
         root = inflater.inflate(R.layout.fragment_score_details, parent, false);
@@ -31,6 +32,7 @@ public class ScoreDetailsViewImp implements ScoreDetailsView {
         accuracyPoints = root.findViewById(R.id.accuracy);
         badgesPoints = root.findViewById(R.id.badges);
         totalPoints = root.findViewById(R.id.total_points);
+        badgeContainer = root.findViewById(R.id.badges_container);
     }
 
     @Override
@@ -50,16 +52,19 @@ public class ScoreDetailsViewImp implements ScoreDetailsView {
 
     @Override
     public void showMedal() {
+        badgeContainer.setVisibility(View.VISIBLE);
         medal.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showLeftBadge() {
+        badgeContainer.setVisibility(View.VISIBLE);
         leftBadge.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showRightBadge() {
+        badgeContainer.setVisibility(View.VISIBLE);
         rightBadge.setVisibility(View.VISIBLE);
     }
 

@@ -1,6 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller.stats;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
 import sk3m3l1io.duisburg.memogame.services.ScoreDetailMessage;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreDetailsView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreDetailsViewImp;
 
@@ -40,6 +42,7 @@ public class ScoreDetailsFragment extends Fragment {
         view.setTimePoints(sd.getTimeHighScore());
         view.setAveragePoints((int) sd.getGameAverageGamePoints());
         view.setCompletedGamesPoints((int) sd.getGamesCompletedPoints());
+        Log.d(LogUtils.TAG, "Accuracy points: "+sd.getAccuracyPoints());
         view.setAccuracyPoints((int) sd.getAccuracyPoints());
         view.setBadgesPoints((int) sd.getBadgePoints());
         view.setTotalPoints(sd.getTotalPoints());

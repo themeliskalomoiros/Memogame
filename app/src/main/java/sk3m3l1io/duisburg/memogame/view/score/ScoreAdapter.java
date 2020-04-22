@@ -49,6 +49,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ScoreViewHolder vh, int i) {
+        vh.clearCachedViews();
         vh.bind(scores.get(i));
     }
 
@@ -69,6 +70,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         TextView name, rank, points;
         ImageView image, medal, leftBadge, rightBadge;
         MaterialButton button;
+        ViewGroup badgesContainer;
 
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +86,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
                 if (itemClickListener != null)
                     itemClickListener.onScoreDetailsClicked(getAdapterPosition());
             });
+            badgesContainer = itemView.findViewById(R.id.badges_container);
         }
 
         void bind(ScoreData s) {
@@ -106,6 +109,14 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
         }
 
+        void clearCachedViews() {
+            badgesContainer.setVisibility(View.GONE);
+            medal.setVisibility(View.GONE);
+            rightBadge.setVisibility(View.GONE);
+            leftBadge.setVisibility(View.GONE);
+            Glide.with(image).clear(image);
+        }
+
         private boolean isUser(Player p) {
             return user != null && user.getId().equals(p.getId());
         }
@@ -118,7 +129,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         }
 
         private void loadImage(String url) {
-            Glide.with(context).load(url).placeholder(R.drawable.user_male).into(image);
+            Glide.with(image).load(url).placeholder(R.drawable.user_male).into(image);
         }
 
         private boolean isMedalWinner() {
@@ -149,8 +160,9 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             if (s.isSurvivalCompleted())
                 rightBadge.setVisibility(View.VISIBLE);
 
-            ViewGroup container = itemView.findViewById(R.id.badges);
-            container.setVisibility(View.VISIBLE);
+            ViewGroup container = itemView.findViewById(R.id.badges_container);
+            if (container != null)
+                container.setVisibility(View.VISIBLE);
         }
     }
 }

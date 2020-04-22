@@ -42,11 +42,12 @@
     <string name="sign_in">Σύνδεση</string>
     <string name="swipe_for">σύρε για</string>
     <string name="rank">Κατάταξη</string>
-    <string name="badges">Παράσημα</string>
+    <string name="badges">Έπαινοι</string>
     <string name="basic_points">Πόντοι</string>
     <string name="game_analysis">Ανάλυση Παιχνιδιού</string>
     <string name="average">Μέσος Όρος</string>
     <string name="accuracy">Ακρίβεια</string>
     <string name="bonus_points_label">Έξτρα Πόντοι</string>
     <string name="total">Σύνολο</string>
+    <string name="details">Λεπτρομέρειες</string>
 </resources>

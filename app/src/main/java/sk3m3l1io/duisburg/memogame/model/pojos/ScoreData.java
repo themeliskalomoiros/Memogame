@@ -68,15 +68,19 @@ public class ScoreData implements Comparable<ScoreData> {
     }
 
     public double getAccuracyPoints() {
-        if (failedMatches != 0) {
-            return ((matches * 1.0) / (matches + failedMatches)) * getGameAverageGamePoints() * 0.1;
-        }
-
-        return 0;
+        return getGameAverageGamePoints() * getAccuracy();
     }
 
     public double getAccuracyPercent() {
-        return (getMatches() * 1.0) / (getMatches() + getFailedMatches()) * 100;
+        return getAccuracy() * 100;
+    }
+
+    private double getAccuracy(){
+        if (getMatches() + getFailedMatches() != 0){
+            return (getMatches() * 1.0) / (getMatches() + getFailedMatches());
+        }
+
+        return 0;
     }
 
     public double getGamesCompletedPoints() {
@@ -90,10 +94,10 @@ public class ScoreData implements Comparable<ScoreData> {
     public double getBadgePoints() {
         int sum = 0;
         if (survivalCompleted)
-            sum += getGameAverageGamePoints() * 0.01;
+            sum += survivalHighScore * 0.01;
 
         if (timeCompleted)
-            sum += getGameAverageGamePoints() * 0.01;
+            sum += timeHighScore * 0.01;
 
         return sum;
     }

@@ -20,14 +20,11 @@ import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
-public class ScoresFragment extends Fragment implements
-        ScoreRepository.ScoreDataListener,
-        ScoreView.OnScoreDetailsClickListener {
+public class ScoresFragment extends Fragment implements ScoreView.OnScoreDetailsClickListener {
     private Player user;
     private ScoreView view;
-    protected ScoreRepository repo;
-    private List<ScoreData> scores;
     OnScoreDetailsClickListener listener;
+    private List<ScoreData> scores;
 
     @Override
     public void onAttach(Context context) {
@@ -38,13 +35,6 @@ public class ScoresFragment extends Fragment implements
             throw new ClassCastException(getActivity().toString()
                     + " must implement " + OnScoreDetailsClickListener.class.getSimpleName());
         }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        repo = new FirebaseScoreRepository();
-        repo.setScoresListener(this);
     }
 
     @Nullable
@@ -61,24 +51,13 @@ public class ScoresFragment extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        repo.loadScores();
-        view.showLoadingIndicator();
+        view.setScores(scores, user);
     }
 
     @Override
-    public void onDestroy() {
-        repo.setScoresListener(null);
-        super.onDestroy();
-    }
-
-    @Override
-    public void onScoreDataLoad(List<ScoreData> scores) {
-        if (scores != null && scores.size() > 0) {
-            Collections.sort(scores);
-            view.setScores(scores, user);
-            view.hideLoadingIndicator();
-            this.scores = scores;
-        }
+    public void onDetach() {
+        listener = null;
+        super.onDetach();
     }
 
     public void setUser(Player user) {
@@ -87,6 +66,10 @@ public class ScoresFragment extends Fragment implements
 
     public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener){
         this.listener = listener;
+    }
+
+    public void setScores(List<ScoreData> scores) {
+        this.scores = scores;
     }
 
     @Override

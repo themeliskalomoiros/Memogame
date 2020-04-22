@@ -14,8 +14,4 @@ public interface ScoreView extends ViewMvc {
     void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener);
 
     void setScores(List<ScoreData> scores, Player user);
-
-    void showLoadingIndicator();
-
-    void hideLoadingIndicator();
 }

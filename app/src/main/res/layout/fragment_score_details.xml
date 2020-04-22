@@ -16,58 +16,68 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/image"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:scaleType="centerCrop"
-                android:visibility="gone"
-                tools:src="@drawable/user_male"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/medal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/medal_first_place"
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:scaleType="centerCrop"
                     android:visibility="gone"
+                    android:layout_gravity="center"
+                    tools:src="@drawable/user_male"
                     tools:visibility="visible" />
 
-                <ImageView
-                    android:id="@+id/badge_left"
+                <LinearLayout
+                    android:id="@+id/badges_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/half_default_margin"
-                    android:src="@drawable/badge"
+                    android:padding="@dimen/default_margin"
                     android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:layout_gravity="top|start"
+                    android:orientation="horizontal"
+                    android:background="@color/secondaryColor100"
+                    tools:visibility="visible">
 
-                <ImageView
-                    android:id="@+id/badge_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/half_default_margin"
-                    android:src="@drawable/badge"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/medal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/medal_first_place"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/badge_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/half_default_margin"
+                        android:src="@drawable/badge"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/badge_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/half_default_margin"
+                        android:src="@drawable/badge"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+                </LinearLayout>
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/molly_jack"
+                android:textAlignment="center"
                 android:textSize="@dimen/subtitle"
                 tools:text="Giorgos Kakogiannis" />
 
@@ -75,10 +85,10 @@
                 android:id="@+id/message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
                 android:textStyle="italic"
                 android:textSize="@dimen/item_score_text"
                 tools:text="Giorgos has completed successfully 168 games with 45% accuracy. He earned badges completing Survival and Time modes. Currently he ranks 1. " />

@@ -42,11 +42,12 @@
     <string name="sign_in">Sign in</string>
     <string name="swipe_for">swipe for</string>
     <string name="rank">Rank</string>
-    <string name="badges">Bagdes</string>
+    <string name="badges">Honors</string>
     <string name="basic_points">Basic Points</string>
     <string name="game_analysis">Game Analysis</string>
     <string name="average">Avg</string>
     <string name="accuracy">Accuracy</string>
     <string name="bonus_points_label">Bonus Points</string>
     <string name="total">Total</string>
+    <string name="details">Details</string>
 </resources>
