@@ -2,9 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/corner_radius">
+    style="@style/Briefing_Parent_Style">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,52 +11,19 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/molly_jack"
-            tools:text="Lightning Round"
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="@dimen/subtitle" />
+            style="@style/Briefing_Title_Style"
+            tools:text="Lightning Round" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@color/primaryColor100" />
-
+        <View style="@style/Briefing_Divider_Style" />
 
         <TextView
             android:id="@id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:padding="4dp"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            style="@style/Briefing_Message_Style"
             tools:text="You have two minutes, complete successfully as many games as you can. Your score will be saved!" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:fabSize="mini"
-            android:layout_gravity="end"
-            android:src="@drawable/play_rounded"
-            app:backgroundTint="@color/secondaryColor" />
-
+            style="@style/Briefing_Fab_Style"
+            android:src="@drawable/play_rounded" />
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

@@ -2,10 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/corner_radius">
+    style="@style/Briefing_Parent_Style">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,91 +11,48 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/molly_jack"
-            android:gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:textAlignment="center"
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="@dimen/subtitle"
+            style="@style/Briefing_Title_Style"
             tools:text="You did bad" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@color/primaryColor100" />
+            style="@style/Briefing_Divider_Style" />
 
         <TextView
             android:id="@id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginTop="16dp"
-            android:padding="4dp"
-            android:textSize="20sp"
-            android:textStyle="italic"
+            style="@style/Briefing_Message_Style"
             tools:text="Congratulations, you've done well! You passed 21 out of 26 games. Try again next time!" />
 
 
         <TextView
             android:id="@+id/details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="20sp"
-
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:padding="4dp"
+            style="@style/Briefing_Message_Style"
+            android:textColor="@color/primaryTextColor"
             tools:text="3 easy games x 100 +\n2 medium games x 150 +\n1 hard game x 200" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:orientation="vertical"
             android:padding="4dp">
 
             <TextView
                 android:id="@+id/score_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/total_score"
-                android:layout_marginRight="4dp"
-                android:textSize="20sp" />
+                android:padding="0dp"
+                style="@style/Briefing_Message_Style" />
 
             <TextView
                 android:id="@+id/score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
+                style="@style/Briefing_Message_Style"
+                android:padding="0dp"
                 tools:text="22000 points" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:fabSize="mini"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/secondaryColor"
-            android:src="@drawable/restart_black" />
+            android:src="@drawable/restart_black"
+            style="@style/Briefing_Fab_Style" />
     </LinearLayout>
 
 

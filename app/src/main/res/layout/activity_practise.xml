@@ -10,18 +10,11 @@
     <TextView
         android:id="@+id/title"
         style="@style/Title_Style"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Astrology 1" />
 
     <ImageButton
         android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:backgroundTint="@color/primaryColor"
+        style="@style/Game_Navigation_Button_Style"
         android:src="@drawable/ic_navigate_next_white"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,11 +22,7 @@
 
     <ImageButton
         android:id="@+id/previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:backgroundTint="@color/primaryColor"
+        style="@style/Game_Navigation_Button_Style"
         android:src="@drawable/ic_navigate_before_white"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,58 +30,22 @@
 
     <FrameLayout
         android:id="@+id/game_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        style="@style/Center_Fragment_Style"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        style="@style/Bottom_Bar"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        style="@style/Bottom_Bar">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/molly_jack"
-            android:text="@string/level"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="674dp" />
+            style="@style/Game_Difficulty_Style"
+            android:text="@string/level"/>
 
         <TextView
             android:id="@+id/difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/molly_jack"
-            android:textColor="@color/secondaryColor100"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="674dp"
+            style="@style/Game_Difficulty_Style"
+            android:textColor="@color/primaryColor100"
             tools:text="Easy" />
     </LinearLayout>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="208dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

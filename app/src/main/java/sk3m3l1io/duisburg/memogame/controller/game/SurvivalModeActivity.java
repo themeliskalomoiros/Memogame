@@ -3,8 +3,8 @@ package sk3m3l1io.duisburg.memogame.controller.game;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
-import sk3m3l1io.duisburg.memogame.view.game.RandomView;
-import sk3m3l1io.duisburg.memogame.view.game.RandomViewImp;
+import sk3m3l1io.duisburg.memogame.view.game.SurvivalModeView;
+import sk3m3l1io.duisburg.memogame.view.game.SurvivalModeViewImp;
 
 public class SurvivalModeActivity extends ScoreActivity implements
         GameFragment.GameEventListener,
@@ -16,7 +16,7 @@ public class SurvivalModeActivity extends ScoreActivity implements
 
     @Override
     protected void initView() {
-        view = new RandomViewImp(getLayoutInflater(), null);
+        view = new SurvivalModeViewImp(getLayoutInflater(), null);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SurvivalModeActivity extends ScoreActivity implements
         Game g = games.get(currentGame);
         view.setDifficulty(g.getDifficulty());
         view.setTitle(g.getTitle());
-        ((RandomView) view).setLives(lives);
+        ((SurvivalModeView) view).setLives(lives);
     }
 
     @Override
@@ -77,6 +77,6 @@ public class SurvivalModeActivity extends ScoreActivity implements
         if (--lives == 0) {
             addResultFragment();
         }
-        ((RandomView) view).setLives(lives);
+        ((SurvivalModeView) view).setLives(lives);
     }
 }

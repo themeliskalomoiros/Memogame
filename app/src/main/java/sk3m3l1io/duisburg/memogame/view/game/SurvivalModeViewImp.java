@@ -3,23 +3,20 @@ package sk3m3l1io.duisburg.memogame.view.game;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 
-public class ArcadeViewImp implements ArcadeView {
+public class SurvivalModeViewImp implements SurvivalModeView {
     private final View root;
-    private final TextView title, gamesCompleted, difficulty;
-    private final ProgressBar progressBar;
+    private final TextView title, difficulty, lives;
 
-    public ArcadeViewImp(LayoutInflater inflater, ViewGroup container) {
-        root = inflater.inflate(R.layout.activity_time, container, false);
-        progressBar = root.findViewById(R.id.progressbar);
+    public SurvivalModeViewImp(LayoutInflater inflater, ViewGroup container) {
+        root = inflater.inflate(R.layout.activity_survival, container, false);
         title = root.findViewById(R.id.title);
+        lives = root.findViewById(R.id.lives);
         difficulty = root.findViewById(R.id.difficulty);
-        gamesCompleted = root.findViewById(R.id.games_completed);
     }
 
     @Override
@@ -33,28 +30,8 @@ public class ArcadeViewImp implements ArcadeView {
     }
 
     @Override
-    public void setTimeProgress(int progress) {
-        progressBar.setProgress(progress);
-    }
-
-    @Override
-    public void setTimeProgressMax(int progress) {
-        progressBar.setMax(progress);
-    }
-
-    @Override
     public int getGameContainerId() {
         return R.id.game_container;
-    }
-
-    @Override
-    public View getRootView() {
-        return root;
-    }
-
-    @Override
-    public void setCompletedGamesCount(int c) {
-        gamesCompleted.setText("" + c);
     }
 
     @Override
@@ -72,5 +49,15 @@ public class ArcadeViewImp implements ArcadeView {
                 this.difficulty.setText(R.string.difficulity_normal);
                 this.difficulty.setTextColor(root.getResources().getColor(R.color.secondaryDarkColor));
         }
+    }
+
+    @Override
+    public View getRootView() {
+        return root;
+    }
+
+    @Override
+    public void setLives(int l) {
+        this.lives.setText("" + l);
     }
 }

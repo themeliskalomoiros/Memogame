@@ -6,8 +6,8 @@ import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
-import sk3m3l1io.duisburg.memogame.view.game.ArcadeView;
-import sk3m3l1io.duisburg.memogame.view.game.ArcadeViewImp;
+import sk3m3l1io.duisburg.memogame.view.game.TimeModeView;
+import sk3m3l1io.duisburg.memogame.view.game.TimeModeViewImp;
 
 public class TimeModeActivity extends ScoreActivity implements
         CountDownTimerReporter.TimeListener {
@@ -23,7 +23,7 @@ public class TimeModeActivity extends ScoreActivity implements
 
     @Override
     protected void initView() {
-        view = new ArcadeViewImp(getLayoutInflater(), null);
+        view = new TimeModeViewImp(getLayoutInflater(), null);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TimeModeActivity extends ScoreActivity implements
     }
 
     private void updateUiOnFragmentAttach() {
-        ArcadeView v = (ArcadeView) view;
+        TimeModeView v = (TimeModeView) view;
         Game g = games.get(currentGame);
         v.setCompletedGamesCount(getCompletedGamesCount());
         view.setDifficulty(g.getDifficulty());
@@ -83,14 +83,14 @@ public class TimeModeActivity extends ScoreActivity implements
 
     @Override
     public void onTimerTick(int elapsedMilli) {
-        ((ArcadeView) view).setTimeProgress(elapsedMilli);
+        ((TimeModeView) view).setTimeProgress(elapsedMilli);
     }
 
     @Override
     public void onTimerFinish() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getGameContainerId());
         if (f instanceof GameFragment) {
-            ((ArcadeView) view).setTimeProgress(0);
+            ((TimeModeView) view).setTimeProgress(0);
             view.setTitle(getString(R.string.time_up));
             addResultFragment();
         }

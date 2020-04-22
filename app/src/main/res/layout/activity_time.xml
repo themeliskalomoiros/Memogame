@@ -7,39 +7,22 @@
     android:background="@color/primaryColor100"
     tools:context=".controller.menu.MainActivity">
 
-
     <TextView
         android:id="@+id/title"
         style="@style/Title_Style"
-        android:layout_width="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Athleticism" />
 
     <FrameLayout
         android:id="@+id/game_container"
-        android:name="sk3m3l1io.kalymnos.memogame.controller.GameFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar">
-
-    </FrameLayout>
+        style="@style/Center_Fragment_Style"
+        app:layout_constraintTop_toTopOf="@id/progressbar"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"/>
 
     <ProgressBar
         android:id="@+id/progressbar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
-        android:layout_height="@dimen/time_indicator_height"
+        android:layout_height="@dimen/half_default_margin"
         android:progressBackgroundTint="@color/primaryLightColor"
         android:progressTint="@color/primaryDarkColor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,78 +30,30 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        style="@style/Bottom_Bar"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent">
+        android:id="@+id/bottom_bar"
+        style="@style/Bottom_Bar">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/molly_jack"
-            android:text="@string/level"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="674dp" />
+            style="@style/Game_Difficulty_Style"
+            android:text="@string/level" />
 
         <TextView
             android:id="@+id/difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/molly_jack"
-            android:textColor="@color/secondaryColor100"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="674dp"
+            style="@style/Game_Difficulty_Style"
+            android:textColor="@color/primaryColor100"
             tools:text="Easy" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        style="@style/Bottom_Bar"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2">
-
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            app:srcCompat="@drawable/completed_task"
-            tools:layout_editor_absoluteX="249dp"
-            tools:layout_editor_absoluteY="675dp" />
+            style="@style/Game_Difficulty_Style"
+            app:srcCompat="@drawable/completed_task" />
 
         <TextView
             android:id="@+id/games_completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:text="0"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="230dp"
-            tools:layout_editor_absoluteY="672dp" />
-
+            android:layout_margin="@dimen/default_margin"
+            android:text="3"
+            android:textColor="@color/primaryColor100"
+            android:textSize="@dimen/hearts_text" />
     </LinearLayout>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="206dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

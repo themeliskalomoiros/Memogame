@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/default_margin">
+    android:layout_margin="@dimen/double_default_margin">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -23,10 +23,10 @@
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="@dimen/score_details_image"
+                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:visibility="gone"
-                    android:layout_gravity="center"
                     tools:src="@drawable/user_male"
                     tools:visibility="visible" />
 
@@ -34,11 +34,11 @@
                     android:id="@+id/badges_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top|start"
+                    android:background="@color/secondaryColor100"
+                    android:orientation="horizontal"
                     android:padding="@dimen/default_margin"
                     android:visibility="gone"
-                    android:layout_gravity="top|start"
-                    android:orientation="horizontal"
-                    android:background="@color/secondaryColor100"
                     tools:visibility="visible">
 
                     <ImageView
@@ -71,29 +71,18 @@
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/molly_jack"
-                android:textAlignment="center"
-                android:textSize="@dimen/subtitle"
+                style="@style/Briefing_Title_Style"
                 tools:text="Giorgos Kakogiannis" />
 
             <TextView
                 android:id="@+id/message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="24dp"
-                android:textStyle="italic"
-                android:textSize="@dimen/item_score_text"
+                style="@style/Briefing_Message_Style"
+                android:layout_gravity="start"
+                android:textAlignment="textStart"
+                android:layout_margin="@dimen/default_margin"
                 tools:text="Giorgos has completed successfully 168 games with 45% accuracy. He earned badges completing Survival and Time modes. Currently he ranks 1. " />
 
-            <include layout="@layout/game_analysis"/>
+            <include layout="@layout/game_analysis" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
