@@ -1,6 +1,7 @@
 package sk3m3l1io.duisburg.memogame.controller.stats;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreDetailsView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreDetailsViewImp;
 
@@ -36,9 +38,9 @@ public class ScoreDetailsFragment extends Fragment {
         view.setMessage(getMessage(sd));
         view.setSurvivalPoints(sd.getSurvivalHighScore());
         view.setTimePoints(sd.getTimeHighScore());
-        view.setAveragePoints((int) sd.getGameModesPoints());
+        view.setAveragePoints((int) sd.getGameAverageGamePoints());
         view.setCompletedGamesPoints(sd.getGamesCompleted());
-        view.setAveragePoints((int) sd.getAccuracyPoints());
+        view.setAccuracyPoints((int) sd.getAccuracyPoints());
         view.setBadgesPoints((int) sd.getBadgePoints());
         view.setTotalPoints(sd.getTotalPoints());
 
@@ -55,16 +57,8 @@ public class ScoreDetailsFragment extends Fragment {
             updateBadgesUi();
     }
 
-    private void updateBadgesUi() {
-        if (sd.isSurvivalCompleted())
-            view.showRightBadge();
-
-        if (sd.isTimeCompleted())
-            view.showLeftBadge();
-    }
-
-    private boolean hasWonBadges() {
-        return sd.isTimeCompleted() || sd.isSurvivalCompleted();
+    private boolean hasWonMedal() {
+        return rank == 0 || rank == 1 || rank == 2;
     }
 
     private void updateMedalUi() {
@@ -79,8 +73,16 @@ public class ScoreDetailsFragment extends Fragment {
         view.showMedal();
     }
 
-    private boolean hasWonMedal() {
-        return rank == 0 || rank == 1 || rank == 2;
+    private boolean hasWonBadges() {
+        return sd.isTimeCompleted() || sd.isSurvivalCompleted();
+    }
+
+    private void updateBadgesUi() {
+        if (sd.isSurvivalCompleted())
+            view.showRightBadge();
+
+        if (sd.isTimeCompleted())
+            view.showLeftBadge();
     }
 
     private String getMessage(ScoreData sd) {

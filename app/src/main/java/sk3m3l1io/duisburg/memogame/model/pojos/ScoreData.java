@@ -64,32 +64,32 @@ public class ScoreData implements Comparable<ScoreData> {
     }
 
     public int getTotalPoints() {
-        return (int) (getGameModesPoints() + getGamesCompletedPoints() + getAccuracyPoints() + getBadgePoints());
+        return (int) (getGameAverageGamePoints() + getGamesCompletedPoints() + getAccuracyPoints() + getBadgePoints());
     }
 
     public double getAccuracyPoints() {
         if (failedMatches != 0) {
-            return ((matches * 1.0) / failedMatches) * getGameModesPoints() * 0.1;
+            return ((matches * 1.0) / failedMatches) * getGameAverageGamePoints() * 0.1;
         }
 
         return 0;
     }
 
     public double getGamesCompletedPoints() {
-        return getGameModesPoints() * gamesCompleted * 0.001;
+        return getGameAverageGamePoints() * gamesCompleted * 0.001;
     }
 
-    public double getGameModesPoints() {
+    public double getGameAverageGamePoints() {
         return (timeHighScore + survivalHighScore) / 2.0;
     }
 
     public double getBadgePoints() {
         int sum = 0;
         if (survivalCompleted)
-            sum += getGameModesPoints() * 0.01;
+            sum += getGameAverageGamePoints() * 0.01;
 
         if (timeCompleted)
-            sum += getGameModesPoints() * 0.01;
+            sum += getGameAverageGamePoints() * 0.01;
 
         return sum;
     }

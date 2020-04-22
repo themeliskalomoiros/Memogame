@@ -91,7 +91,7 @@ public class ScoresFragment extends Fragment implements
 
     @Override
     public void onScoreDetailsClicked(int position) {
-        listener.onScoreDetailsClick(scores.get(position), position + 1);
+        listener.onScoreDetailsClick(scores.get(position), position);
     }
 
     interface OnScoreDetailsClickListener {

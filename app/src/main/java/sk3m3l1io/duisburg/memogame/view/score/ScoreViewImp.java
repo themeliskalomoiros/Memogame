@@ -39,7 +39,6 @@ public class ScoreViewImp implements ScoreView {
 
     @Override
     public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener) {
-        Log.d(LogUtils.TAG, "Is listener null?" + (listener == null));
         adapter.setOnScoreDetailsClickListener(listener);
     }
 
