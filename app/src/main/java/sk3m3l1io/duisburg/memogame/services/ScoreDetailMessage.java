@@ -12,7 +12,7 @@ public final class ScoreDetailMessage {
 
     public ScoreDetailMessage(ScoreData sd, int rank) {
         this.sd = sd;
-        this.rank = rank;
+        this.rank = rank + 1;
     }
 
     public String getLocalizedMessage() {
@@ -31,8 +31,16 @@ public final class ScoreDetailMessage {
     }
 
     private String getFirstSentence() {
-        return String.format("%s completed successfully %d games with %.1f%% accuracy.",
-                getFirstName(), sd.getGamesCompleted(), sd.getAccuracyPercent());
+        String gameLiteral = "games";
+        if (sd.getGamesCompleted() == 1)
+            gameLiteral = "game";
+        if (sd.getAccuracyPercent() != 0) {
+            return String.format("%s completed successfully %d %s with %.0f%% accuracy.",
+                    getFirstName(), sd.getGamesCompleted(), gameLiteral, sd.getAccuracyPercent());
+        } else {
+            return String.format("%s completed successfully %d %s.",
+                    getFirstName(), sd.getGamesCompleted(), gameLiteral);
+        }
     }
 
     private String getSecondSentence() {
@@ -56,8 +64,16 @@ public final class ScoreDetailMessage {
     }
 
     private String getFirstSentenceInGreek() {
-        return String.format("O/H %s ολοκλήρωσε με επιτυχία %d παιχνίδια με ακρίβεια %.1f%%.",
-                getFirstName(), sd.getGamesCompleted(), sd.getAccuracyPercent());
+        String gameLiteral = "παιχνίδια";
+        if (sd.getGamesCompleted() == 1)
+            gameLiteral = "παιχνίδι";
+        if (sd.getAccuracyPercent() != 0) {
+            return String.format("O/H %s ολοκλήρωσε με επιτυχία %d %s με ακρίβεια %.0f%%.",
+                    getFirstName(), sd.getGamesCompleted(), gameLiteral, sd.getAccuracyPercent());
+        } else {
+            return String.format("O/H %s ολοκλήρωσε με επιτυχία %d %s.",
+                    getFirstName(), sd.getGamesCompleted(), gameLiteral);
+        }
     }
 
     private String getSecondSentenceInGreek() {
@@ -73,7 +89,7 @@ public final class ScoreDetailMessage {
     }
 
     private String getThirdSentenceInGreek() {
-        return String.format("Αυτή τη στιγμή βρίσκεται στην θέση %dη θέση.", rank);
+        return String.format("Αυτή τη στιγμή βρίσκεται στην %dη θέση.", rank);
     }
 
     private String getFirstName() {
