@@ -46,7 +46,7 @@ public class LeaderBoardActivity extends AppCompatActivity implements ScoresFrag
 
     private void addScoreDetailsFragment(ScoreData sd, int rank) {
         ScoreDetailsFragment f = new ScoreDetailsFragment();
-        f.setRank(rank);
+        f.setRank(rank+1);
         f.setScoreData(sd);
         getSupportFragmentManager()
                 .beginTransaction()

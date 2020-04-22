@@ -43,5 +43,5 @@
     <string name="swipe_for">Wechsel zu</string>
     <string name="rank">Rang</string>
     <string name="badges">Preis</string>
-    <string name="points_label">Punkt</string>
+    <string name="basic_points">Punkt</string>
 </resources>

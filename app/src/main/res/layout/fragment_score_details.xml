@@ -14,20 +14,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="240dp"
                 android:scaleType="centerCrop"
                 android:visibility="gone"
-                tools:src="@drawable/user_male" />
+                tools:src="@drawable/user_male"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -36,200 +38,53 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/medal_first_place"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <ImageView
                     android:id="@+id/badge_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/half_default_margin"
                     android:src="@drawable/badge"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <ImageView
                     android:id="@+id/badge_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/half_default_margin"
                     android:src="@drawable/badge"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
                 android:fontFamily="@font/molly_jack"
                 android:textSize="@dimen/subtitle"
                 tools:text="Giorgos Kakogiannis" />
 
             <TextView
                 android:id="@+id/message"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:textStyle="italic"
                 android:textSize="@dimen/item_score_text"
                 tools:text="Giorgos has completed successfully 168 games with 45% accuracy. He earned badges completing Survival and Time modes. Currently he ranks 1. " />
 
+            <include layout="@layout/game_analysis"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/game_analysis"
-                    android:textSize="@dimen/item_score_title" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/points_label"
-                    android:textSize="@dimen/item_score_title" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/survival_mode"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/survival_highscore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="20.000" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/time_mode"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/time_highscore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="20.000" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/average"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/average_highscore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="20.000" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bonus_points_label"
-                    android:textSize="@dimen/item_score_title" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/games_completed"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/games_completed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="500" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/accuracy"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/accuracy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="300" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/badges"
-                        android:textSize="@dimen/item_score_text" />
-
-                    <TextView
-                        android:id="@+id/badges"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="@dimen/item_score_text"
-                        tools:text="150" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/total"
-                    android:textSize="@dimen/item_score_title" />
-
-                <TextView
-                    android:id="@+id/total_points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="@dimen/item_score_text"
-                    tools:text="25.000" />
-
-            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

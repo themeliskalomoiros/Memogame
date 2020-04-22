@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/default_margin"
-                android:text="@string/points_label"
+                android:text="@string/basic_points"
                 android:textSize="@dimen/item_score_text" />
 
             <TextView

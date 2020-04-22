@@ -69,7 +69,7 @@ public class ScoreData implements Comparable<ScoreData> {
 
     public double getAccuracyPoints() {
         if (failedMatches != 0) {
-            return ((matches * 1.0) / failedMatches) * getGameAverageGamePoints() * 0.1;
+            return ((matches * 1.0) / (matches + failedMatches)) * getGameAverageGamePoints() * 0.1;
         }
 
         return 0;

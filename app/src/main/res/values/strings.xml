@@ -43,7 +43,7 @@
     <string name="swipe_for">swipe for</string>
     <string name="rank">Rank</string>
     <string name="badges">Bagdes</string>
-    <string name="points_label">Points</string>
+    <string name="basic_points">Basic Points</string>
     <string name="game_analysis">Game Analysis</string>
     <string name="average">Avg</string>
     <string name="accuracy">Accuracy</string>
