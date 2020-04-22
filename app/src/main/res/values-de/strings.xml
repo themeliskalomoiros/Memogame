@@ -42,6 +42,14 @@
     <string name="sign_in">Anmelden</string>
     <string name="swipe_for">Wechsel zu</string>
     <string name="rank">Rang</string>
-    <string name="badges">Preis</string>
-    <string name="basic_points">Punkt</string>
+    <string name="badges">Auszeichnung</string>
+    <string name="basic_points">Punkte</string>
+
+
+    <string name="game_analysis">Spielanalyse</string>
+    <string name="average">Durchschnitt</string>
+    <string name="accuracy">Richtigkeit</string>
+    <string name="bonus_points_label">Bonuspunkte</string>
+    <string name="total">Gesamt</string>
+    <string name="details">Details</string>
 </resources>
