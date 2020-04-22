@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     private Player user;
     private List<ScoreData> scores;
     private final Context context;
+    private ScoreView.OnScoreDetailsClickListener itemClickListener;
 
     public ScoreAdapter(Context context) {
         this.context = context;
@@ -59,9 +61,14 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return 0;
     }
 
+    public void setOnScoreDetailsClickListener(ScoreView.OnScoreDetailsClickListener listener) {
+        itemClickListener = listener;
+    }
+
     class ScoreViewHolder extends RecyclerView.ViewHolder {
         TextView name, rank, points;
         ImageView image, medal, leftBadge, rightBadge;
+        MaterialButton button;
 
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +79,11 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             medal = itemView.findViewById(R.id.medal);
             leftBadge = itemView.findViewById(R.id.badge_left);
             rightBadge = itemView.findViewById(R.id.badge_right);
+            button = itemView.findViewById(R.id.details);
+            button.setOnClickListener(v -> {
+                if (itemClickListener != null)
+                    itemClickListener.onScoreDetailsClicked(getAdapterPosition());
+            });
         }
 
         void bind(ScoreData s) {

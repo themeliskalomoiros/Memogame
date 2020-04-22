@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.view.score;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public class ScoreViewImp implements ScoreView {
     private View root;
@@ -33,6 +35,12 @@ public class ScoreViewImp implements ScoreView {
         LinearLayoutManager lm = new LinearLayoutManager(root.getContext());
         recyclerView.setLayoutManager(lm);
         recyclerView.setHasFixedSize(true);
+    }
+
+    @Override
+    public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener) {
+        Log.d(LogUtils.TAG, "Is listener null?" + (listener == null));
+        adapter.setOnScoreDetailsClickListener(listener);
     }
 
     @Override

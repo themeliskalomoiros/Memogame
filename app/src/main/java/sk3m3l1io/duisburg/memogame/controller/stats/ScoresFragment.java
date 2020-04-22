@@ -1,5 +1,6 @@
 package sk3m3l1io.duisburg.memogame.controller.stats;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,25 @@ import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
-public class ScoresFragment extends Fragment implements ScoreRepository.ScoreDataListener {
+public class ScoresFragment extends Fragment implements
+        ScoreRepository.ScoreDataListener,
+        ScoreView.OnScoreDetailsClickListener {
     private Player user;
     private ScoreView view;
     protected ScoreRepository repo;
+    private List<ScoreData> scores;
+    OnScoreDetailsClickListener listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (OnScoreDetailsClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement " + OnScoreDetailsClickListener.class.getSimpleName());
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +54,7 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreDat
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         view = new ScoreViewImp(inflater, container);
+        view.setOnScoreDetailsClickListener(this);
         return view.getRootView();
     }
 
@@ -60,10 +77,24 @@ public class ScoresFragment extends Fragment implements ScoreRepository.ScoreDat
             Collections.sort(scores);
             view.setScores(scores, user);
             view.hideLoadingIndicator();
+            this.scores = scores;
         }
     }
 
     public void setUser(Player user) {
         this.user = user;
+    }
+
+    public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onScoreDetailsClicked(int position) {
+        listener.onScoreDetailsClick(scores.get(position), position + 1);
+    }
+
+    interface OnScoreDetailsClickListener {
+        void onScoreDetailsClick(ScoreData sd, int rank);
     }
 }

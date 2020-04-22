@@ -43,8 +43,10 @@ public class ScoreDetailsFragment extends Fragment {
         view.setTotalPoints(sd.getTotalPoints());
 
         String imageUrl = sd.getPlayer().getPhotoUrl();
-        if (imageUrl != null)
+        if (imageUrl != null){
             view.setUserImage(imageUrl);
+            view.showUserImage();
+        }
 
         if (hasWonMedal())
             updateMedalUi();

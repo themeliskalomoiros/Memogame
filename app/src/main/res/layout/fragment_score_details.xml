@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    app:cardCornerRadius="@dimen/corner_radius">
+    android:layout_margin="@dimen/default_margin">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="@dimen/default_margin">
-
-        <ImageView
-            android:id="@+id/image"
-            android:visibility="gone"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_margin="16dp"
-            tools:src="@drawable/user_male" />
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/corner_radius">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/medal"
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                tools:src="@drawable/user_male" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/medal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/medal_first_place"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/badge_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/badge"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/badge_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/badge"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:src="@drawable/medal_first_place" />
+                android:fontFamily="@font/molly_jack"
+                android:textSize="@dimen/subtitle"
+                tools:text="Giorgos Kakogiannis" />
 
-            <ImageView
-                android:id="@+id/badge_left"
+            <TextView
+                android:id="@+id/message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:src="@drawable/badge" />
+                android:textAlignment="center"
+                android:textSize="@dimen/item_score_text"
+                tools:text="Giorgos has completed successfully 168 games with 45% accuracy. He earned badges completing Survival and Time modes. Currently he ranks 1. " />
 
-            <ImageView
-                android:id="@+id/badge_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:src="@drawable/badge" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/molly_jack"
-            android:textSize="@dimen/subtitle"
-            tools:text="Giorgos Kakogiannis" />
-
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="@dimen/item_score_text"
-            tools:text="Giorgos has completed successfully 168 games with 45% accuracy. He earned badges completing Survival and Time modes. Currently he ranks 1. " />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -216,21 +216,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/total"
                     android:layout_gravity="end"
+                    android:text="@string/total"
                     android:textSize="@dimen/item_score_title" />
+
                 <TextView
                     android:id="@+id/total_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:textColor="@color/primaryColor"
                     android:textSize="@dimen/item_score_text"
-                    tools:text="25.000"
-                    android:layout_gravity="end"/>
+                    tools:text="25.000" />
 
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
-</com.google.android.material.card.MaterialCardView>
+</ScrollView>
