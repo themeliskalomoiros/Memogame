@@ -75,6 +75,10 @@ public class ScoreData implements Comparable<ScoreData> {
         return 0;
     }
 
+    public double getAccuracyPercent() {
+        return (getMatches() * 1.0) / (getMatches() + getFailedMatches()) * 100;
+    }
+
     public double getGamesCompletedPoints() {
         return getGameAverageGamePoints() * gamesCompleted * 0.001;
     }
