@@ -124,7 +124,7 @@ public final class ScoreDetailMessage {
     }
 
     private String getThirdSetenceInGerman() {
-        return String.format("Currently ranks %d.", rank);
+        return String.format("Aktuell Rang %d.", rank);
     }
 
     private String getFirstName() {
