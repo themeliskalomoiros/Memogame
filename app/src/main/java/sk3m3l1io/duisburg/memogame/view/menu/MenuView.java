@@ -17,7 +17,7 @@ public interface MenuView extends ViewMvc {
 
     void setMenuClickListener(SymbolClickListener listener);
 
-    void setUserIconToSignOut();
+    void setSignIn();
 
-    void setUserIconToDefault();
+    void setSignOut();
 }

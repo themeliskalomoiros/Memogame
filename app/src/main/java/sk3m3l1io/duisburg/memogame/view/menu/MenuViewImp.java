@@ -10,21 +10,21 @@ import sk3m3l1io.duisburg.memogame.R;
 
 public class MenuViewImp implements MenuView {
     private View root;
-    private MaterialButton lightning, random, leaderboard, user, practise;
+    private MaterialButton time, survival, leaderboard, signIn, practise;
     private SymbolClickListener listener;
 
     public MenuViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_menu, container, false);
-        lightning = root.findViewById(R.id.lightning_round);
-        lightning.setOnClickListener(v -> listener.onTimeClick());
+        time = root.findViewById(R.id.lightning_round);
+        time.setOnClickListener(v -> listener.onTimeClick());
         practise = root.findViewById(R.id.practise);
         practise.setOnClickListener(v -> listener.onPractiseClick());
-        random = root.findViewById(R.id.random);
-        random.setOnClickListener(v -> listener.onSurvivalClick());
+        survival = root.findViewById(R.id.random);
+        survival.setOnClickListener(v -> listener.onSurvivalClick());
         leaderboard = root.findViewById(R.id.leaderboard);
         leaderboard.setOnClickListener(v -> listener.onLeaderboardClick());
-        user = root.findViewById(R.id.user);
-        user.setOnClickListener(v -> listener.onSignInClick());
+        signIn = root.findViewById(R.id.user);
+        signIn.setOnClickListener(v -> listener.onSignInClick());
     }
 
     @Override
@@ -33,13 +33,13 @@ public class MenuViewImp implements MenuView {
     }
 
     @Override
-    public void setUserIconToSignOut() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.sign_out_pink), null, null, null);
+    public void setSignIn() {
+        signIn.setText(R.string.sign_in);
     }
 
     @Override
-    public void setUserIconToDefault() {
-        user.setCompoundDrawables(root.getResources().getDrawable(R.drawable.google), null, null, null);
+    public void setSignOut() {
+        signIn.setText(R.string.sign_out);
     }
 
     @Override

@@ -63,11 +63,11 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     }
 
     public void setSignInUI() {
-        view.setUserIconToDefault();
+        view.setSignIn();
     }
 
     public void setSignOutUI() {
-        view.setUserIconToSignOut();
+        view.setSignOut();
     }
 
     @Override

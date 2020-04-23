@@ -50,4 +50,5 @@
     <string name="bonus_points_label">Έξτρα Πόντοι</string>
     <string name="total">Σύνολο</string>
     <string name="details">Λεπτρομέρειες</string>
+    <string name="sign_out">Αποσύνδεση</string>
 </resources>
