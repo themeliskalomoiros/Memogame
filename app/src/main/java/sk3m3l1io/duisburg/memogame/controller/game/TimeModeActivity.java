@@ -18,7 +18,6 @@ public class TimeModeActivity extends ScoreActivity implements
     private static final int GAME_DURATION = 20000;
 
     private CountDownTimerReporter timer;
-
     public TimeModeActivity() {
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
@@ -81,12 +80,26 @@ public class TimeModeActivity extends ScoreActivity implements
 
     @Override
     public void onTimerBegin() {
-
+        TimeModeView v = (TimeModeView) view;
     }
 
     @Override
     public void onTimerTick(int elapsedMilli) {
         ((TimeModeView) view).setTimeProgress(elapsedMilli);
+        if (isRunningOutOfTime()){
+            TimeModeView v = (TimeModeView) view;
+            if (v.isTimerVisible()){
+                v.hideTimer();
+            }else{
+                v.showTimer();
+            }
+        }
+    }
+
+    private boolean isRunningOutOfTime() {
+        TimeModeView v = (TimeModeView) view;
+        double percent = (v.getTimerProgress()/(v.getTimerMaxProgress()*1.0) * 100);
+        return percent <= 35;
     }
 
     @Override

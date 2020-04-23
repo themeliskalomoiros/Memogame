@@ -1,5 +1,7 @@
 package sk3m3l1io.duisburg.memogame.view.game;
 
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +57,31 @@ public class TimeModeViewImp implements TimeModeView {
     @Override
     public void setCompletedGamesCount(int c) {
         gamesCompleted.setText("" + c);
+    }
+
+    @Override
+    public int getTimerProgress() {
+        return progressBar.getProgress();
+    }
+
+    @Override
+    public int getTimerMaxProgress() {
+        return progressBar.getMax();
+    }
+
+    @Override
+    public void showTimer() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideTimer() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public boolean isTimerVisible() {
+        return progressBar.getVisibility() == View.VISIBLE ? true : false;
     }
 
     @Override

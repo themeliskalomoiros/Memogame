@@ -5,4 +5,14 @@ import sk3m3l1io.duisburg.memogame.view.TimeView;
 
 public interface TimeModeView extends TimeView, GameContainerView {
     void setCompletedGamesCount(int c);
+
+    int getTimerProgress();
+
+    int getTimerMaxProgress();
+
+    void showTimer();
+
+    void hideTimer();
+
+    boolean isTimerVisible();
 }

@@ -190,12 +190,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTimeModeClick() {
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            forwardSound.start();
+//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+//            forwardSound.start();
+//        } else {
+//            showSignInSnackbar();
+//        }
             addBriefingFragmentOf(gameMode = GameMode.TIME);
-        } else {
-            showSignInSnackbar();
-        }
     }
 
     @Override
