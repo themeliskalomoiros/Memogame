@@ -29,20 +29,20 @@ public class FirebaseScoreRepository implements ScoreRepository {
     private static final String SURVIVAL_COMPLETION = "survival_completed";
 
     private final DatabaseReference rootRef;
-    private ScoreDataListener scoresListener;
-    private HighScoreListener highScoresListener;
+    private ScoresListener scoresListener;
+    private PersonalRecordListener highScoresListener;
 
     public FirebaseScoreRepository() {
         rootRef = FirebaseDatabase.getInstance().getReference().child(VERSION_2);
     }
 
     @Override
-    public void setHighScoreListener(HighScoreListener listener) {
+    public void setHighScoreListener(PersonalRecordListener listener) {
         highScoresListener = listener;
     }
 
     @Override
-    public void setScoresListener(ScoreDataListener listener) {
+    public void setScoresListener(ScoresListener listener) {
         scoresListener = listener;
     }
 
@@ -56,7 +56,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
                     scores.add(getScoreData(s));
                 }
                 if (scoresListener != null)
-                    scoresListener.onScoreDataLoad(scores);
+                    scoresListener.onScoresLoad(scores);
             }
 
             private ScoreData getScoreData(DataSnapshot s) {
@@ -96,7 +96,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveHighScore(int score, GameMode mode, Player p) {
+    public void saveScore(int score, GameMode mode, Player p) {
         try {
             DatabaseReference ref = rootRef.child(p.getId()).child(getModeHighScoreKey(mode));
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -106,7 +106,7 @@ public class FirebaseScoreRepository implements ScoreRepository {
                         ref.setValue(score);
 
                         if (highScoresListener != null)
-                            highScoresListener.onHighScoreAchieved();
+                            highScoresListener.onPersonalRecordAchieved();
                     }
                 }
 

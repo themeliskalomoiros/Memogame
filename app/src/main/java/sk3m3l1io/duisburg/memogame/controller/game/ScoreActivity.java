@@ -1,11 +1,15 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
+import android.view.Gravity;
+import android.widget.Toast;
+
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
@@ -13,14 +17,16 @@ import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.Points;
 
-public abstract class ScoreActivity extends GameActivity
-        implements ResultFragment.ResultButtonClickListener {
+public abstract class ScoreActivity extends GameActivity implements
+        ResultFragment.ResultButtonClickListener,
+        ScoreRepository.PersonalRecordListener {
     private final List<Game> gamesCompleted = new ArrayList<>();
-    private final ScoreRepository repo = new FirebaseScoreRepository();
+    private final ScoreRepository repo;
     private int matches, failedMatches;
 
-    protected final int getCompletedGamesCount() {
-        return gamesCompleted.size();
+    public ScoreActivity() {
+        repo = new FirebaseScoreRepository();
+        repo.setHighScoreListener(this);
     }
 
     @Override
@@ -56,6 +62,16 @@ public abstract class ScoreActivity extends GameActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        repo.setHighScoreListener(null);
+    }
+
+    protected final int getCompletedGamesCount() {
+        return gamesCompleted.size();
+    }
+
+    @Override
     public void onGameComplete() {
         gamesCompleted.add(games.get(currentGame));
         saveScoreData();
@@ -64,7 +80,7 @@ public abstract class ScoreActivity extends GameActivity
     private void saveScoreData() {
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
-        repo.saveHighScore(s, gameMode, p);
+        repo.saveScore(s, gameMode, p);
         repo.saveCompletedGames(gamesCompleted.size(), p);
         repo.saveMatches(matches, p);
         repo.saveFailedMatches(failedMatches, p);
@@ -96,5 +112,12 @@ public abstract class ScoreActivity extends GameActivity
     @Override
     public void onGameMatchFail() {
         failedMatches++;
+    }
+
+    @Override
+    public final void onPersonalRecordAchieved() {
+        Toast t = Toast.makeText(this, R.string.new_highscore, Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
     }
 }

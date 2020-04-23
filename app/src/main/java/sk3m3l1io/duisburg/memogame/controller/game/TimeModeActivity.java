@@ -1,5 +1,8 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
+import android.view.Gravity;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;

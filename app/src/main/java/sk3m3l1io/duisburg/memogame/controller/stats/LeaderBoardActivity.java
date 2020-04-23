@@ -17,7 +17,7 @@ import sk3m3l1io.duisburg.memogame.view.score.LeaderBoardViewImp;
 
 public class LeaderBoardActivity extends AppCompatActivity implements
         ScoresFragment.OnScoreDetailsClickListener,
-        ScoreRepository.ScoreDataListener {
+        ScoreRepository.ScoresListener {
     private Player user;
     private LeaderBoardView view;
     private ScoreRepository repo;
@@ -45,7 +45,7 @@ public class LeaderBoardActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScoreDataLoad(List<ScoreData> scores) {
+    public void onScoresLoad(List<ScoreData> scores) {
         if (scores != null && scores.size() > 0) {
             Collections.sort(scores);
             addScoreFragment(scores);
