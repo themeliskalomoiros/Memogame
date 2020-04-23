@@ -179,14 +179,12 @@ public class MainActivity extends AppCompatActivity implements
     private void updateMenuUI(GoogleSignInAccount acc) {
         int id = view.getMenuContainerId();
         MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(id);
-        if (f != null && acc != null) {
-            f.setSignOutUI();
-            if (acc.getDisplayName() != null) {
-                view.setPlayerName(getString(R.string.player_name_prefix) + " " + acc.getDisplayName());
-                view.showPlayerName();
+        if (f != null) {
+            if (acc != null){
+                f.setSignOutUI();
+            }else{
+                f.setSignInUI();
             }
-        } else {
-            f.setSignInUI();
         }
     }
 
@@ -278,7 +276,6 @@ public class MainActivity extends AppCompatActivity implements
     private void updateUiOnSignOut() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
         ((MenuFragment) f).setSignInUI();
-        view.hidePlayerName();
         Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
     }
 

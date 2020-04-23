@@ -7,11 +7,5 @@ public interface MainView extends ViewMvc {
 
     void hideLoadingIndicator();
 
-    void showPlayerName();
-
-    void hidePlayerName();
-
-    void setPlayerName(String n);
-
     int getMenuContainerId();
 }

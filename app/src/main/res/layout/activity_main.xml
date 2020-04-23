@@ -30,27 +30,7 @@
 
     <FrameLayout
         android:id="@+id/linearLayout"
-        style="@style/Bottom_Bar">
-
-
-    <!-- TODO: Remove the players name feature -->
-        <TextView
-            android:id="@+id/player_name"
-            android:padding="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/molly_jack"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/player_name"
-            android:textStyle="italic"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </FrameLayout>
+        style="@style/Bottom_Bar"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
