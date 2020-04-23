@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onTimeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            forwardSound.start();
             addBriefingFragmentOf(gameMode = GameMode.TIME);
         } else {
             showSignInSnackbar();
@@ -202,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSurvivalModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            forwardSound.start();
             addBriefingFragmentOf(gameMode = GameMode.SURVIVAL);
         } else {
             showSignInSnackbar();
