@@ -55,11 +55,11 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
         itemClickListener = null;
     }
 
-    public void setDefaultSignInIcon() {
+    public void setSignInUI() {
         view.setUserIconToDefault();
     }
 
-    public void setSignOutIcon() {
+    public void setSignOutUI() {
         view.setUserIconToSignOut();
     }
 

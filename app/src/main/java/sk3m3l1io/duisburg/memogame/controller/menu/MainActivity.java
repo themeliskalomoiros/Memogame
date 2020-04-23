@@ -17,7 +17,6 @@ import androidx.loader.content.Loader;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -36,10 +35,9 @@ import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
+import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
-
-import static sk3m3l1io.duisburg.memogame.utils.GoogleUtils.createPlayerFrom;
 
 public class MainActivity extends AppCompatActivity implements
         MenuFragment.MenuItemClickListener,
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements
         addMenuFragment();
         loadGames(savedInstanceState);
         // TODO: check from the start if the user is already signed in and update the UI
-        initGoogleSignInClient();
+        googleSignInClient = GoogleUtils.getSignInClient(this);
     }
 
     private void addMenuFragment() {
@@ -83,15 +81,6 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
         }
-    }
-
-    private void initGoogleSignInClient() {
-        GoogleSignInOptions gso =
-                new GoogleSignInOptions
-                        .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
@@ -175,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             updateMenuUI(acc);
+            new FirebaseScoreRepository().savePlayer(GoogleUtils.createPlayerFrom(acc));
             Snackbar.make(view.getRootView(), R.string.progress_can_be_saved_msg, Snackbar.LENGTH_SHORT).show();
-            new FirebaseScoreRepository().savePlayer(createPlayerFrom(acc));
         } catch (ApiException e) {
             updateMenuUI(null);
         }
@@ -188,22 +177,23 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void updateMenuUI(GoogleSignInAccount acc) {
-        MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
+        int id = view.getMenuContainerId();
+        MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(id);
         if (f != null && acc != null) {
-            f.setSignOutIcon();
+            f.setSignOutUI();
             if (acc.getDisplayName() != null) {
                 view.setPlayerName(getString(R.string.player_name_prefix) + " " + acc.getDisplayName());
                 view.showPlayerName();
             }
         } else {
-            f.setDefaultSignInIcon();
+            f.setSignInUI();
         }
     }
 
     @Override
     public void onTimeModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.TIME);
+            addBriefingFragmentOf(gameMode = GameMode.TIME);
         } else {
             showSignInSnackbar();
         }
@@ -212,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSurvivalModeClick() {
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            addGameBriefingFragment(gameMode = GameMode.SURVIVAL);
+            addBriefingFragmentOf(gameMode = GameMode.SURVIVAL);
         } else {
             showSignInSnackbar();
         }
@@ -228,10 +218,10 @@ public class MainActivity extends AppCompatActivity implements
     public void onPractiseModeClick() {
         forwardSound.start();
         gameMode = GameMode.PRACTISE;
-        addGameBriefingFragment(gameMode);
+        addBriefingFragmentOf(gameMode);
     }
 
-    private void addGameBriefingFragment(GameMode mode) {
+    private void addBriefingFragmentOf(GameMode mode) {
         GameBriefingFragment f = GameBriefingFragment.instanceOf(mode);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -257,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startLeaderBoardActivity() {
-        Player p = createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
+        Player p = GoogleUtils.createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
         Intent i = new Intent(this, LeaderBoardActivity.class);
         i.putExtra(Player.class.getSimpleName(), p);
         startActivity(i);
@@ -273,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements
         Bundle data = new Bundle();
         data.putParcelableArrayList(Game.class.getSimpleName(), (ArrayList<Game>) games);
         data.putSerializable(GameMode.class.getSimpleName(), gameMode);
-        Player p = createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
+        Player p = GoogleUtils.createPlayerFrom(GoogleSignIn.getLastSignedInAccount(this));
         data.putParcelable(Player.class.getSimpleName(), p);
         return data;
     }
@@ -285,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateUiOnSignOut() {
         Fragment f = getSupportFragmentManager().findFragmentById(view.getMenuContainerId());
-        ((MenuFragment) f).setDefaultSignInIcon();
+        ((MenuFragment) f).setSignInUI();
         view.hidePlayerName();
         Snackbar.make(view.getRootView(), R.string.sign_out_success, Snackbar.LENGTH_LONG).show();
     }
