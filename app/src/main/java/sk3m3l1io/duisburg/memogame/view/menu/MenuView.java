@@ -4,15 +4,15 @@ import sk3m3l1io.duisburg.memogame.view.ViewMvc;
 
 public interface MenuView extends ViewMvc {
     interface SymbolClickListener {
-        void onLightningClick();
+        void onTimeClick();
 
-        void onDiceClick();
+        void onSurvivalClick();
 
-        void onJoystickClick();
+        void onPractiseClick();
 
         void onLeaderboardClick();
 
-        void onUserClick();
+        void onSignInClick();
     }
 
     void setMenuClickListener(SymbolClickListener listener);

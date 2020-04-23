@@ -44,6 +44,12 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewCreationListener.onMenuFragmentViewCreated();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         view.setMenuClickListener(null);
@@ -53,6 +59,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     public void onDetach() {
         super.onDetach();
         itemClickListener = null;
+        viewCreationListener = null;
     }
 
     public void setSignInUI() {
@@ -64,17 +71,17 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     }
 
     @Override
-    public void onLightningClick() {
+    public void onTimeClick() {
         itemClickListener.onTimeModeClick();
     }
 
     @Override
-    public void onDiceClick() {
+    public void onSurvivalClick() {
         itemClickListener.onSurvivalModeClick();
     }
 
     @Override
-    public void onJoystickClick() {
+    public void onPractiseClick() {
         itemClickListener.onPractiseModeClick();
     }
 
@@ -84,7 +91,7 @@ public class MenuFragment extends Fragment implements MenuView.SymbolClickListen
     }
 
     @Override
-    public void onUserClick() {
+    public void onSignInClick() {
         itemClickListener.onSignInClick();
     }
 

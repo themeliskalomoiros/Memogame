@@ -16,15 +16,15 @@ public class MenuViewImp implements MenuView {
     public MenuViewImp(LayoutInflater inflater, ViewGroup container) {
         root = inflater.inflate(R.layout.fragment_menu, container, false);
         lightning = root.findViewById(R.id.lightning_round);
-        lightning.setOnClickListener(v -> listener.onLightningClick());
+        lightning.setOnClickListener(v -> listener.onTimeClick());
         practise = root.findViewById(R.id.practise);
-        practise.setOnClickListener(v -> listener.onJoystickClick());
+        practise.setOnClickListener(v -> listener.onPractiseClick());
         random = root.findViewById(R.id.random);
-        random.setOnClickListener(v -> listener.onDiceClick());
+        random.setOnClickListener(v -> listener.onSurvivalClick());
         leaderboard = root.findViewById(R.id.leaderboard);
         leaderboard.setOnClickListener(v -> listener.onLeaderboardClick());
         user = root.findViewById(R.id.user);
-        user.setOnClickListener(v -> listener.onUserClick());
+        user.setOnClickListener(v -> listener.onSignInClick());
     }
 
     @Override
