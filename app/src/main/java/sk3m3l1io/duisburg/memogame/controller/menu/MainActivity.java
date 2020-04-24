@@ -36,6 +36,7 @@ import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements
         loadGames(savedInstanceState);
         // TODO: check from the start if the user is already signed in and update the UI
         googleSignInClient = GoogleUtils.getSignInClient(this);
+        LogUtils.logDeviceName();
+        LogUtils.logSmallestWidthDpi(getResources());
+        LogUtils.logDeviceDimensionInfo(getWindowManager());
     }
 
     private void addMenuFragment() {
@@ -190,12 +194,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTimeModeClick() {
-//        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-//            forwardSound.start();
-//        } else {
-//            showSignInSnackbar();
-//        }
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            forwardSound.start();
             addBriefingFragmentOf(gameMode = GameMode.TIME);
+        } else {
+            showSignInSnackbar();
+        }
     }
 
     @Override

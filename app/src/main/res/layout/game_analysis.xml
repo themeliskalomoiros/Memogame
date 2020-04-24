@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/default_margin"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_margin">
 
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginLeft="@dimen/default_margin"
         android:text="@string/basic_points"
-        android:textSize="@dimen/item_score_section"
+        android:textSize="@dimen/item_score_player_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:text="@string/survival_mode"
-        android:textSize="16sp"
+        android:textSize="@dimen/secondary_item_score_text"
         app:layout_constraintEnd_toStartOf="@+id/survival_highscore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -41,7 +41,7 @@
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textSize="16sp"
+        android:textSize="@dimen/secondary_item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:text="20.000" />
@@ -57,7 +57,7 @@
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:text="@string/time_mode"
-        android:textSize="16sp"
+        android:textSize="@dimen/secondary_item_score_text"
         app:layout_constraintEnd_toStartOf="@+id/time_highscore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -69,7 +69,7 @@
         android:layout_marginTop="@dimen/half_default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textSize="16sp"
+        android:textSize="@dimen/secondary_item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/survival_highscore"
         tools:text="20.000" />
@@ -111,7 +111,7 @@
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginTop="@dimen/double_default_margin"
         android:text="@string/bonus_points_label"
-        android:textSize="@dimen/item_score_section"
+        android:textSize="@dimen/item_score_player_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -214,7 +214,7 @@
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginTop="@dimen/double_default_margin"
         android:text="@string/total"
-        android:textSize="@dimen/item_score_section"
+        android:textSize="@dimen/item_score_player_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -227,7 +227,7 @@
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:textColor="@color/primaryColor"
-        android:textSize="@dimen/item_score_section"
+        android:textSize="@dimen/item_score_player_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:text="25.000" />
