@@ -23,7 +23,7 @@ public interface ScoreRepository {
 
     void saveScore(int score, GameMode mode, Player p);
 
-    void saveCompletedGames(int count, Player p);
+    void updateCompletedGame(Player p);
 
     void saveMatches(int count, Player p);
 

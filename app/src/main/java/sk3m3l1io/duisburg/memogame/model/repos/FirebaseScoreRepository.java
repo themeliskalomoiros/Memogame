@@ -138,12 +138,12 @@ public class FirebaseScoreRepository implements ScoreRepository {
     }
 
     @Override
-    public void saveCompletedGames(int games, Player p) {
+    public void updateCompletedGame(Player p) {
         DatabaseReference ref = rootRef.child(p.getId()).child(GAMES_COMPLETED);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ref.setValue(games + getCurrentGames(dataSnapshot));
+                ref.setValue(getCurrentGames(dataSnapshot) + 1);
             }
 
             private int getCurrentGames(@NonNull DataSnapshot snapshot) {

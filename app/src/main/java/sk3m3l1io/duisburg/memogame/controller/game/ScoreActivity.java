@@ -81,9 +81,11 @@ public abstract class ScoreActivity extends GameActivity implements
         int s = Points.calculate(gamesCompleted);
         Player p = getIntent().getParcelableExtra(Player.class.getSimpleName());
         repo.saveScore(s, gameMode, p);
-        repo.saveCompletedGames(gamesCompleted.size(), p);
+        repo.updateCompletedGame(p);
         repo.saveMatches(matches, p);
+        matches = 0;
         repo.saveFailedMatches(failedMatches, p);
+        failedMatches = 0;
         if (gamesCompleted.size() == games.size())
             repo.saveModeCompletion(gameMode, p);
     }
