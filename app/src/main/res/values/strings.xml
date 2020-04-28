@@ -52,4 +52,9 @@
     <string name="details">Details</string>
     <string name="sign_out">Sign Out</string>
     <string name="new_highscore">New personal record!</string>
+    <string name="details_score_survival_label">From Survival:</string>
+    <string name="details_score_time_label">From Time:</string>
+    <string name="details_score_accuracy_label">From accuracy:</string>
+    <string name="details_score_badges_label">From honors:</string>
+    <string name="details_score_games_completed_label">From completed games:</string>
 </resources>

@@ -52,4 +52,9 @@
     <string name="details">Λεπτρομέρειες</string>
     <string name="sign_out">Αποσύνδεση</string>
     <string name="new_highscore">Νέο προσωπικό ρεκόρ!</string>
+    <string name="details_score_survival_label">Από Επιβίωση:</string>
+    <string name="details_score_time_label">Από Χρόνος:</string>
+    <string name="details_score_accuracy_label">Λόγω ακρίβειας:</string>
+    <string name="details_score_badges_label">Λόγω επαίνων:</string>
+    <string name="details_score_games_completed_label">Λόγω αριθμού ολοκληρωμένων παιχνιδιών:</string>
 </resources>

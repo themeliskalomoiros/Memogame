@@ -52,4 +52,9 @@
     <string name="details">Details</string>
     <string name="sign_out">Ausloggen</string>
     <string name="new_highscore">Neuer persönlicher Rekord!</string>
+    <string name="details_score_survival_label">Von Überleben:</string>
+    <string name="details_score_time_label">Von Zeit:</string>
+    <string name="details_score_accuracy_label">Von Richtigkeit:</string>
+    <string name="details_score_badges_label">Von Auszeichnung:</string>
+    <string name="details_score_games_completed_label">Von Spiele abgeschlossen:</string>
 </resources>
