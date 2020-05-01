@@ -142,8 +142,13 @@ public class GameFragment extends Fragment
     @Override
     public void onMatch(int position1, int position2) {
         updateUiOnMatch(position1, position2);
-        matchCelebration.start();
-        gameEventListener.onGameMatch();
+        try {
+            matchCelebration.start();
+        }catch (IllegalStateException e){
+            Log.e(LogUtils.TAG, e.getMessage());
+        }
+        if (gameEventListener != null)
+            gameEventListener.onGameMatch();
     }
 
     private void updateUiOnMatch(int pos1, int pos2) {
@@ -161,7 +166,8 @@ public class GameFragment extends Fragment
     public void onMatchFail(int position1, int position2) {
         RunnableUtils.runDelayed(() -> {
             updateUiOnMatchFail(position1, position2);
-            gameEventListener.onGameMatchFail();
+            if (gameEventListener != null)
+                gameEventListener.onGameMatchFail();
         }, 300);
     }
 
