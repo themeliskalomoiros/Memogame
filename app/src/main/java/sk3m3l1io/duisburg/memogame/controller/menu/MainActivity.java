@@ -62,11 +62,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(view.getRootView());
         addMenuFragment();
         loadGames(savedInstanceState);
-        // TODO: check from the start if the user is already signed in and update the UI
         googleSignInClient = GoogleUtils.getSignInClient(this);
-        LogUtils.logDeviceName();
-        LogUtils.logSmallestWidthDpi(getResources());
-        LogUtils.logDeviceDimensionInfo(getWindowManager());
     }
 
     private void addMenuFragment() {
