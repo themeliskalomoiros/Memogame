@@ -18,7 +18,7 @@ public class ScoreDetailsViewImp implements ScoreDetailsView {
     private ViewGroup badgeContainer;
 
     public ScoreDetailsViewImp(LayoutInflater inflater, ViewGroup parent) {
-        root = inflater.inflate(R.layout.fragment_score_details, parent, false);
+        root = inflater.inflate(R.layout.item_score_details, parent, false);
         image = root.findViewById(R.id.image);
         medal = root.findViewById(R.id.medal);
         leftBadge = root.findViewById(R.id.badge_left);
