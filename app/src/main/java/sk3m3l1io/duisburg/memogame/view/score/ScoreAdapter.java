@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -67,26 +66,19 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     }
 
     class ScoreViewHolder extends RecyclerView.ViewHolder {
+        ImageView image;
         TextView name, rank, points;
-        ImageView image, medal, leftBadge, rightBadge;
-        MaterialButton button;
-        ViewGroup badgesContainer;
 
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(v -> {
+                if (itemClickListener != null)
+                    itemClickListener.onScoreDetailsClicked(getAdapterPosition());
+            });
             name = itemView.findViewById(R.id.name);
             rank = itemView.findViewById(R.id.rank);
             points = itemView.findViewById(R.id.points);
             image = itemView.findViewById(R.id.image);
-            medal = itemView.findViewById(R.id.medal);
-            leftBadge = itemView.findViewById(R.id.badge_left);
-            rightBadge = itemView.findViewById(R.id.badge_right);
-            button = itemView.findViewById(R.id.details);
-            button.setOnClickListener(v -> {
-                if (itemClickListener != null)
-                    itemClickListener.onScoreDetailsClicked(getAdapterPosition());
-            });
-            badgesContainer = itemView.findViewById(R.id.badges_container);
         }
 
         void bind(ScoreData s) {
@@ -99,21 +91,9 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
             if (s.getPlayer().getPhotoUrl() != null)
                 loadImage(s.getPlayer().getPhotoUrl());
-
-            if (isMedalWinner())
-                updateMedalUi();
-
-            if (hasBadge(s)) {
-                updateBadgeUi(s);
-            }
-
         }
 
         void clearCachedViews() {
-            badgesContainer.setVisibility(View.GONE);
-            medal.setVisibility(View.GONE);
-            rightBadge.setVisibility(View.GONE);
-            leftBadge.setVisibility(View.GONE);
             Glide.with(image).clear(image);
         }
 
@@ -130,39 +110,6 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
         private void loadImage(String url) {
             Glide.with(image).load(url).placeholder(R.drawable.user_male).into(image);
-        }
-
-        private boolean isMedalWinner() {
-            int pos = getAdapterPosition();
-            return pos == 0 || pos == 1 || pos == 2;
-        }
-
-        private void updateMedalUi() {
-            if (getAdapterPosition() == 0) {
-                medal.setImageResource(R.drawable.medal_first_place);
-            } else if (getAdapterPosition() == 1) {
-                medal.setImageResource(R.drawable.medal_second_place);
-            } else if (getAdapterPosition() == 2) {
-                medal.setImageResource(R.drawable.medal_third_place);
-            }
-
-            medal.setVisibility(View.VISIBLE);
-        }
-
-        private boolean hasBadge(ScoreData s) {
-            return s.isSurvivalCompleted() || s.isTimeCompleted();
-        }
-
-        private void updateBadgeUi(ScoreData s) {
-            if (s.isTimeCompleted())
-                leftBadge.setVisibility(View.VISIBLE);
-
-            if (s.isSurvivalCompleted())
-                rightBadge.setVisibility(View.VISIBLE);
-
-            ViewGroup container = itemView.findViewById(R.id.badges_container);
-            if (container != null)
-                container.setVisibility(View.VISIBLE);
         }
     }
 }

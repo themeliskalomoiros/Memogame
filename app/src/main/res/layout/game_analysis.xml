@@ -14,8 +14,8 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginLeft="@dimen/default_margin"
         android:text="@string/basic_points"
-        android:textStyle="bold"
         android:textSize="@dimen/item_score_player_name"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +98,6 @@
         android:layout_marginTop="@dimen/half_default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textColor="@color/primaryColor"
         android:textSize="@dimen/item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_highscore"
@@ -112,8 +111,8 @@
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginTop="@dimen/double_default_margin"
         android:text="@string/bonus_points_label"
-        android:textStyle="bold"
         android:textSize="@dimen/item_score_player_name"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -141,7 +140,6 @@
         android:layout_marginTop="@dimen/half_default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textColor="@color/primaryColor"
         android:textSize="@dimen/item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/badges"
@@ -171,7 +169,6 @@
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textColor="@color/primaryColor"
         android:textSize="@dimen/item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -201,7 +198,6 @@
         android:layout_marginTop="@dimen/half_default_margin"
         android:layout_marginEnd="@dimen/double_default_margin"
         android:layout_marginRight="@dimen/double_default_margin"
-        android:textColor="@color/primaryColor"
         android:textSize="@dimen/item_score_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accuracy"
@@ -215,9 +211,11 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginTop="@dimen/double_default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
         android:text="@string/total"
         android:textSize="@dimen/item_score_player_name"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -229,8 +227,10 @@
         android:layout_marginTop="@dimen/double_default_margin"
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/item_score_player_name"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:text="25.000" />

@@ -27,4 +27,6 @@
     <dimen name="game_difficulty_text">20sp</dimen>
     <dimen name="briefing_parent_margin">32dp</dimen>
     <dimen name="secondary_item_score_text">16sp</dimen>
+    <dimen name="item_score_image">40dp</dimen>
+    <dimen name="item_score_height">56dp</dimen>
 </resources>

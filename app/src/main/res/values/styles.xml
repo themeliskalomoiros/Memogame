@@ -144,4 +144,13 @@
         <item name="android:backgroundTint">@color/secondaryColor</item>
         <item name="fabSize">mini</item>
     </style>
+
+    <style name="Item_Score">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/item_score_text</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
 </resources>

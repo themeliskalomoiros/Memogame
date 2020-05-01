@@ -7,7 +7,7 @@
     <dimen name="item_score_text">32sp</dimen>
     <dimen name="secondary_item_score_text">24sp</dimen>
     <dimen name="player_score_margin">4dp</dimen>
-    <dimen name="menu_item_label_width">400dp</dimen>
+    <dimen name="menu_item_label_width">480dp</dimen>
     <dimen name="menu_item_height">120dp</dimen>
     <dimen name="menu_item_label">32sp</dimen>
     <dimen name="menu_item_label_drawable_padding">8dp</dimen>
@@ -27,4 +27,6 @@
     <dimen name="score_details_image">400dp</dimen>
     <dimen name="corner_radius">16dp</dimen>
     <dimen name="game_difficulty_text">32sp</dimen>
+    <dimen name="item_score_image">80dp</dimen>
+    <dimen name="item_score_height">104dp</dimen>
 </resources>
