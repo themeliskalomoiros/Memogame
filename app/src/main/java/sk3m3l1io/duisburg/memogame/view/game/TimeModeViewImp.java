@@ -1,7 +1,5 @@
 package sk3m3l1io.duisburg.memogame.view.game;
 
-import android.content.res.ColorStateList;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

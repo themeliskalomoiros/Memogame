@@ -22,14 +22,14 @@ public final class LogUtils {
         Log.d(TAG, "Device dimensions: w = " + width + ", h = " + height + ", dpi = " + dpi);
     }
 
-    public static void logSmallestWidthDpi(Resources r){
+    public static void logSmallestWidthDpi(Resources r) {
         Configuration config = r.getConfiguration();
         int sm = config.smallestScreenWidthDp;
-        Log.d(TAG, "Device sm is "+sm);
+        Log.d(TAG, "Device sm is " + sm);
     }
 
-    public static void logDeviceName(){
-        Log.d(TAG, "Device: "+getDeviceName());
+    public static void logDeviceName() {
+        Log.d(TAG, "Device: " + getDeviceName());
     }
 
     private static String getDeviceName() {

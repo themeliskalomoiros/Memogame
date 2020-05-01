@@ -10,13 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.Collections;
 import java.util.List;
 
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
 import sk3m3l1io.duisburg.memogame.model.pojos.ScoreData;
-import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
-import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreView;
 import sk3m3l1io.duisburg.memogame.view.score.ScoreViewImp;
 
@@ -64,7 +61,7 @@ public class ScoresFragment extends Fragment implements ScoreView.OnScoreDetails
         this.user = user;
     }
 
-    public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener){
+    public void setOnScoreDetailsClickListener(OnScoreDetailsClickListener listener) {
         this.listener = listener;
     }
 

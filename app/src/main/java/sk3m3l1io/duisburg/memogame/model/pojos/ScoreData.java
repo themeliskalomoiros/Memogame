@@ -75,8 +75,8 @@ public class ScoreData implements Comparable<ScoreData> {
         return getAccuracy() * 100;
     }
 
-    private double getAccuracy(){
-        if (getMatches() + getFailedMatches() != 0){
+    private double getAccuracy() {
+        if (getMatches() + getFailedMatches() != 0) {
             return (getMatches() * 1.0) / (getMatches() + getFailedMatches());
         }
 

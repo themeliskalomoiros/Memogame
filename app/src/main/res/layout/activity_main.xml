@@ -30,7 +30,7 @@
 
     <FrameLayout
         android:id="@+id/linearLayout"
-        style="@style/Bottom_Bar"/>
+        style="@style/Bottom_Bar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,5 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
-import android.view.Gravity;
-import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
@@ -18,6 +15,7 @@ public class TimeModeActivity extends ScoreActivity implements
     private static final int GAME_DURATION = 20000;
 
     private CountDownTimerReporter timer;
+
     public TimeModeActivity() {
         timer = new CountDownTimerReporter(GAME_DURATION, TIME_INTERVAL);
         timer.setTimeListener(this);
@@ -86,11 +84,11 @@ public class TimeModeActivity extends ScoreActivity implements
     @Override
     public void onTimerTick(int elapsedMilli) {
         ((TimeModeView) view).setTimeProgress(elapsedMilli);
-        if (isRunningOutOfTime()){
+        if (isRunningOutOfTime()) {
             TimeModeView v = (TimeModeView) view;
-            if (v.isTimerVisible()){
+            if (v.isTimerVisible()) {
                 v.hideTimer();
-            }else{
+            } else {
                 v.showTimer();
             }
         }
@@ -98,7 +96,7 @@ public class TimeModeActivity extends ScoreActivity implements
 
     private boolean isRunningOutOfTime() {
         TimeModeView v = (TimeModeView) view;
-        double percent = (v.getTimerProgress()/(v.getTimerMaxProgress()*1.0) * 100);
+        double percent = (v.getTimerProgress() / (v.getTimerMaxProgress() * 1.0) * 100);
         return percent <= 35;
     }
 

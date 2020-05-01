@@ -42,7 +42,7 @@ public class ScoreDetailsFragment extends Fragment {
         view.setTimePoints(sd.getTimeHighScore());
         view.setAveragePoints((int) sd.getGameAverageGamePoints());
         view.setCompletedGamesPoints((int) sd.getGamesCompletedPoints());
-        Log.d(LogUtils.TAG, "Accuracy points: "+sd.getAccuracyPoints());
+        Log.d(LogUtils.TAG, "Accuracy points: " + sd.getAccuracyPoints());
         view.setAccuracyPoints((int) sd.getAccuracyPoints());
         view.setBadgesPoints((int) sd.getBadgePoints());
         view.setTotalPoints(sd.getTotalPoints());

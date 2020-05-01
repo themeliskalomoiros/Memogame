@@ -184,9 +184,9 @@ public class MainActivity extends AppCompatActivity implements
         int id = view.getMenuContainerId();
         MenuFragment f = (MenuFragment) getSupportFragmentManager().findFragmentById(id);
         if (f != null) {
-            if (acc != null){
+            if (acc != null) {
                 f.setSignOutUI();
-            }else{
+            } else {
                 f.setSignInUI();
             }
         }

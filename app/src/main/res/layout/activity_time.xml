@@ -16,7 +16,7 @@
         android:id="@+id/game_container"
         style="@style/Center_Fragment_Style"
         app:layout_constraintTop_toTopOf="@id/progressbar"
-        app:layout_constraintBottom_toTopOf="@id/bottom_bar"/>
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar" />
 
     <ProgressBar
         android:id="@+id/progressbar"
