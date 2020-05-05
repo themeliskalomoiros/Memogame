@@ -129,9 +129,11 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnSymbolClick(int pos) {
-        int clr = getResources().getColor(R.color.secondaryColor);
-        view.setSymbolForeground(pos, clr);
-        view.setSymbol(pos, gameState.getSymbolAt(pos));
+        if (isVisible()){
+            int clr = getResources().getColor(R.color.secondaryColor);
+            view.setSymbolForeground(pos, clr);
+            view.setSymbol(pos, gameState.getSymbolAt(pos));
+        }
     }
 
     @Override
@@ -152,14 +154,16 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnMatch(int pos1, int pos2) {
-        view.disableSymbol(pos1);
-        view.disableSymbol(pos2);
-        int clr = getResources().getColor(R.color.secondaryColor100);
-        view.setSymbolForeground(pos1, clr);
-        view.setSymbolForeground(pos2, clr);
-        clr = getResources().getColor(android.R.color.transparent);
-        view.setSymbolBackground(pos1, clr);
-        view.setSymbolBackground(pos2, clr);
+        if (isVisible()){
+            view.disableSymbol(pos1);
+            view.disableSymbol(pos2);
+            int clr = getResources().getColor(R.color.secondaryColor100);
+            view.setSymbolForeground(pos1, clr);
+            view.setSymbolForeground(pos2, clr);
+            clr = getResources().getColor(android.R.color.transparent);
+            view.setSymbolBackground(pos1, clr);
+            view.setSymbolBackground(pos2, clr);
+        }
     }
 
     @Override
@@ -172,11 +176,13 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnMatchFail(int pos1, int pos2) {
-        int clr = getResources().getColor(R.color.primaryColor);
-        view.setSymbolForeground(pos1, clr);
-        view.setSymbolForeground(pos2, clr);
-        view.setSymbol(pos1, gameState.getCover());
-        view.setSymbol(pos2, gameState.getCover());
+        if (isVisible()){
+            int clr = getResources().getColor(R.color.primaryColor);
+            view.setSymbolForeground(pos1, clr);
+            view.setSymbolForeground(pos2, clr);
+            view.setSymbol(pos1, gameState.getCover());
+            view.setSymbol(pos2, gameState.getCover());
+        }
     }
 
     @Override
@@ -187,9 +193,11 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnGameCompleted() {
-        view.disableAllSymbols();
-        int clr = getResources().getColor(R.color.primaryDarkColor);
-        view.setAllSymbolsBackground(clr);
+        if (isVisible()){
+            view.disableAllSymbols();
+            int clr = getResources().getColor(R.color.primaryDarkColor);
+            view.setAllSymbolsBackground(clr);
+        }
     }
 
     public interface GameEventListener {
