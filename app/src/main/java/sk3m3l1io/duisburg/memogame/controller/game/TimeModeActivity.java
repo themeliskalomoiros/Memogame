@@ -1,10 +1,13 @@
 package sk3m3l1io.duisburg.memogame.controller.game;
 
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
 
 import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.services.CountDownTimerReporter;
+import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.utils.RunnableUtils;
 import sk3m3l1io.duisburg.memogame.view.game.TimeModeView;
 import sk3m3l1io.duisburg.memogame.view.game.TimeModeViewImp;
@@ -33,7 +36,8 @@ public class TimeModeActivity extends ScoreActivity implements
 
     @Override
     protected void onAttachGameFragment(GameFragment f) {
-        if (currentGame < games.size() - 1) {
+        if (currentGame < games.size()) {
+            Log.d(LogUtils.TAG, "GameFragment UI updated");
             updateUiOnFragmentAttach();
         }
     }
@@ -59,11 +63,17 @@ public class TimeModeActivity extends ScoreActivity implements
         timer.cancel();
 
         if (getCompletedGamesCount() == games.size()) {
+            updateUiBeforeShowingResult();
             addResultFragment();
         } else {
             currentGame++;
             RunnableUtils.runDelayed(() -> addGameFragment(), 200);
         }
+    }
+
+    private void updateUiBeforeShowingResult() {
+        TimeModeView v = (TimeModeView) view;
+        v.setCompletedGamesCount(getCompletedGamesCount());
     }
 
     @Override
