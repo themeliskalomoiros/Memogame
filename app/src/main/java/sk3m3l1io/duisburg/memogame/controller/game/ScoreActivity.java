@@ -13,7 +13,6 @@ import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.model.repos.FakeScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.Points;
@@ -24,6 +23,7 @@ public abstract class ScoreActivity extends GameActivity implements
     private final List<Game> gamesCompleted = new ArrayList<>();
     private final ScoreRepository repo;
     private int matches, failedMatches;
+    private boolean personalRecordWasDisplayed;
 
     public ScoreActivity() {
         repo = new FirebaseScoreRepository();
@@ -42,7 +42,7 @@ public abstract class ScoreActivity extends GameActivity implements
         int normalUpperBound = 0;
         for (int i = 0; i < games.size(); i++) {
             boolean nextGameExists = i + 1 < games.size();
-            if (nextGameExists){
+            if (nextGameExists) {
                 Game g1 = games.get(i);
                 Game g2 = games.get(i + 1);
 
@@ -63,12 +63,12 @@ public abstract class ScoreActivity extends GameActivity implements
         Collections.shuffle(games.subList(normalUpperBound + 1, games.size()));
     }
 
-    private boolean isLastEasyGame(Game g1, Game g2){
+    private boolean isLastEasyGame(Game g1, Game g2) {
         return g1.getDifficulty() == GameDifficulty.EASY &&
                 g2.getDifficulty() == GameDifficulty.NORMAL;
     }
 
-    private boolean isLastNormalGame(Game g1, Game g2){
+    private boolean isLastNormalGame(Game g1, Game g2) {
         return g1.getDifficulty() == GameDifficulty.NORMAL &&
                 g2.getDifficulty() == GameDifficulty.HARD;
     }
@@ -130,8 +130,11 @@ public abstract class ScoreActivity extends GameActivity implements
 
     @Override
     public final void onPersonalRecordAchieved() {
-        Toast t = Toast.makeText(this, R.string.new_highscore, Toast.LENGTH_SHORT);
-        t.setGravity(Gravity.CENTER, 0, 0);
-        t.show();
+        if (!personalRecordWasDisplayed) {
+            Toast t = Toast.makeText(this, getString(R.string.new_highscore) + "✌", Toast.LENGTH_SHORT);
+            t.setGravity(Gravity.CENTER, 0, 0);
+            t.show();
+            personalRecordWasDisplayed = true;
+        }
     }
 }
