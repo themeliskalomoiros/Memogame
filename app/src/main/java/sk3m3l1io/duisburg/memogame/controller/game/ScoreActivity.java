@@ -37,9 +37,9 @@ public abstract class ScoreActivity extends GameActivity implements
 
     private void shuffleByDifficulty(List<Game> games) {
         Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
+
         int easyUpperBound = 0;
         int normalUpperBound = 0;
-
         for (int i = 0; i < games.size(); i++) {
             boolean nextGameExists = i + 1 < games.size();
             if (nextGameExists){
@@ -59,7 +59,8 @@ public abstract class ScoreActivity extends GameActivity implements
         }
 
         Collections.shuffle(games.subList(0, easyUpperBound + 1));
-        Collections.shuffle(games.subList(normalUpperBound, games.size()));
+        Collections.shuffle(games.subList(easyUpperBound + 1, normalUpperBound + 1));
+        Collections.shuffle(games.subList(normalUpperBound + 1, games.size()));
     }
 
     private boolean isLastEasyGame(Game g1, Game g2){
