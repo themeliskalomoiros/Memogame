@@ -13,6 +13,7 @@ import sk3m3l1io.duisburg.memogame.R;
 import sk3m3l1io.duisburg.memogame.model.pojos.Game;
 import sk3m3l1io.duisburg.memogame.model.pojos.GameDifficulty;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
+import sk3m3l1io.duisburg.memogame.model.repos.FakeScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.ScoreRepository;
 import sk3m3l1io.duisburg.memogame.services.Points;
@@ -35,30 +36,40 @@ public abstract class ScoreActivity extends GameActivity implements
     }
 
     private void shuffleByDifficulty(List<Game> games) {
-        // TODO: Refactor that
         Collections.sort(games, (g1, g2) -> g1.getDifficulty().compareTo(g2.getDifficulty()));
         int easyUpperBound = 0;
         int normalUpperBound = 0;
 
         for (int i = 0; i < games.size(); i++) {
-            Game g1 = games.get(i);
-            Game g2 = games.get(i + 1);
+            boolean nextGameExists = i + 1 < games.size();
+            if (nextGameExists){
+                Game g1 = games.get(i);
+                Game g2 = games.get(i + 1);
 
-            if (g1.getDifficulty() == GameDifficulty.EASY &&
-                    g2.getDifficulty() == GameDifficulty.NORMAL) {
-                easyUpperBound = i;
-                continue;
-            }
+                if (isLastEasyGame(g1, g2)) {
+                    easyUpperBound = i;
+                    continue;
+                }
 
-            if (g1.getDifficulty() == GameDifficulty.NORMAL &&
-                    g2.getDifficulty() == GameDifficulty.HARD) {
-                normalUpperBound = i;
-                break;
+                if (isLastNormalGame(g1, g2)) {
+                    normalUpperBound = i;
+                    break;
+                }
             }
         }
 
         Collections.shuffle(games.subList(0, easyUpperBound + 1));
         Collections.shuffle(games.subList(normalUpperBound, games.size()));
+    }
+
+    private boolean isLastEasyGame(Game g1, Game g2){
+        return g1.getDifficulty() == GameDifficulty.EASY &&
+                g2.getDifficulty() == GameDifficulty.NORMAL;
+    }
+
+    private boolean isLastNormalGame(Game g1, Game g2){
+        return g1.getDifficulty() == GameDifficulty.NORMAL &&
+                g2.getDifficulty() == GameDifficulty.HARD;
     }
 
     @Override
