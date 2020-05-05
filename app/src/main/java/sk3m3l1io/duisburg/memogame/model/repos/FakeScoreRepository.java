@@ -10,46 +10,46 @@ public class FakeScoreRepository implements ScoreRepository {
 
     @Override
     public void setHighScoreListener(PersonalRecordListener listener) {
-        Log.d(LogUtils.TAG, "setHighScoreListener() called");
+//        Log.d(LogUtils.TAG, "setHighScoreListener() called");
     }
 
     @Override
     public void setScoresListener(ScoresListener listener) {
-        Log.d(LogUtils.TAG, "setScoresListener() called");
+//        Log.d(LogUtils.TAG, "setScoresListener() called");
     }
 
     @Override
     public void loadScores() {
-        Log.d(LogUtils.TAG, "loadScores() called");
+//        Log.d(LogUtils.TAG, "loadScores() called");
     }
 
     @Override
     public void saveScore(int score, GameMode mode, Player p) {
-        Log.d(LogUtils.TAG, "saveScore() called");
+//        Log.d(LogUtils.TAG, "saveScore() called");
     }
 
     @Override
     public void updateCompletedGame(Player p) {
-        Log.d(LogUtils.TAG, "updateCompletedGame() called");
+//        Log.d(LogUtils.TAG, "updateCompletedGame() called");
     }
 
     @Override
     public void saveMatches(int count, Player p) {
-        Log.d(LogUtils.TAG, "saveMatches() called");
+//        Log.d(LogUtils.TAG, "saveMatches() called");
     }
 
     @Override
     public void saveFailedMatches(int count, Player p) {
-        Log.d(LogUtils.TAG, "saveFailedMatches() called");
+//        Log.d(LogUtils.TAG, "saveFailedMatches() called");
     }
 
     @Override
     public void saveModeCompletion(GameMode mode, Player p) {
-        Log.d(LogUtils.TAG, "saveModeCompletion() called");
+//        Log.d(LogUtils.TAG, "saveModeCompletion() called");
     }
 
     @Override
     public void savePlayer(Player p) {
-        Log.d(LogUtils.TAG, "savePlayer() called");
+//        Log.d(LogUtils.TAG, "savePlayer() called");
     }
 }
