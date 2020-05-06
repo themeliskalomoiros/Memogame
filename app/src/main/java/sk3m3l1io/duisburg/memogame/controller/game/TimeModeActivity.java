@@ -37,7 +37,6 @@ public class TimeModeActivity extends ScoreActivity implements
     @Override
     protected void onAttachGameFragment(GameFragment f) {
         if (currentGame < games.size()) {
-            Log.d(LogUtils.TAG, "GameFragment UI updated");
             updateUiOnFragmentAttach();
         }
     }
@@ -50,6 +49,7 @@ public class TimeModeActivity extends ScoreActivity implements
         view.setTitle(g.getTitle());
         v.setTimeProgressMax(GAME_DURATION);
         v.setTimeProgress(GAME_DURATION);
+        v.showTimer();
     }
 
     @Override
