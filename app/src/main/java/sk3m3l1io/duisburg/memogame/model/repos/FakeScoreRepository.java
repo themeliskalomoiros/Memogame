@@ -1,10 +1,7 @@
 package sk3m3l1io.duisburg.memogame.model.repos;
 
-import android.util.Log;
-
 import sk3m3l1io.duisburg.memogame.model.pojos.GameMode;
 import sk3m3l1io.duisburg.memogame.model.pojos.Player;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 
 public class FakeScoreRepository implements ScoreRepository {
 

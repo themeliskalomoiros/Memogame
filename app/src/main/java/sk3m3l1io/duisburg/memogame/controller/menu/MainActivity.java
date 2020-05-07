@@ -36,7 +36,6 @@ import sk3m3l1io.duisburg.memogame.model.repos.FirebaseScoreRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepository;
 import sk3m3l1io.duisburg.memogame.model.repos.GameDataRepositoryImp;
 import sk3m3l1io.duisburg.memogame.utils.GoogleUtils;
-import sk3m3l1io.duisburg.memogame.utils.LogUtils;
 import sk3m3l1io.duisburg.memogame.view.menu.MainView;
 import sk3m3l1io.duisburg.memogame.view.menu.MainViewImp;
 

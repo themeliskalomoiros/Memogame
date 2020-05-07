@@ -129,7 +129,7 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnSymbolClick(int pos) {
-        if (isVisible()){
+        if (isVisible()) {
             int clr = getResources().getColor(R.color.secondaryColor);
             view.setSymbolForeground(pos, clr);
             view.setSymbol(pos, gameState.getSymbolAt(pos));
@@ -146,7 +146,7 @@ public class GameFragment extends Fragment
         updateUiOnMatch(position1, position2);
         try {
             matchCelebration.start();
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             Log.e(LogUtils.TAG, e.getMessage());
         }
         if (gameEventListener != null)
@@ -154,7 +154,7 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnMatch(int pos1, int pos2) {
-        if (isVisible()){
+        if (isVisible()) {
             view.disableSymbol(pos1);
             view.disableSymbol(pos2);
             int clr = getResources().getColor(R.color.secondaryColor100);
@@ -176,7 +176,7 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnMatchFail(int pos1, int pos2) {
-        if (isVisible()){
+        if (isVisible()) {
             int clr = getResources().getColor(R.color.primaryColor);
             view.setSymbolForeground(pos1, clr);
             view.setSymbolForeground(pos2, clr);
@@ -193,7 +193,7 @@ public class GameFragment extends Fragment
     }
 
     private void updateUiOnGameCompleted() {
-        if (isVisible()){
+        if (isVisible()) {
             view.disableAllSymbols();
             int clr = getResources().getColor(R.color.primaryDarkColor);
             view.setAllSymbolsBackground(clr);
