@@ -1,25 +1,19 @@
 ![MemoGame](https://lh3.googleusercontent.com/rZvMyKCF3DBUoxQMZeEgLNca9fitC47yKwC2ad2Vt2HMqmAbrai6DJTNjhtXa5s2WH4=s180-rw)
 
-# Memogame
+# Memogame: The Adoring Pair-Matching Game
 
-*The adoring pair matching game. 
-Play any of the 200 games in 3 different modes! 
-Save your progress and compete with other players*.
+Dive into the world of Memogame, a captivating pair-matching game available on Google Play. Beat the scores of others across more than 200 different tracks.
 
 ## Getting Started
 
-Take a look at the source code of [Memogame](https://youtu.be/n8norW30WDA)
-for Android. Feel free to download the app from [GooglePlay](https://play.google.com/store/apps/details?id=sk3m3l1io.duisburg.memogame).
+Explore the source code of [Memogame](https://youtu.be/n8norW30WDA) for Android. Download the app from [Google Play](https://play.google.com/store/apps/details?id=sk3m3l1io.duisburg.memogame) to embark on your memory-matching journey.
 
 ## Built With
 
 * Java / Android
 * [MVC](https://www.techyourchance.com/mvc-android-1/)
-
-## Authors
-
-* **Themelis Kalomoiros**
+* Firebase - Empowering online score saving for global competitions.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
